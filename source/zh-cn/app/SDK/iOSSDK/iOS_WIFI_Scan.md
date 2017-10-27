@@ -68,6 +68,9 @@ b、根据 产品ID 获取设备信息
 * 获取路由器ssid和密码
 * 传入参数产品ID **productId**，**路由器ssid** 和 **密码**，启动绑定流程
 
+![](/assets/UML_smartLink绑定流程图.jpg)
+
+
 a、通过 **HETWIFIBindBusiness** 获取路由器ssid 
 
 ```
@@ -104,6 +107,10 @@ b、传入参数，通过 **HETWIFIBindBusiness** 调用接口， 启动绑定
 * 手机连接路由器热点 
 * 手机切换设备热点 
 * 传入参数 产品ID **productId**、**设备大类ID**、**设备小类ID**、**路由器ssid** 和 **密码**，启动绑定流程
+
+![](/assets/UML_设备绑定流程图.jpg)
+
+
 
 
 a、传入参数，通过 **HETWIFIBindBusiness** 调用接口， 启动绑定
