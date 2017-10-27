@@ -2,7 +2,7 @@
 
 参考HETAuthorize类里面方法,调用authorizeWithCompleted接口会弹出授权登录的界面，登录成功后接口返回openId（授权用户唯一标识）可用于与自己平台的账户体系关联。
 
-###1、授权登录
+### 1、授权登录
 
 ```
 /**
@@ -19,8 +19,6 @@
  *  @param completedBlock 授权认证回调
  */
 - (void)authorizeWithCompleted:(authenticationCompletedBlock)completedBlock;
-
-
 ```
 
 【示例代码】
@@ -32,23 +30,20 @@
       [auth authorizeWithCompleted:^(HETAccount *account, NSError  *error)      {
 
 
-    }];	
+    }];    
   }
-    
-
 ```
 
-###2、取消授权登录，退出当前账号
+### 2、取消授权登录，退出当前账号
 
 ```
 /**
 *  取消授权认证
 */
-- (void)unauthorize; 
-
+- (void)unauthorize;
 ```
 
-###3、获取用户信息
+### 3、获取用户信息
 
 ```
 /**
@@ -79,17 +74,16 @@
     "city": "深圳"
  }
 }
-
 ```
 
 ![](/assets/获取用户信息图片.png)
 
-###4、**异地登录**、**accessToken过期** 通知
+### 4、**异地登录**、**accessToken过期** 通知
 
 ```
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(XXX) 
 name:HETLoginOffNotification object: nil];
-    
-    
-   
 ```
+
+
+
