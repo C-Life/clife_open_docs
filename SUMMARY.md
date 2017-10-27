@@ -34,7 +34,7 @@
 			* [3.2.2.5 SDK蓝牙设备的控制](./source/zh-cn/app/SDK/iOS_Device_Share.md)
 			* [3.2.2.6 SDK WIFI设备的扫描绑定](./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md)
 			* [3.2.2.7 SDK WIFI设备的控制](./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md)
-			* [3.2.2.8 SDK 设备的分享](./source/zh-cn/app/SDK/iOSSDK/iOS_Dåevice_Share.md)
+			* [3.2.2.8 SDK 设备的分享](./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md)
 		* [3.2.3 H5 SDK](./source/zh-cn/app/SDK/H5.md)
 	* [3.3 APP 开源框架](./source/zh-cn/App/app.md)
 * [4. 硬件开发](./source/zh-cn/device/index.md)
