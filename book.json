@@ -1,0 +1,20 @@
+{
+    "root": "./",
+    "title": "C-Life开放平台文档中心",
+    "description": "C-Life开放平台文档中心head_description",
+    "structure": {"readme": "index.md"},
+
+    "gitbook": ">= 3.0.0",
+    
+    "language": "zh-hans",
+
+    "plugins": [
+        "-sharing",
+        "-fontsettings",
+        "-lunr",
+        "-search",
+        "search-pro",
+        "theme-official",
+	"toggle-chapters"
+    ]
+}
