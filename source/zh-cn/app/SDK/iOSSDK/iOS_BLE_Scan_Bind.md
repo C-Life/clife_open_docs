@@ -1,8 +1,9 @@
 # 蓝牙扫描绑定
 
 
-蓝牙的扫描绑定主要看HETBLEBusiness相关接口
-##	一、扫描二维码绑定
+蓝牙的扫描绑定主要看`HETBLEBusiness`相关接口
+##一、扫描二维码绑定
+扫描二维码绑定，即用户扫描设备的二维码来绑定设备的方式。
 
 ### 1、获取设备类型、确定设备绑定方式
 
@@ -153,7 +154,9 @@ a、获取设备大类列表
                            failure:(failureBlock)failure;
 
 ```
-![](/Users/yuanyunlong/Documents/OpenPlatform/文档/image/查询设备大类接口返回结果.jpg)
+
+![](/assets/查询设备大类接口返回结果.jpg)
+
 
 b、通过大类ID，获取设备小类
 
