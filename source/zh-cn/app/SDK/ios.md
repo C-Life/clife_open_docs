@@ -3,7 +3,7 @@
 ## 目录
 <!-- MarkdownTOC depth=4 autolink=true bracket=round -->
 
-- [0、 概述](#概述)
+- [0、 概述](#设备接入SDK概述)
 - [1、 SDK初始化](iOSSDK/iOS_init.md)
 - [2、 SDK授权](iOSSDK/iOS_Auth.md)
 - [3、 SDK第三方登录](iOSSDK/iOS_third_login.md)
@@ -15,9 +15,15 @@
 
 
 <span id="概述"></span>
-## 概述
+## 设备接入SDK概述
 
+1. SDK目的与功能
+
+2. SDK的总体框架
 ![](/assets/SDK架构图.jpg)
+
+3. 相关名词定义
+
 
 
 
