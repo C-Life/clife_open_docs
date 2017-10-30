@@ -92,11 +92,15 @@
 
 
 ```
-- (void)viewWillDisappear:(BOOL)animated
-{
+/**
+*  设备控制
+*
+*  @param jsonString   设备控制的json字符串,协议中的控制数据协议里面的字节属性名和对应值组成的字典经转换为json字符串,下发数据必须传递updateflag标志
 
-    [self.controlBusiness stop];
-}
+*  @param successBlock 控制成功的回调
+*  @param failureBlock 控制失败的回调
+*/
+- (void)deviceControlRequestWithJson:(NSString *)jsonString withSuccessBlock:(void(^)(id responseObject))successBlock withFailBlock:(void(^)( NSError *error))failureBlock; 
 
 ```
 
