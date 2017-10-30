@@ -12,7 +12,7 @@
 - [6、 SDK WIFI设备的扫描绑定](iOSSDK/iOS_WIFI_Scan.md)
 - [7、 SDK WIFI设备的控制](iOSSDK/iOS_WIFI_Controller.md)
 - [8、 SDK 设备的分享](iOSSDK/iOS_Device_Share.md)
-- [8、 SDK APP辅助信息接口](iOSSDK/iOS_APP_Info.md)
+- [9、 SDK APP辅助信息接口](iOSSDK/iOS_APP_Info.md)
 
 
 
