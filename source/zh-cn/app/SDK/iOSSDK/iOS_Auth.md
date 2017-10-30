@@ -1,6 +1,6 @@
 ## 授权登录
 
-参考HETAuthorize类里面方法,调用authorizeWithCompleted接口会弹出授权登录的界面，登录成功后接口返回openId（授权用户唯一标识）可用于与自己平台的账户体系关联。
+参考`HETAuthorize`类里面方法,调用`authorizeWithCompleted`接口会弹出授权登录的界面，登录成功后接口返回openId（授权用户唯一标识）可用于与自己平台的账户体系关联。
 
 ### 1、授权登录
 
@@ -79,6 +79,9 @@
 ![](/assets/获取用户信息图片.png)
 
 ### 4、**异地登录**、**accessToken过期** 通知
+
+开放平台的账号只能在一台设备上面登录。当有账号在另一台设备登录时，SDK会抛出一个HETLoginOffNotification消息。 开发者可以在首页监听这个消息，处理异地登录的逻辑。 
+例：
 
 ```
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(XXX) 

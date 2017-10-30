@@ -1,6 +1,6 @@
 ##IOS 设备分享
 
-C-Life设备分享分为面对面分享和第三方应用分享
+C-Life设备分享分为面对面分享和第三方应用分享,分享相关接口请参考`HETDeviceShareBusiness`
 
 
 ###一、分享流程
@@ -52,7 +52,9 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 
 ###四、接口说明
 
-1、获取设备分享码
+####1、分享
+
+#####1.1、获取设备分享码
 
 ```
 /**
@@ -76,7 +78,7 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 | deviceId | 是       | NSString|  设备ID          |
 | shareType | 是       | HETDeviceShareType |  分享类型           |
 
-2、授权分享
+#####1.2、授权分享
 
 ```
 /**
@@ -101,3 +103,41 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 |----------|----------|---------|-----------------|
 | shareCode | 是       | NSString|  设备分享码          |
 | shareType | 是       | HETDeviceShareType |  分享类型           |
+
+
+####2.获取设备授权的用户列表
+
+```
+[HETDeviceShareBusiness deviceGetAuthUserWithDeviceId:self.deviceId success:^(id responseObject) {
+        [weakSelf.shareUserTableView.mj_header endRefreshing];
+        OPLog(@"responseObject == %@",responseObject);
+        if ([responseObject isKindOfClass:[NSArray class]]) {
+            weakSelf.shareUserArr = [responseObject mutableCopy];
+            [weakSelf.shareUserTableView reloadData];
+        }
+    } failure:^(NSError *error) {
+        OPLog(@"error == %@",error);
+        [HETCommonHelp showHudAutoHidenWithMessage:PuLLDownRefresh];
+        [weakSelf.shareUserTableView.mj_header endRefreshing];
+    }];
+```
+
+####3.用户设备授权删除
+
+```
+
+    WEAKSELF
+    [HETDeviceShareBusiness deviceAuthDelWithDeviceId:self.deviceId userId:userId success:^(id responseObject) {
+        // 删除数据源的数据,self.cellData是你自己的数据
+        [weakSelf.shareUserArr removeObjectAtIndex:indexPath.row];
+        // 删除列表中数据
+        [weakSelf.shareUserTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+        [weakSelf getShareUserList];
+        [HETCommonHelp showHudAutoHidenWithMessage:@"删除成功"];
+    } failure:^(NSError *error) {
+        [HETCommonHelp showHudAutoHidenWithMessage:@"删除失败"];
+        [weakSelf.shareUserTableView endEditing:YES];
+    }];
+    
+```

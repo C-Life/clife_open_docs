@@ -1,19 +1,19 @@
-## 设备控制
+## Wifi - 设备控制
 
-参考HETDeviceControlBusiness类里面方法，实现设备控制和运行状态的监听。
+参考`HETDeviceControlBusiness`类里面方法，实现设备控制和运行状态的监听。
 
-参考HETDeviceRequestBusiness类里面的方法，获取设备的信息。
+参考`HETDeviceRequestBusiness`类里面的方法，获取设备的信息。
 
-### 一、设备控制流程
-		
-1、获取已绑定的设备列表，获取设备信息（`HETDevice`）。
 
-2、根据获取的设备信息，监听设备状态，控制设备。
+控制设备的流程如下：		
+第一步：获取已绑定的设备列表，获取设备信息（`HETDevice`）。
+
+第二步：根据获取的设备信息，监听设备状态，控制设备。
 	
-![](/assets/UML_WIFI设备控制.jpg)
 
 
-### 二、获取绑定设备列表
+
+### 一、获取绑定设备列表
 
 绑定成功后，用户可以获取绑定成功的设备列表，获取到设备列表拿到设备的HETDevice设备信息才可以控制设备
 
@@ -29,7 +29,9 @@
 
 ```
 
-### 三、控制和监听设备
+![](/assets/设备绑定返回参数.png)
+
+### 二、监听设备状态
 
 ####1、初始化 
 
@@ -87,3 +89,95 @@
 }
 
 ```
+
+### 三、设备控制
+
+设备控制流程入下：
+![](/assets/UML_WIFI设备控制.jpg)
+
+
+```
+/**
+*  设备控制
+*
+*  @param jsonString   设备控制的json字符串,协议中的控制数据协议里面的字节属性名和对应值组成的字典经转换为json字符串,下发数据必须传递updateflag标志
+
+*  @param successBlock 控制成功的回调
+*  @param failureBlock 控制失败的回调
+*/
+- (void)deviceControlRequestWithJson:(NSString *)jsonString withSuccessBlock:(void(^)(id responseObject))successBlock 
+withFailBlock:(void(^)( NSError *error))failureBlock; 
+
+```
+
+关于updateflag
+
+这个修改标记位是为了做统计和配置下发的时候设备执行相应的功能。下发数据必须传递updateflag标志
+
+例如，空气净化器（广磊K180）配置信息协议：
+
+紫外线(1)、负离子(2)、臭氧(3)、儿童锁(4)、开关(5)、WiFi(6)、过滤网(7)、模式(8)、定时(9)、风量(10) 上面一共上10个功能，那么updateFlag就2个字节，没超过8个功能为1个字节，超过8个为2个字节，超过16个为3个字节，以此类推。
+
+打开负离子，2个字节，每一个bit的值为下：
+
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
+
+
+### 四：设备管理
+
+####1、解绑设备
+设备删除有2中情况,需要自己根据设备分享类型（device.share）来区分：
+ 第一种：设备是用户自己绑定的设备。调用`unbindDeviceWithDeviceId: success: failure:`来解除绑定。
+
+```
+/**
+*  解除设备绑定
+*
+*  @param deviceId 设备deviceId
+*  @param success  成功的回调
+*  @param failure  失败的回调
+*/
+  [HETDeviceRequestBusiness unbindDeviceWithDeviceId:device.deviceId success:^(id responseObject) {
+            // 删除数据源的数据,self.cellData是你自己的数据
+            [weakSelf.deviceArr removeObjectAtIndex:indexPath.row];
+            // 删除列表中数据
+            [weakSelf.deviceListTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+        } failure:^(NSError *error) {
+           
+        }];
+```
+
+第二种：设备是别人分享的过来的设备。调用HetDeviceShareApi.getInstance().deviceDel()方法来解绑分享关系。 
+```
+  [HETDeviceShareBusiness deviceAuthDelWithDeviceId:device.deviceId userId:@"" success:^(id responseObject) {
+            // 删除数据源的数据,self.cellData是你自己的数据
+            [weakSelf.deviceArr removeObjectAtIndex:indexPath.row];
+            // 删除列表中数据
+            [weakSelf.deviceListTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+            [weakSelf getDeviceList];
+            [HETCommonHelp showHudAutoHidenWithMessage:UnBindDeviceSuccess];
+        } failure:^(NSError *error) {
+            [HETCommonHelp showHudAutoHidenWithMessage:UnBindDeviceError];
+            [weakSelf.deviceListTableView endEditing:YES];
+        }];
+```
+
+####2、修改设备信息
+修改设备信息，用户可以修改设备的名称
+
+```
+/**
+*  修改设备基础信息
+*
+*  @param deviceId   设备标识
+*  @param deviceName 设备名称
+*  @param roomId     房间标识（绑定者才可以修改房间位置）
+*  @param success    成功的回调
+*  @param failure    失败的回调
+*/
+- (void)updateDeviceInfoWithDeviceId:(NSString *)deviceId  deviceName:(NSString *)deviceName roomId:(NSString *)roomId  success:(successBlock)success  failure:(failureBlock)failure;
+
+```
+
