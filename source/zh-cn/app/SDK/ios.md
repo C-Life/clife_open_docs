@@ -17,6 +17,7 @@
 <span id="概述"></span>
 ## 概述
 
+![](/assets/SDK架构图.jpg)
 
 
 
