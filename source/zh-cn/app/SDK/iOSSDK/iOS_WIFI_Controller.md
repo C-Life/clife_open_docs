@@ -124,7 +124,8 @@ withFailBlock:(void(^)( NSError *error))failureBlock;
 
 
 ### 五：设备管理
-1、解绑设备
+
+####1、解绑设备
 设备删除有2中情况,需要自己根据设备分享类型（device.share）来区分：
  第一种：设备是用户自己绑定的设备。调用`unbindDeviceWithDeviceId: success: failure:`来解除绑定。
 
@@ -162,3 +163,21 @@ withFailBlock:(void(^)( NSError *error))failureBlock;
             [weakSelf.deviceListTableView endEditing:YES];
         }];
 ```
+
+####2、修改设备信息
+修改设备信息，用户可以修改设备的名称
+
+```
+/**
+*  修改设备基础信息
+*
+*  @param deviceId   设备标识
+*  @param deviceName 设备名称
+*  @param roomId     房间标识（绑定者才可以修改房间位置）
+*  @param success    成功的回调
+*  @param failure    失败的回调
+*/
+- (void)updateDeviceInfoWithDeviceId:(NSString *)deviceId  deviceName:(NSString *)deviceName roomId:(NSString *)roomId  success:(successBlock)success  failure:(failureBlock)failure;
+
+```
+
