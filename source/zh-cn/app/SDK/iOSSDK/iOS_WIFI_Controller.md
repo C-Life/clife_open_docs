@@ -1,8 +1,8 @@
-## 设备控制
+## Wifi - 设备控制
 
-参考HETDeviceControlBusiness类里面方法，实现设备控制和运行状态的监听。
+参考`HETDeviceControlBusiness`类里面方法，实现设备控制和运行状态的监听。
 
-参考HETDeviceRequestBusiness类里面的方法，获取设备的信息。
+参考`HETDeviceRequestBusiness`类里面的方法，获取设备的信息。
 
 ### 一、设备控制流程
 		
@@ -29,7 +29,7 @@
 
 ```
 
-### 三、控制和监听设备
+### 三、监听设备状态
 
 ####1、初始化 
 
@@ -87,3 +87,19 @@
 }
 
 ```
+
+### 四、设备控制
+
+
+```
+- (void)viewWillDisappear:(BOOL)animated
+{
+
+    [self.controlBusiness stop];
+}
+
+```
+
+
+
+
