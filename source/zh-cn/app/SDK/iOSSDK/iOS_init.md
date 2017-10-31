@@ -61,7 +61,7 @@ pod 'HETPublicSDK_WiFiModule_COOEE',            '1.0.0'
 pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 
 ```
-
+备注：在使用了Wifi模组后，就不再支持模拟器调试。
 
 ### 三、注册使用SDK
 

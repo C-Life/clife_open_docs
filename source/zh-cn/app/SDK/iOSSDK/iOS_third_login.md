@@ -4,6 +4,8 @@
 ### 一、申请各个平台的App key和App secret
 注意：app bundleId跟各平台注册的时候一致。
 
+<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=1417694084&token=&lang=zh_CN">微信接入地址</a>
+
 ### 二、通过Pod导入SDK： 
 ```
 pod 'WechatOpenSDK', '1.7.7'
