@@ -7,6 +7,24 @@
 ## 2.SDK功能简介下面是SDK的基础架构图：
 ![这里写图片描述](http://img.blog.csdn.net/20171023162454760?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
+## 2.相关名词定义
+
+###2.1 appId和appSecret
+
+开放平台app的应用标识和密钥。开发者在开放平台接入设备创建APP的时候，后台会自动生成一个appId和appSecret。在初始化SDK的时候有用到。
+
+###2.2 productId
+
+设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
+
+###2.1 productId
+
+设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
+
+###2.1 deviceId
+
+设备号，当一个设备通过设备绑定的接口初次接入开放平台时，开放平台会自动根据productId以及设备的mac地址为此设备注册一个deviceId，此deviceId全网唯一，用于通过开放平台进行设备的操作。
+
 ## 2.集成准备
 
 ### 2.1 注册开放平台账号  
