@@ -1,15 +1,10 @@
 # Android SDK 概述
 
 ## 1.SDK功能简介
-<<<<<<< HEAD
-和而泰开放平台设备接入SDK封装了和而泰开放平台（以下简称开放平台）接口，以及手机与智能硬件通讯接口。包括用户模块，设备绑定模块，设备控制模块和其他的开放平台接口。开发者不需要关注这些模块的具体内部逻辑，只需要根据自己的业务需求编写界面和调用SDK接口就可以完成APP的快速开发。  
-下面是SDK的基础架构图：  
-![这里写图片描述](http://img.blog.csdn.net/20171023162454760?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-=======
 clife开放平台（以下简称开放平台）设备接入的SDK封装了clife对外开放的服务接口，以及手机与智能硬件通讯接口。包括用户模块，设备绑定模块，设备控制模块和其他的开放平台接口。开发者不需要关注这些模块的具体内部逻辑，只需要根据自己的业务需求编写界面和调用SDK接口就可以完成APP的快速开发。
 下面是SDK的基础架构图：  
  ![](https://i.imgur.com/44UiXao.jpg)
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
+
 
 ## 2.相关名词定义
 
@@ -79,11 +74,9 @@ SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和
 ## 4.集成准备
 
 ### 4.1.注册开放平台账号  
-<<<<<<< HEAD
-  通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《和而泰开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
-=======
+
   通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《clife开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
+
 
 ### 4.2.下载SDK终端DEMO 请前往下载中心下载最新SDK包。
 
@@ -92,21 +85,13 @@ SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和
 	allprojects {
 	    repositories {
 	        jcenter()
-<<<<<<< HEAD
-	        //和而泰对外仓库
-=======
 	        //clife对外仓库
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 	        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	    }
 	}
 	
 	dependencies {
-<<<<<<< HEAD
-	    //和而泰sdk库
-=======
 	    //clifesdk库
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 	     compile 'com.github.szhittech:HetOpenSdk:1.0.7-SNAPSHOT'
 	}
 
@@ -127,15 +112,9 @@ SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和
 	    compile 'com.github.szhittech:hetrecyclersdk:1.0.9-SNAPSHOT'
 	    //乐鑫信息科技(esptouchmodule) 模组ID：7
 	    compile 'com.github.szhittech:esptouchmodule:1.0.1-SNAPSHOT'
-<<<<<<< HEAD
-	    //和而泰AP绑定(hetapmodule) 模组ID：28
-	    compile 'com.github.szhittech:hetapmodule:1.0.1-SNAPSHOT'
-	    //和而泰smartlink绑定(在庆科基础上修改 hetsmartlink) 模组ID：10
-=======
 	    //clifeAP绑定(hetapmodule) 模组ID：28
 	    compile 'com.github.szhittech:hetapmodule:1.0.1-SNAPSHOT'
 	    //clifesmartlink绑定(在庆科基础上修改 hetsmartlink) 模组ID：10
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 	    compile 'com.github.szhittech:hetsmartlink:1.0.1-SNAPSHOT'
 	    //科中龙(realtekmodule) 模组ID：4
 	    compile 'com.github.szhittech:realtekmodule:1.0.1-SNAPSHOT'
@@ -157,11 +136,8 @@ SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和
 
 引用SDK，根据自己硬件的模组来选择引用那个模组，其他的可以不用。 二维码扫描库在SDk demo中设备绑定中有用到，可以按照demoApp的实例来使用，也可以用自己的二维码扫描库。
 
-<<<<<<< HEAD
-###4.5.配置AndroidManifest.xml
-=======
 ### 4.5.配置AndroidManifest.xml
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
+
 请将下面权限配置代码复制到 AndroidManifest.xml 文件中：
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -197,11 +173,9 @@ SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和
 	</tbody>
 </table>
 
-<<<<<<< HEAD
-####4.6.Android6.0系统文件读写权限设置
-=======
+
 #### 4.6.Android6.0系统文件读写权限设置
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
+
 Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态申请。开发者可以提供SDK提供的RxPermissions来动态申请权限
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -463,13 +437,8 @@ SDK的授权登录页面需要这个JSON参数来配置，包括是否需要第�
      */
 	private void registerModule() {
         try {
-<<<<<<< HEAD
-            ModuleManager.getInstance().registerModule(HeTApModuleImpl.class, getApplicationContext());//和而泰AP绑定
-            ModuleManager.getInstance().registerModule(HeTSmartlinkImpl.class, getApplicationContext());//和而泰smartlink绑定
-=======
             ModuleManager.getInstance().registerModule(HeTApModuleImpl.class, getApplicationContext());//clifeAP绑定
             ModuleManager.getInstance().registerModule(HeTSmartlinkImpl.class, getApplicationContext());//clifesmartlink绑定
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
             ModuleManager.getInstance().registerModule(RealtekModuleImpl.class, getApplicationContext());//科中龙(realtekmodule)
             ModuleManager.getInstance().registerModule(XlwModuleImpl.class, getApplicationContext());//新力维_NL6621底层库
             ModuleManager.getInstance().registerModule(SctechModuleImpl.class, getApplicationContext());//双驰达(sctechmodule)
@@ -709,19 +678,13 @@ HetUserApi.getInstance().getUserMess()可以获取到用户信息
 
 开放平台的设备按照功能划分类型，设备有大类，大类下面划分不同型号的小类。确定类型之后，设备还有WIFI和蓝牙设备之分。绑定设备之前首先就需要选择设备类型在扫描绑定。WIFI SSID和密码 需要开发者自己去获取手机当前连接的WIFI，让用户自己输入WIFI密码之后再调用开始扫描绑定的接口，productId是设备小类中productId字段。WIFI设备AP绑定流程图如下：
 
-<<<<<<< HEAD
- ![这里写图片描述](http://img.blog.csdn.net/20171026144038416?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-WIFI设备SmartLink绑定流程图如下：
-
-![这里写图片描述](http://img.blog.csdn.net/20171027163437204?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-=======
 ![](https://i.imgur.com/AXPq6FR.png)
 
 WIFI设备SmartLink绑定流程图如下：
 
  ![](https://i.imgur.com/J5AWpvN.png)
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
+
 
 SDK的设备绑定非常简单，只需要知道设备的产品ID就可以进行绑定了开放平台提供了三种方式来获取产品ID。  
 
@@ -791,11 +754,8 @@ HetDeviceListApi.getInstance().getSubTypeListProduct获取APP支持绑定的设�
         }
     }
 
-<<<<<<< HEAD
-第三种：在开放平台后台直接直接查看产品ID，详情请查《和而泰开发平台使用手册》。  
-=======
+
 第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。  
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 
 开发者可以通过项目需要选择适合自己项目的方式来获取产品ID。在获取到产品ID之后，开发者只需要根据自己的设备类型来选择SDK的绑定接口就好了。具体可以分为WIFI绑定和蓝牙绑定2种。判断是WIFI设备还是蓝牙设备，进入相应的绑定页面，可以通过设备小类的moduleType字段来判断。如：int type = deviceSubModel.getModuleType();  type == 1标识WIFI设备  type ==2标识蓝牙设备。  
 
@@ -846,11 +806,7 @@ BLE蓝牙设备绑定：SDK提供一个HetCommonBleBindApi接口，普通蓝牙�
 第二步：选择扫描的某个设备绑定到服务器；  
 蓝牙网关设备绑定方式跟前面的方式有些小区别，两种方式的蓝牙设备绑定流程图如下：
 
-<<<<<<< HEAD
-![这里写图片描述](http://img.blog.csdn.net/20171027163756451?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-=======
  ![](https://i.imgur.com/b4qGgZi.png)
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 
 具体的接口调用说明：
 
@@ -985,11 +941,7 @@ SDK所有的设备devicemodel，参数说明
 		<tr>
 			<td>share</td>
 			<td>number</td>
-<<<<<<< HEAD
-			<td>设备分享（1-是，2-否，3-扫描分享）<font color=#c00>【2015-11-11新增状态（3）】</font></td>
-=======
 			<td>设备分享（1-是，2-否，3-扫描分享）</td>
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 		</tr>
 		<tr>
 			<td>controlType</td>
@@ -1044,11 +996,7 @@ SDK所有的设备devicemodel，参数说明
 		<tr>
 			<td>deviceCode</td>
 			<td>string</td>
-<<<<<<< HEAD
-			<td><font color=#c00>【2016-06-03新增】</font>设备编码</td>
-=======
 			<td>设备编码</td>
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 		</tr>
 	</tbody>
 </table>
@@ -1192,11 +1140,7 @@ DeviceAuthUserModel 的字段说明：
 
 第一种：面对面分享，通过deviceId（要分享的设备的标识）获取分享码，分享的流程图如下：
 
-<<<<<<< HEAD
- ![这里写图片描述](http://img.blog.csdn.net/20171026143701789?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-=======
  ![](https://i.imgur.com/2k0B7F0.png)
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 
 具体的接口调用说明：
 
@@ -1261,11 +1205,7 @@ ShareCodeModel字段说明:
 第二种：远程分享（通过QQ、微信分享设备）。
 这种分享主要利用的是第三方社交平台，可以快速的实现设备分享有利于实现产品的快速推广。特别注意：远程的第三方分享一定要集成第三方分享服务。详细集成实例请参考下面 **第三方平台服务的集成（登录和分享）**的集成，跟第一种方式一样首先要获取分享码和分享的网页地址。分享的流程图如下：
 
-<<<<<<< HEAD
-![这里写图片描述](http://img.blog.csdn.net/20171026143758237?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-=======
  ![](https://i.imgur.com/KkINUuf.png)
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 
 具体的接口调用说明：
 
@@ -1374,11 +1314,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
 
 设备有WIFI设备的控制和蓝牙设备的控制区别，wifi设备控制流程图示如下：
 
-<<<<<<< HEAD
-![这里写图片描述](http://img.blog.csdn.net/20171026143540571?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-=======
  ![](https://i.imgur.com/6Q1Dk6V.png)
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 
 SDK提供统一的数据流接口。接收设备数据和监听设备状态都是通过IWifiDeviceData这个接口来完成，发送数据调用HetDeviceWifiControlApi.getInstance().setDataToDevice()。  
 
@@ -1486,11 +1422,7 @@ WIFI设备控制具体可以分成4个步骤：
 第二种 蓝牙设备控制：  
 蓝牙设备控制主要是通过手机app和蓝牙设备先建立连接，然后根据定义的协议进行数据交互，具体的交互流程图如下：
 
-<<<<<<< HEAD
-![这里写图片描述](http://img.blog.csdn.net/20171027164150531?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-=======
  ![](https://i.imgur.com/mFZmrXE.png)
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 
 具体的蓝牙控制分成5个步骤：  
 
@@ -2162,12 +2094,9 @@ SDK提供了操作消息的接口HetMessageApi
 ## 1.H5开发框架
 请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
 ## 2.Android和H5通讯
-<<<<<<< HEAD
-SDK提供了原生与H5通讯的管理接口HtmlFiveManager。
-=======
+
 SDK提供了原生与H5通讯的管理接口HtmlFiveManager，其通讯原理图如下：
 ![](https://i.imgur.com/drm1OoC.png)
->>>>>>> 4c0e44c4c2907794b3e816c4ecab31acfcc58520
 
 	public HtmlFiveManager(Activity activity, WebView wv, IAppJavaScriptsInterface appJavaScriptsInterface) {
         ...........
