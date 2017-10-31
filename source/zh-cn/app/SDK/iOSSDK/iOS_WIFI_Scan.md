@@ -10,6 +10,13 @@
 
 #一、扫描二维码绑定
 
+二维码命名规则：
+
+```
+http://open.clife.net/v1/web/open/product?param={"a":产品id}
+
+```
+
 ## 1、获取设备类型、确定设备绑定方式
 * 通过扫一扫获取产品ID `productId`
 * 根据 产品ID 获取设备信息
