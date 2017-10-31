@@ -1,0 +1,858 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.2.2.6 SDK WIFI设备的扫描绑定 · C-Life开放平台文档中心</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+
+    
+    <link rel="next" href="iOS_WIFI_Controller.html" />
+    
+    
+    <link rel="prev" href="iOS_Device_Share.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="gb-page-wrapper">
+    <header class="gb-page-header">
+        <div class="container">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+
+            <a href="../../../../.." class="logo">
+                <img src="../../../../../gitbook/images/logo/128.png">
+                <h1>C-Life开放平台文档中心</h1>
+            </a>
+
+            
+
+            
+                
+                <a href="iOS_WIFI_Controller.html" class="btn btn-link pull-right hidden-xs">
+                    <i class="octicon octicon-chevron-right"></i>
+                </a>
+                
+                
+                <a href="iOS_Device_Share.html" class="btn btn-link pull-right hidden-xs">
+                    <i class="octicon octicon-chevron-left"></i>
+                </a>
+                
+            
+        
+        </div>
+    </header>
+
+    <div class="gb-page-body">
+        <div class="gb-page-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        
+
+
+
+    
+    <div class="panel panel-default">
+        
+
+        <div class="list-group">
+            
+    
+        
+        <a href="../../../../../" class="list-group-item ">
+        
+
+            
+
+            
+
+            Introduction
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../../overview/" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            1. 平台概述
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../../product/" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            2. 产品开发
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-down"></i>
+            
+
+            3. APP开发
+
+        
+        </a>
+        
+
+        
+        
+    
+        
+        <a href="../../application/application.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            3.1 应用管理
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+            <i class="octicon octicon-chevron-down"></i>
+            
+
+            3.2 APP SDK
+
+        
+        </a>
+        
+
+        
+        
+    
+        
+        <a href="../android.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.1 android SDK
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../ios.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+            <i class="octicon octicon-chevron-down"></i>
+            
+
+            3.2.2 iOS SDK
+
+        
+        </a>
+        
+
+        
+        
+    
+        
+        <a href="iOS_init.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.1 初始化
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_Auth.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.2 SDK授权
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_third_login.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.3 SDK第三方登录
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_BLE_Scan_Bind.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.4 SDK蓝牙设备的扫描绑定
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_Device_Share.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.5 SDK蓝牙设备的控制
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_WIFI_Scan.html" class="list-group-item active">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.6 SDK WIFI设备的扫描绑定
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_WIFI_Controller.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.7 SDK WIFI设备的控制
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_Device_Share.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.8 SDK 设备的分享
+
+        
+        </a>
+        
+
+        
+    
+
+        
+    
+        
+        <a href="../H5.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.3 H5 SDK
+
+        
+        </a>
+        
+
+        
+    
+
+        
+    
+        
+        <a href="../../../App/app.md" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.3 APP 开源框架
+
+        
+        </a>
+        
+
+        
+    
+
+        
+    
+        
+        <span class="list-group-item">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            4.1 硬件接入准备工作
+
+        
+        </span>
+        
+
+        
+    
+        
+        <a href="../../../cloudAPI/" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            5. 云API
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../../dataservice/" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            6. 数据服务
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../../datapush/index.md" class="list-group-item ">
+        
+
+            
+
+            
+
+            7. 推送服务
+
+        
+        </a>
+        
+
+        
+    
+
+        </div>
+    </div>
+    
+
+
+
+                    </div>
+                    <div class="col-md-9">
+                        
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                            
+                            <div class="gb-markdown book-page-inner">
+                                <h1 id="wifi---&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;">wifi - &#x8BBE;&#x5907;&#x7ED1;&#x5B9A;</h1>
+<h2 id="&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;&#x6982;&#x8FF0;">&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;&#x6982;&#x8FF0;</h2>
+<p>&#x5F00;&#x653E;&#x5E73;&#x53F0;&#x7684;&#x8BBE;&#x5907;&#x6309;&#x7167;&#x529F;&#x80FD;&#x5212;&#x5206;&#x7C7B;&#x578B;&#xFF0C;&#x8BBE;&#x5907;&#x6709;&#x5927;&#x7C7B;&#xFF0C;&#x5927;&#x7C7B;&#x4E0B;&#x9762;&#x5212;&#x5206;&#x4E0D;&#x540C;&#x578B;&#x53F7;&#x7684;&#x5C0F;&#x7C7B;&#x3002;&#x786E;&#x5B9A;&#x7C7B;&#x578B;&#x4E4B;&#x540E;&#xFF0C;&#x8BBE;&#x5907;&#x8FD8;&#x6709;WIFI&#x548C;&#x84DD;&#x7259;&#x8BBE;&#x5907;&#x4E4B;&#x5206;&#x3002;&#x7ED1;&#x5B9A;&#x8BBE;&#x5907;&#x4E4B;&#x524D;&#x9996;&#x5148;&#x5C31;&#x9700;&#x8981;&#x9009;&#x62E9;&#x8BBE;&#x5907;&#x7C7B;&#x578B;&#x5728;&#x626B;&#x63CF;&#x7ED1;&#x5B9A;&#x3002;WIFI SSID&#x548C;&#x5BC6;&#x7801; &#x9700;&#x8981;&#x5F00;&#x53D1;&#x8005;&#x81EA;&#x5DF1;&#x53BB;&#x83B7;&#x53D6;&#x624B;&#x673A;&#x5F53;&#x524D;&#x8FDE;&#x63A5;&#x7684;WIFI&#xFF0C;&#x8BA9;&#x7528;&#x6237;&#x81EA;&#x5DF1;&#x8F93;&#x5165;WIFI&#x5BC6;&#x7801;&#x4E4B;&#x540E;&#x518D;&#x8C03;&#x7528;&#x5F00;&#x59CB;&#x626B;&#x63CF;&#x7ED1;&#x5B9A;&#x7684;&#x63A5;&#x53E3;&#xFF0C;productId&#x662F;&#x8BBE;&#x5907;&#x5C0F;&#x7C7B;&#x4E2D;productId&#x5B57;&#x6BB5;&#x3002;
+&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;&#x5206;&#x4E3A;&#x624B;&#x52A8;&#x7ED1;&#x5B9A;&#x548C;&#x4E8C;&#x7EF4;&#x7801;&#x626B;&#x63CF;&#x7ED1;&#x5B9A;&#xFF0C;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../../../../../assets/&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;&#x56FE;.jpg" alt=""></p>
+<h1 id="&#x4E00;&#x3001;&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;&#x7ED1;&#x5B9A;">&#x4E00;&#x3001;&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;&#x7ED1;&#x5B9A;</h1>
+<h2 id="1&#x3001;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x7C7B;&#x578B;&#x3001;&#x786E;&#x5B9A;&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;&#x65B9;&#x5F0F;">1&#x3001;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x7C7B;&#x578B;&#x3001;&#x786E;&#x5B9A;&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;&#x65B9;&#x5F0F;</h2>
+<ul>
+<li>&#x901A;&#x8FC7;&#x626B;&#x4E00;&#x626B;&#x83B7;&#x53D6;&#x4EA7;&#x54C1;ID <code>productId</code></li>
+<li>&#x6839;&#x636E; &#x4EA7;&#x54C1;ID &#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x4FE1;&#x606F;</li>
+<li>&#x6839;&#x636E;&#x8BBE;&#x5907;&#x4FE1;&#x606F;&#x533A;&#x5206;&#x8BBE;&#x5907;&#x7C7B;&#x578B;&#x3001;&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;&#x65B9;&#x5F0F;</li>
+</ul>
+<p>a&#x3001;&#x83B7;&#x53D6;&#x4EA7;&#x54C1;ID</p>
+<pre><code>&#x626B;&#x4E00;&#x626B;&#x5185;&#x5BB9;&#xFF1A;
+urlStr: http://open.clife.net/v1/web/open/product?param={&quot;a&quot;:3531}
+</code></pre><pre><code>&quot;a&quot;:3531  3531 &#x5373;&#x662F; &#x4EA7;&#x54C1;ID
+</code></pre><p>b&#x3001;&#x6839;&#x636E; &#x4EA7;&#x54C1;ID &#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x4FE1;&#x606F;</p>
+<pre><code>/**
+ *  &#x6839;&#x636E;productId&#x83B7;&#x53D6;&#x4EA7;&#x54C1;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;
+ *
+ *  @param productId &#x8BBE;&#x5907;&#x578B;&#x53F7;&#x6807;&#x8BC6;
+ *  @param success  &#x67E5;&#x8BE2;&#x8BBE;&#x5907;&#x4FE1;&#x606F;&#x6210;&#x529F;&#x7684;&#x56DE;&#x8C03;
+ *  @param failure  &#x67E5;&#x8BE2;&#x8BBE;&#x5907;&#x4FE1;&#x606F;&#x5931;&#x8D25;&#x7684;&#x56DE;&#x8C03;
+ */
++(void)fetchDeviceInfoWithProductId:(NSNumber *)productId
+                                    success:(successBlock)success
+                                    failure:(failureBlock)failure;
+</code></pre><p><img src="../../../../../assets/&#x4EA7;&#x54C1;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;.jpg" alt=""></p>
+<p>&#x6839;&#x636E;&#x8BBE;&#x5907;&#x4FE1;&#x606F;&#x4E2D;&#x7684; <strong>moduleType</strong> &#x6765;&#x533A;&#x5206;&#x8BBE;&#x5907;&#x7C7B;&#x578B;</p>
+<table>
+<thead>
+<tr>
+<th>moduleType</th>
+<th>&#x7ED1;&#x5B9A;&#x7C7B;&#x578B;   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>    1</td>
+<td>wifi&#x8BBE;&#x5907;</td>
+</tr>
+<tr>
+<td>    2</td>
+<td>&#x84DD;&#x7259;&#x8BBE;&#x5907;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x6839;&#x636E; <strong>moduleId</strong> &#x518D;&#x533A;&#x5206;wifi&#x8BBE;&#x5907;&#x7684;&#x7ED1;&#x5B9A;&#x65B9;&#x5F0F;(AP&#x7ED1;&#x5B9A;&#x548C;smartLink&#x7ED1;&#x5B9A;)</p>
+<pre><code> moduleId    | &#x7ED1;&#x5B9A;&#x7C7B;&#x578B;   
+</code></pre><p>   ------------- |-------------
+     70            |AP&#x7ED1;&#x5B9A;
+    &#x5176;&#x4ED6;             |smartLink&#x7ED1;&#x5B9A;</p>
+<p>&#x84DD;&#x7259;&#x8BBE;&#x5907;&#x6682;&#x65F6;&#x53EA;&#x6709;&#x4E00;&#x79CD;&#x7ED1;&#x5B9A;&#x65B9;&#x5F0F;&#xFF08;&#x84DD;&#x7259;&#x7ED1;&#x5B9A;&#xFF09;</p>
+<h2 id="2&#x3001;wifi-&#x7ED1;&#x5B9A;">2&#x3001;wifi &#x7ED1;&#x5B9A;</h2>
+<h3 id="21-wifi-smartlink&#x7ED1;&#x5B9A;">2.1 wifi smartLink&#x7ED1;&#x5B9A;</h3>
+<p>&#x5728;&#x5F00;&#x59CB;&#x914D;&#x7F6E;&#x524D;&#xFF0C;&#x8BBE;&#x5907;&#x8981;&#x5148;&#x8FDB;&#x5165;&#x914D;&#x7F6E;&#x6A21;&#x5F0F;&#xFF0C;&#x7136;&#x540E;APP&#x53D1;&#x9001;&#x8981;&#x914D;&#x7F6E;&#x7684;&#x8DEF;&#x7531;&#x5668;ssid&#x548C;&#x5BC6;&#x7801;,&#x5F00;&#x542F;&#x626B;&#x63CF;&#x8BBE;&#x5907;&#x670D;&#x52A1;&#x5C06;&#x626B;&#x63CF;&#x5230;&#x7684;&#x8BBE;&#x5907;&#x8FDB;&#x884C;&#x7ED1;&#x5B9A;&#xFF0C;&#x83B7;&#x53D6;&#x7ED1;&#x5B9A;&#x7ED3;&#x679C;&#x56DE;&#x8C03;&#x3002;</p>
+<p>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x83B7;&#x53D6;&#x8DEF;&#x7531;&#x5668;ssid&#x548C;&#x5BC6;&#x7801;
+&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x4F20;&#x5165;&#x53C2;&#x6570;&#x4EA7;&#x54C1;ID <strong>productId</strong>&#xFF0C;<strong>&#x8DEF;&#x7531;&#x5668;ssid</strong> &#x548C; <strong>&#x5BC6;&#x7801;</strong>&#xFF0C;&#x542F;&#x52A8;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;</p>
+<p><img src="../../../../../assets/UML_smartLink&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;&#x56FE;.jpg" alt=""></p>
+<p>a&#x3001;&#x901A;&#x8FC7; <strong>HETWIFIBindBusiness</strong> &#x83B7;&#x53D6;&#x8DEF;&#x7531;&#x5668;ssid </p>
+<pre><code>/**
+ *  &#x83B7;&#x5F97;&#x6240;&#x8FDE;Wi-Fi&#x7684;Mac&#x5730;&#x5740;
+ *
+ *  @return &#x8FD4;&#x56DE;mac&#x5730;&#x5740;
+ */
+-(NSString *)fetchmacSSIDInfo;
+</code></pre><p>b&#x3001;&#x4F20;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x901A;&#x8FC7; <strong>HETWIFIBindBusiness</strong> &#x8C03;&#x7528;&#x63A5;&#x53E3;&#xFF0C; &#x542F;&#x52A8;&#x7ED1;&#x5B9A;</p>
+<pre><code>/**
+ *  &#x7ED1;&#x5B9A;SmartLink&#x6A21;&#x5F0F;WiFi&#x8BBE;&#x5907;
+ *
+ *  @param productId         &#x8BBE;&#x5907;&#x7684;productId
+ *  @param ssid              &#x8BBE;&#x5907;&#x6240;&#x9700;&#x8981;&#x63A5;&#x5165;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x540D;&#x79F0;
+ *  @param password          &#x8BBE;&#x5907;&#x6240;&#x9700;&#x8981;&#x63A5;&#x5165;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x5BC6;&#x7801;
+ *  @param interval          &#x7ED1;&#x5B9A;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;,&#x5355;&#x4F4D;&#x662F;&#x79D2;
+ *  @param handler           &#x7ED1;&#x5B9A;&#x7684;&#x56DE;&#x8C03;
+ */
+-(void)startSmartLinkBindDeviceWithProductId:(NSString *)productId
+                               withSSID:(NSString *)ssid
+                           withPassWord:(NSString *)password
+                        withTimeOut:(NSTimeInterval)interval
+                  bindHandler:(void (^)(HETWiFiDeviceBindState state,HETDevice *deviceObj, NSError *error))handler;
+</code></pre><h3 id="22-wifi-ap&#x7ED1;&#x5B9A;">2.2 wifi AP&#x7ED1;&#x5B9A;</h3>
+<p>&#x5728;&#x5F00;&#x59CB;&#x914D;&#x7F6E;&#x524D;&#xFF0C;&#x8BBE;&#x5907;&#x8FDB;&#x5165;&#x914D;&#x7F6E;&#x6A21;&#x5F0F;&#x540E;&#xFF0C;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;Wifi&#x70ED;&#x70B9;&#x3002;&#x624B;&#x673A;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;&#x70ED;&#x70B9;&#xFF0C;&#x5C06;&#x53D1;&#x9001;&#x8981;&#x914D;&#x7F6E;&#x7684;&#x8DEF;&#x7531;&#x5668;ssid&#x548C;&#x5BC6;&#x7801;&#x7ED9;&#x8BBE;&#x5907;&#xFF0C;&#x7136;&#x540E;APP&#x5C06;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x7ED9;&#x8BBE;&#x5907;&#xFF0C;&#x4E4B;&#x540E;&#x8BBE;&#x5907;&#x81EA;&#x884C;&#x4E8E;&#x670D;&#x52A1;&#x5668;&#x7ED1;&#x5B9A;&#xFF0C;APP&#x60F3;&#x670D;&#x52A1;&#x5668;&#x67E5;&#x8BE2;&#x7ED1;&#x5B9A;&#x72B6;&#x6001;&#x3002;
+&#x4F7F;&#x7528;C-life&#x63D0;&#x4F9B;&#x7684;&#x6A21;&#x7EC4;&#x56FA;&#x4EF6;&#xFF0C;&#x8BBE;&#x5907;&#x4EA7;&#x751F;&#x7684;Wifi&#x70ED;&#x70B9;&#x4EE5;&#x201C;HET-xxx&#x201D;&#x5F00;&#x5934;&#xFF0C;&#x6CA1;&#x6709;&#x5BC6;&#x7801;&#x3002;&#x5176;&#x4ED6;&#x5382;&#x5546;&#x63D0;&#x4F9B;&#x7684;&#x6A21;&#x7EC4;&#xFF0C;SoftAP&#x70ED;&#x70B9;&#x540D;&#x79F0;&#x7531;&#x5404;&#x81EA;&#x5382;&#x5546;&#x6307;&#x5B9A;&#x3002;</p>
+<p>AP&#x7ED1;&#x5B9A;&#x7684;&#x4EA4;&#x4E92;&#x6D41;&#x7A0B;&#xFF1A;</p>
+<ul>
+<li>&#x83B7;&#x53D6;&#x8DEF;&#x7531;&#x5668;ssid&#x548C;&#x5BC6;&#x7801; </li>
+<li>&#x624B;&#x673A;&#x8FDE;&#x63A5;&#x8DEF;&#x7531;&#x5668;&#x70ED;&#x70B9; </li>
+<li>&#x624B;&#x673A;&#x5207;&#x6362;&#x8BBE;&#x5907;&#x70ED;&#x70B9; </li>
+<li>&#x4F20;&#x5165;&#x53C2;&#x6570; &#x4EA7;&#x54C1;ID <strong>productId</strong>&#x3001;<strong>&#x8BBE;&#x5907;&#x5927;&#x7C7B;ID</strong>&#x3001;<strong>&#x8BBE;&#x5907;&#x5C0F;&#x7C7B;ID</strong>&#x3001;<strong>&#x8DEF;&#x7531;&#x5668;ssid</strong> &#x548C; <strong>&#x5BC6;&#x7801;</strong>&#xFF0C;&#x542F;&#x52A8;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;</li>
+</ul>
+<p><img src="../../../../../assets/UML_&#x8BBE;&#x5907;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;&#x56FE;.jpg" alt=""></p>
+<p>a&#x3001;&#x4F20;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x901A;&#x8FC7; <strong>HETWIFIBindBusiness</strong> &#x8C03;&#x7528;&#x63A5;&#x53E3;&#xFF0C; &#x542F;&#x52A8;&#x7ED1;&#x5B9A;</p>
+<pre><code>/**
+ *  &#x7ED1;&#x5B9A;AP&#x6A21;&#x5F0F;&#x7684;WiFi&#x8BBE;&#x5907;
+ *
+ *  @param productId         &#x8BBE;&#x5907;&#x578B;&#x53F7;&#x6807;&#x8BC6;
+ *  @param deviceTypeId      &#x8BBE;&#x5907;&#x7684;&#x5927;&#x7C7B;
+ *  @param deviceSubtypeId   &#x8BBE;&#x5907;&#x7684;&#x5C0F;&#x7C7B;
+ *  @param ssid              AP&#x8BBE;&#x5907;&#x6240;&#x9700;&#x8981;&#x63A5;&#x5165;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x540D;&#x79F0;
+ *  @param password          AP&#x8BBE;&#x5907;&#x6240;&#x9700;&#x8981;&#x63A5;&#x5165;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x5BC6;&#x7801;
+ *  @param interval          &#x7ED1;&#x5B9A;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;,&#x5355;&#x4F4D;&#x662F;&#x79D2;
+ *  @param handler           &#x7ED1;&#x5B9A;&#x7684;&#x56DE;&#x8C03;
+ */
+-(void)startAPBindDeviceWithProductId:(NSString *)productId
+                     withDeviceTypeId:(NSUInteger)deviceTypeId
+                  withDeviceSubtypeId:(NSUInteger )deviceSubtypeId
+                             withSSID:(NSString *)ssid
+                         withPassWord:(NSString *)password
+                          withTimeOut:(NSTimeInterval)interval
+                    bindHandler:(void (^)(HETWiFiDeviceBindState state,HETDevice *deviceObj, NSError *error))handler;
+</code></pre><h1 id="&#x4E8C;&#x3001;&#x624B;&#x52A8;&#x7ED1;&#x5B9A;">&#x4E8C;&#x3001;&#x624B;&#x52A8;&#x7ED1;&#x5B9A;</h1>
+<h2 id="1-smartlink-&#x7ED1;&#x5B9A;">1. smartLink &#x7ED1;&#x5B9A;</h2>
+<ul>
+<li>&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5927;&#x7C7B;&#x5217;&#x8868; (&#x83B7;&#x53D6;deviceTypeId)</li>
+<li>&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5C0F;&#x7C7B;&#x5217;&#x8868;&#xFF08;&#x652F;&#x6301;&#x7684;&#x8BBE;&#x5907;&#x5217;&#x8868;,&#x5176;&#x4E2D;&#x542B;&#x6709;productId&#xFF09;</li>
+<li>&#x83B7;&#x53D6;&#x8DEF;&#x7531;&#x5668;ssid&#x548C;&#x5BC6;&#x7801;</li>
+<li>&#x4F20;&#x5165;&#x53C2;&#x6570; &#x4EA7;&#x54C1;ID <strong>productId</strong>&#x3001;<strong>&#x8DEF;&#x7531;&#x5668;ssid</strong> &#x548C; <strong>&#x5BC6;&#x7801;</strong>&#xFF0C;&#x542F;&#x52A8;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;</li>
+</ul>
+<p>a&#x3001;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5927;&#x7C7B;&#x5217;&#x8868;</p>
+<p>&#x5728; <strong>HETDeviceRequestBusiness</strong> &#x67E5;&#x8BE2;&#x8BBE;&#x5907;&#x4FE1;&#x606F;&#x83B7;&#x53D6;&#x76F8;&#x5173;&#x63A5;&#x53E3;</p>
+<pre><code>
+/**
+ *  &#x67E5;&#x8BE2;&#x8BBE;&#x5907;&#x5927;&#x7C7B;
+ *
+ *  @param success &#x6210;&#x529F;&#x7684;&#x56DE;&#x8C03;
+ *  @param failure &#x5931;&#x8D25;&#x7684;&#x56DE;&#x8C03;
+ */
+
+
++ (void)fetchDeviceTypeListSuccess:(successBlock)success
+                           failure:(failureBlock)failure;
+</code></pre><p><img src="../../../../../assets/&#x67E5;&#x8BE2;&#x8BBE;&#x5907;&#x5927;&#x7C7B;&#x63A5;&#x53E3;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;.jpg" alt=""></p>
+<p>b&#x3001;&#x901A;&#x8FC7;&#x5927;&#x7C7B;ID&#xFF0C;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5C0F;&#x7C7B;</p>
+<pre><code>
+/**
+ *  &#x6839;&#x636E;&#x8BBE;&#x5907;&#x5927;&#x7C7B;&#x67E5;&#x8BE2;APP&#x652F;&#x6301;&#x7684;&#x8BBE;&#x5907;&#x578B;&#x53F7;
+ *
+ *  @param success &#x6210;&#x529F;&#x7684;&#x56DE;&#x8C03;
+ *  @param failure &#x5931;&#x8D25;&#x7684;&#x56DE;&#x8C03;
+ */
+
++ (void)fetchDeviceProductListWithDeviceTypeId:(NSString *)deviceTypeId
+                                       success:(successBlock)success
+                                       failure:(failureBlock)failure;
+</code></pre><p><img src="../../../../../assets/&#x6839;&#x636E;&#x5927;&#x7C7B;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x652F;&#x6301;&#x7684;&#x4EA7;&#x54C1;&#x7C7B;&#x578B;&#x8FD4;&#x56DE;.png" alt=""></p>
+<p><img src="../../../../../assets/&#x901A;&#x8FC7;&#x5927;&#x7C7B;&#x83B7;&#x53D6;&#x652F;&#x6301;&#x8BBE;&#x5907;&#x7C7B;&#x578B;&#x8FD4;&#x56DE;&#x5B57;&#x6BB5;&#x8BF4;&#x660E;.png" alt=""></p>
+<p>c&#x3001;&#x901A;&#x8FC7; <strong>HETWIFIBindBusiness</strong> &#x83B7;&#x53D6;&#x8DEF;&#x7531;&#x5668;ssid </p>
+<pre><code>/**
+ *  &#x83B7;&#x5F97;&#x6240;&#x8FDE;Wi-Fi&#x7684;Mac&#x5730;&#x5740;
+ *
+ *  @return &#x8FD4;&#x56DE;mac&#x5730;&#x5740;
+ */
+-(NSString *)fetchmacSSIDInfo;
+</code></pre><p>d&#x3001;&#x4F20;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x901A;&#x8FC7; <strong>HETWIFIBindBusiness</strong> &#x8C03;&#x7528;&#x63A5;&#x53E3;&#xFF0C; &#x542F;&#x52A8;&#x7ED1;&#x5B9A;</p>
+<pre><code>/**
+ *  &#x7ED1;&#x5B9A;SmartLink&#x6A21;&#x5F0F;WiFi&#x8BBE;&#x5907;
+ *
+ *  @param productId         &#x8BBE;&#x5907;&#x7684;productId
+ *  @param ssid              &#x8BBE;&#x5907;&#x6240;&#x9700;&#x8981;&#x63A5;&#x5165;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x540D;&#x79F0;
+ *  @param password          &#x8BBE;&#x5907;&#x6240;&#x9700;&#x8981;&#x63A5;&#x5165;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x5BC6;&#x7801;
+ *  @param interval          &#x7ED1;&#x5B9A;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;,&#x5355;&#x4F4D;&#x662F;&#x79D2;
+ *  @param handler           &#x7ED1;&#x5B9A;&#x7684;&#x56DE;&#x8C03;
+ */
+-(void)startSmartLinkBindDeviceWithProductId:(NSString *)productId
+                               withSSID:(NSString *)ssid
+                           withPassWord:(NSString *)password
+                        withTimeOut:(NSTimeInterval)interval
+                  bindHandler:(void (^)(HETWiFiDeviceBindState state,HETDevice *deviceObj, NSError *error))handler;
+</code></pre><h2 id="2-ap-&#x7ED1;&#x5B9A;">2. AP &#x7ED1;&#x5B9A;</h2>
+<ul>
+<li>&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5927;&#x7C7B;&#x5217;&#x8868; (&#x83B7;&#x53D6;deviceTypeId)</li>
+<li>&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5C0F;&#x7C7B;&#x5217;&#x8868;&#xFF08;&#x652F;&#x6301;&#x7684;&#x8BBE;&#x5907;&#x5217;&#x8868;,&#x5176;&#x4E2D;&#x542B;&#x6709;productId&#xFF09;</li>
+<li>&#x83B7;&#x53D6;&#x8DEF;&#x7531;&#x5668;ssid&#x548C;&#x5BC6;&#x7801; </li>
+<li>&#x5F15;&#x5BFC;&#x7528;&#x6237;&#x8DF3;&#x8F6C;&#x5230;wifi&#x8FDE;&#x63A5;&#x9875;&#x9762;&#xFF0C;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;&#xFF0C;&#x5F85;&#x7528;&#x6237;&#x8FDE;&#x63A5;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x8FD4;&#x56DE;&#x7ED1;&#x5B9A;&#x9875;&#x9762;</li>
+<li>&#x4F20;&#x5165;&#x53C2;&#x6570; &#x4EA7;&#x54C1;ID <strong>productId</strong>&#x3001;<strong>&#x8BBE;&#x5907;&#x5927;&#x7C7B;ID</strong>&#x3001;<strong>&#x8BBE;&#x5907;&#x5C0F;&#x7C7B;ID</strong>&#x3001;<strong>&#x8DEF;&#x7531;&#x5668;ssid</strong> &#x548C; <strong>&#x5BC6;&#x7801;</strong>&#xFF0C;&#x542F;&#x52A8;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;</li>
+</ul>
+<p>a&#x3001;&#x6821;&#x9A8C;&#x7528;&#x6237;&#x662F;&#x5426;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;</p>
+<pre><code>&#x8BBE;&#x5907;AP&#x70ED;&#x70B9;&#x547D;&#x540D;&#x89C4;&#x5219;&#xFF1A; radiocastName_deviceTypeId_deviceSubtypeId
+</code></pre><p>&#x5F53;&#x5224;&#x65AD;&#x7528;&#x6237;&#x5DF2;&#x7ECF;&#x6210;&#x529F;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;AP&#x70ED;&#x70B9;&#xFF0C;&#x5373;&#x53EF;&#x8FDB;&#x5165;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;&#x3002;</p>
+<p>b&#x3001;&#x4F20;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x901A;&#x8FC7; <strong>HETWIFIBindBusiness</strong> &#x8C03;&#x7528;&#x63A5;&#x53E3;&#xFF0C; &#x542F;&#x52A8;&#x7ED1;&#x5B9A;</p>
+<pre><code>/**
+ *  &#x7ED1;&#x5B9A;AP&#x6A21;&#x5F0F;&#x7684;WiFi&#x8BBE;&#x5907;
+ *
+ *  @param productId         &#x8BBE;&#x5907;&#x578B;&#x53F7;&#x6807;&#x8BC6;
+ *  @param deviceTypeId      &#x8BBE;&#x5907;&#x7684;&#x5927;&#x7C7B;
+ *  @param deviceSubtypeId   &#x8BBE;&#x5907;&#x7684;&#x5C0F;&#x7C7B;
+ *  @param ssid              AP&#x8BBE;&#x5907;&#x6240;&#x9700;&#x8981;&#x63A5;&#x5165;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x540D;&#x79F0;
+ *  @param password          AP&#x8BBE;&#x5907;&#x6240;&#x9700;&#x8981;&#x63A5;&#x5165;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x5BC6;&#x7801;
+ *  @param interval          &#x7ED1;&#x5B9A;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;,&#x5355;&#x4F4D;&#x662F;&#x79D2;
+ *  @param handler           &#x7ED1;&#x5B9A;&#x7684;&#x56DE;&#x8C03;
+ */
+-(void)startAPBindDeviceWithProductId:(NSString *)productId
+                     withDeviceTypeId:(NSUInteger)deviceTypeId
+                  withDeviceSubtypeId:(NSUInteger )deviceSubtypeId
+                             withSSID:(NSString *)ssid
+                         withPassWord:(NSString *)password
+                          withTimeOut:(NSTimeInterval)interval
+                    bindHandler:(void (^)(HETWiFiDeviceBindState state,HETDevice *deviceObj, NSError *error))handler;
+</code></pre><p><strong><em> &#x7ED1;&#x5B9A;&#x65E0;&#x6CD5;&#x7ED1;&#x5B9A;&#xFF1F;&#x8FD9;&#x91CC;&#x7ED9;&#x51FA;&#x8BBE;&#x5907;&#x65E0;&#x6CD5;&#x7ED1;&#x5B9A;&#x7684;&#x51E0;&#x79CD;&#x68C0;&#x67E5;&#x65B9;&#x6CD5;&#xFF1A;</em></strong></p>
+<ul>
+<li>&#x8BBE;&#x5907;&#x662F;&#x5426;&#x7F6E;&#x4E3A;&#x7ED1;&#x5B9A;&#x6A21;&#x5F0F;&#xFF0C;&#x662F;&#x5426;&#x5728;&#x7ED1;&#x5B9A;&#x7684;&#x6709;&#x6548;&#x65F6;&#x95F4;&#x5185;</li>
+<li>&#x662F;&#x5426;&#x6B63;&#x786E;&#x8F93;&#x5165;wifi&#x5BC6;&#x7801;,&#x8BF7;&#x786E;&#x8BA4;&#x624B;&#x673A;&#x662F;&#x5426;&#x80FD;&#x6B63;&#x5E38;&#x8FDE;&#x63A5;&#x7F51;&#x7EDC;</li>
+<li>&#x662F;&#x626B;&#x63CF;&#x4E0D;&#x5230;&#x8BBE;&#x5907;&#x8FD8;&#x662F;&#x7ED1;&#x5B9A;&#x4E0D;&#x4E86;&#x8BBE;&#x5907;,&#x626B;&#x63CF;&#x5931;&#x8D25;&#x4F1A;&#x6709;&#x5BF9;&#x5E94;&#x63D0;&#x793A;&#x662F;&#x626B;&#x63CF;&#x4E0D;&#x5230;&#x8BBE;&#x5907;&#xFF0C;&#x8FD8;&#x662F;&#x7ED1;&#x5B9A;&#x4E0D;&#x4E86;&#x8BBE;&#x5907;</li>
+<li>&#x8BBE;&#x5907;&#x662F;&#x5426;&#x5DF2;&#x5728;CLife&#x5F00;&#x653E;&#x5E73;&#x53F0;&#x6CE8;&#x518C;&#xFF0C;&#x5E76;&#x6309;&#x7167;&#x8981;&#x6C42;&#x5C06;&#x5927;&#x5C0F;&#x7C7B;&#x4FE1;&#x606F;&#x5199;&#x5165;&#x8BBE;&#x5907;&#x4E2D;</li>
+</ul>
+
+                            </div>
+                            
+                        
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="gb-page-footer">
+        <div class="container">
+            <ul class="menu">
+                <li class="pull-right">
+                    <span class="service-info">Copyright GitBook 2017</span>
+                </li>
+                <li>
+                    <a href="#">Return to the top</a>
+                </li>
+                <li>
+                    <a href="#">Updated Oct 30th 17</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<script src="../../../../../gitbook/gitbook.js"></script>
+
+    
+    <script src="../../../../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+    
+
+    
+    <script src="../../../../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+    
+
+    
+    <script src="../../../../../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../../../../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+(function() {
+    gitbook.page.hasChanged({"page":{"title":"3.2.2.6 SDK WIFI设备的扫描绑定","level":"1.4.2.2.6","depth":4,"next":{"title":"3.2.2.7 SDK WIFI设备的控制","level":"1.4.2.2.7","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md","articles":[]},"previous":{"title":"3.2.2.5 SDK蓝牙设备的控制","level":"1.4.2.2.5","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-fontsettings","-lunr","-search","search-pro","theme-official","toggle-chapters","livereload"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"toggle-chapters":{},"livereload":{},"highlight":{},"theme-official":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C-Life开放平台文档中心","language":"zh-hans","gitbook":">= 3.0.0","description":"C-Life开放平台文档中心head_description"},"file":{"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","mtime":"2017-10-30T08:40:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-30T09:49:55.773Z"},"basePath":"../../../../..","book":{"language":""}});
+})();
+</script>
+
+        
+    </body>
+</html>
+
