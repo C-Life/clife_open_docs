@@ -1,0 +1,711 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.2.2.1 初始化 · C-Life开放平台文档中心</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+
+    
+    <link rel="next" href="iOS_Auth.html" />
+    
+    
+    <link rel="prev" href="../ios.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="gb-page-wrapper">
+    <header class="gb-page-header">
+        <div class="container">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+
+            <a href="../../../../.." class="logo">
+                <img src="../../../../../gitbook/images/logo/128.png">
+                <h1>C-Life开放平台文档中心</h1>
+            </a>
+
+            
+
+            
+                
+                <a href="iOS_Auth.html" class="btn btn-link pull-right hidden-xs">
+                    <i class="octicon octicon-chevron-right"></i>
+                </a>
+                
+                
+                <a href="../ios.html" class="btn btn-link pull-right hidden-xs">
+                    <i class="octicon octicon-chevron-left"></i>
+                </a>
+                
+            
+        
+        </div>
+    </header>
+
+    <div class="gb-page-body">
+        <div class="gb-page-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        
+
+
+
+    
+    <div class="panel panel-default">
+        
+
+        <div class="list-group">
+            
+    
+        
+        <a href="../../../../../" class="list-group-item ">
+        
+
+            
+
+            
+
+            Introduction
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../../overview/" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            1. 平台概述
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../../product/" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            2. 产品开发
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-down"></i>
+            
+
+            3. APP开发
+
+        
+        </a>
+        
+
+        
+        
+    
+        
+        <a href="../../application/application.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            3.1 应用管理
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+            <i class="octicon octicon-chevron-down"></i>
+            
+
+            3.2 APP SDK
+
+        
+        </a>
+        
+
+        
+        
+    
+        
+        <a href="../android.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.1 android SDK
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../ios.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+            <i class="octicon octicon-chevron-down"></i>
+            
+
+            3.2.2 iOS SDK
+
+        
+        </a>
+        
+
+        
+        
+    
+        
+        <a href="iOS_init.html" class="list-group-item active">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.1 初始化
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_Auth.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.2 SDK授权
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_third_login.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.3 SDK第三方登录
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_BLE_Scan_Bind.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.4 SDK蓝牙设备的扫描绑定
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_Device_Share.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.5 SDK蓝牙设备的控制
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_WIFI_Scan.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.6 SDK WIFI设备的扫描绑定
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_WIFI_Controller.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.7 SDK WIFI设备的控制
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="iOS_Device_Share.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.2.8 SDK 设备的分享
+
+        
+        </a>
+        
+
+        
+    
+
+        
+    
+        
+        <a href="../H5.html" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.2.3 H5 SDK
+
+        
+        </a>
+        
+
+        
+    
+
+        
+    
+        
+        <a href="../../../App/app.md" class="list-group-item ">
+        
+
+            
+            <i class="octicon octicon-chevron-down" style="opacity: 0"></i>
+            
+
+            
+
+            3.3 APP 开源框架
+
+        
+        </a>
+        
+
+        
+    
+
+        
+    
+        
+        <span class="list-group-item">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            4.1 硬件接入准备工作
+
+        
+        </span>
+        
+
+        
+    
+        
+        <a href="../../../cloudAPI/" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            5. 云API
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../../dataservice/" class="list-group-item ">
+        
+
+            
+
+            
+            <i class="octicon octicon-chevron-right"></i>
+            
+
+            6. 数据服务
+
+        
+        </a>
+        
+
+        
+    
+        
+        <a href="../../../datapush/index.md" class="list-group-item ">
+        
+
+            
+
+            
+
+            7. 推送服务
+
+        
+        </a>
+        
+
+        
+    
+
+        </div>
+    </div>
+    
+
+
+
+                    </div>
+                    <div class="col-md-9">
+                        
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                            
+                            <div class="gb-markdown book-page-inner">
+                                <h2 id="&#x521D;&#x59CB;&#x5316;">&#x521D;&#x59CB;&#x5316;</h2>
+<h3 id="&#x4E00;&#x3001;&#x96C6;&#x6210;&#x51C6;&#x5907;">&#x4E00;&#x3001;&#x96C6;&#x6210;&#x51C6;&#x5907;</h3>
+<p>1&#x3001; &#x6CE8;&#x518C;&#x5F00;&#x653E;&#x5E73;&#x53F0;&#x8D26;&#x53F7;</p>
+<p>&#x901A;&#x8FC7;<a href="https://open.clife.cn/#/home&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x5F00;&#x53D1;&#x8005;&#x8D26;&#x53F7;&#x3002;&#x767B;&#x5F55;&#x5230;&#x5F00;&#x653E;&#x5E73;&#x53F0;&#x521B;&#x5EFA;&#x5E94;&#x7528;&#x5B8C;&#x5584;&#x8BE6;&#x7EC6;&#x8D44;&#x6599;&#x3002;&#x6B64;&#x90E8;&#x5206;&#x8BF7;&#x53C2;&#x8003;&#x300A;&#x548C;&#x800C;&#x6CF0;&#x5F00;&#x53D1;&#x5E73;&#x53F0;&#x4F7F;&#x7528;&#x624B;&#x518C;&#x300B;&#x3002;" target="_blank">https://open.clife.cn/#/home&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x5F00;&#x53D1;&#x8005;&#x8D26;&#x53F7;&#x3002;&#x767B;&#x5F55;&#x5230;&#x5F00;&#x653E;&#x5E73;&#x53F0;&#x521B;&#x5EFA;&#x5E94;&#x7528;&#x5B8C;&#x5584;&#x8BE6;&#x7EC6;&#x8D44;&#x6599;&#x3002;&#x6B64;&#x90E8;&#x5206;&#x8BF7;&#x53C2;&#x8003;&#x300A;&#x548C;&#x800C;&#x6CF0;&#x5F00;&#x53D1;&#x5E73;&#x53F0;&#x4F7F;&#x7528;&#x624B;&#x518C;&#x300B;&#x3002;</a></p>
+<h3 id="&#x4E8C;&#x3001;&#x4E0B;&#x8F7D;c-life-ios-sdk&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x4E14;&#x914D;&#x7F6E;&#x5DE5;&#x7A0B;">&#x4E8C;&#x3001;&#x4E0B;&#x8F7D;C-Life iOS SDK&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x4E14;&#x914D;&#x7F6E;&#x5DE5;&#x7A0B;</h3>
+<p>1&#x3001;&#x786E;&#x8BA4;&#x672C;&#x673A;&#x5B89;&#x88C5;&#x7684;cocoapods&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;</p>
+<pre><code>pod --help
+</code></pre><p>2&#x3001;&#x7F16;&#x8F91;&#x5DE5;&#x7A0B;&#x5BF9;&#x4E8E;&#x7684;Podfile&#x6587;&#x4EF6;</p>
+<pre><code>platform :ios, &apos;7.0&apos;
+
+target :&quot;HETOpenPlatformSDKDemo&quot; do
+
+pod &apos;HETOpenSDK&apos;,&apos;0.1.1&apos;
+
+end
+inhibit_all_warnings!
+</code></pre><p>3&#x3001;&#x5B89;&#x88C5;</p>
+<p>&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x4EFB;&#x9009;&#x4E00;&#x79CD;&#x5C31;&#x53EF;&#x4EE5;&#xFF1A;</p>
+<pre><code>1.pod install --verbose --no-repo-update 
+2.pod update --verbose --no-repo-update
+</code></pre><p>4&#x3001;&#x652F;&#x6301;Http&#x4F20;&#x8F93;</p>
+<pre><code>&lt;key&gt;NSAppTransportSecurity&lt;/key&gt; 
+  &lt;dict&gt; 
+&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt; 
+    &lt;true/&gt; 
+&lt;/dict&gt;
+</code></pre><h3 id="&#x4E09;&#x3001;&#x5BFC;&#x5165;&#x786C;&#x4EF6;&#x6A21;&#x7EC4;&#x5BF9;&#x5E94;&#x7684;sdk">&#x4E09;&#x3001;&#x5BFC;&#x5165;&#x786C;&#x4EF6;&#x6A21;&#x7EC4;&#x5BF9;&#x5E94;&#x7684;SDK</h3>
+<p>1&#x3001;&#x6839;&#x636E;&#x4EA7;&#x54C1;&#x7C7B;&#x578B;&#x627E;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x82AF;&#x7247;&#x6A21;&#x7EC4;&#x540D;&#x79F0;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;
+<img src="../../../../../assets/&#x67E5;&#x770B;&#x82AF;&#x7247;&#x6A21;&#x7EC4;&#x7C7B;&#x578B;.png" alt="">
+2&#x3001;&#x5728;podfile&#x4E2D;&#x5BFC;&#x5165;&#x5BF9;&#x5E94;&#x7684;sdk&#xFF0C;&#x5E76;&#x4E14;&#x5B89;&#x88C5;&#xFF0C;&#x5BF9;&#x5E94;&#x7C7B;&#x8868;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code># TI-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_TI_CC3200R2&apos;,      &apos;1.0.0&apos;
+# &#x6C49;&#x67AB;-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_HF_LPT100_V3&apos;,     &apos;1.0.0&apos;
+# &#x79D1;&#x4E2D;&#x9F99;-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_Realtek8711AF&apos;,    &apos;1.0.0&apos;
+# &#x4FE1;&#x9A70;&#x8FBE;-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_MTK7681&apos;,          &apos;1.0.0&apos;
+# &#x4FE1;&#x9A70;&#x8FBE;-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_MTK7687&apos;,          &apos;1.0.1&apos;
+# &#x65B0;&#x529B;&#x7EF4;-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_NL6621&apos;,           &apos;1.0.0&apos;
+# &#x4E50;&#x946B;-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_ESP8266&apos;,          &apos;1.0.0&apos;
+# COOEE-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_COOEE&apos;,            &apos;1.0.0&apos;
+# MarvellV2-WiFi&#x6A21;&#x7EC4;
+pod &apos;HETPublicSDK_WiFiModule_Marvell_MW300_V2&apos;, &apos;1.0.0&apos;
+</code></pre><h3 id="&#x4E09;&#x3001;&#x6CE8;&#x518C;&#x4F7F;&#x7528;sdk">&#x4E09;&#x3001;&#x6CE8;&#x518C;&#x4F7F;&#x7528;SDK</h3>
+<p>1&#x3001;&#x5728;AppDelegate &#x4E2D;&#x5982;&#x4E0B;&#x5730;&#x65B9;&#x6DFB;&#x52A0;&#xFF0C;&#x6CE8;&#x518C;&#x4F7F;&#x7528;SDK&#xFF0C;&#x6253;&#x5F00;Log</p>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+   // 1.&#x6CE8;&#x518C;HET&#x5F00;&#x53D1;&#x5E73;&#x53F0;SDK
+   [HETOpenSDK registerAppId:@&quot;yourAPPId&quot; appSecret:@&quot;yourAPPSecret&quot;];
+  [HETOpenSDK openLog:NO];
+    return YES;
+}
+</code></pre><p>yourAPPId&#x3001;yourAPPSecret&#x7684;&#x503C;&#x662F;&#x5728;&#x201C;&#x5E94;&#x7528;&#x521B;&#x5EFA;&#x201D;&#x65F6;&#x751F;&#x6210;&#x7684;AppID&#x3001;AppSecret&#x3002; &#x5728;&#x5982;&#x4E0B;&#x56FE;&#x67E5;&#x770B;: </p>
+<p><img src="../../../../../assets/&#x83B7;&#x53D6;appkeyandappsecrect.jpg" alt="">
+&#x6CE8;&#x610F;:&#x5982;&#x679C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x51FA;&#x73B0;AppID&#x4E0D;&#x5408;&#x6CD5;&#xFF0C;&#x8BF7;&#x68C0;&#x67E5;Xcode&#x5DE5;&#x7A0B;&#x91CC;&#x9762;&#x7684;BundleId&#x548C;appId&#xFF0C;&#x5FC5;&#x987B;&#x8DDF;&#x5728;&#x5F00;&#x653E;&#x5E73;&#x53F0;&#x521B;&#x5EFA;&#x5E94;&#x7528;&#x65F6;&#x586B;&#x7684;BundleId&#x548C;AppID&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#x3002;</p>
+
+                            </div>
+                            
+                        
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="gb-page-footer">
+        <div class="container">
+            <ul class="menu">
+                <li class="pull-right">
+                    <span class="service-info">Copyright GitBook 2017</span>
+                </li>
+                <li>
+                    <a href="#">Return to the top</a>
+                </li>
+                <li>
+                    <a href="#">Updated Oct 30th 17</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<script src="../../../../../gitbook/gitbook.js"></script>
+
+    
+    <script src="../../../../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+    
+
+    
+    <script src="../../../../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+    
+
+    
+    <script src="../../../../../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../../../../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+(function() {
+    gitbook.page.hasChanged({"page":{"title":"3.2.2.1 初始化","level":"1.4.2.2.1","depth":4,"next":{"title":"3.2.2.2 SDK授权","level":"1.4.2.2.2","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","articles":[]},"previous":{"title":"3.2.2 iOS SDK","level":"1.4.2.2","depth":3,"path":"source/zh-cn/app/SDK/ios.md","ref":"./source/zh-cn/app/SDK/ios.md","articles":[{"title":"3.2.2.1 初始化","level":"1.4.2.2.1","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_init.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_init.md","articles":[]},{"title":"3.2.2.2 SDK授权","level":"1.4.2.2.2","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","articles":[]},{"title":"3.2.2.3 SDK第三方登录","level":"1.4.2.2.3","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","articles":[]},{"title":"3.2.2.4 SDK蓝牙设备的扫描绑定","level":"1.4.2.2.4","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","articles":[]},{"title":"3.2.2.5 SDK蓝牙设备的控制","level":"1.4.2.2.5","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]},{"title":"3.2.2.6 SDK WIFI设备的扫描绑定","level":"1.4.2.2.6","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","articles":[]},{"title":"3.2.2.7 SDK WIFI设备的控制","level":"1.4.2.2.7","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md","articles":[]},{"title":"3.2.2.8 SDK 设备的分享","level":"1.4.2.2.8","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","-fontsettings","-lunr","-search","search-pro","theme-official","toggle-chapters","livereload"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"toggle-chapters":{},"livereload":{},"highlight":{},"theme-official":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C-Life开放平台文档中心","language":"zh-hans","gitbook":">= 3.0.0","description":"C-Life开放平台文档中心head_description"},"file":{"path":"source/zh-cn/app/SDK/iOSSDK/iOS_init.md","mtime":"2017-10-30T08:40:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-31T02:53:19.608Z"},"basePath":"../../../../..","book":{"language":""}});
+})();
+</script>
+
+        
+    </body>
+</html>
+
