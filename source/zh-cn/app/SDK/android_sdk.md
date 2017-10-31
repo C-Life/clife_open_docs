@@ -29,8 +29,7 @@
 
 ### 3.1 RxJava 函数式编程  
 
-开放平台SDK 集成了RxJava。开发者可以根据自己的需要来使用。
-
+开放平台SDK 集成了RxJava。开发者可以根据自己的需要来使用，不需要自己再在项目中集成了。
 ### 3.2 RxBus 事件传递总线 
 
 开放平台SDK事件总线提供了RxBus的支持，开发者用于事件的发布和订阅来实现数据的传递，开发者可以根据项目需求来使用。  
@@ -38,7 +37,7 @@
 RxBus事件的发布：  
 
 	//发布 HetLoginSDKEvent.Login.LOGIN_SUCCESS 事件
-	RxManage.getInstance().post(HetLoginSDKEvent.Login.LOGIN_SUCCESS, msg);
+	RxManage.getInstance().post(HetLoginSDKEvent.Login.LOGIN_SUCCESS, object);
 RxBus事件的订阅：  
 
     RxManage.getInstance().register(HetLoginSDKEvent.Login.LOGIN_SUCCESS, o -> {
@@ -51,17 +50,32 @@ RxBus事件的取消订阅：
 ### 3.3 retrofit+okhttp 网络库的支持
 
 开放平台SDK集成了retrofit+okhttp的网络库支持，开发者可以直接使用这个网络库来请求服务器数据。
+### 3.4 ActiveAndroid 数据库支持
 
-### 3.4 数据库支持
+SDK集成了ActiveAndroid这个第三方的轻量级的数据库。开发者可以自己查阅资料直接使用，不需要再在项目中集成了。
+### 3.5 X5内核 浏览服务的支持
 
-## 3.集成准备
+SDK集成了X5内核的浏览服务，来提高H5的加载性能和兼容性。开发者在需要使用X5内核WebView的时候可以直接使用：
+使用实例：
 
-### 3.1 注册开放平台账号  
+	<com.tencent.smtt.sdk.WebView
+		android:id="@+id/forum_context"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:paddingLeft="5dp"
+		android:paddingRight="5dp" />
+
+注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：  
+android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 这样。
+
+## 4.集成准备
+
+### 4.1 注册开放平台账号  
   通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《和而泰开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
 
-### 3.2. 下载SDK终端DEMO 请前往下载中心下载最新SDK包。
+### 4.2. 下载SDK终端DEMO 请前往下载中心下载最新SDK包。
 
-### 3.3 在Android Studio上集成SDK，配置项目根目录build.gradle如下：
+### 4.3 在Android Studio上集成SDK，配置项目根目录build.gradle如下：
 
 	allprojects {
 	    repositories {
@@ -77,7 +91,7 @@ RxBus事件的取消订阅：
 	}
 
 
-### 3.4 引用SDK到工程中
+### 4.4 引用SDK到工程中
 	 dependencies {
 	    compile fileTree(include: ['*.jar'], dir: 'libs')
 	    testCompile 'junit:junit:4.12'
@@ -117,7 +131,7 @@ RxBus事件的取消订阅：
 
 引用SDK，根据自己硬件的模组来选择引用那个模组，其他的可以不用。 二维码扫描库在SDk demo中设备绑定中有用到，可以按照demoApp的实例来使用，也可以用自己的二维码扫描库。
 
-###3.5 配置AndroidManifest.xml
+###4.5 配置AndroidManifest.xml
 请将下面权限配置代码复制到 AndroidManifest.xml 文件中：
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -153,7 +167,7 @@ RxBus事件的取消订阅：
 	</tbody>
 </table>
 
-####3.6 Android6.0系统文件读写权限设置
+####4.6 Android6.0系统文件读写权限设置
 Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态申请。开发者可以提供SDK提供的RxPermissions来动态申请权限
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -169,9 +183,12 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态�
         }
 
 
-###3.SDK集成流程
 
-###3.1 SDK初始化
+
+# SDK集成流程
+## 1.SDK集成流程图
+初始化SDK(日志信息开关、环境设置、app主题的配置信息)
+## 1.SDK初始化
 
 第一步：我们需要在application里面初始化SDK。设置SDK的日志信息开关、环境设置、app主题的配置信息等
 
