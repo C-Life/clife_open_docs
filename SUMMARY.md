@@ -1,5 +1,6 @@
 # 目录
 
+* [首页](index.md)
 * [1. 平台概述](./source/zh-cn/overview/index.md)
 	* [1.1平台介绍](./source/zh-cn/overview/platform_introduction.md)
 	* [1.2接入流程介绍](./source/zh-cn/overview/access_flow_introduction.md)
@@ -36,11 +37,6 @@
 			* [3.2.2.7 SDK WIFI设备的控制](./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md)
 			* [3.2.2.8 SDK 设备的分享](./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md)
 			* [3.2.2.9 SDK APP辅助信息接口](iOSSDK/iOS_APP_Info.md)
-
-
-
-
-
 		* [3.2.3 H5 SDK](./source/zh-cn/app/SDK/H5.md)
 	* [3.3 APP 开源框架](./source/zh-cn/App/app.md)
 * [4. 硬件开发](./source/zh-cn/device/index.md)
