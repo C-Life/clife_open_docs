@@ -58,16 +58,11 @@ b、根据 产品ID 获取设备信息
 
    moduleType    |     绑定类型   
    ------------- |-------------
-	1             |    wifi设备
+	1             |    wifi设备 SmartLink绑定
 	2             |    蓝牙设备
-	
-根据 **moduleId** 再区分wifi设备的绑定方式(AP绑定和smartLink绑定)
+	9             |    wifi设备 AP绑定
 
-	
-	 moduleId    | 绑定类型   
-   ------------- |-------------
-	 70            |AP绑定
-	其他             |smartLink绑定
+
 	
 蓝牙设备暂时只有一种绑定方式（蓝牙绑定）
 

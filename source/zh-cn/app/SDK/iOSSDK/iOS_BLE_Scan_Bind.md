@@ -48,16 +48,10 @@ b、根据 产品ID 获取设备信息
 
    moduleType    |     绑定类型   
    ------------- |-------------
-	1             |    wifi设备
+	1             |    wifi设备 SmartLink绑定
 	2             |    蓝牙设备
-	
-根据 **moduleId** 再区分wifi设备的绑定方式(AP绑定和smartLink绑定)
+	9             |    wifi设备 AP绑定
 
-	
-	 moduleId    | 绑定类型   
-   ------------- |-------------
-	 70            |AP绑定
-	其他             |smartLink绑定
 	
 蓝牙设备只有一种绑定方式（蓝牙绑定）
 
@@ -84,17 +78,7 @@ c、初始化HETBLEBusiness对象，启动绑定流程
             OPLog(@"peripherals = %@",peripherals);
             OPLog(@"[NSThread currentThread] = %@",[NSThread currentThread]);
             [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                CBPeripheral *dev = (CBPeripheral*)obj;
-                if (![weakSelf.deviceArr containsObject:dev]) {
-                    [weakSelf.deviceArr addObject:dev];
-                }
-                [UIView animateWithDuration:2 animations:^{
-                    [weakSelf.bindAnimationView stopSearchProgressing];
-                    weakSelf.bindAnimationView.hidden = YES;
-                } completion:^(BOOL finished) {
-                    [weakSelf.tableView reloadData];
-                    weakSelf.tableView.hidden = NO;
-                }];
+               
             }];
             return;
         }
@@ -114,16 +98,11 @@ d、绑定设备
             [weakself.bleBusiness disconnectWithPeripheral:cbp];
             if(error)
             {
-                [HETCommonHelp showAutoDissmissWithMessage:@"绑定失败"];
-                [weakself.navigationController popViewControllerAnimated:YES];
+
             }
             else
             {
-                [weakself.bindAnimationView startBindsuccess];
-                [[NSNotificationCenter defaultCenter] postNotificationName:BindDeviceSuccess object:nil];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [weakself.navigationController popToRootViewControllerAnimated:YES];
-                });
+ 
             }
         }];
 
@@ -202,17 +181,7 @@ c、初始化HETBLEBusiness对象，启动绑定流程
             OPLog(@"peripherals = %@",peripherals);
             OPLog(@"[NSThread currentThread] = %@",[NSThread currentThread]);
             [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                CBPeripheral *dev = (CBPeripheral*)obj;
-                if (![weakSelf.deviceArr containsObject:dev]) {
-                    [weakSelf.deviceArr addObject:dev];
-                }
-                [UIView animateWithDuration:2 animations:^{
-                    [weakSelf.bindAnimationView stopSearchProgressing];
-                    weakSelf.bindAnimationView.hidden = YES;
-                } completion:^(BOOL finished) {
-                    [weakSelf.tableView reloadData];
-                    weakSelf.tableView.hidden = NO;
-                }];
+                
             }];
             return;
         }
@@ -232,16 +201,11 @@ d、绑定设备
             [weakself.bleBusiness disconnectWithPeripheral:cbp];
             if(error)
             {
-                [HETCommonHelp showAutoDissmissWithMessage:@"绑定失败"];
-                [weakself.navigationController popViewControllerAnimated:YES];
+
             }
             else
             {
-                [weakself.bindAnimationView startBindsuccess];
-                [[NSNotificationCenter defaultCenter] postNotificationName:BindDeviceSuccess object:nil];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [weakself.navigationController popToRootViewControllerAnimated:YES];
-                });
+  
             }
         }];
 
