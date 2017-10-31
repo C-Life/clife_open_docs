@@ -13,25 +13,55 @@
 
 开放平台app的应用标识和密钥。开发者在开放平台接入设备创建APP的时候，后台会自动生成一个appId和appSecret。在初始化SDK的时候有用到。
 
-###2.2 productId
+###2.2 硬件模组
+
+这里的硬件模组是指的WIFI模组。在开放平台创建WIFI产品的时候需要指定设备的WIFI模组。在SDK初始化和APP在设备绑定的时候需要用到。
+
+###2.3 productId
 
 设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
 
-###2.1 productId
-
-设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
-
-###2.1 deviceId
+###2.4 deviceId
 
 设备号，当一个设备通过设备绑定的接口初次接入开放平台时，开放平台会自动根据productId以及设备的mac地址为此设备注册一个deviceId，此deviceId全网唯一，用于通过开放平台进行设备的操作。
 
-## 2.集成准备
+## 3.SDK 快速开发，相关第三方库支持
 
-### 2.1 注册开放平台账号  
-  通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《和而泰开发平台使用手册》。
-### 2.2. 下载SDK终端DEMO 请前往下载中心下载最新SDK包。
+### 3.1 RxJava 函数式编程  
 
-### 2.3 在Android Studio上集成SDK，配置项目根目录build.gradle如下：
+开放平台SDK 集成了RxJava。开发者可以根据自己的需要来使用。
+
+### 3.2 RxBus 事件传递总线 
+
+开放平台SDK事件总线提供了RxBus的支持，开发者用于事件的发布和订阅来实现数据的传递，开发者可以根据项目需求来使用。  
+使用实例：
+RxBus事件的发布：  
+
+	//发布 HetLoginSDKEvent.Login.LOGIN_SUCCESS 事件
+	RxManage.getInstance().post(HetLoginSDKEvent.Login.LOGIN_SUCCESS, msg);
+RxBus事件的订阅：  
+
+    RxManage.getInstance().register(HetLoginSDKEvent.Login.LOGIN_SUCCESS, o -> {
+         //订阅 HetLoginSDKEvent.Login.LOGIN_SUCCESS 事件
+    });
+RxBus事件的取消订阅：
+
+    RxManage.getInstance().unregister(HetLoginSDKEvent.Login.LOGIN_SUCCESS);
+
+### 3.3 retrofit+okhttp 网络库的支持
+
+开放平台SDK集成了retrofit+okhttp的网络库支持，开发者可以直接使用这个网络库来请求服务器数据。
+
+### 3.4 数据库支持
+
+## 3.集成准备
+
+### 3.1 注册开放平台账号  
+  通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《和而泰开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
+
+### 3.2. 下载SDK终端DEMO 请前往下载中心下载最新SDK包。
+
+### 3.3 在Android Studio上集成SDK，配置项目根目录build.gradle如下：
 
 	allprojects {
 	    repositories {
@@ -47,7 +77,7 @@
 	}
 
 
-#### 2.3.1 引用SDK到工程中
+### 3.4 引用SDK到工程中
 	 dependencies {
 	    compile fileTree(include: ['*.jar'], dir: 'libs')
 	    testCompile 'junit:junit:4.12'
@@ -85,9 +115,9 @@
 	    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
 	}
 
-引用SDK，根据自己硬件的模组来选择引用那个模组，其他的可以不用。 二维码扫描库在demo中设备绑定中有用到，可以按照demoApp的实例来使用，也可以用自己的二维码扫描库。
+引用SDK，根据自己硬件的模组来选择引用那个模组，其他的可以不用。 二维码扫描库在SDk demo中设备绑定中有用到，可以按照demoApp的实例来使用，也可以用自己的二维码扫描库。
 
-####2.3.2 配置AndroidManifest.xml
+###3.5 配置AndroidManifest.xml
 请将下面权限配置代码复制到 AndroidManifest.xml 文件中：
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -123,7 +153,7 @@
 	</tbody>
 </table>
 
-####2.3.3 Android6.0系统文件读写权限设置
+####3.6 Android6.0系统文件读写权限设置
 Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态申请。开发者可以提供SDK提供的RxPermissions来动态申请权限
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
