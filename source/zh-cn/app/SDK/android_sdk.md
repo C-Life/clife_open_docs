@@ -526,7 +526,7 @@ SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授�
 
 	HetSdk.getInstance().isAuthLogin();
 
-### 3.5.异地登录的
+### 3.5.异地登录
 
 开放平台的账号只能在一台设备上面登录。当有账号在另一台设备登录时，SDK会抛出一个ECode.Token.EC_LOGINOUT的RxBus事件。
 开发者可以在首页订阅这个事件，处理异地登录的逻辑。 例：
