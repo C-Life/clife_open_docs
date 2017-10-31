@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>3.2.2.3 SDK第三方登录</title>
+        <title>3.2.2.5 SDK蓝牙设备的控制</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -56,10 +56,10 @@
     
     <link rel="stylesheet" href="../../../../../assets/website/page_custom.min.css">
     
-    <link rel="next" href="iOS_BLE_Scan_Bind.html" />
+    <link rel="next" href="iOS_WIFI_Scan.html" />
     
     
-    <link rel="prev" href="iOS_Auth.html" />
+    <link rel="prev" href="iOS_BLE_Scan_Bind.html" />
     
 
     </head>
@@ -299,7 +299,7 @@
         
     
         
-        <a href="iOS_third_login.html" class="list-group-item active">
+        <a href="iOS_third_login.html" class="list-group-item ">
         
 
             
@@ -343,7 +343,7 @@
         
     
         
-        <a href="iOS_Device_Share.html" class="list-group-item ">
+        <a href="iOS_Device_Share.html" class="list-group-item active">
         
 
             
@@ -409,7 +409,7 @@
         
     
         
-        <a href="iOS_Device_Share.html" class="list-group-item ">
+        <a href="iOS_Device_Share.html" class="list-group-item active">
         
 
             
@@ -585,84 +585,145 @@
                                 <!-- page -->
                                 
                                 <div class="gb-markdown book-page-inner page-inner">
-                                    <h2 id="&#x7B2C;&#x4E09;&#x65B9;&#x767B;&#x5F55;">&#x7B2C;&#x4E09;&#x65B9;&#x767B;&#x5F55;</h2>
-<h3 id="&#x4E00;&#x3001;&#x7533;&#x8BF7;&#x5404;&#x4E2A;&#x5E73;&#x53F0;&#x7684;app-key&#x548C;app-secret">&#x4E00;&#x3001;&#x7533;&#x8BF7;&#x5404;&#x4E2A;&#x5E73;&#x53F0;&#x7684;App key&#x548C;App secret</h3>
-<p>&#x6CE8;&#x610F;&#xFF1A;app bundleId&#x8DDF;&#x5404;&#x5E73;&#x53F0;&#x6CE8;&#x518C;&#x7684;&#x65F6;&#x5019;&#x4E00;&#x81F4;&#x3002;</p>
-<h3 id="&#x4E8C;&#x3001;&#x901A;&#x8FC7;pod&#x5BFC;&#x5165;sdk&#xFF1A;">&#x4E8C;&#x3001;&#x901A;&#x8FC7;Pod&#x5BFC;&#x5165;SDK&#xFF1A;</h3>
-<pre><code>pod &apos;WechatOpenSDK&apos;, &apos;1.7.7&apos;
-pod &apos;WeiboSDK&apos;, &apos;3.1.3&apos;
-pod &apos;TencentOpenApiSDK&apos;, &apos;2.9.5&apos;
-</code></pre><h3 id="&#x4E09;&#x3001;&#x9879;&#x76EE;&#x914D;&#x7F6E;">&#x4E09;&#x3001;&#x9879;&#x76EE;&#x914D;&#x7F6E;</h3>
-<h4 id="1&#x3001;urlscheme-&#x914D;&#x7F6E;&#xFF1A;">1&#x3001;URLScheme &#x914D;&#x7F6E;&#xFF1A;</h4>
-<p><img src="../../../../../assets/&#x7B2C;&#x4E09;&#x65B9;&#x767B;&#x5F55;URLTypes.jpeg" alt=""></p>
-<h4 id="2&#x3001;&#x9488;&#x5BF9;ios9&#x4EE5;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x767D;&#x540D;&#x5355;&#x3002;">2&#x3001;&#x9488;&#x5BF9;iOS9&#x4EE5;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x767D;&#x540D;&#x5355;&#x3002;</h4>
-<p>&#x5728;info.plist&#x6587;&#x4EF6;&#x4E2D;&#x52A0;&#x5165; LSApplicationQueriesSchemes</p>
-<p><img src="../../../../../assets/&#x7B2C;&#x4E09;&#x65B9;&#x767B;&#x5F55;&#x767D;&#x540D;&#x5355;.jpeg" alt=""></p>
-<pre><code>&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;
- &lt;array&gt;
-    &lt;!-- &#x5FAE;&#x4FE1; URL Scheme &#x767D;&#x540D;&#x5355;--&gt;
-    &lt;string&gt;wechat&lt;/string&gt;
-    &lt;string&gt;weixin&lt;/string&gt;
+                                    <h2 id="ios-&#x8BBE;&#x5907;&#x5206;&#x4EAB;">IOS &#x8BBE;&#x5907;&#x5206;&#x4EAB;</h2>
+<p>C-Life&#x8BBE;&#x5907;&#x5206;&#x4EAB;&#x5206;&#x4E3A;&#x9762;&#x5BF9;&#x9762;&#x5206;&#x4EAB;&#x548C;&#x7B2C;&#x4E09;&#x65B9;&#x5E94;&#x7528;&#x5206;&#x4EAB;,&#x5206;&#x4EAB;&#x76F8;&#x5173;&#x63A5;&#x53E3;&#x8BF7;&#x53C2;&#x8003;<code>HETDeviceShareBusiness</code></p>
+<h3 id="&#x4E00;&#x3001;&#x5206;&#x4EAB;&#x6D41;&#x7A0B;">&#x4E00;&#x3001;&#x5206;&#x4EAB;&#x6D41;&#x7A0B;</h3>
+<ul>
+<li>&#x9762;&#x5BF9;&#x9762;&#x5206;&#x4EAB;&#xFF1A;</li>
+</ul>
+<p>A&#x7528;&#x6237;&#x6253;&#x5F00;APP&#x8BBE;&#x5907;&#x9762;&#x5BF9;&#x9762;&#x5206;&#x4EAB;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x5206;&#x4EAB;&#x4E8C;&#x7EF4;&#x7801;&#xFF0C;
+B&#x7528;&#x6237;&#x6253;&#x5F00;APP&#x7684;&#x626B;&#x4E00;&#x626B;&#xFF0C;&#x76F4;&#x63A5;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x7684;&#x63A7;&#x5236;&#x6743;&#x9650;&#x3002;</p>
+<ul>
+<li>&#x7B2C;&#x4E09;&#x65B9;&#x5E94;&#x7528;&#x5206;&#x4EAB;&#xFF1A;</li>
+</ul>
+<p>A&#x7528;&#x6237;&#x6253;&#x5F00;APP&#x8BBE;&#x5907;&#x7B2C;&#x4E09;&#x65B9;&#x5E94;&#x7528;&#x5206;&#x4EAB;&#xFF08;&#x5FAE;&#x4FE1;&#xFF0C;QQ&#xFF09;&#xFF0C;&#x4F8B;&#x5982;&#x5206;&#x4EAB;&#x5230;&#x5FAE;&#x4FE1;&#x597D;&#x53CB;&#xFF0C;
+B&#x7528;&#x6237;&#x8BC6;&#x522B;&#x5FAE;&#x4FE1;&#x4E2D;&#x7684;&#x4E8C;&#x7EF4;&#x7801;&#xFF0C;&#x6253;&#x5F00;&#x5206;&#x4EAB;&#x7F51;&#x9875;&#xFF0C;&#x5C1D;&#x8BD5;&#x6253;&#x5F00;APP&#x6210;&#x529F;&#x5373;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x7684;&#x63A7;&#x5236;&#x6743;&#x9650;&#xFF0C;&#x5931;&#x8D25;&#x5C31;&#x63D0;&#x793A;&#x7528;&#x6237;B&#x4E0B;&#x8F7D;APP&#x3002;</p>
+<p> <strong>&#x6CE8;&#x610F;&#xFF1A;</strong></p>
+<p> 1&#x3001;URL scheme</p>
+<ul>
+<li>&#x7B2C;&#x4E09;&#x65B9;&#x5206;&#x4EAB;&#x9700;&#x8981;APP&#x63D0;&#x4F9B;URL scheme&#xFF0C;&#x65B9;&#x4FBF;web&#x9875;&#x9762;&#x6253;&#x5F00;APP&#xFF0C;&#x5E76;&#x4E14;&#x4F20;&#x9012;&#x5206;&#x4EAB;&#x7801;&#x7ED9;APP&#x3002;</li>
+</ul>
+<p>2&#x3001;&#x5206;&#x4EAB;&#x7801;&#x6709;&#x6548;&#x671F;</p>
+<ul>
+<li>&#x9762;&#x5BF9;&#x9762;&#x5206;&#x4EAB;&#x7801;&#x6709;&#x6548;&#x671F;&#x4E3A;10&#x5206;&#x949F;</li>
+<li>&#x7B2C;&#x4E09;&#x65B9;&#x5206;&#x4EAB;&#x7801;&#x6709;&#x6548;&#x671F;&#x4E3A;&#x4E00;&#x4E2A;&#x5C0F;&#x65F6;</li>
+</ul>
+<h3 id="&#x4E8C;&#x3001;&#x9762;&#x5BF9;&#x9762;&#x5206;&#x4EAB;">&#x4E8C;&#x3001;&#x9762;&#x5BF9;&#x9762;&#x5206;&#x4EAB;</h3>
+<p>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x8BF7;&#x6C42;&#x5206;&#x4EAB;&#x7801;&#xFF0C;&#x5E76;&#x751F;&#x6210;&#x5206;&#x4EAB;&#x4E8C;&#x7EF4;&#x7801;</p>
+<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x9A8C;&#x8BC1;&#x5206;&#x4EAB;&#x7801;&#xFF0C;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x6743;&#x9650;</p>
+<p><img src="../../../../../assets/UML_&#x8BBE;&#x5907;&#x5206;&#x4EAB;_&#x9762;&#x5BF9;&#x9762;.jpg" alt=""></p>
+<h3 id="&#x4E09;&#x3001;&#x7B2C;&#x4E09;&#x65B9;&#x5E94;&#x7528;&#x5206;&#x4EAB;">&#x4E09;&#x3001;&#x7B2C;&#x4E09;&#x65B9;&#x5E94;&#x7528;&#x5206;&#x4EAB;</h3>
+<p>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x8BF7;&#x6C42;&#x5206;&#x4EAB;&#x8FDE;&#x63A5;&#xFF0C;&#x5206;&#x4EAB;&#x5230;&#x7B2C;&#x4E09;&#x65B9;&#x5E94;&#x7528;</p>
+<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x7B2C;&#x4E09;&#x65B9;&#x5E94;&#x7528;&#x6253;&#x5F00;&#x8FDE;&#x63A5;&#xFF0C;web&#x9875;&#x9762;&#x5C1D;&#x8BD5;&#x6253;&#x5F00;APP</p>
+<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x9A8C;&#x8BC1;&#x5206;&#x4EAB;&#x7801;&#xFF0C;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x6743;&#x9650;</p>
+<p><img src="../../../../../assets/UML_&#x8BBE;&#x5907;&#x5206;&#x4EAB;_&#x7B2C;&#x4E09;&#x65B9;.jpg" alt=""></p>
+<h3 id="&#x56DB;&#x3001;&#x63A5;&#x53E3;&#x8BF4;&#x660E;">&#x56DB;&#x3001;&#x63A5;&#x53E3;&#x8BF4;&#x660E;</h3>
+<h4 id="1&#x3001;&#x5206;&#x4EAB;">1&#x3001;&#x5206;&#x4EAB;</h4>
+<h5 id="11&#x3001;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5206;&#x4EAB;&#x7801;">1.1&#x3001;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5206;&#x4EAB;&#x7801;</h5>
+<pre><code>/**
+ *  &#x83B7;&#x53D6;&#x5206;&#x4EAB;&#x7801;
+ *
+ *  @param deviceId &#x5206;&#x4EAB;&#x7684;&#x8BBE;&#x5907;&#xFF08;&#x52A0;&#x5BC6;&#x7684;&#xFF09;
+ *  @param shareType  &#x5206;&#x4EAB;&#x65B9;&#x5F0F; &#xFF08;5 -&#x9762;&#x5BF9;&#x9762;&#xFF1B;6-&#x8FDC;&#x7A0B;&#x5206;&#x4EAB;&#xFF09;
+ *  @param success  &#x6210;&#x529F;&#x7684;&#x56DE;&#x8C03;
+ *  @param failure  &#x5931;&#x8D25;&#x7684;&#x56DE;&#x8C03;
+ */
++(void)getShareCodeWithDeviceId:(NSString *)deviceId
+                      shareType:(HETDeviceShareType)shareType
+                        success:(successBlock)success
+                        failure:(failureBlock)failure
+</code></pre><p>&#x53C2;&#x6570;&#x8BF4;&#x660E;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x987B;</th>
+<th>&#x5B57;&#x6BB5;&#x7C7B;&#x578B;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deviceId</td>
+<td>&#x662F;</td>
+<td>NSString</td>
+<td>&#x8BBE;&#x5907;ID</td>
+</tr>
+<tr>
+<td>shareType</td>
+<td>&#x662F;</td>
+<td>HETDeviceShareType</td>
+<td>&#x5206;&#x4EAB;&#x7C7B;&#x578B;</td>
+</tr>
+</tbody>
+</table>
+<h5 id="12&#x3001;&#x6388;&#x6743;&#x5206;&#x4EAB;">1.2&#x3001;&#x6388;&#x6743;&#x5206;&#x4EAB;</h5>
+<pre><code>/**
+ *  &#x6388;&#x6743;&#x5206;&#x4EAB;
+ *
+ *  @param shareCode &#x5206;&#x4EAB;&#x7801;
+ *  @param shareType  &#x5206;&#x4EAB;&#x65B9;&#x5F0F; &#xFF08;5 -&#x9762;&#x5BF9;&#x9762;&#xFF1B;6-&#x8FDC;&#x7A0B;&#x5206;&#x4EAB;&#xFF09;
+ *  @param success  &#x6210;&#x529F;&#x7684;&#x56DE;&#x8C03;
+ *  @param failure  &#x5931;&#x8D25;&#x7684;&#x56DE;&#x8C03;
+ */
++(void)authShareDeviceWithShareCode:(NSString *)shareCode
+                          shareType:(HETDeviceShareType)shareType
+                            success:(successBlock)success
+                            failure:(failureBlock)failure
+</code></pre><p>&#x53C2;&#x6570;&#x8BF4;&#x660E;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x987B;</th>
+<th>&#x5B57;&#x6BB5;&#x7C7B;&#x578B;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shareCode</td>
+<td>&#x662F;</td>
+<td>NSString</td>
+<td>&#x8BBE;&#x5907;&#x5206;&#x4EAB;&#x7801;</td>
+</tr>
+<tr>
+<td>shareType</td>
+<td>&#x662F;</td>
+<td>HETDeviceShareType</td>
+<td>&#x5206;&#x4EAB;&#x7C7B;&#x578B;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x6388;&#x6743;&#x7684;&#x7528;&#x6237;&#x5217;&#x8868;">2.&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x6388;&#x6743;&#x7684;&#x7528;&#x6237;&#x5217;&#x8868;</h4>
+<pre><code>[HETDeviceShareBusiness deviceGetAuthUserWithDeviceId:self.deviceId success:^(id responseObject) {
+        [weakSelf.shareUserTableView.mj_header endRefreshing];
+        OPLog(@&quot;responseObject == %@&quot;,responseObject);
+        if ([responseObject isKindOfClass:[NSArray class]]) {
+            weakSelf.shareUserArr = [responseObject mutableCopy];
+            [weakSelf.shareUserTableView reloadData];
+        }
+    } failure:^(NSError *error) {
+        OPLog(@&quot;error == %@&quot;,error);
+        [HETCommonHelp showHudAutoHidenWithMessage:PuLLDownRefresh];
+        [weakSelf.shareUserTableView.mj_header endRefreshing];
+    }];
+</code></pre><h4 id="3&#x7528;&#x6237;&#x8BBE;&#x5907;&#x6388;&#x6743;&#x5220;&#x9664;">3.&#x7528;&#x6237;&#x8BBE;&#x5907;&#x6388;&#x6743;&#x5220;&#x9664;</h4>
+<pre><code>
+    WEAKSELF
+    [HETDeviceShareBusiness deviceAuthDelWithDeviceId:self.deviceId userId:userId success:^(id responseObject) {
+        // &#x5220;&#x9664;&#x6570;&#x636E;&#x6E90;&#x7684;&#x6570;&#x636E;,self.cellData&#x662F;&#x4F60;&#x81EA;&#x5DF1;&#x7684;&#x6570;&#x636E;
+        [weakSelf.shareUserArr removeObjectAtIndex:indexPath.row];
+        // &#x5220;&#x9664;&#x5217;&#x8868;&#x4E2D;&#x6570;&#x636E;
+        [weakSelf.shareUserTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
-    &lt;!-- &#x65B0;&#x6D6A;&#x5FAE;&#x535A; URL Scheme &#x767D;&#x540D;&#x5355;--&gt;
-    &lt;string&gt;sinaweibohd&lt;/string&gt;
-    &lt;string&gt;sinaweibo&lt;/string&gt;
-    &lt;string&gt;sinaweibosso&lt;/string&gt;
-    &lt;string&gt;weibosdk&lt;/string&gt;
-    &lt;string&gt;weibosdk2.5&lt;/string&gt;
-
-    &lt;!-- QQ&#x3001;Qzone URL Scheme &#x767D;&#x540D;&#x5355;--&gt;
-    &lt;string&gt;mqqapi&lt;/string&gt;
-    &lt;string&gt;mqq&lt;/string&gt;
-    &lt;string&gt;mqqOpensdkSSoLogin&lt;/string&gt;
-    &lt;string&gt;mqqconnect&lt;/string&gt;
-    &lt;string&gt;mqqopensdkdataline&lt;/string&gt;
-    &lt;string&gt;mqqopensdkgrouptribeshare&lt;/string&gt;
-    &lt;string&gt;mqqopensdkfriend&lt;/string&gt;
-    &lt;string&gt;mqqopensdkapi&lt;/string&gt;
-    &lt;string&gt;mqqopensdkapiV2&lt;/string&gt;
-    &lt;string&gt;mqqopensdkapiV3&lt;/string&gt;
-    &lt;string&gt;mqzoneopensdk&lt;/string&gt;
-    &lt;string&gt;wtloginmqq&lt;/string&gt;
-    &lt;string&gt;wtloginmqq2&lt;/string&gt;
-    &lt;string&gt;mqqwpa&lt;/string&gt;
-    &lt;string&gt;mqzone&lt;/string&gt;
-    &lt;string&gt;mqzonev2&lt;/string&gt;
-    &lt;string&gt;mqzoneshare&lt;/string&gt;
-    &lt;string&gt;wtloginqzone&lt;/string&gt;
-    &lt;string&gt;mqzonewx&lt;/string&gt;
-    &lt;string&gt;mqzoneopensdkapiV2&lt;/string&gt;
-    &lt;string&gt;mqzoneopensdkapi19&lt;/string&gt;
-    &lt;string&gt;mqzoneopensdkapi&lt;/string&gt;
-    &lt;string&gt;mqzoneopensdk&lt;/string&gt;
-
-&lt;/array&gt;
-</code></pre><h4 id="3&#x3001;&#x9488;&#x5BF9;ios9&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;https&#x73B0;&#x5728;&#x5148;&#x8FD8;&#x539F;&#x6210;http&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#x3002;">3&#x3001;&#x9488;&#x5BF9;iOS9&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;https,&#x73B0;&#x5728;&#x5148;&#x8FD8;&#x539F;&#x6210;http&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#x3002;</h4>
-<p>  &#x5728;Info.plist&#x4E2D;&#x6DFB;&#x52A0;NSAppTransportSecurity&#x7C7B;&#x578B;Dictionary&#x3002;</p>
-<p> &#x5728;NSAppTransportSecurity&#x4E0B;&#x6DFB;&#x52A0;NSAllowsArbitraryLoads&#x7C7B;&#x578B;Boolean,&#x503C;&#x8BBE;&#x4E3A;YES    </p>
-<p>  &#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x5728;plist&#x4E2D;&#x6DFB;&#x52A0;NSAppTransportSecurity&#x9879;&#xFF0C;&#x6B64;&#x9879;&#x4E3A;NSDictionary</p>
-<p>  &#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x5728;NSAppTransportSecurity&#x4E0B;&#x6DFB;&#x52A0;   NSAllowsArbitraryLoads&#x7C7B;&#x578B;&#x4E3A;Boolean&#xFF0C;value&#x4E3A;YES</p>
-<h3 id="&#x56DB;&#x3001;&#x63A5;&#x5165;hetopensdk-&#x7B2C;&#x4E09;&#x65B9;&#x767B;&#x5F55;">&#x56DB;&#x3001;&#x63A5;&#x5165;HETOpenSDK &#x7B2C;&#x4E09;&#x65B9;&#x767B;&#x5F55;</h3>
-<h4 id="1-&#x5728;&#x521A;&#x521A;&#x65B0;&#x5EFA;&#x7684;&#x9879;&#x76EE;&#x4E2D;-appdelegatem&#xFF0C;-&#x6DFB;&#x52A0;&#x4EE3;&#x7801;&#xFF1A;">1. &#x5728;&#x521A;&#x521A;&#x65B0;&#x5EFA;&#x7684;&#x9879;&#x76EE;&#x4E2D; appdelegate.m&#xFF0C; &#x6DFB;&#x52A0;&#x4EE3;&#x7801;&#xFF1A;</h4>
-<p>a&#x3001;&#x6CE8;&#x5165;appkey</p>
-<pre><code>   [HETOpenSDK setPlaform:HETAuthPlatformType_QQ appKey:QQ_APP_ID appSecret:nil redirectURL:nil];
-   [HETOpenSDK setPlaform:HETAuthPlatformType_Weibo appKey:WB_APP_KEY appSecret:nil redirectURL:nil];
-   [HETOpenSDK setPlaform:HETAuthPlatformType_Wechat appKey:WX_APP_KEY appSecret:WX_APP_SECRET redirectURL:nil];
-</code></pre><p>   b&#x3001;&#x5728;&#x6DFB;&#x52A0;&#x8DF3;&#x8F6C;&#x7684;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;</p>
-<p>```</p>
-<pre><code>- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    BOOL result = [HETOpenSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-        return result;
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-        BOOL result = [HETOpenSDK handleOpenURL:url];
-       return result;
-}
-</code></pre><p>``</p>
-
+        [weakSelf getShareUserList];
+        [HETCommonHelp showHudAutoHidenWithMessage:@&quot;&#x5220;&#x9664;&#x6210;&#x529F;&quot;];
+    } failure:^(NSError *error) {
+        [HETCommonHelp showHudAutoHidenWithMessage:@&quot;&#x5220;&#x9664;&#x5931;&#x8D25;&quot;];
+        [weakSelf.shareUserTableView endEditing:YES];
+    }];
+</code></pre>
                                 </div>
                                 
                                 <!-- page -->
@@ -720,7 +781,7 @@ pod &apos;TencentOpenApiSDK&apos;, &apos;2.9.5&apos;
 <script>
     var gitbook = gitbook || [];
     gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"3.2.2.3 SDK第三方登录","level":"1.4.2.2.3","depth":4,"next":{"title":"3.2.2.4 SDK蓝牙设备的扫描绑定","level":"1.4.2.2.4","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","articles":[]},"previous":{"title":"3.2.2.2 SDK授权","level":"1.4.2.2.2","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-fontsettings","-lunr","-search","search-pro","theme-official","toggle-chapters","livereload"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"toggle-chapters":{},"livereload":{},"highlight":{},"theme-official":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C-Life开放平台文档中心","language":"zh-hans","gitbook":">= 3.0.0","description":"C-Life开放平台文档中心head_description"},"file":{"path":"source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","mtime":"2017-10-30T05:49:37.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-31T08:00:15.596Z"},"basePath":"../../../../..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"3.2.2.5 SDK蓝牙设备的控制","level":"1.4.2.2.5","depth":4,"next":{"title":"3.2.2.6 SDK WIFI设备的扫描绑定","level":"1.4.2.2.6","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","articles":[]},"previous":{"title":"3.2.2.4 SDK蓝牙设备的扫描绑定","level":"1.4.2.2.4","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-fontsettings","-lunr","-search","search-pro","theme-official","toggle-chapters","livereload"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"toggle-chapters":{},"livereload":{},"highlight":{},"theme-official":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C-Life开放平台文档中心","language":"zh-hans","gitbook":">= 3.0.0","description":"C-Life开放平台文档中心head_description"},"file":{"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","mtime":"2017-10-30T08:40:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-31T08:00:15.596Z"},"basePath":"../../../../..","book":{"language":""}});
     });
 </script>
 <script>

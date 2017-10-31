@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>3.2.1 android SDK</title>
+        <title>3.2.3 H5 SDK</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -56,10 +56,10 @@
     
     <link rel="stylesheet" href="../../../../assets/website/page_custom.min.css">
     
-    <link rel="next" href="ios.html" />
+    <link rel="next" href="../../App/app.md" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="../../../../iOSSDK/iOS_APP_Info.md" />
     
 
     </head>
@@ -212,7 +212,7 @@
         
     
         
-        <a href="android.html" class="list-group-item active">
+        <a href="android.html" class="list-group-item ">
         
 
             
@@ -254,7 +254,7 @@
         
     
         
-        <a href="H5.html" class="list-group-item ">
+        <a href="H5.html" class="list-group-item active">
         
 
             
@@ -383,7 +383,61 @@
                                 <!-- page -->
                                 
                                 <div class="gb-markdown book-page-inner page-inner">
-                                    
+                                    <h1 id="hetsdk&#x8BF4;&#x660E;&#x6587;&#x6863;">hetsdk&#x8BF4;&#x660E;&#x6587;&#x6863;</h1>
+<h2 id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</h2>
+<!-- MarkdownTOC depth=4 autolink=true bracket=round -->
+<ul>
+<li><a href="#&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x53CA;&#x53D1;&#x5E03;">&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x53CA;&#x53D1;&#x5E03;&#x89C4;&#x8303;</a><ul>
+<li><a href="#&#x9879;&#x76EE;&#x5F00;&#x53D1;">&#x9879;&#x76EE;&#x5F00;&#x53D1;</a></li>
+<li><a href="#&#x9879;&#x76EE;&#x53D1;&#x5E03;">&#x9879;&#x76EE;&#x53D1;&#x5E03;</a></li>
+</ul>
+</li>
+</ul>
+<!-- /MarkdownTOC -->
+<hr>
+<p><span id="&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x53CA;&#x53D1;&#x5E03;&#x89C4;&#x8303;"></span></p>
+<h2 id="&#x9879;&#x76EE;&#x5F00;&#x53D1;">&#x9879;&#x76EE;&#x5F00;&#x53D1;</h2>
+<p><span id="&#x9879;&#x76EE;&#x5F00;&#x53D1;"></span></p>
+<h4 id="&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x76EE;&#x5F55;&#x63A8;&#x8350;">&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x76EE;&#x5F55;(&#x63A8;&#x8350;)</h4>
+<pre><code>+ page      // app&#x8BBE;&#x5907;html&#x6587;&#x4EF6;
+    + index.html
++ src       // &#x5DE5;&#x7A0B;&#x6E90;&#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x7801;&#x7F16;&#x5199;&#x5728;&#x6B64;&#x76EE;&#x5F55;&#x8FDB;&#x884C;
+    + css
+    + js
++ static    // &#x6784;&#x5EFA;&#x5B8C;&#x6210;&#x7684;&#x5DE5;&#x7A0B;&#x6587;&#x4EF6;&#xFF0C;&#x8BF7;&#x52FF;&#x76F4;&#x63A5;&#x7F16;&#x8F91;
+    + css
+    + img
+    + js
++ vm        // &#x7528;&#x4E8E;&#x6A21;&#x62DF;app&#x73AF;&#x5883;&#x7684;&#x865A;&#x62DF;&#x5668;
+</code></pre><h4 id="&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x7EC6;&#x8282;">&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x7EC6;&#x8282;</h4>
+<pre><code>1.&#x4F7F;&#x7528;sdk&#x5F00;&#x53D1;&#x65F6;&#x8BF7;&#x767B;&#x8BB0;repaint&#x65B9;&#x6CD5;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;,&#x5426;&#x5219;&#x5C06;&#x65E0;&#x6CD5;&#x83B7;&#x53D6;app&#x63A8;&#x9001;&#x8FC7;&#x6765;&#x7684;&#x6570;&#x636E;&#x3002;
+2.&#x5411;app&#x53D1;&#x9001;&#x6570;&#x636E;&#x65F6;&#x8BF7;&#x643A;&#x5E26;updateFlag&#x53C2;&#x6570;&#xFF0C;&#x5E76;&#x6B63;&#x786E;&#x8BA1;&#x7B97;&#xFF0C;&#x5426;&#x5219;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x4E0B;&#x53D1;&#x6307;&#x4EE4;&#x5931;&#x8D25;&#x3002;
+3.sdk&#x7EA6;&#x5B9A;app&#x63A8;&#x9001;&#x8FC7;&#x6765;&#x7684;&#x6570;&#x636E;type=0&#x4E3A;&#x63A7;&#x5236;&#x6570;&#x636E;&#xFF0C;type=1&#x4E3A;&#x8FD0;&#x884C;&#x6570;&#x636E;&#x3002;
+</code></pre><hr>
+<h2 id="&#x9879;&#x76EE;&#x53D1;&#x5E03;">&#x9879;&#x76EE;&#x53D1;&#x5E03;</h2>
+<p><span id="&#x9879;&#x76EE;&#x53D1;&#x5E03;"></span></p>
+<h4 id="&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x53D1;&#x5E03;">&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x53D1;&#x5E03;</h4>
+<ol>
+<li><p>&#x9879;&#x76EE;&#x53D1;&#x5E03;&#x76EE;&#x5F55;&#x7ED3;&#x6784;</p>
+<ul>
+<li>page      // app&#x8BBE;&#x5907;html&#x6587;&#x4EF6;<ul>
+<li>index.html(&#x5FC5;&#x987B;)</li>
+</ul>
+</li>
+<li>static    // &#x6784;&#x5EFA;&#x5B8C;&#x6210;&#x7684;&#x5DE5;&#x7A0B;&#x6587;&#x4EF6;&#xFF0C;&#x8BF7;&#x52FF;&#x76F4;&#x63A5;&#x7F16;&#x8F91;<ul>
+<li>css</li>
+<li>img</li>
+<li>js</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>&#x6587;&#x4EF6;&#x540E;&#x7F00;
+&#x4E3A;&#x4FBF;&#x4E8E;sdk&#x8BC6;&#x522B;,&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x9700;&#x6253;&#x5305;&#x653E;&#x5728;&#x4E00;&#x4E2A;zix&#x538B;&#x7F29;&#x5305;&#x5185;,&#x5982;test.zix</p>
+</li>
+</ol>
+<hr>
+
                                 </div>
                                 
                                 <!-- page -->
@@ -441,7 +495,7 @@
 <script>
     var gitbook = gitbook || [];
     gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"3.2.1 android SDK","level":"1.4.2.1","depth":3,"next":{"title":"3.2.2 iOS SDK","level":"1.4.2.2","depth":3,"path":"source/zh-cn/app/SDK/ios.md","ref":"./source/zh-cn/app/SDK/ios.md","articles":[{"title":"3.2.2.1 初始化","level":"1.4.2.2.1","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_init.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_init.md","articles":[]},{"title":"3.2.2.2 SDK授权","level":"1.4.2.2.2","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","articles":[]},{"title":"3.2.2.3 SDK第三方登录","level":"1.4.2.2.3","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","articles":[]},{"title":"3.2.2.4 SDK蓝牙设备的扫描绑定","level":"1.4.2.2.4","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","articles":[]},{"title":"3.2.2.5 SDK蓝牙设备的控制","level":"1.4.2.2.5","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]},{"title":"3.2.2.6 SDK WIFI设备的扫描绑定","level":"1.4.2.2.6","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","articles":[]},{"title":"3.2.2.7 SDK WIFI设备的控制","level":"1.4.2.2.7","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md","articles":[]},{"title":"3.2.2.8 SDK 设备的分享","level":"1.4.2.2.8","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]},{"title":"3.2.2.9 SDK APP辅助信息接口","level":"1.4.2.2.9","depth":4,"path":"iOSSDK/iOS_APP_Info.md","ref":"iOSSDK/iOS_APP_Info.md","articles":[]}]},"previous":{"title":"3.2 APP SDK","level":"1.4.2","depth":2,"path":"source/zh-cn/app/SDK/index.md","ref":"./source/zh-cn/app/SDK/index.md","articles":[{"title":"3.2.1 android SDK","level":"1.4.2.1","depth":3,"path":"source/zh-cn/app/SDK/android.md","ref":"./source/zh-cn/app/SDK/android.md","articles":[]},{"title":"3.2.2 iOS SDK","level":"1.4.2.2","depth":3,"path":"source/zh-cn/app/SDK/ios.md","ref":"./source/zh-cn/app/SDK/ios.md","articles":[{"title":"3.2.2.1 初始化","level":"1.4.2.2.1","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_init.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_init.md","articles":[]},{"title":"3.2.2.2 SDK授权","level":"1.4.2.2.2","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md","articles":[]},{"title":"3.2.2.3 SDK第三方登录","level":"1.4.2.2.3","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","articles":[]},{"title":"3.2.2.4 SDK蓝牙设备的扫描绑定","level":"1.4.2.2.4","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","articles":[]},{"title":"3.2.2.5 SDK蓝牙设备的控制","level":"1.4.2.2.5","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]},{"title":"3.2.2.6 SDK WIFI设备的扫描绑定","level":"1.4.2.2.6","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md","articles":[]},{"title":"3.2.2.7 SDK WIFI设备的控制","level":"1.4.2.2.7","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md","articles":[]},{"title":"3.2.2.8 SDK 设备的分享","level":"1.4.2.2.8","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]},{"title":"3.2.2.9 SDK APP辅助信息接口","level":"1.4.2.2.9","depth":4,"path":"iOSSDK/iOS_APP_Info.md","ref":"iOSSDK/iOS_APP_Info.md","articles":[]}]},{"title":"3.2.3 H5 SDK","level":"1.4.2.3","depth":3,"path":"source/zh-cn/app/SDK/H5.md","ref":"./source/zh-cn/app/SDK/H5.md","articles":[]}]},"dir":"neutral"},"config":{"plugins":["-sharing","-fontsettings","-lunr","-search","search-pro","theme-official","toggle-chapters","livereload"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"toggle-chapters":{},"livereload":{},"highlight":{},"theme-official":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C-Life开放平台文档中心","language":"zh-hans","gitbook":">= 3.0.0","description":"C-Life开放平台文档中心head_description"},"file":{"path":"source/zh-cn/app/SDK/android.md","mtime":"2017-10-30T05:49:37.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-31T08:00:15.596Z"},"basePath":"../../../..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"3.2.3 H5 SDK","level":"1.4.2.3","depth":3,"next":{"title":"3.3 APP 开源框架","level":"1.4.3","depth":2,"path":"source/zh-cn/App/app.md","ref":"./source/zh-cn/App/app.md","articles":[]},"previous":{"title":"3.2.2.9 SDK APP辅助信息接口","level":"1.4.2.2.9","depth":4,"path":"iOSSDK/iOS_APP_Info.md","ref":"iOSSDK/iOS_APP_Info.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-fontsettings","-lunr","-search","search-pro","theme-official","toggle-chapters","livereload"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"toggle-chapters":{},"livereload":{},"highlight":{},"theme-official":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C-Life开放平台文档中心","language":"zh-hans","gitbook":">= 3.0.0","description":"C-Life开放平台文档中心head_description"},"file":{"path":"source/zh-cn/app/SDK/H5.md","mtime":"2017-10-30T05:49:37.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-31T08:00:15.596Z"},"basePath":"../../../..","book":{"language":""}});
     });
 </script>
 <script>
