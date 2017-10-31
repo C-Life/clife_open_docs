@@ -26,7 +26,7 @@
 			* [3.1.2.2 配置模式]()
 		* [3.1.3 关联产品]()
 	* [3.2 APP SDK](./source/zh-cn/app/SDK/index.md)
-		* [3.2.1 android SDK](./source/zh-cn/app/SDK/android.md)
+		* [3.2.1 android SDK](./source/zh-cn/app/SDK/android_sdk.md)
 		* [3.2.2 iOS SDK](./source/zh-cn/app/SDK/ios.md)
 			* [3.2.2.1 初始化](./source/zh-cn/app/SDK/iOSSDK/iOS_init.md)
 			* [3.2.2.2 SDK授权](./source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md)
