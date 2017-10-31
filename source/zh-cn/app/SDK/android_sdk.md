@@ -9,28 +9,28 @@
 
 ## 2.相关名词定义
 
-###2.1 appId和appSecret
+###2.1.appId和appSecret
 
 开放平台app的应用标识和密钥。开发者在开放平台接入设备创建APP的时候，后台会自动生成一个appId和appSecret。在初始化SDK的时候有用到。
 
-###2.2 硬件模组
+###2.2.硬件模组
 
 这里的硬件模组是指的WIFI模组。在开放平台创建WIFI产品的时候需要指定设备的WIFI模组。在SDK初始化和APP在设备绑定的时候需要用到。
 
-###2.3 productId
+###2.3.productId
 
 设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
 
-###2.4 deviceId
+###2.4.deviceId
 
 设备号，当一个设备通过设备绑定的接口初次接入开放平台时，开放平台会自动根据productId以及设备的mac地址为此设备注册一个deviceId，此deviceId全网唯一，用于通过开放平台进行设备的操作。
 
 ## 3.SDK 快速开发，相关第三方库支持
 
-### 3.1 RxJava 函数式编程  
+### 3.1.RxJava 函数式编程  
 
 开放平台SDK 集成了RxJava。开发者可以根据自己的需要来使用，不需要自己再在项目中集成了。
-### 3.2 RxBus 事件传递总线 
+### 3.2.RxBus 事件传递总线 
 
 开放平台SDK事件总线提供了RxBus的支持，开发者用于事件的发布和订阅来实现数据的传递，开发者可以根据项目需求来使用。  
 使用实例：
@@ -47,13 +47,13 @@ RxBus事件的取消订阅：
 
     RxManage.getInstance().unregister(HetLoginSDKEvent.Login.LOGIN_SUCCESS);
 
-### 3.3 retrofit+okhttp 网络库的支持
+### 3.3.retrofit+okhttp 网络库的支持
 
 开放平台SDK集成了retrofit+okhttp的网络库支持，开发者可以直接使用这个网络库来请求服务器数据。
-### 3.4 ActiveAndroid 数据库支持
+### 3.4.ActiveAndroid 数据库支持
 
 SDK集成了ActiveAndroid这个第三方的轻量级的数据库。开发者可以自己查阅资料直接使用，不需要再在项目中集成了。
-### 3.5 X5内核 浏览服务的支持
+### 3.5.X5内核 浏览服务的支持
 
 SDK集成了X5内核的浏览服务，来提高H5的加载性能和兼容性。开发者在需要使用X5内核WebView的时候可以直接使用：
 使用实例：
@@ -68,14 +68,18 @@ SDK集成了X5内核的浏览服务，来提高H5的加载性能和兼容性。�
 注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：  
 android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 这样。
 
+### 3.6.第三方服务平台的支持
+
+SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和登录。使用简单方便，详细使用请查看 **第三方平台服务的集成（登录和分享）**
+
 ## 4.集成准备
 
-### 4.1 注册开放平台账号  
+### 4.1.注册开放平台账号  
   通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《和而泰开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
 
-### 4.2. 下载SDK终端DEMO 请前往下载中心下载最新SDK包。
+### 4.2.下载SDK终端DEMO 请前往下载中心下载最新SDK包。
 
-### 4.3 在Android Studio上集成SDK，配置项目根目录build.gradle如下：
+### 4.3.在Android Studio上集成SDK，配置项目根目录build.gradle如下：
 
 	allprojects {
 	    repositories {
@@ -91,7 +95,7 @@ android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient �
 	}
 
 
-### 4.4 引用SDK到工程中
+### 4.4.引用SDK到工程中
 	 dependencies {
 	    compile fileTree(include: ['*.jar'], dir: 'libs')
 	    testCompile 'junit:junit:4.12'
@@ -131,7 +135,7 @@ android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient �
 
 引用SDK，根据自己硬件的模组来选择引用那个模组，其他的可以不用。 二维码扫描库在SDk demo中设备绑定中有用到，可以按照demoApp的实例来使用，也可以用自己的二维码扫描库。
 
-###4.5 配置AndroidManifest.xml
+###4.5.配置AndroidManifest.xml
 请将下面权限配置代码复制到 AndroidManifest.xml 文件中：
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -167,7 +171,7 @@ android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient �
 	</tbody>
 </table>
 
-####4.6 Android6.0系统文件读写权限设置
+####4.6.Android6.0系统文件读写权限设置
 Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态申请。开发者可以提供SDK提供的RxPermissions来动态申请权限
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -189,13 +193,14 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态�
 ## 1.SDK集成流程简介
 
 第一步：SDK初始化(SDK的日志信息开关、环境设置、app主题的配置信息)  
-第二步：授权登录和用户模块
-第三步：设备绑定
-第三步：设备控制
+第二步：授权登录和用户模块  (授权登录、获取用户信息、修改密码)
+第三步：设备绑定 (WIFI设备的AP绑定和smartLink绑定 蓝牙的扫描绑定) 
+第四步：设备管理（获取设备列表、删除设备、设备分享）
+第五步：设备控制（wifi和蓝牙设备的控制）
 
 ## 2.SDK初始化
 
-第一步：我们需要在application里面初始化SDK。设置SDK的日志信息开关、环境设置、app主题的配置信息等
+第一步：在application里面初始化SDK。设置SDK的日志信息开关、环境设置、app主题的配置信息等
 
  	/**
      * 配置SKD
@@ -218,7 +223,7 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态�
     }
 
 1、appId、appSecret是开发者在开发平台创建应用申请到的。  
-2、HetThirdDelegate 这个是配置第三方登录（微信、QQ、新浪微博登录），需要的自己配置，不需要的可以不要。关于第三方登录的集成请参考   **3.3（SDK第三方登录的集成）**。  
+2、HetThirdDelegate 这个是配置第三方登录（微信、QQ、新浪微博登录），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **3.3（SDK第三方登录的集成）**。  
 3、开发者可以自己去定义APP的配置configModel.setH5UIconfig(String h5UIconfig); h5UIconfig是定义的一个JSON字符串，demoAPP里面是通过assets/h5UIConfig.json来组装这个JSON字符串的。
 
 **接口调用请求说明**  
@@ -445,9 +450,9 @@ SDK的授权登录页面需要这个JSON参数来配置，包括是否需要第�
 
 这里的模组注册是按需注册的。也就是根据自己的设备的模组类型来注册。
 
-### 3.2 授权登录和用户模块
+## 3.授权登录和用户模块
 
-###3.2.1 无私有服务器授权登录
+### 3.1.无私有服务器授权登录
 SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授权登录页面。
 
 	 /**
@@ -476,13 +481,15 @@ SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授�
 	       
 	    }
 
-**这里插图：登录界面**
+授权登录页面：  
 
-###3.2.2 云云对接用户授权登录
+<img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
+
+### 3.2.云云对接用户授权登录
 为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档[C-Life开放平台验证码三方授权流程](%E9%AA%8C%E8%AF%81%E7%A0%81%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83%E6%B5%81%E7%A8%8B)。
 
 
-###3.2.3 退出登录
+### 3.3.退出登录
 
 退出登录SDK接口
 
@@ -513,13 +520,13 @@ SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授�
 	            //退出登录刷新页面
 	});
 
-###3.2.4判断登录状态
+### 3.4.判断登录状态
 
 判断登录状态的接口
 
 	HetSdk.getInstance().isAuthLogin();
 
-###3.2.5异地登录的
+### 3.5.异地登录的
 
 开放平台的账号只能在一台设备上面登录。当有账号在另一台设备登录时，SDK会抛出一个ECode.Token.EC_LOGINOUT的RxBus事件。
 开发者可以在首页订阅这个事件，处理异地登录的逻辑。 例：
@@ -530,7 +537,7 @@ SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授�
 	});
 
 
-###3.2.6获取用户信息
+### 3.6.获取用户信息
 
 HetUserApi.getInstance().getUserMess()可以获取到用户信息
 
@@ -621,7 +628,9 @@ HetUserApi.getInstance().getUserMess()可以获取到用户信息
 	</tbody>
 </table>
 
-###3.2.7修改密码
+### 3.7.修改密码
+
+调用 HetNewAuthApi.getInstance().alterPassword() 就会跳转到修改密码的页面。
 
 	/**
 	     * 修改密码
@@ -639,7 +648,8 @@ HetUserApi.getInstance().getUserMess()可以获取到用户信息
 
 这里手机号是需要通过获取用户信息之后才能得到的。这里有2种方式：
 1、开发者可以登录成功之后就去获取用户信息，然后保存起来作为全局使用。（推荐使用）
-2、在修改密码之前先调用获取用户信息的接口，获取到手机号之后再调用修改密码的接口。
+2、在修改密码之前先调用获取用户信息的接口，获取到手机号之后再调用修改密码的接口。  
+实例：
 
 	public void editPwd(String phone) {
 	        if (!HetSdk.getInstance().isAuthLogin()) return;
@@ -655,10 +665,12 @@ HetUserApi.getInstance().getUserMess()可以获取到用户信息
 	        }, phone, "修改密码",Color.parseColor("#ff3285ff")，Color.parseColor("#FFFFFFFF"));
 	}
 
+修改密码页面：  
 
-##3.3 设备模块
+<img src="https://i.imgur.com/jJyysqX.png" width = "360" height = "620" alt="图片名称" align=center />
 
-###3.3.1 设备绑定模块（添加设备）
+## 4.设备绑定模块（添加设备）  
+
 
 开放平台的设备按照功能划分类型，设备有大类，大类下面划分不同型号的小类。确定类型之后，设备还有WIFI和蓝牙设备之分。绑定设备之前首先就需要选择设备类型在扫描绑定。WIFI SSID和密码 需要开发者自己去获取手机当前连接的WIFI，让用户自己输入WIFI密码之后再调用开始扫描绑定的接口，productId是设备小类中productId字段。WIFI设备AP绑定流程图如下：
 
@@ -836,8 +848,9 @@ BLE蓝牙设备绑定：SDK提供一个HetCommonBleBindApi接口，普通蓝牙�
 APP端服务是否开启（udpservice）
 
 
-### 3.3.2 设备管理
-#### 3.3.2.1 设备model说明
+## 5.设备管理
+
+### 5.1.设备model说明
 
 SDK所有的设备devicemodel，参数说明
 
@@ -980,7 +993,8 @@ SDK所有的设备devicemodel，参数说明
 		</tr>
 	</tbody>
 </table>
-####3.3.2.2获取设备列表
+
+### 5.2.获取设备列表
 
 HetDeviceListApi.getInstance().getBindList()获取设备列表，设备按照归属来划分有2种：  
 第一种是用户自己绑定的设备。这类设备用户拥有这台设备的所有权限。  
@@ -1005,7 +1019,7 @@ HetDeviceListApi.getInstance().getBindList()获取设备列表，设备按照归
 	}
 
 
-####3.3.2.2删除设备
+### 5.3.删除设备
 
 设备删除有2中情况： 
 第一种：设备是用户自己绑定的设备。调用HetDeviceManagerApi.getInstance().unBind()来解除绑定。这里 deviceModel 是选择要删除的设备对象。
@@ -1038,7 +1052,258 @@ HetDeviceListApi.getInstance().getBindList()获取设备列表，设备按照归
 
 传入的参数是选择要删除的设备ID和当前用户的UserId。UserId直接传null就好了。传null表示被分享者解除分享关系，传userId表示设备拥有者回收这个用户的设备控制授权。
 
-####3.3.2.3设备控制
+### 5.4.设备分享
+
+#### 5.4.1.获取设备授权的用户列表    
+
+调用HetDeviceShareApi.getInstance().getDeviceAuthUser()获取设备授权的用户列表，调用实例：
+
+	HetDeviceShareApi.getInstance().getDeviceAuthUser(new IHetCallback() {
+            @Override
+            public void onSuccess(int code, String s) {
+                if (code == 0) {
+                    Type type = new TypeToken<List<DeviceAuthUserModel>>() {
+                    }.getType();
+                    List<DeviceAuthUserModel> deviceAuthUsers= GsonUtil.getGsonInstance().fromJson(s, type);
+                    //获取到设备授权的用户列表
+                        .................
+                }
+            }
+            @Override
+            public void onFailed(int code, String msg) {
+                  //获取设备授权的用户列表失败
+            }
+        }, deviceId);
+
+DeviceAuthUserModel 的字段说明：
+
+<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
+	<tbody>
+		<tr>
+			<th width="16%">参数名称</th>
+			<th width="15%">字段类型</th>
+			<th width="62%">参数说明</th>
+		</tr>
+		<tr>
+			<td>userId</td>
+			<td>String</td>
+			<td>用户ID</td>
+		</tr>
+		<tr>
+			<td>userName</td>
+			<td>String</td>
+			<td>用户名称</td>
+		</tr>
+		<tr>
+			<td>avatar</td>
+			<td>String</td>
+			<td>用户头像</td>
+		</tr>
+		<tr>
+			<td>authTime</td>
+			<td>String</td>
+			<td>授权时间</td>
+		</tr>
+	</tbody>
+</table>
+
+#### 5.4.2.用户设备授权删除  
+
+调用HetDeviceShareApi.getInstance().deviceDel()就可以解除分享关系。
+
+	HetDeviceShareApi.getInstance().deviceDel(new IHetCallback() {
+            @Override
+            public void onSuccess(int code, String s) {
+                if (code == 0) {
+                   //删除成功,刷新获取设备授权用户列表
+                    ...................
+                }
+            }
+            @Override
+            public void onFailed(int code, String msg) {
+               //删除失败
+            }
+        }, deviceId, userId);
+
+
+#### 5.4.3.分享设备 
+
+分享的方式有2种，一种是面对面二维码分享，第二种远程第三方平台（微信 、QQ等）的分享。 注意：只要是用户账号自己绑定的设备才能分享给别人，别人分享给自己的设备是不能再分享出去的。  
+下面对2中分享方式进行详细说明：
+
+第一种：面对面分享，通过deviceId（要分享的设备的标识）获取分享码，分享的流程图如下：
+
+ ![这里写图片描述](http://img.blog.csdn.net/20171026143701789?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+具体的接口调用说明：
+
+	 /**
+	 * @param shareType   5是面对面分享  6远程分享
+	 */
+	HetDeviceShareApi.getInstance().getShareCode(new IHetCallback() {
+            @Override
+            public void onSuccess(int code, String s) {
+                if (code == 0) {
+                    Type treeType = new TypeToken<ShareCodeModel>() {
+                    }.getType();
+                    ShareCodeModel codeModel = GsonUtil.getGsonInstance().fromJson(s, treeType);
+                    //分享邀请码获取成功
+                }
+            }
+            @Override
+            public void onFailed(int code, String msg) {
+                //分享邀请码获取失败
+            }
+        }, deviceId, shareType);
+
+ShareCodeModel字段说明:
+
+<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
+	<tbody>
+		<tr>
+			<th width="16%">参数名称</th>
+			<th width="15%">字段类型</th>
+			<th width="62%">参数说明</th>
+		</tr>
+		<tr>
+			<td>shareCode</td>
+			<td>String</td>
+			<td>设备分享码 （面对面分享）</td>
+		</tr>
+		<tr>
+			<td>h5Url</td>
+			<td>String</td>
+			<td>H5 页面地址（远程分享）</td>
+		</tr>
+	</tbody>
+</table>
+
+开发者获取到分享码之后用二维码的形式展示出来。被分享的用户，通过二维码扫描到之后，调用设备授权的接口HetDeviceShareApi.getInstance().authShareDevice()就可以完成设备的分享了.  
+
+    HetDeviceShareApi.getInstance().authShareDevice(new IHetCallback() {
+            @Override
+            public void onSuccess(int code, String msg) {
+                ToastUtil.showToast(mContext, "设备分享成功");
+                RxManage.getInstance().post(HetShareEvent.HET_EVENT_MAIN_SHARE_SUCCEE,null);
+            }
+            @Override
+            public void onFailed(int code, String msg) {
+                ToastUtil.showToast(mContext, "设备分享失败");
+            }
+        }, code, "5");//5是面对面分享   6是远程分享
+
+
+这里设备分享成功之后，抛出RxBus事件，设备列表页面注册事件之后刷新设备列表。  
+
+第二种：远程分享（通过QQ、微信分享设备）。
+这种分享主要利用的是第三方社交平台，可以快速的实现设备分享有利于实现产品的快速推广。特别注意：远程的第三方分享一定要集成第三方分享服务。详细集成实例请参考下面 **第三方平台服务的集成（登录和分享）**的集成，跟第一种方式一样首先要获取分享码和分享的网页地址。分享的流程图如下：
+
+![这里写图片描述](http://img.blog.csdn.net/20171026143758237?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+具体的接口调用说明：
+
+HetDeviceShareApi.getInstance().getShareCode(IHetCallback callback,String deviceId,String shareType)
+deviceId传设备ID，shareType(5是面对面分享  6远程分享)。这里我们选择传"6",获取远程分享设备的分享地址。
+
+	HetDeviceShareApi.getInstance().getShareCode(new IHetCallback() {
+            @Override
+            public void onSuccess(int code, String s) {
+                if (code == 0) {
+                    Type treeType = new TypeToken<ShareCodeModel>() {
+                    }.getType();
+                    ShareCodeModel codeModel = GsonUtil.getGsonInstance().fromJson(s, treeType);
+                    //分享邀请码获取成功
+                     String shareUrl = codeModel.getH5Url();
+                     //调用第三分享接口把这个网页地址分享到第三方平台
+                      .............
+                }
+            }
+            @Override
+            public void onFailed(int code, String msg) {
+                //分享邀请码获取失败
+            }
+        }, deviceId, "6");
+
+
+SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)，实现第三方分享非常简单，只需要五步就可以完成：
+
+第一步：集成第三方服务  
+详细的集成流程请查看 **第三方平台服务的集成（登录和分享）**
+
+第二步：初始化SKD第三方分享接口
+
+    HetThirdDelegate mShareManager = HetThirdDelegate.getInstance();
+        CommonShareProxy mShareProxy = new CommonShareProxy(this);
+        mShareManager.setShareOperate(new CommonShareOperate(mContext));
+        mICommonShareListener = new ICommonShareListener() {
+            @Override
+            public void onStartShare(CommonSharePlatform sharePlatform) {
+                CommonShareWebpage webpage = new CommonShareWebpage(sharePlatform);
+                webpage.setUiListener(this);
+                webpage.setTitle("设备分享");
+                webpage.setDescription("设备分享，极速体验");
+                webpage.setAppName(getString(R.string.app_name));
+                webpage.setTargetUrl(shareUrl);
+                webpage.setWebpageUrl(shareUrl);
+                webpage.setBm(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.icon_share));
+                webpage.setSharePlatform(sharePlatform);
+                mShareManager.shareWebpage(webpage);
+            }
+            @Override
+            public void onShareSuccess(CommonSharePlatform sharePlatform, String msg) {
+                UserMessShareActivity.this.runOnUiThread(() -> {
+                    ToastUtil.showToast(mContext, "分享成功");
+                });
+            }
+            @Override
+            public void onShareFialure(CommonSharePlatform sharePlatform, String msg) {
+                UserMessShareActivity.this.runOnUiThread(() -> {
+                    ToastUtil.showToast(mContext, "分享失败");
+                });
+            }
+            @Override
+            public void onShareCancel(CommonSharePlatform sharePlatform, String msg) {
+                UserMessShareActivity.this.runOnUiThread(() -> {
+                    ToastUtil.showToast(mContext, "分享取消");
+                });
+            }
+        };
+
+第二步：添加回调
+ 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (mShareManager != null && mShareProxy != null) {
+            mShareProxy.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+第三步：开始分享
+
+	mICommonShareListener.onStartShare(CommonSharePlatform.WeixinFriend);//微信分享
+	mICommonShareListener.onStartShare(CommonSharePlatform.QQ_Friend);//QQ分享
+	分享类型有5种
+	public enum CommonSharePlatform {
+	    WeixinFriend,//微信好友
+	    WeixinFriendCircle,//微信朋友圈
+	    QQ_Friend,//QQ好友
+	    QQ_Zone,//QQ空间
+	    SinaWeibo;//新浪微博
+	.....
+	}
+
+第四步：退出释放资源
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mShareManager != null) {
+            mShareManager.releaseResource();
+            mShareManager = null;
+        }
+    }
+
+## 6.设备控制
 
 设备有WIFI设备的控制和蓝牙设备的控制区别，wifi设备控制流程图示如下：
 
@@ -1270,261 +1535,9 @@ CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_BATTERY					Battery Level
 
 
 
-###3.3.2.4设备分享
+## 7.其他接口
 
-1.获取设备授权的用户列表    
-
-调用HetDeviceShareApi.getInstance().getDeviceAuthUser()获取设备授权的用户列表，调用实例：
-
-	HetDeviceShareApi.getInstance().getDeviceAuthUser(new IHetCallback() {
-            @Override
-            public void onSuccess(int code, String s) {
-                if (code == 0) {
-                    Type type = new TypeToken<List<DeviceAuthUserModel>>() {
-                    }.getType();
-                    List<DeviceAuthUserModel> deviceAuthUsers= GsonUtil.getGsonInstance().fromJson(s, type);
-                    //获取到设备授权的用户列表
-                        .................
-                }
-            }
-            @Override
-            public void onFailed(int code, String msg) {
-                  //获取设备授权的用户列表失败
-            }
-        }, deviceId);
-
-DeviceAuthUserModel 的字段说明：
-
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="15%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>userId</td>
-			<td>String</td>
-			<td>用户ID</td>
-		</tr>
-		<tr>
-			<td>userName</td>
-			<td>String</td>
-			<td>用户名称</td>
-		</tr>
-		<tr>
-			<td>avatar</td>
-			<td>String</td>
-			<td>用户头像</td>
-		</tr>
-		<tr>
-			<td>authTime</td>
-			<td>String</td>
-			<td>授权时间</td>
-		</tr>
-	</tbody>
-</table>
-
-2.用户设备授权删除  
-
-调用HetDeviceShareApi.getInstance().deviceDel()就可以解除分享关系。
-
-	HetDeviceShareApi.getInstance().deviceDel(new IHetCallback() {
-            @Override
-            public void onSuccess(int code, String s) {
-                if (code == 0) {
-                   //删除成功,刷新获取设备授权用户列表
-                    ...................
-                }
-            }
-            @Override
-            public void onFailed(int code, String msg) {
-               //删除失败
-            }
-        }, deviceId, userId);
-
-
-3.设备分享   
-
-分享的方式有2种，一种是面对面二维码分享，第二种远程第三方平台（微信 、QQ等）的分享。 注意：只要是用户账号自己绑定的设备才能分享给别人，别人分享给自己的设备是不能再分享出去的。  
-下面对2中分享方式进行详细说明：
-
-第一种：面对面分享，通过deviceId（要分享的设备的标识）获取分享码，分享的流程图如下：
-
- ![这里写图片描述](http://img.blog.csdn.net/20171026143701789?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-
-具体的接口调用说明：
-
-	 /**
-	 * @param shareType   5是面对面分享  6远程分享
-	 */
-	HetDeviceShareApi.getInstance().getShareCode(new IHetCallback() {
-            @Override
-            public void onSuccess(int code, String s) {
-                if (code == 0) {
-                    Type treeType = new TypeToken<ShareCodeModel>() {
-                    }.getType();
-                    ShareCodeModel codeModel = GsonUtil.getGsonInstance().fromJson(s, treeType);
-                    //分享邀请码获取成功
-                }
-            }
-            @Override
-            public void onFailed(int code, String msg) {
-                //分享邀请码获取失败
-            }
-        }, deviceId, shareType);
-
-ShareCodeModel字段说明:
-
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="15%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>shareCode</td>
-			<td>String</td>
-			<td>设备分享码 （面对面分享）</td>
-		</tr>
-		<tr>
-			<td>h5Url</td>
-			<td>String</td>
-			<td>H5 页面地址（远程分享）</td>
-		</tr>
-	</tbody>
-</table>
-
-开发者获取到分享码之后用二维码的形式展示出来。被分享的用户，通过二维码扫描到之后，调用设备授权的接口HetDeviceShareApi.getInstance().authShareDevice()就可以完成设备的分享了.  
-
-    HetDeviceShareApi.getInstance().authShareDevice(new IHetCallback() {
-            @Override
-            public void onSuccess(int code, String msg) {
-                ToastUtil.showToast(mContext, "设备分享成功");
-                RxManage.getInstance().post(HetShareEvent.HET_EVENT_MAIN_SHARE_SUCCEE,null);
-            }
-            @Override
-            public void onFailed(int code, String msg) {
-                ToastUtil.showToast(mContext, "设备分享失败");
-            }
-        }, code, "5");//5是面对面分享   6是远程分享
-
-
-这里设备分享成功之后，抛出RxBus事件，设备列表页面注册事件之后刷新设备列表。  
-
-第二种：远程分享（通过QQ、微信分享设备）。
-这种分享主要利用的是第三方社交平台，可以快速的实现设备分享有利于实现产品的快速推广。特别注意：远程的第三方分享一定要集成第三方分享服务。详细集成实例请参考下面 **3.5 第三方平台服务（第三方登录和分享）的集成（暂时只支持微信，QQ，新浪微博）**的集成，跟第一种方式一样首先要获取分享码和分享的网页地址。分享的流程图如下：
-
-![这里写图片描述](http://img.blog.csdn.net/20171026143758237?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXE1MTMwMzY4NjI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-
-具体的接口调用说明：
-
-HetDeviceShareApi.getInstance().getShareCode(IHetCallback callback,String deviceId,String shareType)
-deviceId传设备ID，shareType(5是面对面分享  6远程分享)。这里我们选择传"6",获取远程分享设备的分享地址。
-
-	HetDeviceShareApi.getInstance().getShareCode(new IHetCallback() {
-            @Override
-            public void onSuccess(int code, String s) {
-                if (code == 0) {
-                    Type treeType = new TypeToken<ShareCodeModel>() {
-                    }.getType();
-                    ShareCodeModel codeModel = GsonUtil.getGsonInstance().fromJson(s, treeType);
-                    //分享邀请码获取成功
-                     String shareUrl = codeModel.getH5Url();
-                     //调用第三分享接口把这个网页地址分享到第三方平台
-                      .............
-                }
-            }
-            @Override
-            public void onFailed(int code, String msg) {
-                //分享邀请码获取失败
-            }
-        }, deviceId, "6");
-
-
-SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)，实现第三方分享非常简单，只需要五步就可以完成：
-
-第一步：集成第三方服务  
-详细的集成流程请查看 **3.5 第三方平台服务（第三方登录和分享）的集成（暂时只支持微信，QQ，新浪微博）**
-
-第二步：初始化SKD第三方分享接口
-
-    HetThirdDelegate mShareManager = HetThirdDelegate.getInstance();
-        CommonShareProxy mShareProxy = new CommonShareProxy(this);
-        mShareManager.setShareOperate(new CommonShareOperate(mContext));
-        mICommonShareListener = new ICommonShareListener() {
-            @Override
-            public void onStartShare(CommonSharePlatform sharePlatform) {
-                CommonShareWebpage webpage = new CommonShareWebpage(sharePlatform);
-                webpage.setUiListener(this);
-                webpage.setTitle("设备分享");
-                webpage.setDescription("设备分享，极速体验");
-                webpage.setAppName(getString(R.string.app_name));
-                webpage.setTargetUrl(shareUrl);
-                webpage.setWebpageUrl(shareUrl);
-                webpage.setBm(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.icon_share));
-                webpage.setSharePlatform(sharePlatform);
-                mShareManager.shareWebpage(webpage);
-            }
-            @Override
-            public void onShareSuccess(CommonSharePlatform sharePlatform, String msg) {
-                UserMessShareActivity.this.runOnUiThread(() -> {
-                    ToastUtil.showToast(mContext, "分享成功");
-                });
-            }
-            @Override
-            public void onShareFialure(CommonSharePlatform sharePlatform, String msg) {
-                UserMessShareActivity.this.runOnUiThread(() -> {
-                    ToastUtil.showToast(mContext, "分享失败");
-                });
-            }
-            @Override
-            public void onShareCancel(CommonSharePlatform sharePlatform, String msg) {
-                UserMessShareActivity.this.runOnUiThread(() -> {
-                    ToastUtil.showToast(mContext, "分享取消");
-                });
-            }
-        };
-
-第二步：添加回调
- 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (mShareManager != null && mShareProxy != null) {
-            mShareProxy.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-第三步：开始分享
-
-	mICommonShareListener.onStartShare(CommonSharePlatform.WeixinFriend);//微信分享
-	mICommonShareListener.onStartShare(CommonSharePlatform.QQ_Friend);//QQ分享
-	分享类型有5种
-	public enum CommonSharePlatform {
-	    WeixinFriend,//微信好友
-	    WeixinFriendCircle,//微信朋友圈
-	    QQ_Friend,//QQ好友
-	    QQ_Zone,//QQ空间
-	    SinaWeibo;//新浪微博
-	.....
-	}
-
-第四步：退出释放资源
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mShareManager != null) {
-            mShareManager.releaseResource();
-            mShareManager = null;
-        }
-    }
-
-
-##3.4 其他接口
-
-###3.4.1 意见反馈
+### 7.1.意见反馈
 
 调用HetFeedbackApi.getInstance().addFeedback()提交意见反馈
 
@@ -1540,7 +1553,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
     }
 
 
-###3.4.2消息模块
+### 7.2.消息模块
 
 SDK提供了操作消息的接口HetMessageApi
 
@@ -1782,25 +1795,22 @@ SDK提供了操作消息的接口HetMessageApi
 	</tbody>
 </table>
 
-###3.5 第三方平台服务（第三方登录和分享）的集成（暂时只支持微信，QQ，新浪微博）
+# 第三方平台服务的集成（登录和分享）
 
-第三方登录的集成，SDK目前只支持三种方式，也是目前比较主流的支持第三方登录的平台。包括微信、QQ、和新浪微博。  
+第三方登录和分享的集成，SDK目前只支持三种方式，也是目前比较主流的第三方平台。包括微信、QQ、和新浪微博。  
 具体过程分4个步骤：  
 
 第一步：在集成之前需要在微信开放平台、腾讯开放平台、新浪开放平台创建应用，获取到相应的appID和appSecret。  
 第二步：在Application里面配置第三方登录SDK。  
-可以参考开放平台DEMO 源码，这里就只需要在3.2介绍的assets/h5UIConfig.json中来配置第三方平台app_id和app_secret即可
 
     //配置第三方登录
     mLoginDelegate = new HetThirdDelegate.Builder(this)
-                .registerQQ(UIJsonConfig.getTencentAppID())
-                .registerWeixin(UIJsonConfig.getWechatAppID(), UIJsonConfig.getWechatAppSecret())
-                .registerSinaWeibo(UIJsonConfig.getSinaAppID(), UIJsonConfig.getSinaAppSecret(), this.mSinaRedirectURL)
+                .registerQQ("your_qq_app_id")
+                .registerWeixin("your_weixin_app_id", "your_weixin_app_secret")
+                .registerSinaWeibo("your_sina_app_id", "your_sina_app_secret", "your_sina_redirect_url"L)
                 .create();
 
-也可以自己直接写，
-registerQQ("your_qq_app_id")、registerWeixin("your_weixin_app_id","your_weixin_app_secret")、registerSinaWeibo("your_sina_app_id","your_sina_app_secret","your_sina_redirect_url")。  
-这里注意your_sina_redirect_url是新浪微博用于OAuth authorize页面回调的url。
+注意：your_sina_redirect_url是新浪微博用于OAuth authorize页面回调的url。
 
 第三步：配置清单文件AndroidManifest.xml
 
@@ -1890,11 +1900,11 @@ registerQQ("your_qq_app_id")、registerWeixin("your_weixin_app_id","your_weixin_
 注意：wxapi和WXEntryActivity的位置和名字都不能改变，否则不能回调到app中来。例如:DEMO APP的包名是com.het.sdk.demo，那就WXEntryActivity的完整名称就是com.het.sdk.demo.wxapi.WXEntryActivity。  
 新浪微博分享回调SDK已经集成，com.het.open.lib.wb.WBEntryActivity,开发者不需要关注。
 
-###3.6 H5+Native混合框架
+# H5+Native混合框架
 为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
-####3.6.1 H5开发框架
+## 1.H5开发框架
 请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
-####3.6.2 Android和H5通讯
+## 2.Android和H5通讯
 SDK提供了原生与H5通讯的管理接口HtmlFiveManager。
 
 	public HtmlFiveManager(Activity activity, WebView wv, IAppJavaScriptsInterface appJavaScriptsInterface) {
@@ -1928,3 +1938,5 @@ HtmlFiveManager提供了3个方法把获取到的设备数据提交到H5。
 updateConfigData()//提交控制数据  
 updateRunData()//提交运行数据  
 updateErrorData()//提交故障数据  
+
+H5可以通过JS-SDK 的 het.send方法把数据提交给原生IAppJavaScriptsInterface接口的send方法。原生只需实现这个send（）来处理H5提交的数据，如：把数据提交到服务器。
