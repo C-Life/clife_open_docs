@@ -21,14 +21,7 @@ pod --help
 2、编辑工程对于的Podfile文件
 
 ```
-platform :ios, '7.0'
-
-target :"HETOpenPlatformSDKDemo" do
-
 pod 'HETOpenSDK','0.1.1'
-
-end
-inhibit_all_warnings!
 
 ```
 
@@ -37,19 +30,8 @@ inhibit_all_warnings!
 以下两种方式任选一种就可以：
 
 ```
-1.pod install --verbose --no-repo-update 
-2.pod update --verbose --no-repo-update
-
-```
-
-4、支持Http传输
-
-```
-<key>NSAppTransportSecurity</key> 
-  <dict> 
-<key>NSAllowsArbitraryLoads</key> 
-    <true/> 
-</dict>
+1.pod install 
+2.pod update 
 
 ```
 
@@ -89,8 +71,8 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    // 1.注册HET开发平台SDK
    [HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
-  [HETOpenSDK openLog:NO];
-	return YES;
+   [HETOpenSDK openLog:YES];
+   return YES;
 }
 
 ```
