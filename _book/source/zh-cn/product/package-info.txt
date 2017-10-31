@@ -1,0 +1,13 @@
+此文件夹保存“产品开发”相关文档
+
+index.md--目录文件
+product.md--创建产品
+protocol_config.md--协议配置
+page_config.md--页面配置
+debugging.md--设备调试
+access_scheme.md--接入方案
+network_config.md--联网配置
+upgrade.md--固件升级
+mac.md--MAC管理
+publish_product.md--发布产品
+brand.md--品牌管理
