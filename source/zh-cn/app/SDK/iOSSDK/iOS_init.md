@@ -77,7 +77,7 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 
 ```
 
-yourAPPId、yourAPPSecret的值是在“应用创建”时生成的AppID、AppSecret。 在如下图查看: 
+**yourAPPId**、**yourAPPSecret** 的值是在“应用创建”时生成的 **AppID**、**AppSecret**。 在如下图查看: 
 
 
 ![](/assets/获取appkeyandappsecrect.jpg)
