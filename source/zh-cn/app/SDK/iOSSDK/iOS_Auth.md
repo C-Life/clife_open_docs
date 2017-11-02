@@ -98,7 +98,7 @@ if ([self.auth isAuthenticated]) {
                       failure:(failureBlock)failure;
  ```
                    
-### 5、**异地登录**、**accessToken过期** 通知
+### 5、**异地登录**、**accessToken过期**通知
 
 开放平台的账号只能在一台设备上面登录。当有账号在另一台设备登录时，SDK会抛出一个HETLoginOffNotification消息。 开发者可以在首页监听这个消息，处理异地登录的逻辑。 
 例：
