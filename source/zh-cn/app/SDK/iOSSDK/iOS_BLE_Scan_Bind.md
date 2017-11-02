@@ -98,7 +98,7 @@ WEAKSELF
 }];
 ```
 
-### 2.手动绑定
+### 2. 手动绑定
 **手动绑定步骤：**
 * 获取设备大类列表 (获取deviceTypeId)
 * 获取设备小类列表（支持的设备列表,其中含有productId,deviceSubtypeId）
