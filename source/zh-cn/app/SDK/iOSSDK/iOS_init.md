@@ -1,31 +1,26 @@
 ## 初始化
 
-###一、集成准备
-1、注册开放平台账号
+###一. 集成准备
+####1.1 注册开放平台账号
 
 在<a href="https://open.clife.cn/#/home">C-Life开发平台</a>注册开发者账号，创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。
 
-
-
-### 二、下载C-Life iOS SDK文件，并且配置工程
-
-
-
-1、确认本机安装的cocoapods能正常工作
+### 二. 下载C-Life iOS SDK文件，并且配置工程
+####2.1 确认本机安装的cocoapods能正常工作
 
 ```
 pod --help 
 
 ```
 
-2、编辑Podfile文件
+####2.2 编辑Podfile文件
 
 ```
 pod 'HETOpenSDK','0.1.1'
 
 ```
 
-3、安装
+####2.3 安装
 
 以下两种方式任选一种就可以：
 
@@ -35,10 +30,10 @@ pod 'HETOpenSDK','0.1.1'
 
 ```
 
-### 三、导入硬件模组对应的SDK
-1、根据产品类型找到对应的芯片模组名称，如下：
+### 三. 导入硬件模组对应的SDK
+####3.1 根据产品类型找到对应的芯片模组名称，如下：
 ![](/assets/查看芯片模组类型.png)
-2、在podfile中导入对应的sdk，并且安装，对应类表如下：
+####3.2 在podfile中导入对应的sdk，并且安装，对应类表如下：
 
 ```
 # TI-WiFi模组
@@ -63,9 +58,9 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 ```
 **备注**：在使用了Wifi模组后，就不再支持模拟器调试。
 
-### 三、注册使用SDK
+### 四. 注册使用SDK
 
-1、在AppDelegate中如下地方添加，注册使用SDK，打开Log
+####4.1 在AppDelegate中如下地方添加，注册使用SDK，打开Log
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
