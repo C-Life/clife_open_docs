@@ -3,18 +3,12 @@
 蓝牙设备控制，参考`HETBLEBusiness`类里面的方法和实现。
 
 ###1. 设备控制流程
-* 获取已绑定的设备列表，获取设备信息（`HETDevice`）。
-
+* 获取已绑定的设备列表，从中获取某个设备信息 **HETDevice**。
 * 根据获取的设备信息，监听设备状态，控制设备。
-
 
 ![](/assets/UML_蓝牙设备控制.jpg)
 
-
 ###1.1 获取绑定设备列表
-
-绑定成功后，用户可以获取绑定成功的设备列表，拿到设备的HETDevice设备信息既可控制设备
-
 ```
 /**
  *  查询绑定的所有设备列表
@@ -30,6 +24,21 @@
 ##2. 控制和监听设备
 
 ###2.1 初始化
+
+```
+- (void)setDevice:(HETDevice *)device
+{
+    _device = device;
+    // 设备控制需要的设备信息
+    _macAddress = device.macAddress;
+    _deviceType = device.deviceTypeId.integerValue;
+    _deviceSubType = device.deviceSubtypeId.integerValue;
+    _productId = device.productId.integerValue;
+    _deviceId = device.deviceId;
+}
+
+
+```
 
 ```
 if(!_bleBusiness)
