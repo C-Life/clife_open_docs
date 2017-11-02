@@ -61,7 +61,6 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 **备注**：在使用了Wifi模组后，就不再支持模拟器调试。
 
 ### 4. 注册使用SDK
-
 ####4.1 在AppDelegate中如下地方添加，注册使用SDK，打开Log
 
 ```
