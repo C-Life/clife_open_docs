@@ -1,12 +1,12 @@
 
-##1. 注册开放平台账号
+###1. 注册开放平台账号
 
 在<a href="https://open.clife.cn/#/home">C-Life开发平台</a>注册开发者账号，创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。
 
 ![](/assets/注册开放平台账号1.png)
 
 
-## 2. 下载C-Life iOS SDK文件，并且配置工程
+###2. 下载C-Life iOS SDK文件，并且配置工程
 ####2.1 确认本机安装的cocoapods能正常工作
 
 ```
@@ -31,7 +31,7 @@ pod 'HETOpenSDK','0.1.1'
 
 ```
 
-### 3. 导入硬件模组对应的SDK
+###3. 导入硬件模组对应的SDK
 ####3.1 根据产品类型找到对应的芯片模组名称，如下：
 ![](/assets/查看芯片模组类型.png)
 ####3.2 在podfile中导入对应的sdk，并且安装，对应类表如下：
@@ -59,7 +59,7 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 ```
 **备注**：在使用了Wifi模组后，就不再支持模拟器调试。
 
-### 4. 注册使用SDK
+###4. 注册使用SDK
 ####4.1 在AppDelegate中如下地方添加，注册使用SDK，打开Log
 
 ```
