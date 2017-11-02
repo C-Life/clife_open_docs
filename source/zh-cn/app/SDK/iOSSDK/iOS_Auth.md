@@ -98,6 +98,7 @@ if ([self.auth isAuthenticated]) {
                       failure:(failureBlock)failure;
  ```
 ![](/assets/我的界面.png)
+
                    
 ### 5、**异地登录**、**accessToken过期**通知
 
