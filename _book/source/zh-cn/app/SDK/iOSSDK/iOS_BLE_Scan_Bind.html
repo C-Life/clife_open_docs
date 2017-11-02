@@ -611,7 +611,7 @@ urlStr: http://open.clife.net/v1/web/open/product?param={&quot;a&quot;:3531}
 +(void)fetchDeviceInfoWithProductId:(NSNumber *)productId
                                     success:(successBlock)success
                                     failure:(failureBlock)failure;
-</code></pre><p><img src="../../../../../assets/&#x4EA7;&#x54C1;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;.jpg" alt="">penPlatform/&#x6587;&#x6863;/image/&#x4EA7;&#x54C1;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;.jpg)</p>
+</code></pre><p><img src="../../../../../assets/&#x4EA7;&#x54C1;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;.jpg" alt=""></p>
 <p>&#x6839;&#x636E;&#x8BBE;&#x5907;&#x4FE1;&#x606F;&#x4E2D;&#x7684; <strong>moduleType</strong> &#x6765;&#x533A;&#x5206;&#x8BBE;&#x5907;&#x7C7B;&#x578B;</p>
 <table>
 <thead>
@@ -643,37 +643,33 @@ urlStr: http://open.clife.net/v1/web/open/product?param={&quot;a&quot;:3531}
          deviceTypeId:self.deviceTypeId.integerValue
       deviceSubtypeId:self.deviceSubtypeId.integerValue];
 </code></pre><p>&#x626B;&#x63CF;&#x84DD;&#x7259;&#x8BBE;&#x5907;,&#x626B;&#x63CF;&#x5230;&#x7684;&#x84DD;&#x7259;&#x8BBE;&#x5907;&#xFF0C;&#x7528;tableView&#x663E;&#x793A;&#x51FA;&#x6765;&#xFF0C;&#x7ED9;&#x7528;&#x6237;&#x9009;&#x62E9;&#x3002;</p>
-<pre><code>    WEAKSELF
-    [self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray&lt;CBPeripheral *&gt; *peripherals, NSError *error) {
-        if (error) {
-            [weakSelf scanDeviceFail];
-            return ;
-        }
-        if (peripherals) {
-            OPLog(@&quot;peripherals = %@&quot;,peripherals);
-            OPLog(@&quot;[NSThread currentThread] = %@&quot;,[NSThread currentThread]);
-            [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+<pre><code>WEAKSELF
+[self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray&lt;CBPeripheral *&gt; *peripherals, NSError *error) {
+    if (error) {
+        [weakSelf scanDeviceFail];
+        return ;
+    }
+    if (peripherals) {
+        OPLog(@&quot;peripherals = %@&quot;,peripherals);
+        OPLog(@&quot;[NSThread currentThread] = %@&quot;,[NSThread currentThread]);
+        [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 
-            }];
-            return;
-        }
-    }];
+        }];
+        return;
+    }
+}];
 </code></pre><p>d&#x3001;&#x7ED1;&#x5B9A;&#x8BBE;&#x5907;</p>
 <p>&#x9009;&#x62E9;&#x9700;&#x8981;&#x7ED1;&#x5B9A;&#x7684;&#x8BBE;&#x5907;&#xFF0C;&#x542F;&#x52A8;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;&#x3002;</p>
-<pre><code> [self.bleBusiness bindBleDeviceWithPeripheral:cbp 
- macAddress:nil 
- completionHandler:^(NSString *deviceId, NSError *error) {
+<pre><code>[self.bleBusiness bindBleDeviceWithPeripheral:cbp macAddress:nil completionHandler:^(NSString *deviceId, NSError *error) {
+   [weakself.bleBusiness disconnectWithPeripheral:cbp];
+    if(error) {
 
-            [weakself.bleBusiness disconnectWithPeripheral:cbp];
-            if(error)
-            {
+    }
+    else
+    {
 
-            }
-            else
-            {
-
-            }
-        }];
+    }
+}];
 </code></pre><h2 id="&#x4E8C;&#x3001;&#x624B;&#x52A8;&#x7ED1;&#x5B9A;">&#x4E8C;&#x3001;&#x624B;&#x52A8;&#x7ED1;&#x5B9A;</h2>
 <ul>
 <li>&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x5927;&#x7C7B;&#x5217;&#x8868; (&#x83B7;&#x53D6;deviceTypeId)</li>
@@ -715,37 +711,34 @@ urlStr: http://open.clife.net/v1/web/open/product?param={&quot;a&quot;:3531}
          deviceTypeId:self.deviceTypeId.integerValue
       deviceSubtypeId:self.deviceSubtypeId.integerValue];
 </code></pre><p>&#x626B;&#x63CF;&#x84DD;&#x7259;&#x8BBE;&#x5907;,&#x626B;&#x63CF;&#x5230;&#x7684;&#x84DD;&#x7259;&#x8BBE;&#x5907;&#xFF0C;&#x7528;tableView&#x663E;&#x793A;&#x51FA;&#x6765;&#xFF0C;&#x7ED9;&#x7528;&#x6237;&#x9009;&#x62E9;&#x3002;</p>
-<pre><code>    WEAKSELF
-    [self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray&lt;CBPeripheral *&gt; *peripherals, NSError *error) {
-        if (error) {
-            [weakSelf scanDeviceFail];
-            return ;
-        }
-        if (peripherals) {
-            OPLog(@&quot;peripherals = %@&quot;,peripherals);
-            OPLog(@&quot;[NSThread currentThread] = %@&quot;,[NSThread currentThread]);
-            [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+<pre><code>WEAKSELF
+[self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray&lt;CBPeripheral *&gt; *peripherals, NSError *error) {
+    if (error) {
+        [weakSelf scanDeviceFail];
+        return ;
+    }
+    if (peripherals) {
+        OPLog(@&quot;peripherals = %@&quot;,peripherals);
+        OPLog(@&quot;[NSThread currentThread] = %@&quot;,[NSThread currentThread]);
+        [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 
-            }];
-            return;
-        }
-    }];
+        }];
+        return;
+    }
+}];
 </code></pre><p>d&#x3001;&#x7ED1;&#x5B9A;&#x8BBE;&#x5907;</p>
 <p>&#x9009;&#x62E9;&#x9700;&#x8981;&#x7ED1;&#x5B9A;&#x7684;&#x8BBE;&#x5907;&#xFF0C;&#x542F;&#x52A8;&#x7ED1;&#x5B9A;&#x6D41;&#x7A0B;&#x3002;</p>
-<pre><code> [self.bleBusiness bindBleDeviceWithPeripheral:cbp 
- macAddress:nil 
- completionHandler:^(NSString *deviceId, NSError *error) {
+<pre><code>[self.bleBusiness bindBleDeviceWithPeripheral:cbp macAddress:nil completionHandler:^(NSString *deviceId, NSError *error) {
+   [weakself.bleBusiness disconnectWithPeripheral:cbp];
+    if(error)
+    {
 
-            [weakself.bleBusiness disconnectWithPeripheral:cbp];
-            if(error)
-            {
+    }
+    else
+    {
 
-            }
-            else
-            {
-
-            }
-        }];
+    }
+}];
 </code></pre>
                                 </div>
                                 
@@ -804,7 +797,7 @@ urlStr: http://open.clife.net/v1/web/open/product?param={&quot;a&quot;:3531}
 <script>
     var gitbook = gitbook || [];
     gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"3.2.2.4 SDK蓝牙设备的扫描绑定","level":"1.4.2.2.4","depth":4,"next":{"title":"3.2.2.5 SDK蓝牙设备的控制","level":"1.4.2.2.5","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]},"previous":{"title":"3.2.2.3 SDK第三方登录","level":"1.4.2.2.3","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-fontsettings","-lunr","-search","search-pro","theme-official","toggle-chapters","livereload"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"toggle-chapters":{},"livereload":{},"highlight":{},"theme-official":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C-Life开放平台文档中心","language":"zh-hans","gitbook":">= 3.0.0","description":"C-Life开放平台文档中心head_description"},"file":{"path":"source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","mtime":"2017-11-02T02:29:17.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-02T02:45:50.317Z"},"basePath":"../../../../..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"3.2.2.4 SDK蓝牙设备的扫描绑定","level":"1.4.2.2.4","depth":4,"next":{"title":"3.2.2.5 SDK蓝牙设备的控制","level":"1.4.2.2.5","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md","articles":[]},"previous":{"title":"3.2.2.3 SDK第三方登录","level":"1.4.2.2.3","depth":4,"path":"source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","ref":"./source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-fontsettings","-lunr","-search","search-pro","theme-official","toggle-chapters","livereload"],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"toggle-chapters":{},"livereload":{},"highlight":{},"theme-official":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"C-Life开放平台文档中心","language":"zh-hans","gitbook":">= 3.0.0","description":"C-Life开放平台文档中心head_description"},"file":{"path":"source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md","mtime":"2017-11-02T03:12:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-02T02:45:50.317Z"},"basePath":"../../../../..","book":{"language":""}});
     });
 </script>
 <script>
