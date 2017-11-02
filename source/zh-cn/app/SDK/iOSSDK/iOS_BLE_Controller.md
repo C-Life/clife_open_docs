@@ -68,8 +68,7 @@ WEAKSELF;
 ###2.3 控制设备
 
 ```
-[_bleBusiness deviceControlRequestWithPeripheral:self.blePeripheral 
-macAddress:self.macAddress sendDic:@{@"LED":@(ledColor %9)} completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
+[_bleBusiness deviceControlRequestWithPeripheral:self.blePeripheral macAddress:self.macAddress sendDic:@{@"LED":@(ledColor %9)} completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
     STRONGSELF;
     strongSelf.blePeripheral=currentPeripheral;
     NSLog(@"数据发送回调:%@",error);    
