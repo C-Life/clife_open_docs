@@ -151,7 +151,7 @@ b、通过大类ID，获取设备小类
 c、初始化HETBLEBusiness对象，启动绑定流程
 
 ```
- //初始化蓝牙设备的业务类，需要设备的productId，deviceTypeId，deviceSubtypeId
+// 初始化蓝牙设备的业务类，需要设备的productId，deviceTypeId，deviceSubtypeId
 self.bleBusiness = [[HETBLEBusiness alloc]initWithProductId:self.productId.integerValue  deviceTypeId:self.deviceTypeId.integerValue deviceSubtypeId:self.deviceSubtypeId.integerValue];
 ```
 
