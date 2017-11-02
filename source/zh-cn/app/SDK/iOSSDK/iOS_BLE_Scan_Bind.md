@@ -3,7 +3,7 @@
 
 蓝牙的扫描绑定主要看`HETBLEBusiness`相关接口
 ###1. 扫描二维码绑定
-扫描二维码绑定，即用户扫描设备的二维码来绑定设备的方式。
+**扫描二维码绑定设备的步骤：**
 * 通过扫一扫获取产品ID `productId`
 * 根据 产品ID 获取设备信息
 * 根据设备信息区分设备类型、设备绑定方式
@@ -99,7 +99,7 @@ WEAKSELF
 ```
 
 ### 2.手动绑定
-
+**手动绑定步骤：**
 * 获取设备大类列表 (获取deviceTypeId)
 * 获取设备小类列表（支持的设备列表,其中含有productId,deviceSubtypeId）
 * 传入参数productId，deviceTypeId，deviceSubtypeId，启动绑定流程
