@@ -32,7 +32,7 @@
 			* [3.2.2.2 SDK授权](./source/zh-cn/app/SDK/iOSSDK/iOS_Auth.md)
 			* [3.2.2.3 SDK第三方登录](./source/zh-cn/app/SDK/iOSSDK/iOS_third_login.md)
 			* [3.2.2.4 SDK蓝牙设备的扫描绑定](./source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Scan_Bind.md)
-			* [3.2.2.5 SDK蓝牙设备的控制](./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md)
+			* [3.2.2.5 SDK蓝牙设备的控制](./source/zh-cn/app/SDK/iOSSDK/iOS_BLE_Controller.md)
 			* [3.2.2.6 SDK WIFI设备的扫描绑定](./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Scan.md)
 			* [3.2.2.7 SDK WIFI设备的控制](./source/zh-cn/app/SDK/iOSSDK/iOS_WIFI_Controller.md)
 			* [3.2.2.8 SDK 设备的分享](./source/zh-cn/app/SDK/iOSSDK/iOS_Device_Share.md)
