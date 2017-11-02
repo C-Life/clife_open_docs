@@ -27,9 +27,7 @@
  HETAuthorize *auth = [[HETAuthorize alloc] init];
  self.auth = auth;
  if (![self.auth isAuthenticated]) {
-      [auth authorizeWithCompleted:^(HETAccount *account, NSError  *error)      {
-
-
+      [self.auth authorizeWithCompleted:^(NSString *openId, NSError *error) {
     }];    
   }
 ```
@@ -84,8 +82,7 @@
 例：
 
 ```
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(XXX) 
-name:HETLoginOffNotification object: nil];
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(XXX) name:HETLoginOffNotification object: nil];
 ```
 
 
