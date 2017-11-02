@@ -46,7 +46,7 @@
 ```
 // 在授权登录成功的情况才执行操作
 if ([self.auth isAuthenticated]) {
-        [self.auth unauthorize];
+   [self.auth unauthorize];
 }
 ```
 
