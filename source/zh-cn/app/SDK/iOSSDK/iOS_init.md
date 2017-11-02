@@ -3,7 +3,7 @@
 ###一、集成准备
 1、 注册开放平台账号
 
-在<a href="https://open.clife.cn/#/home">C-Life开发平台</a>注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。
+在<a href="https://open.clife.cn/#/home">C-Life开发平台</a>注册开发者账号，创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。
 
 
 
@@ -18,7 +18,7 @@ pod --help
 
 ```
 
-2、编辑工程对于的Podfile文件
+2、编辑Podfile文件
 
 ```
 pod 'HETOpenSDK','0.1.1'
