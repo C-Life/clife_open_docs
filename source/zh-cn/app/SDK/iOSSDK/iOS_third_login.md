@@ -95,12 +95,12 @@ a、注入appkey
 	- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 	{
     	BOOL result = [HETOpenSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-   	 	return result;
+   	 return result;
 	}
 
 	- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 	{
-   	 	BOOL result = [HETOpenSDK handleOpenURL:url];
-   		return result;
+   	BOOL result = [HETOpenSDK handleOpenURL:url];
+   	return result;
 	}
-``
+```
