@@ -1,17 +1,17 @@
-# 蓝牙 - 设备控制 
+##蓝牙 - 设备控制 
 
 蓝牙设备控制，参考`HETBLEBusiness`类里面的方法和实现。
 
-## 一、设备控制流程
-第一步：获取已绑定的设备列表，获取设备信息（`HETDevice`）。
+###1. 设备控制流程
+* 获取已绑定的设备列表，获取设备信息（`HETDevice`）。
 
-第二步：根据获取的设备信息，监听设备状态，控制设备。
+* 根据获取的设备信息，监听设备状态，控制设备。
 
 
 ![](/assets/UML_蓝牙设备控制.jpg)
 
 
-## 二、获取绑定设备列表
+###1.1 获取绑定设备列表
 
 绑定成功后，用户可以获取绑定成功的设备列表，拿到设备的HETDevice设备信息既可控制设备
 
@@ -27,9 +27,9 @@
 ```
 
 
-## 三、控制和监听设备
+##2. 控制和监听设备
 
-### 1、初始化
+###2.1 初始化
 
 ```
 if(!_bleBusiness)
@@ -39,7 +39,7 @@ if(!_bleBusiness)
     
 ```
 
-### 2、监听获取设备状态
+###2.2 监听获取设备状态
 
 ```
 WEAKSELF;
@@ -65,7 +65,7 @@ WEAKSELF;
     }
 }];
 ```
-### 3、控制设备
+###2.3 控制设备
 
 ```
 [_bleBusiness deviceControlRequestWithPeripheral:self.blePeripheral 
@@ -76,19 +76,19 @@ macAddress:self.macAddress sendDic:@{@"LED":@(ledColor %9)} completionHandler:^(
 }];
 ```
 
-### 4、设备升级
+###3. 设备升级
 * 从平台上传最新硬件版本
 * 从服务器获取设备最新版本
 * 下发最新版本给蓝牙设备
 
-####4.1 上传包文件
+####3.1 上传包文件
 a) 登录开发平台，进去产品页面
 ![](/assets/蓝牙固件升级入口.png)
 b)填写最新版本和选择包文件并且上传
 
 ![](/assets/蓝牙升级外部版本计算规则.png)
 
-####4.2 app检查固件版本，是否存在固件更新
+####3.2 app检查固件版本，是否存在固件更新
 ```
 // 获取最新版本
 [HETDeviceUpgradeBusiness deviceUpgradeCheckWithDeviceId:self.deviceId success:^(HETDeviceVersionModel * deviceVersionModel) {
@@ -109,7 +109,7 @@ b)填写最新版本和选择包文件并且上传
 }];
 ```
 
-####4.3 固件升级，下发最新版本给蓝牙设备
+####3.3 固件升级，下发最新版本给蓝牙设备
 
 ```
 [_bleBusiness mcuUpgrade:self.blePeripheral macAddress:self.macAddress deviceVersionModel:deviceVersionModel progress:^(float progress) {
