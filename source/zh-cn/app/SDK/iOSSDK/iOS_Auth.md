@@ -40,6 +40,15 @@
 */
 - (void)unauthorize;
 ```
+【示例代码】
+
+
+```
+    // 在授权登录成功的情况才执行操作
+    if ([self.auth isAuthenticated]) {
+        [self.auth unauthorize];
+    }
+```
 
 ### 3、获取用户信息
 
