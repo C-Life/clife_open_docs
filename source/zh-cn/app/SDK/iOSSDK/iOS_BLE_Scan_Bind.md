@@ -155,7 +155,7 @@ c、初始化HETBLEBusiness对象，启动绑定流程
 self.bleBusiness = [[HETBLEBusiness alloc]initWithProductId:self.productId.integerValue  deviceTypeId:self.deviceTypeId.integerValue deviceSubtypeId:self.deviceSubtypeId.integerValue];
 ```
 
-扫描蓝牙设备,扫描到的蓝牙设备，用tableView显示出来，给用户选择。
+扫描蓝牙设备:蓝牙设备，用tableView显示出来，给用户选择。
 
 ```
 WEAKSELF
