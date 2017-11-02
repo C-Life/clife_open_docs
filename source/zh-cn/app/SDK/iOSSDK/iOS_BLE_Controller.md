@@ -86,16 +86,7 @@ completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
         STRONGSELF;
         strongSelf.blePeripheral=currentPeripheral;
         NSLog(@"数据发送回调:%@",error);
-        if(error)
-        {
-            [HETCommonHelp HidHud];
-            [HETCommonHelp showHudAutoHidenWithMessage:@"数据发送失败"];
-        }
-        else
-        {
-            [HETCommonHelp HidHud];
-            [HETCommonHelp showHudAutoHidenWithMessage:@"数据发送成功"];
-        }
+
         
     }];
 
@@ -140,13 +131,11 @@ b)填写最新版本和选择包文件并且上传
             } completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
                 if(error)
                 {
-                    [HETCommonHelp HidHud];
-                    [HETCommonHelp showHudAutoHidenWithMessage:@"MCU升级失败"];
+
                 }
                 else
                 {
-                    [HETCommonHelp HidHud];
-                    [HETCommonHelp showHudAutoHidenWithMessage:@"MCU升级成功"];
+            
                 }
                 
             }];

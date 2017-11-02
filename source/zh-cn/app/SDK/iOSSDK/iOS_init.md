@@ -3,7 +3,7 @@
 ###一、集成准备
 1、 注册开放平台账号
 
-通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《和而泰开发平台使用手册》。
+在<a href="https://open.clife.cn/#/home">C-Life开发平台</a>注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。
 
 
 
@@ -21,14 +21,7 @@ pod --help
 2、编辑工程对于的Podfile文件
 
 ```
-platform :ios, '7.0'
-
-target :"HETOpenPlatformSDKDemo" do
-
 pod 'HETOpenSDK','0.1.1'
-
-end
-inhibit_all_warnings!
 
 ```
 
@@ -37,19 +30,8 @@ inhibit_all_warnings!
 以下两种方式任选一种就可以：
 
 ```
-1.pod install --verbose --no-repo-update 
-2.pod update --verbose --no-repo-update
-
-```
-
-4、支持Http传输
-
-```
-<key>NSAppTransportSecurity</key> 
-  <dict> 
-<key>NSAllowsArbitraryLoads</key> 
-    <true/> 
-</dict>
+1.pod install 
+2.pod update 
 
 ```
 
@@ -79,7 +61,7 @@ pod 'HETPublicSDK_WiFiModule_COOEE',            '1.0.0'
 pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 
 ```
-
+备注：在使用了Wifi模组后，就不再支持模拟器调试。
 
 ### 三、注册使用SDK
 
@@ -89,8 +71,8 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    // 1.注册HET开发平台SDK
    [HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
-   [HETOpenSDK openLog:NO];
-	return YES;
+   [HETOpenSDK openLog:YES];
+   return YES;
 }
 
 ```

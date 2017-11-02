@@ -138,10 +138,6 @@ withFailBlock:(void(^)( NSError *error))failureBlock;
 *  @param failure  失败的回调
 */
   [HETDeviceRequestBusiness unbindDeviceWithDeviceId:device.deviceId success:^(id responseObject) {
-            // 删除数据源的数据,self.cellData是你自己的数据
-            [weakSelf.deviceArr removeObjectAtIndex:indexPath.row];
-            // 删除列表中数据
-            [weakSelf.deviceListTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
         } failure:^(NSError *error) {
            
@@ -151,16 +147,9 @@ withFailBlock:(void(^)( NSError *error))failureBlock;
 第二种：设备是别人分享的过来的设备。调用HetDeviceShareApi.getInstance().deviceDel()方法来解绑分享关系。 
 ```
   [HETDeviceShareBusiness deviceAuthDelWithDeviceId:device.deviceId userId:@"" success:^(id responseObject) {
-            // 删除数据源的数据,self.cellData是你自己的数据
-            [weakSelf.deviceArr removeObjectAtIndex:indexPath.row];
-            // 删除列表中数据
-            [weakSelf.deviceListTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
-            [weakSelf getDeviceList];
-            [HETCommonHelp showHudAutoHidenWithMessage:UnBindDeviceSuccess];
+        
         } failure:^(NSError *error) {
-            [HETCommonHelp showHudAutoHidenWithMessage:UnBindDeviceError];
-            [weakSelf.deviceListTableView endEditing:YES];
+
         }];
 ```
 
