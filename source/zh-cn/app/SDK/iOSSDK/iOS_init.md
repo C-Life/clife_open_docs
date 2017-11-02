@@ -89,7 +89,7 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    // 1.注册HET开发平台SDK
    [HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
-  [HETOpenSDK openLog:NO];
+   [HETOpenSDK openLog:NO];
 	return YES;
 }
 
