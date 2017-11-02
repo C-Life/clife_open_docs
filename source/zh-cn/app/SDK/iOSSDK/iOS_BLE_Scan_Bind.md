@@ -58,11 +58,8 @@ b、根据 产品ID 获取设备信息
 c、初始化HETBLEBusiness对象，启动绑定流程
 
 ```
- //初始化蓝牙设备的业务类，需要设备的productId，deviceTypeId，deviceSubtypeId
-    self.bleBusiness=[[HETBLEBusiness alloc]
-    initWithProductId:self.productId.integerValue 
-         deviceTypeId:self.deviceTypeId.integerValue
-      deviceSubtypeId:self.deviceSubtypeId.integerValue];
+//初始化蓝牙设备的业务类，需要设备的productId，deviceTypeId，deviceSubtypeId
+self.bleBusiness = [[HETBLEBusiness alloc]initWithProductId:self.productId.integerValue  deviceTypeId:self.deviceTypeId.integerValue deviceSubtypeId:self.deviceSubtypeId.integerValue];
 ```
 
 扫描蓝牙设备,扫描到的蓝牙设备，用tableView显示出来，给用户选择。
