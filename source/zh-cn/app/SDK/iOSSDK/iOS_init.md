@@ -61,11 +61,11 @@ pod 'HETPublicSDK_WiFiModule_COOEE',            '1.0.0'
 pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 
 ```
-备注：在使用了Wifi模组后，就不再支持模拟器调试。
+**备注**：在使用了Wifi模组后，就不再支持模拟器调试。
 
 ### 三、注册使用SDK
 
-1、在AppDelegate 中如下地方添加，注册使用SDK，打开Log
+1、在AppDelegate中如下地方添加，注册使用SDK，打开Log
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -79,8 +79,10 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 
 yourAPPId、yourAPPSecret的值是在“应用创建”时生成的AppID、AppSecret。 在如下图查看: 
 
+
 ![](/assets/获取appkeyandappsecrect.jpg)
-注意:如果网络请求出现AppID不合法，请检查Xcode工程里面的BundleId和appId，必须跟在开放平台创建应用时填的BundleId和AppID保持一致。
+
+**注意**:如果网络请求出现AppID不合法，请检查Xcode工程里面的BundleId和appId，必须跟在开放平台创建应用时填的BundleId和AppID保持一致。
 
 
 
