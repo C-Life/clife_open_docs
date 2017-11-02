@@ -5,7 +5,7 @@
 
 在<a href="https://open.clife.cn/#/home">C-Life开发平台</a>注册开发者账号，创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。
 
-![](/assets/注册开放平台账号.png)
+![](/assets/注册开放平台账号1.png)
 
 
 ## 2. 下载C-Life iOS SDK文件，并且配置工程
