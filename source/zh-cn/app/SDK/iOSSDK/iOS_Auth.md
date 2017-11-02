@@ -2,7 +2,7 @@
 
 参考`HETAuthorize`类里面方法,调用`authorizeWithCompleted`接口会弹出授权登录的界面，登录成功后接口返回openId（授权用户唯一标识）可用于与自己平台的账户体系关联。
 
-### 1、授权登录
+###1. 授权登录
 
 ```
 /**
@@ -33,7 +33,7 @@
 ```
 ![](/assets/登录授权界面.png)
 
-### 2、取消授权登录，退出当前账号
+###2. 取消授权登录，退出当前账号
 
 ```
 /**
@@ -51,7 +51,7 @@ if ([self.auth isAuthenticated]) {
 }
 ```
 
-### 3、获取用户信息
+###3. 获取用户信息
 
 ```
 /**
@@ -86,7 +86,7 @@ if ([self.auth isAuthenticated]) {
 
 ![](/assets/获取用户信息图片.png)
 
-### 4、**修改密码**
+### 4. 修改密码
 ```
 /**
  修改密码
@@ -100,7 +100,7 @@ if ([self.auth isAuthenticated]) {
 ![](/assets/我的界面.png)
 
                    
-### 5、**异地登录**、**accessToken过期**通知
+###5. 异地登录、accessToken过期通知
 
 开放平台的账号只能在一台设备上面登录。当有账号在另一台设备登录时，SDK会抛出一个HETLoginOffNotification消息。 开发者可以在首页监听这个消息，处理异地登录的逻辑。 
 例：
