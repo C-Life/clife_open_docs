@@ -169,8 +169,6 @@ WEAKSELF
         return ;
     }
     if (peripherals) {
-        OPLog(@"peripherals = %@",peripherals);
-        OPLog(@"[NSThread currentThread] = %@",[NSThread currentThread]);
         [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
         }];
