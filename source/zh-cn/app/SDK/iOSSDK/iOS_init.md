@@ -1,7 +1,7 @@
 ## 初始化
 
 ###一、集成准备
-1、 注册开放平台账号
+1、注册开放平台账号
 
 在<a href="https://open.clife.cn/#/home">C-Life开发平台</a>注册开发者账号，创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。
 
@@ -77,7 +77,7 @@ pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
 
 ```
 
-yourAPPId、yourAPPSecret的值是在“应用创建”时生成的AppID、AppSecret。 在如下图查看: 
+**yourAPPId**、**yourAPPSecret** 的值是在“应用创建”时生成的 **AppID**、**AppSecret**。 在如下图查看: 
 
 
 ![](/assets/获取appkeyandappsecrect.jpg)

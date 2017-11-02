@@ -31,6 +31,7 @@
     }];    
   }
 ```
+![](/assets/登录授权界面.png)
 
 ### 2、取消授权登录，退出当前账号
 
@@ -96,6 +97,8 @@ if ([self.auth isAuthenticated]) {
 - (void)changePasswordSuccess:(successBlock)success
                       failure:(failureBlock)failure;
  ```
+![](/assets/我的界面.png)
+
                    
 ### 5、**异地登录**、**accessToken过期**通知
 

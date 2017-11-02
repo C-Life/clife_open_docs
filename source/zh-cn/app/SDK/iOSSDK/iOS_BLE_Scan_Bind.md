@@ -62,20 +62,19 @@ c、初始化HETBLEBusiness对象，启动绑定流程
 self.bleBusiness = [[HETBLEBusiness alloc]initWithProductId:self.productId.integerValue  deviceTypeId:self.deviceTypeId.integerValue deviceSubtypeId:self.deviceSubtypeId.integerValue];
 ```
 
-扫描蓝牙设备,扫描到的蓝牙设备，用tableView显示出来，给用户选择。
+开始扫描蓝牙设备，扫描到的蓝牙设备，用tableView显示出来，给用户选择。
 
 ```
 WEAKSELF
 [self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray<CBPeripheral *> *peripherals, NSError *error) {
     if (error) {
-        [weakSelf scanDeviceFail];
-        return ;
+        // 停止扫描
+        return;
     }
     if (peripherals) {
-        OPLog(@"peripherals = %@",peripherals);
-        OPLog(@"[NSThread currentThread] = %@",[NSThread currentThread]);
+        // 返回一个设备数组
         [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-               
+             // 过滤重复的设备，并且刷新蓝牙设备列表  
         }];
         return;
     }
@@ -91,11 +90,11 @@ d、绑定设备
 [self.bleBusiness bindBleDeviceWithPeripheral:cbp macAddress:nil completionHandler:^(NSString *deviceId, NSError *error) {
    [weakself.bleBusiness disconnectWithPeripheral:cbp];
     if(error) {
-
+        // 填写绑定失败的代码
     }
     else
     {
- 
+        // 填写绑定成功的代码
     }
 }];
 ```
@@ -152,11 +151,8 @@ b、通过大类ID，获取设备小类
 c、初始化HETBLEBusiness对象，启动绑定流程
 
 ```
- //初始化蓝牙设备的业务类，需要设备的productId，deviceTypeId，deviceSubtypeId
-    self.bleBusiness=[[HETBLEBusiness alloc]
-    initWithProductId:self.productId.integerValue 
-         deviceTypeId:self.deviceTypeId.integerValue
-      deviceSubtypeId:self.deviceSubtypeId.integerValue];
+// 初始化蓝牙设备的业务类，需要设备的productId，deviceTypeId，deviceSubtypeId
+self.bleBusiness = [[HETBLEBusiness alloc]initWithProductId:self.productId.integerValue  deviceTypeId:self.deviceTypeId.integerValue deviceSubtypeId:self.deviceSubtypeId.integerValue];
 ```
 
 扫描蓝牙设备:蓝牙设备，用tableView显示出来，给用户选择。
@@ -165,16 +161,19 @@ c、初始化HETBLEBusiness对象，启动绑定流程
 WEAKSELF
 [self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray<CBPeripheral *> *peripherals, NSError *error) {
     if (error) {
-        [weakSelf scanDeviceFail];
-        return ;
+        // 停止扫描
+        return;
     }
     if (peripherals) {
+        // 返回一个设备数组
         [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
+             // 过滤重复的设备，并且刷新蓝牙设备列表  
         }];
         return;
     }
 }];
+
+
 
 ```
 
@@ -185,15 +184,15 @@ d、绑定设备
 ```
 [self.bleBusiness bindBleDeviceWithPeripheral:cbp macAddress:nil completionHandler:^(NSString *deviceId, NSError *error) {
    [weakself.bleBusiness disconnectWithPeripheral:cbp];
-    if(error)
-    {
-
+    if(error) {
+        // 填写绑定失败的代码
     }
     else
     {
-  
+        // 填写绑定成功的代码
     }
 }];
+
 
 
 ```
