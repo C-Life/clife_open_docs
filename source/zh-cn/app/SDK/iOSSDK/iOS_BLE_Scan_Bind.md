@@ -42,7 +42,7 @@ b、根据 产品ID 获取设备信息
 
 ```
 
-![](/assets/产品详细信息.jpg)penPlatform/文档/image/产品详细信息.jpg)
+![](/assets/产品详细信息.jpg)
 
 根据设备信息中的 **moduleType** 来区分设备类型
 
@@ -68,21 +68,21 @@ c、初始化HETBLEBusiness对象，启动绑定流程
 扫描蓝牙设备,扫描到的蓝牙设备，用tableView显示出来，给用户选择。
 
 ```
-    WEAKSELF
-    [self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray<CBPeripheral *> *peripherals, NSError *error) {
-        if (error) {
-            [weakSelf scanDeviceFail];
-            return ;
-        }
-        if (peripherals) {
-            OPLog(@"peripherals = %@",peripherals);
-            OPLog(@"[NSThread currentThread] = %@",[NSThread currentThread]);
-            [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+WEAKSELF
+[self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray<CBPeripheral *> *peripherals, NSError *error) {
+    if (error) {
+        [weakSelf scanDeviceFail];
+        return ;
+    }
+    if (peripherals) {
+        OPLog(@"peripherals = %@",peripherals);
+        OPLog(@"[NSThread currentThread] = %@",[NSThread currentThread]);
+        [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                
-            }];
-            return;
-        }
-    }];
+        }];
+        return;
+    }
+}];
 
 ```
 
@@ -91,22 +91,16 @@ d、绑定设备
 选择需要绑定的设备，启动绑定流程。
 
 ```
- [self.bleBusiness bindBleDeviceWithPeripheral:cbp 
- macAddress:nil 
- completionHandler:^(NSString *deviceId, NSError *error) {
+[self.bleBusiness bindBleDeviceWithPeripheral:cbp macAddress:nil completionHandler:^(NSString *deviceId, NSError *error) {
+   [weakself.bleBusiness disconnectWithPeripheral:cbp];
+    if(error) {
 
-            [weakself.bleBusiness disconnectWithPeripheral:cbp];
-            if(error)
-            {
-
-            }
-            else
-            {
+    }
+    else
+    {
  
-            }
-        }];
-
-
+    }
+}];
 ```
 
 ## 二、手动绑定
@@ -171,21 +165,21 @@ c、初始化HETBLEBusiness对象，启动绑定流程
 扫描蓝牙设备,扫描到的蓝牙设备，用tableView显示出来，给用户选择。
 
 ```
-    WEAKSELF
-    [self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray<CBPeripheral *> *peripherals, NSError *error) {
-        if (error) {
-            [weakSelf scanDeviceFail];
-            return ;
-        }
-        if (peripherals) {
-            OPLog(@"peripherals = %@",peripherals);
-            OPLog(@"[NSThread currentThread] = %@",[NSThread currentThread]);
-            [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+WEAKSELF
+[self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray<CBPeripheral *> *peripherals, NSError *error) {
+    if (error) {
+        [weakSelf scanDeviceFail];
+        return ;
+    }
+    if (peripherals) {
+        OPLog(@"peripherals = %@",peripherals);
+        OPLog(@"[NSThread currentThread] = %@",[NSThread currentThread]);
+        [peripherals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-            }];
-            return;
-        }
-    }];
+        }];
+        return;
+    }
+}];
 
 ```
 
@@ -194,20 +188,17 @@ d、绑定设备
 选择需要绑定的设备，启动绑定流程。
 
 ```
- [self.bleBusiness bindBleDeviceWithPeripheral:cbp 
- macAddress:nil 
- completionHandler:^(NSString *deviceId, NSError *error) {
+[self.bleBusiness bindBleDeviceWithPeripheral:cbp macAddress:nil completionHandler:^(NSString *deviceId, NSError *error) {
+   [weakself.bleBusiness disconnectWithPeripheral:cbp];
+    if(error)
+    {
 
-            [weakself.bleBusiness disconnectWithPeripheral:cbp];
-            if(error)
-            {
-
-            }
-            else
-            {
+    }
+    else
+    {
   
-            }
-        }];
+    }
+}];
 
 
 ```
