@@ -26,21 +26,6 @@
 ###2.1 初始化
 
 ```
-- (void)setDevice:(HETDevice *)device
-{
-    _device = device;
-    // 设备控制需要的设备信息
-    _macAddress = device.macAddress;
-    _deviceType = device.deviceTypeId.integerValue;
-    _deviceSubType = device.deviceSubtypeId.integerValue;
-    _productId = device.productId.integerValue;
-    _deviceId = device.deviceId;
-}
-
-
-```
-
-```
 if(!_bleBusiness)
 {
     _bleBusiness=[[[HETBLEBusiness alloc]init]initWithProductId:self.productId deviceTypeId:self.deviceType  deviceSubtypeId:self.deviceSubType];    
