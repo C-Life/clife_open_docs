@@ -48,20 +48,6 @@
         "edit-link": {
             "base": "https://github.com/cllgeek/js-series-book/edit/master",
             "label": "Edit This Page"
-        },
-
-        "anchor-navigation-ex": {
-            "isRewritePageTitle": false,
-            "tocLevel1Icon": "fa fa-hand-o-right",
-            "tocLevel2Icon": "fa fa-hand-o-right",
-            "tocLevel3Icon": "fa fa-hand-o-right"
-        },
-        "sectionx": {
-            "tag": "b"
-        },
-        "favicon": {
-            "shortcut": "favicon.ico",
-            "bookmark": "favicon.ico"
         }
     }
 }
