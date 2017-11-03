@@ -11,7 +11,7 @@
             "Home": "http://www.geekjc.com"
         }
     },
-    "plugins": [
+     "plugins": [
         "-lunr",
         "-search",
         "-highlight",
