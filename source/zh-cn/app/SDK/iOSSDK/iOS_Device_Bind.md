@@ -26,7 +26,7 @@ moduleType | 绑定类型
 	
 ## 2. 获取设备信息
 ###2.1 扫描二维码获取设备信息
-##### 2.1.1 二维码命名规则
+#### 2.1.1 二维码命名规则
 	
 	二维码命名规则：
 
@@ -35,7 +35,7 @@ moduleType | 绑定类型
 	
 	```
 	
-##### 2.1.2 获取产品ID
+#### 2.1.2 获取产品ID
 
 ```
 扫一扫内容：
@@ -46,7 +46,7 @@ urlStr: http://open.clife.net/v1/web/open/product?param={"a":3531}
 ```
 "a":3531 3531 即是 产品ID
 ```
-##### 2.1.3 根据产品ID获取设备信息
+#### 2.1.3 根据产品ID获取设备信息
 
 ```
 /**
@@ -65,7 +65,7 @@ failure:(failureBlock)failure;
 
 ![](/assets/产品详细信息.jpg)
 
-#### 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定
+##### 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定
 
 
 
@@ -73,7 +73,7 @@ failure:(failureBlock)failure;
 ###2.2 通过大类小类获取设备信息
 
 
-##### 2.2.1 获取设备大类列表
+#### 2.2.1 获取设备大类列表
 
 在 **HETDeviceRequestBusiness** 查询设备信息获取相关接口
 
@@ -95,7 +95,7 @@ failure:(failureBlock)failure;
 ![](/assets/查询设备大类接口返回结果.jpg)
 
 
-##### 2.2.2 通过大类ID，获取设备小类
+#### 2.2.2 通过大类ID，获取设备小类
 
 ```
 
