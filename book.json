@@ -70,8 +70,8 @@
             "tag": "b"
         },
         "favicon": {
-            "shortcut": "logo.png",
-            "bookmark": "logo.png"
+            "shortcut": "favicon.ico",
+            "bookmark": "favicon.ico"
         }
     }
 }
