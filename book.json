@@ -56,9 +56,6 @@
             "modify_label": "该文件修订时间：",
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },
-        "ga": {
-            "token": "UA-97539609-1"
-        },
         "simple-page-toc": {
             "maxDepth": 3,
             "skipFirstH1": true
