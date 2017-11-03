@@ -26,6 +26,11 @@
             "maxDepth": 3,
             "skipFirstH1": true
         },
+        "include-codeblock": {
+            "template": "ace",
+            "unindent": true,
+            "edit": true
+        },
         "edit-link": {
             "base": "https://github.com/cllgeek/js-series-book/edit/master",
             "label": "Edit This Page"
@@ -56,8 +61,8 @@
         "prism@^2.1.0",
         "prism-themes@^0.0.2",
         "anchors@^0.7.1",
-        "include-codeblock@^3.0.2",
         "ace@^0.3.2",
+        "include-codeblock@^3.0.2",
         "emphasize@^1.1.0",
         "splitter@^0.0.8",
         "tbfed-pagefooter@^0.0.1",
