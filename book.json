@@ -17,11 +17,6 @@
                 "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
             ]
         },
-        "include-codeblock": {
-            "template": "ace",
-            "unindent": true,
-            "edit": true
-        },
         "tbfed-pagefooter": {
             "copyright": "Copyright © geekjc.com 2017",
             "modify_label": "该文件修订时间：",
