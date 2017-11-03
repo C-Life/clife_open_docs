@@ -43,7 +43,7 @@
     ],
     "pluginsConfig": {
         "theme-default": {
-            "showLevel": true
+            "showLevel": false
         },
         "disqus": {
             "shortName": "geekjc"
@@ -57,21 +57,6 @@
             "template": "ace",
             "unindent": true,
             "edit": true
-        },
-        "sharing": {
-            "weibo": true,
-            "facebook": true,
-            "twitter": true,
-            "google": false,
-            "instapaper": false,
-            "vk": false,
-            "all": [
-                "facebook",
-                "google",
-                "twitter",
-                "weibo",
-                "instapaper"
-            ]
         },
         "tbfed-pagefooter": {
             "copyright": "Copyright ©2017 clife - 深圳和而泰家居在线网络科技有限公司 粤ICP备14057188号-1",
