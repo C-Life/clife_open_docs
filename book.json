@@ -9,7 +9,87 @@
     "language": "zh-hans",
     
     "pluginsConfig": {
-        "expandable-chapters-small":{}
+        "theme-default": {
+            "showLevel": true
+        },
+        "disqus": {
+            "shortName": "geekjc"
+        },
+        "prism": {
+            "css": [
+                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+            ]
+        },
+        "github": {
+            "url": "https://github.com/cllgeek"
+        },
+        "github-buttons": {
+            "repo": "cllgeek/js-series-book",
+            "types": [
+                "star"
+            ],
+            "size": "small"
+        },
+        "include-codeblock": {
+            "template": "ace",
+            "unindent": true,
+            "edit": true
+        },
+        "sharing": {
+            "weibo": true,
+            "facebook": true,
+            "twitter": true,
+            "google": false,
+            "instapaper": false,
+            "vk": false,
+            "all": [
+                "facebook",
+                "google",
+                "twitter",
+                "weibo",
+                "instapaper"
+            ]
+        },
+        "tbfed-pagefooter": {
+            "copyright": "Copyright © geekjc.com 2017",
+            "modify_label": "该文件修订时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "ga": {
+            "token": "UA-97539609-1"
+        },
+        "donate": {
+            "wechat": "http://obl1r1s1x.bkt.clouddn.com/IMG_0828.JPG",
+            "alipay": "http://obl1r1s1x.bkt.clouddn.com/IMG_0829.JPG",
+            "title": "",
+            "button": "赏",
+            "alipayText": "支付宝打赏",
+            "wechatText": "微信打赏"
+        },
+        "simple-page-toc": {
+            "maxDepth": 3,
+            "skipFirstH1": true
+        },
+        "edit-link": {
+            "base": "https://github.com/cllgeek/js-series-book/edit/master",
+            "label": "Edit This Page"
+        },
+        "sitemap-general": {
+            "prefix": "https://www.geekjc.com"
+        },
+        "anchor-navigation-ex": {
+            "isRewritePageTitle": false,
+            "tocLevel1Icon": "fa fa-hand-o-right",
+            "tocLevel2Icon": "fa fa-hand-o-right",
+            "tocLevel3Icon": "fa fa-hand-o-right"
+        },
+        "sectionx": {
+            "tag": "b"
+        },
+        "favicon": {
+            "shortcut": "favicon.ico",
+            "bookmark": "favicon.ico"
+        }
     },
 
     "plugins": [	
