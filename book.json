@@ -26,11 +26,6 @@
             "maxDepth": 3,
             "skipFirstH1": true
         },
-        "include-codeblock": {
-            "template": "ace",
-            "unindent": true,
-            "edit": true
-        },
         "edit-link": {
             "base": "https://github.com/cllgeek/js-series-book/edit/master",
             "label": "Edit This Page"
@@ -45,7 +40,7 @@
             "tag": "b"
         },
         "favicon": {
-            "shortcut": "favicon.ico",
+template            "shortcut": "favicon.ico",
             "bookmark": "favicon.ico"
         }
     },
@@ -60,9 +55,7 @@
         "edit-link@^2.0.2",
         "prism@^2.1.0",
         "prism-themes@^0.0.2",
-        "anchors@^0.7.1",
-        "ace@^0.3.2",
-        "include-codeblock@^3.0.2",
+        "anchors@^0.7.1"
         "emphasize@^1.1.0",
         "splitter@^0.0.8",
         "tbfed-pagefooter@^0.0.1",
