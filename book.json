@@ -29,12 +29,6 @@
         "todo@^0.1.3"
     ],
     "pluginsConfig": {
-        "theme-default": {
-            "showLevel": true
-        },
-        "disqus": {
-            "shortName": "geekjc"
-        },
         "prism": {
             "css": [
                 "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
