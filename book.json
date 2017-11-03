@@ -55,7 +55,7 @@
         "edit-link@^2.0.2",
         "prism@^2.1.0",
         "prism-themes@^0.0.2",
-        "anchors@^0.7.1"
+        "anchors@^0.7.1",
         "emphasize@^1.1.0",
         "splitter@^0.0.8",
         "tbfed-pagefooter@^0.0.1",
