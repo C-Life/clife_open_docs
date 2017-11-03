@@ -7,6 +7,10 @@
     "gitbook": ">= 3.0.0",
     
     "language": "zh-hans",
+    
+    "pluginsConfig": {
+        "expandable-chapters-small":{}
+    },
 
     "plugins": [
         "-sharing",
