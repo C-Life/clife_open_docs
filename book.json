@@ -19,8 +19,6 @@
         "-livereload",
         "search-plus@^0.0.11",
         "simple-page-toc@^0.1.1",
-        "github@^2.0.0",
-        "github-buttons@2.1.0",
         "edit-link@^2.0.2",
         "disqus@^0.1.0",
         "prism@^2.1.0",
@@ -55,16 +53,6 @@
                 "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
             ]
         },
-        "github": {
-            "url": "https://github.com/cllgeek"
-        },
-        "github-buttons": {
-            "repo": "cllgeek/js-series-book",
-            "types": [
-                "star"
-            ],
-            "size": "small"
-        },
         "include-codeblock": {
             "template": "ace",
             "unindent": true,
@@ -92,14 +80,6 @@
         },
         "ga": {
             "token": "UA-97539609-1"
-        },
-        "donate": {
-            "wechat": "http://obl1r1s1x.bkt.clouddn.com/IMG_0828.JPG",
-            "alipay": "http://obl1r1s1x.bkt.clouddn.com/IMG_0829.JPG",
-            "title": "",
-            "button": "赏",
-            "alipayText": "支付宝打赏",
-            "wechatText": "微信打赏"
         },
         "simple-page-toc": {
             "maxDepth": 3,
