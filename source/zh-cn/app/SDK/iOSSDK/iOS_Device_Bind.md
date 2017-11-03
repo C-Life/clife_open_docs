@@ -116,7 +116,7 @@ failure:(failureBlock)failure;
 
 ![](/assets/通过大类获取支持设备类型返回字段说明.png)
 
-#### 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定
+##### 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定
 
 ## 3. Wifi设备绑定方式介绍：
 
