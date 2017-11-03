@@ -8,43 +8,6 @@
     
     "language": "zh-hans",
     
-    "pluginsConfig": {
-        "theme-default": {
-            "showLevel": true
-        },
-        "prism": {
-            "css": [
-                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
-            ]
-        },
-        "tbfed-pagefooter": {
-            "copyright": "Copyright © geekjc.com 2017",
-            "modify_label": "该文件修订时间：",
-            "modify_format": "YYYY-MM-DD HH:mm:ss"
-        },
-        "simple-page-toc": {
-            "maxDepth": 3,
-            "skipFirstH1": true
-        },
-        "edit-link": {
-            "base": "https://github.com/cllgeek/js-series-book/edit/master",
-            "label": "Edit This Page"
-        },
-        "anchor-navigation-ex": {
-            "isRewritePageTitle": false,
-            "tocLevel1Icon": "fa fa-hand-o-right",
-            "tocLevel2Icon": "fa fa-hand-o-right",
-            "tocLevel3Icon": "fa fa-hand-o-right"
-        },
-        "sectionx": {
-            "tag": "b"
-        },
-        "favicon": {
-            "shortcut": "favicon.ico",
-            "bookmark": "favicon.ico"
-        }
-    },
-
     "plugins": [	
 	 "-lunr",
         "-search",
