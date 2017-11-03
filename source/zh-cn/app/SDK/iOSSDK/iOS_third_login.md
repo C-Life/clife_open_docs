@@ -1,12 +1,12 @@
-## 第三方登录
+# 第三方登录
 
 
-###1. 申请各平台的App key和App secret
+##1. 申请各平台的App key和App secret
 注意：app bundleId跟各平台注册的时候一致。
 
 <a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=1417694084&token=&lang=zh_CN">微信接入地址</a>
 
-###2. 导入SDK 
+##2. 导入SDK 
 
 ```
 pod 'WechatOpenSDK', '1.7.7'
@@ -14,13 +14,13 @@ pod 'WeiboSDK', '3.1.3'
 pod 'TencentOpenApiSDK', '2.9.5'
 ```
 
-###3. 项目配置
+##3. 项目配置
 
 
-####3.1 URLScheme 配置
+###3.1 URLScheme 配置
 
 ![](/assets/第三方登录URLTypes.jpeg)
-####3.2 针对iOS9+，添加白名单
+###3.2 针对iOS9+，添加白名单
 在info.plist文件中加入 LSApplicationQueriesSchemes
 
 ![](/assets/第三方登录白名单.jpeg)
@@ -67,7 +67,7 @@ pod 'TencentOpenApiSDK', '2.9.5'
 
 ```
 
-####3.4 针对iOS9默认使用https,现在先还原成http请求方式。
+###3.4 针对iOS9默认使用https,现在先还原成http请求方式。
 
   在Info.plist中添加NSAppTransportSecurity类型Dictionary。
 
@@ -77,10 +77,10 @@ pod 'TencentOpenApiSDK', '2.9.5'
 
   第二步：在NSAppTransportSecurity下添加   NSAllowsArbitraryLoads类型为Boolean，value为YES
   
-###4. 接入HETOpenSDK 第三方登录
+##4. 接入HETOpenSDK 第三方登录
 
 
-####4.1 在appdelegate.m中，添加代码
+###4.1 在appdelegate.m中，添加代码
 
 第一步：注入appkey
 	
