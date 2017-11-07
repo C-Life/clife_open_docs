@@ -11,6 +11,22 @@ H5设备控制，是指设备控制页面用html 5开发，嵌入到原生APP，
    用html5开发的设备控制页面，在开发平台发布后，原生APP，会下载H5的控制页面到本地。相关使用方法参考
     
 
+    ```
+     [HETH5Manager launchWithAppSign:@"com.het.beauty.common"];
+     
+      HETH5Manager *manager = [HETH5Manager deviceId:deviceModel.deviceId productId: 
+             [NSString stringWithFormat:@"%@",deviceModel.productId]];
+      
+      //下载H5包到本地
+       [manager configWithController:self controllers:^NSArray<UIViewController *> *(NSString *h5PagePath) {
+            NSLog(@"h5PagePath--->:%@",h5PagePath);
+            NSString *desPath  = [NSString stringWithFormat:@"%@/index.html",h5PagePath];
+            
+        }];
+     
+    ```
+    
+
 
 ## 3、H5与原生数据交互
  
