@@ -5,34 +5,32 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 下面是SDK的基础架构图：  
  ![](https://i.imgur.com/44UiXao.jpg)
 
-
 ## 2.相关名词定义
 
 ### 2.1.appId和appSecret
 
-开放平台app的应用标识和密钥。开发者在开放平台接入设备创建APP的时候，后台会自动生成一个appId和appSecret。在初始化SDK的时候有用到。
+开放平台app的应用标识和密钥。开发者在开放平台接入设备创建APP的时候，后台自动生成appId和appSecret，用于初始化SDK。
 
 ### 2.2.硬件模组
 
-这里的硬件模组是指的WIFI模组。在开放平台创建WIFI产品的时候需要指定设备的WIFI模组。在SDK初始化和APP在设备绑定的时候需要用到。
+这里的硬件模组是指的WIFI模组。在开放平台创建WIFI产品的时候需要指定设备的WIFI模组。开发者需要在APP中先注册WIFI模组才可以进行设备绑定。
 
 ### 2.3.productId
 
-设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
+产品唯一标识。开发平台创建产品，自动分配。
 
 ### 2.4.deviceId
 
-设备号，当一个设备通过设备绑定的接口初次接入开放平台时，开放平台会自动根据productId以及设备的mac地址为此设备注册一个deviceId，此deviceId全网唯一，用于通过开放平台进行设备的操作。
+设备的唯一标识。设备绑定成功，自动分配。
 
 ## 3.SDK 快速开发，相关第三方库支持
 
 ### 3.1.RxJava 函数式编程  
 
-开放平台SDK 集成了RxJava。开发者可以根据自己的需要来使用，不需要自己再在项目中集成了。
+开放平台SDK集成了RxJava，并且使用RxJava封装了Android 6.0+的动态权限申请接口和网络请求库等。
 ### 3.2.RxBus 事件传递总线 
 
-开放平台SDK事件总线提供了RxBus的支持，开发者用于事件的发布和订阅来实现数据的传递，开发者可以根据项目需求来使用。  
-使用实例：
+开放平台SDK提供了RxBus事件总线的支持，用于事件的发布和订阅，实现数据的传递。  
 RxBus事件的发布：  
 
 	//发布 HetLoginSDKEvent.Login.LOGIN_SUCCESS 事件
@@ -48,13 +46,13 @@ RxBus事件的取消订阅：
 
 ### 3.3.retrofit+okhttp 网络库的支持
 
-开放平台SDK集成了retrofit+okhttp的网络库支持，开发者可以直接使用这个网络库来请求服务器数据。
+开放平台SDK集成了retrofit+okhttp的网络库，用于请求服务器数据。
 ### 3.4.ActiveAndroid 数据库支持
 
-SDK集成了ActiveAndroid这个第三方的轻量级的数据库。开发者可以自己查阅资料直接使用，不需要再在项目中集成了。
+开放平台SDK集成了 ActiveAndroid 第三方的轻量级的数据库,方便轻量级数据的存取。
 ### 3.5.X5内核 浏览服务的支持
 
-SDK集成了X5内核的浏览服务，来提高H5的加载性能和兼容性。开发者在需要使用X5内核WebView的时候可以直接使用：
+开放平台SDK集成了X5内核的浏览服务，来提高移动端webview的加载性能和兼容性。  
 使用实例：
 
 	<com.tencent.smtt.sdk.WebView
@@ -65,18 +63,16 @@ SDK集成了X5内核的浏览服务，来提高H5的加载性能和兼容性。�
 		android:paddingRight="5dp" />
 
 注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：  
-android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 这样。
+android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 。
 
-### 3.6.第三方服务平台的支持
+### 3.6.第三方社交平台服务的支持
 
-SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和登录。使用简单方便，详细使用请查看 **第三方平台服务的集成（登录和分享）**
+SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的分享和登录。 详细使用请查看 **第三方平台服务的集成（登录和分享）**
 
 ## 4.集成准备
 
 ### 4.1.注册开放平台账号  
-
   通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《clife开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
-
 
 ### 4.2.下载SDK终端DEMO 请前往下载中心下载最新SDK包。
 
@@ -134,10 +130,9 @@ SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和
 	    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
 	}
 
-引用SDK，根据自己硬件的模组来选择引用那个模组，其他的可以不用。 二维码扫描库在SDk demo中设备绑定中有用到，可以按照demoApp的实例来使用，也可以用自己的二维码扫描库。
+引用SDK，根据自己硬件的模组选择对应的库。
 
-### 4.5.配置AndroidManifest.xml
-
+### 4.5.配置AndroidManifest.xml 添加权限
 请将下面权限配置代码复制到 AndroidManifest.xml 文件中：
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -173,10 +168,8 @@ SDK集成了第三方服务的库，支持微信、qq和新浪微博的分享和
 	</tbody>
 </table>
 
-
 #### 4.6.Android6.0系统文件读写权限设置
-
-Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态申请。开发者可以提供SDK提供的RxPermissions来动态申请权限
+Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态申请。开发者可以使用SDK提供的RxPermissions来动态申请权限。
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             RxPermissions.getInstance(AppDelegate.getAppContext())
@@ -197,9 +190,9 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态�
 ## 1.SDK集成流程简介
 
 第一步：SDK初始化(SDK的日志信息开关、环境设置、app主题的配置信息)  
-第二步：授权登录和用户模块  (授权登录、获取用户信息、修改密码)
-第三步：设备绑定 (WIFI设备的AP绑定和smartLink绑定 蓝牙的扫描绑定) 
-第四步：设备管理（获取设备列表、删除设备、设备分享）
+第二步：授权登录和用户模块  (授权登录、获取用户信息、修改密码)  
+第三步：设备绑定 (WIFI设备的AP绑定、smartLink绑定和蓝牙的扫描绑定) 
+第四步：设备管理（获取设备列表、删除设备、设备分享）  
 第五步：设备控制（wifi和蓝牙设备的控制）
 
 ## 2.SDK初始化
@@ -218,7 +211,7 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态�
         configModel.setHost(GlobalAddr.TYPE_PRODUCE_HOST); //环境设置
         configModel.setH5UIconfig(UIJsonConfig.getInstance(this).getJsonString(UIJsonConfig.fileName, this));
         //配置第三方登录
-        mLoginDelegate = new HetThirdDelegate.Builder(this)
+        mLoginDelegate = new HetSdkThirdDelegate.Builder(this)
                 .registerQQ(UIJsonConfig.getTencentAppID())
                 .registerWeixin(UIJsonConfig.getWechatAppID(),UIJsonConfig.getWechatAppSecret())
                 .registerSinaWeibo(UIJsonConfig.getSinaAppID(), UIJsonConfig.getSinaAppSecret(), this.mSinaRedirectURL)
@@ -226,9 +219,9 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必选要动态�
         HetSdk.getInstance().init(this, appId, appSecret, configModel);
     }
 
-1、appId、appSecret是开发者在开发平台创建应用申请到的。  
-2、HetThirdDelegate 这个是配置第三方登录（微信、QQ、新浪微博登录），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **3.3（SDK第三方登录的集成）**。  
-3、开发者可以自己去定义APP的配置configModel.setH5UIconfig(String h5UIconfig); h5UIconfig是定义的一个JSON字符串，demoAPP里面是通过assets/h5UIConfig.json来组装这个JSON字符串的。
+1、appId、appSecret可以在开放平台创建的应用的应用详情里查看。  
+2、HetSdkThirdDelegate 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **3.3（SDK第三方登录的集成）**。  
+3、configModel.setH5UIconfig 配置授权登录页面主题样式; 通过参数定义的JSON字符串来进行配置，例如demoAPP是通过assets/h5UIConfig.json这个文件来组装JSON字符串的。
 
 **接口调用请求说明**  
 SDK初始化接口 HetSdk.getInstance().init（）
@@ -297,7 +290,7 @@ SDK初始化接口 HetSdk.getInstance().init（）
 </table>
 
 **H5UIconfig配置说明**  
-SDK的授权登录页面需要这个JSON参数来配置，包括是否需要第三方登录，登录页面的样式等。可以参考SDk的DEMO工程通过assets/h5UIConfig.json的配置，以下给出配置详情：  
+SDK的授权登录页面样式可以通过JSON参数来配置，包括是否需要第三方登录，登录页面的样式等。可以参考SDk的DEMO工程通过assets/h5UIConfig.json的配置，配置详情：  
 
 	 {
 	  "app_id": "your_app_id",
@@ -428,7 +421,7 @@ SDK的授权登录页面需要这个JSON参数来配置，包括是否需要第�
 	</tbody>
 </table>
 
-**PS:   颜色值都使用argb的格式，前2位表示透明度，后6位是rgb颜色值。**
+**备注:   颜色值都使用argb的格式，前2位表示透明度，后6位是rgb颜色值。**
 
 第二步：在application注册模组
 
@@ -452,12 +445,12 @@ SDK的授权登录页面需要这个JSON参数来配置，包括是否需要第�
         }
     }
 
-这里的模组注册是按需注册的。也就是根据自己的设备的模组类型来注册。
+模组注册是按需注册，根据APP需要支持的设备模组类型来选择性注册。
 
 ## 3.授权登录和用户模块
 
-### 3.1.无私有服务器授权登录
-SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授权登录页面。
+### 3.1.非私有服务器授权登录
+HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 
 	 /**
 	  * 授权登录
@@ -517,7 +510,7 @@ SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授�
 	    }
 
 
-使用判断是否处于登录状态，处于登录状态下，我们调用HetSdk.getInstance.logout(),并使用RxBus(开发者可以使用自己习惯的事件通知，如：event bus等)来发送通知到相应的页面来刷新页面状态。
+调用HetSdk.getInstance.logout(),并使用RxBu来发送通知到相应的页面来刷新页面状态。
 如：接收退出登录的事件，刷新页面
 
 	RxManage.getInstance().register(HetLoginSDKEvent.Login.LOGINOUT_SUCCESS, o -> {
@@ -532,8 +525,8 @@ SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授�
 
 ### 3.5.异地登录
 
-开放平台的账号只能在一台设备上面登录。当有账号在另一台设备登录时，SDK会抛出一个ECode.Token.EC_LOGINOUT的RxBus事件。
-开发者可以在首页订阅这个事件，处理异地登录的逻辑。 例：
+开放平台的账号只能在一台设备上登录。当同一个账号同时在2台设备上登录时，服务器会把前面登录成功的设备踢下线。 被踢下线设备的SDK会退出登录，并且抛出ECode.Token.EC_LOGINOUT的RxBus事件，通知账号在其他设备登录。  
+开发者可以订阅这个事件，处理异地登录。 例：
 	
 	RxManage.getInstance().register(ECode.Token.EC_LOGINOUT, s -> {
 	          //账号在其他设备登录，此时HetSdk.getInstance().isAuthLogin() 为false，跳转页面刷新到未登录状态。
@@ -543,7 +536,7 @@ SDK提供了HetNewAuthApi.getInstance().authorize方法可以直接跳转到授�
 
 ### 3.6.获取用户信息
 
-HetUserApi.getInstance().getUserMess()可以获取到用户信息
+HetUserApi.getInstance().getUserMess()获取用户信息
 
     /**
      * 获取用户信息
@@ -634,7 +627,7 @@ HetUserApi.getInstance().getUserMess()可以获取到用户信息
 
 ### 3.7.修改密码
 
-调用 HetNewAuthApi.getInstance().alterPassword() 就会跳转到修改密码的页面。
+调用 HetNewAuthApi.getInstance().alterPassword() 跳转到修改密码的页面。
 
 	/**
 	     * 修改密码
@@ -650,10 +643,7 @@ HetUserApi.getInstance().getUserMess()可以获取到用户信息
 	        ............
 	}
 
-这里手机号是需要通过获取用户信息之后才能得到的。这里有2种方式：
-1、开发者可以登录成功之后就去获取用户信息，然后保存起来作为全局使用。（推荐使用）
-2、在修改密码之前先调用获取用户信息的接口，获取到手机号之后再调用修改密码的接口。  
-实例：
+通过用户的手机号来修改密码，调用实例：
 
 	public void editPwd(String phone) {
 	        if (!HetSdk.getInstance().isAuthLogin()) return;
@@ -675,9 +665,9 @@ HetUserApi.getInstance().getUserMess()可以获取到用户信息
 
 ## 4.设备绑定模块（添加设备）  
 
+开放平台封装了wifi设备和蓝牙设备绑定接口，包括手机与服务器、手机与智能设备的通讯接口。开发者只要获取到设备的产品ID就可以调用SDK的绑定接口进行设备绑定，不需要关注复杂的绑定流程。  
 
-开放平台的设备按照功能划分类型，设备有大类，大类下面划分不同型号的小类。确定类型之后，设备还有WIFI和蓝牙设备之分。绑定设备之前首先就需要选择设备类型在扫描绑定。WIFI SSID和密码 需要开发者自己去获取手机当前连接的WIFI，让用户自己输入WIFI密码之后再调用开始扫描绑定的接口，productId是设备小类中productId字段。WIFI设备AP绑定流程图如下：
-
+WIFI设备AP绑定流程图如下：
 
 ![](https://i.imgur.com/AXPq6FR.png)
 
@@ -685,12 +675,11 @@ WIFI设备SmartLink绑定流程图如下：
 
  ![](https://i.imgur.com/J5AWpvN.png)
 
+开放平台SDK提供了三种方式来获取产品ID。  
 
-SDK的设备绑定非常简单，只需要知道设备的产品ID就可以进行绑定了开放平台提供了三种方式来获取产品ID。  
-
-第一种：拉取设备大类和设备小类（设备小类信息包含产品ID，也就是productId这个字段），具体分成2个步骤。  
-第一步：获取设备大类型  
-HetDeviceListApi.getInstance().getTypeList取APP支持绑定的设备大类型。  
+第一种：获取设备大类和设备小类（设备小类信息包含产品ID，也就是productId字段），具体分成2个步骤。  
+1.获取设备大类型  
+HetDeviceListApi.getInstance().getTypeList() 获取APP支持绑定的设备大类型。  
 调用实例：
 
 	HetDeviceListApi.getInstance().getTypeList(new IHetCallback() {
@@ -711,9 +700,9 @@ HetDeviceListApi.getInstance().getTypeList取APP支持绑定的设备大类型�
             }
      });
 
-第二步：获取设备小类型  
-HetDeviceListApi.getInstance().getSubTypeListProduct获取APP支持绑定的设备大类型。  
-通过选择的设备大类，查询大类下的小类列表。设备小类信息包含产品ID，也就是productId这个字段
+2.获取设备小类型  
+HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的设备大类型。  
+通过选择的设备大类，查询大类下的小类列表。
 
 	HetDeviceListApi.getInstance().getSubTypeListProduct(new IHetCallback() {
             @Override
@@ -726,12 +715,13 @@ HetDeviceListApi.getInstance().getSubTypeListProduct获取APP支持绑定的设�
             }
             @Override
             public void onFailed(int code, String msg) {
-                ((BaseHetActivity) activity).showToast(msg);
+				//获取设备小类列表失败
+                   .............
             }
         }, deviceType);//deviceType 是大类类型
 
 第二种：扫描开放平台创建的产品二维码来获取。  
-扫描到的结果调用SDK的HetQrCodeApi的dealQrCode方法获取产品信息。产品信息包含了包含了产品ID
+扫描到的结果调用SDK的HetQrCodeApi的dealQrCode方法获取产品信息。产品信息包含了产品ID
 
 	//二维码规则
     private void parseQrCodeVersion(String url) {
@@ -747,20 +737,21 @@ HetDeviceListApi.getInstance().getSubTypeListProduct获取APP支持绑定的设�
                 }
                 @Override
                 public void onFailed(int code, String msg) {
-                    tips(msg);
+                    //获取到产品信息失败
                     finish();
                 }
             }, url);
         }
     }
 
-
 第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。  
 
-开发者可以通过项目需要选择适合自己项目的方式来获取产品ID。在获取到产品ID之后，开发者只需要根据自己的设备类型来选择SDK的绑定接口就好了。具体可以分为WIFI绑定和蓝牙绑定2种。判断是WIFI设备还是蓝牙设备，进入相应的绑定页面，可以通过设备小类的moduleType字段来判断。如：int type = deviceSubModel.getModuleType();  type == 1标识WIFI设备  type ==2标识蓝牙设备。  
+通过项目需求选择合适的方式来获取产品ID。然后根据设备类型选择SDK的绑定接口。 具体分为WIFI绑定和蓝牙绑定2种。通过设备小类(moduleType字段)判断是WIFI设备还是蓝牙设备，进入相应的绑定设备绑定流程。 如：
 
-下面对这2种绑定做具体说明   
-WIFI设备绑定：SDK提供一个HetWifiBindApi接口,HetWifiBindApi里面有个startBind方法可以启动绑定。
+	int type = deviceSubModel.getModuleType(); // type == 1标识WIFI  type ==2标识蓝牙  type ==9标识AP模式
+
+下面对这2种绑定做具体说明    
+WIFI设备绑定：SHetWifiBindApi.getInstance().startBind() 启动绑定。
 
 	/**
 	     * 开始绑定设备
@@ -801,9 +792,9 @@ WIFI设备绑定：SDK提供一个HetWifiBindApi接口,HetWifiBindApi里面有�
 
 
 
-BLE蓝牙设备绑定：SDK提供一个HetCommonBleBindApi接口，普通蓝牙设备可以扫描绑定.整个过程有2个步骤：  
+BLE蓝牙设备绑定：HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。整个过程有2个步骤：  
 第一步：扫描搜索周围设备；  
-第二步：选择扫描的某个设备绑定到服务器；  
+第二步：选择扫描到的某个设备绑定到服务器；  
 蓝牙网关设备绑定方式跟前面的方式有些小区别，两种方式的蓝牙设备绑定流程图如下：
 
  ![](https://i.imgur.com/b4qGgZi.png)
@@ -981,7 +972,7 @@ SDK所有的设备devicemodel，参数说明
 		<tr>
 			<td>moduleType</td>
 			<td>number</td>
-			<td>模块类型（1-WiFi，2-蓝牙，3-音频，4-GSM，5-红外）</td>
+			<td>模块类型（1-WiFi，2-蓝牙，9-AP模式）</td>
 		</tr>
 		<tr>
 			<td>moduleName</td>
@@ -1004,8 +995,9 @@ SDK所有的设备devicemodel，参数说明
 ### 5.2.获取设备列表
 
 HetDeviceListApi.getInstance().getBindList()获取设备列表，设备按照归属来划分有2种：  
-第一种是用户自己绑定的设备。这类设备用户拥有这台设备的所有权限。  
-第二种是别人分享给自己的设备。这类设备用户拥有控制权限，但是不可以再分享给其他人。  
+第一种是绑定设备。 用户绑定的设备，这类设备用户拥有这台设备的所有权限。  
+第二种是分享设备。 别人分享的设备，这类设备用户拥有控制权限，但是不可以再分享给其他人。   
+可以根据设备deviceModel的share字段来判断是否是分享的设备。
 
 	HetDeviceListApi.getInstance().getBindList(new IHetCallback() {
 	        @Override
@@ -1028,9 +1020,8 @@ HetDeviceListApi.getInstance().getBindList()获取设备列表，设备按照归
 
 ### 5.3.删除设备
 
-设备删除有2中情况： 
-第一种：设备是用户自己绑定的设备。调用HetDeviceManagerApi.getInstance().unBind()来解除绑定。这里 deviceModel 是选择要删除的设备对象。
-实例：
+SDK删除设备列表中的设备有2中情况：  
+第一种：绑定设备。 调用HetDeviceManagerApi.getInstance().unBind()解除绑定。 实例：
  
 	HetDeviceManagerApi.getInstance().unBind(deviceModel, new IHetCallback() {
 	   @Override
@@ -1043,8 +1034,7 @@ HetDeviceListApi.getInstance().getBindList()获取设备列表，设备按照归
 	   }
 	});
 
-第二种：设备是别人分享的过来的设备。调用HetDeviceShareApi.getInstance().deviceDel()方法来解绑分享关系。 
-实例：  
+第二种：分享设备。 调用HetDeviceShareApi.getInstance().deviceDel()解绑分享关系。  实例：  
 
 	HetDeviceShareApi.getInstance().deviceDel(new IHetCallback() {
 		 @Override
@@ -1057,7 +1047,7 @@ HetDeviceListApi.getInstance().getBindList()获取设备列表，设备按照归
 		}
 	}, deviceModel.getDeviceId(), null);
 
-传入的参数是选择要删除的设备ID和当前用户的UserId。UserId直接传null就好了。传null表示被分享者解除分享关系，传userId表示设备拥有者回收这个用户的设备控制授权。
+传参是设备ID和用户UserId。 UserId传null表示被分享者解除分享关系，传userId表示设备拥有者回收这个用户的设备控制授权。
 
 ### 5.4.设备分享
 
@@ -1116,7 +1106,7 @@ DeviceAuthUserModel 的字段说明：
 
 #### 5.4.2.用户设备授权删除  
 
-调用HetDeviceShareApi.getInstance().deviceDel()就可以解除分享关系。
+调用HetDeviceShareApi.getInstance().deviceDel()解除分享关系。
 
 	HetDeviceShareApi.getInstance().deviceDel(new IHetCallback() {
             @Override
@@ -1135,8 +1125,7 @@ DeviceAuthUserModel 的字段说明：
 
 #### 5.4.3.分享设备 
 
-分享的方式有2种，一种是面对面二维码分享，第二种远程第三方平台（微信 、QQ等）的分享。 注意：只要是用户账号自己绑定的设备才能分享给别人，别人分享给自己的设备是不能再分享出去的。  
-下面对2中分享方式进行详细说明：
+设备分享有面对面二维码分享和远程第三方平台（微信 、QQ等）分享两种方式。 绑定设备才能分享，分享设备不能再分享给其他用户。  
 
 第一种：面对面分享，通过deviceId（要分享的设备的标识）获取分享码，分享的流程图如下：
 
@@ -1185,7 +1174,7 @@ ShareCodeModel字段说明:
 	</tbody>
 </table>
 
-开发者获取到分享码之后用二维码的形式展示出来。被分享的用户，通过二维码扫描到之后，调用设备授权的接口HetDeviceShareApi.getInstance().authShareDevice()就可以完成设备的分享了.  
+将分享码用二维码的形式展示。被分享的用户，通过二维码扫描，调用 HetDeviceShareApi.getInstance().authShareDevice()完成设备分享。
 
     HetDeviceShareApi.getInstance().authShareDevice(new IHetCallback() {
             @Override
@@ -1200,17 +1189,17 @@ ShareCodeModel字段说明:
         }, code, "5");//5是面对面分享   6是远程分享
 
 
-这里设备分享成功之后，抛出RxBus事件，设备列表页面注册事件之后刷新设备列表。  
+设备分享成功，抛出RxBus事件，监听事件刷新设备列表。  
 
-第二种：远程分享（通过QQ、微信分享设备）。
-这种分享主要利用的是第三方社交平台，可以快速的实现设备分享有利于实现产品的快速推广。特别注意：远程的第三方分享一定要集成第三方分享服务。详细集成实例请参考下面 **第三方平台服务的集成（登录和分享）**的集成，跟第一种方式一样首先要获取分享码和分享的网页地址。分享的流程图如下：
+第二种：远程分享（通过QQ、微信分享设备）  
+利用第三方社交平台，可以快速的实现设备分享。有利于实现产品的快速推广。 远程的第三方分享一定要集成第三方分享服务。详细集成实例请参考下面 **第三方平台服务的集成（登录和分享）**的集成。 分享的流程图如下：
 
  ![](https://i.imgur.com/KkINUuf.png)
 
 具体的接口调用说明：
 
 HetDeviceShareApi.getInstance().getShareCode(IHetCallback callback,String deviceId,String shareType)
-deviceId传设备ID，shareType(5是面对面分享  6远程分享)。这里我们选择传"6",获取远程分享设备的分享地址。
+参数 shareType(5是面对面分享  6远程分享) 标识分享类型，返回远程分享设备的分享地址。
 
 	HetDeviceShareApi.getInstance().getShareCode(new IHetCallback() {
             @Override
@@ -1239,7 +1228,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
 
 第二步：初始化SKD第三方分享接口
 
-    HetThirdDelegate mShareManager = HetThirdDelegate.getInstance();
+    HetSdkThirdDelegate mShareManager = HetSdkThirdDelegate.getInstance();
         CommonShareProxy mShareProxy = new CommonShareProxy(this);
         mShareManager.setShareOperate(new CommonShareOperate(mContext));
         mICommonShareListener = new ICommonShareListener() {
@@ -1312,7 +1301,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
 
 ## 6.设备控制
 
-设备有WIFI设备的控制和蓝牙设备的控制区别，wifi设备控制流程图示如下：
+设备有WIFI设备控制和蓝牙设备控制两种，wifi设备控制流程图示如下：
 
  ![](https://i.imgur.com/6Q1Dk6V.png)
 
@@ -1395,8 +1384,10 @@ WIFI设备控制具体可以分成4个步骤：
 	        }
 	    };
 
-开发者可以根据IWifiDeviceData 的回调接口来渲染UI。  
+可以根据IWifiDeviceData 的回调接口接收设备数据渲染UI。  
+
 第三步：控制设备  
+
 调用HetDeviceWifiControlApi.getInstance().setDataToDevice()发送控制数据到服务器。调用的时候把需要发送的控制数据组装好。
 
 	HetDeviceWifiControlApi.getInstance().setDataToDevice(new IHetCallback() {
@@ -1409,7 +1400,7 @@ WIFI设备控制具体可以分成4个步骤：
 	       }, deviceModel.getDeviceId(), GsonUtil.getInstance().toJson(ledConfigModel));
 
 第四步：释放资源  
-在不需要控制设备的时候释放资源，例如在退出控制界面的时候，实例：
+停止使用设备控制功能的时候释放资源，例如退出控制界面时，实例：
 
 	 @Override
 	    protected void onDestroy() {
@@ -1420,7 +1411,7 @@ WIFI设备控制具体可以分成4个步骤：
 注意:设备控制的时候会有一个updateFlag字段。这个字段标识是改变了那几个控制字段。
 
 第二种 蓝牙设备控制：  
-蓝牙设备控制主要是通过手机app和蓝牙设备先建立连接，然后根据定义的协议进行数据交互，具体的交互流程图如下：
+蓝牙设备控制主要是通过手机和蓝牙设备先建立连接，然后根据定义的协议进行数据交互，具体的交互流程图如下：
 
  ![](https://i.imgur.com/mFZmrXE.png)
 
@@ -1497,7 +1488,7 @@ CmdIndexConstant.HET_COMMAND_GET_TIME_APP   		获取设备时间
 CmdIndexConstant.HET_COMMAND_SET_TIME_APP			设置设备时间  
 CmdIndexConstant.HET_COMMAND_GET_HISTORY_DATA_APP	获取设备历史数据  
 CmdIndexConstant.HET_COMMAND_CLEAR_HISTORY_DATA_APP 清楚设备历史数据  
-CmdIndexConstant.HET_COMMAND_GET_REAL_TIME_DATA_APP 获取真实时间  
+CmdIndexConstant.HET_COMMAND_GET_REAL_TIME_DATA_APP 获取真实的设备数据 
 CmdIndexConstant.HET_COMMAND_CONFIG_DATA_APP		下发控制协议  
 第三个参数是写数据成功与否的监听回调。这里开发者可以自行做重发处理。  
 
@@ -1614,7 +1605,8 @@ SDK提供了操作消息的接口HetMessageApi
         ....
     }
 
-开发者根据项目的需求来调用就可以了。下面对获取的消息列表做详细说明。  
+根据项目的需求来调用相关接口。
+
 调用HetMessageApi.getInstance().refreshList()获取消息列表，调用传参说明：
 <table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
 	<tbody>
@@ -1802,6 +1794,7 @@ SDK提供了操作消息的接口HetMessageApi
 	</tbody>
 </table>
 
+
 # <span id="jump">第三方平台服务的集成（登录和分享）</span>
 
 第三方登录和分享的集成，SDK目前只支持三种方式，也是目前比较主流的第三方平台。包括微信、QQ、和新浪微博。  
@@ -1811,7 +1804,7 @@ SDK提供了操作消息的接口HetMessageApi
 第二步：在Application里面配置第三方登录SDK。  
 
     //配置第三方登录
-    mLoginDelegate = new HetThirdDelegate.Builder(this)
+    mLoginDelegate = new HetSdkThirdDelegate.Builder(this)
                 .registerQQ("your_qq_app_id")
                 .registerWeixin("your_weixin_app_id", "your_weixin_app_secret")
                 .registerSinaWeibo("your_sina_app_id", "your_sina_app_secret", "your_sina_redirect_url"L)
@@ -1904,8 +1897,68 @@ SDK提供了操作消息的接口HetMessageApi
 	    }
 	}
 
-注意：wxapi和WXEntryActivity的位置和名字都不能改变，否则不能回调到app中来。例如:DEMO APP的包名是com.het.sdk.demo，那就WXEntryActivity的完整名称就是com.het.sdk.demo.wxapi.WXEntryActivity。  
+注意：wxapi和WXEntryActivity的位置和名字都不能改变，否则不能回调到app中来。例如:DEMO APP的包名是com.het.sdk.demo，那WXEntryActivity的完整名称就是com.het.sdk.demo.wxapi.WXEntryActivity。  
 新浪微博分享回调SDK已经集成，com.het.open.lib.wb.WBEntryActivity,开发者不需要关注。
+
+# 通用的业务接口
+
+开发平台其他的业务接口可以调用 HetHttpApi 来发起请求
+
+    /**
+     * post请求
+     *
+     * @param url      请求地址
+     * @param params   请求参数
+     * @param callback 请求结果回调
+     */
+    public void hetPost(@NonNull String url, TreeMap params, IHetCallback callback){
+        ..........................
+    }
+
+    /**
+     * get请求
+     *
+     * @param url      请求地址
+     * @param callback 请求结果回调
+     */
+    public void hetGet(@NonNull String url,  IHetCallback callback){
+        ..........................
+    }
+
+    /**
+     * get请求
+     *
+     * @param url      请求地址
+     * @param params   请求参数
+     * @param callback 请求结果回调
+     */
+    public void hetGet(@NonNull String url, TreeMap params,  IHetCallback callback){
+        ..........................
+    }
+
+带参数的GET请求调用实例：
+
+    /**
+     * 带参数的通用get请求
+     *
+     * @param url      请求地址
+     * @param params   请求参数
+     */
+    private void commonGet(url,param1) {
+        TreeMap<String, String> params = new TreeMap<String, String>();
+        params.put("param1", param1);
+        HetHttpApi.getInstance().hetGet(url, params, new IHetCallback() {
+            @Override
+            public void onSuccess(int code, String msg) {
+				//成功
+            }
+
+            @Override
+            public void onFailed(int code, String msg) {
+				//失败
+            }
+        });
+    }
 
 # 全局返回码
 全局返回码说明
@@ -2093,41 +2146,131 @@ SDK提供了操作消息的接口HetMessageApi
 为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
 请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
-## 2.Android和H5通讯
+## 2.Android和H5通讯流程图
 
-SDK提供了原生与H5通讯的管理接口HtmlFiveManager，其通讯原理图如下：
 ![](https://i.imgur.com/drm1OoC.png)
 
-	public HtmlFiveManager(Activity activity, WebView wv, IAppJavaScriptsInterface appJavaScriptsInterface) {
-        ...........
-    }
+## 3.H5设备控制集成流程
 
-第一个参数是当前的原生活动Activity  
-第二个参数传入自己创建的webView。可以直接在activity的layout中创建，也可以直接new WebView(context);（推荐后者）  
-第三个参数是给H5页面调用的接口 IAppJavaScriptsInterface。  
+SDK封装了H5插件下载和原生与H5通讯接口，开发者可以轻松实现H5插件的设备控制。 
+ 
+###3.1.上传H5开发包
 
-	public interface IAppJavaScriptsInterface {
-    	void send(String var1, IMethodCallBack var2);
+开发者需要在开放平台上传完整的H5开发包待审核，审核通过之后才可以正常使用。
 
-    	String getModeJson();//在H5调用het.config之后，原生会调用getModeJson（）把这个原生方法返回的数据通过ready()回调到H5的ready() 方法。  其实就是原生把H5加载完之后初始化需要展示的数据通过这个接口传递给H5。
+###3.2.初始化webView和H5交互接口
+####3.2.1.初始化webView
+SDK采用了X5内核的浏览服务，添加方式有2种：  
+第一种：通过xml方式创建布局  
 
-    	void onWebViewCreate();//H5加载完之后调用原生方法
+	<com.tencent.smtt.sdk.WebView
+	        android:id="@+id/device_h5_web"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        />
+	
+	WebView webView = (WebView) findViewById(R.id.device_h5_web);
+第二种：代码动态创建  
+		WebView webView = new WebView(mContext);
 
-    	void tips(String var1);//H5调用het.toast就会回调到原生的tips()方法。这个方法建议直接弹原生的Toast。
 
-    	void setTitle(String var1);//H5调用het.setTitle调用的原生的setTitle方法
+注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：  
+android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 。
 
-    	void onLoadH5Failed(int var1, String var2);//当H5页面加载失败时回调原生的onLoadH5Failed方法
+####3.2.2.初始化H5交互接口
 
-    	void h5SendDataToNative(int var1, String var2, String var3, IH5CallBack var4);//h5把数据发送到原生，提供回调
+	HtmlFiveManager htmlFiveManager = new HtmlFiveManager(activity, webView, iAppJavaScriptsInterface);
 
-    	void h5GetDataFromNative(int var1, String var2, IH5CallBack var3);//h5获取原生的数据
+HtmlFiveManager是封装了H5与Android原生的交互接口，通过IAppJavaScriptsInterface来暴露H5接口给原生和从原生获取数据。
+
+	IAppJavaScriptsInterface iAppJavaScriptsInterface = new IAppJavaScriptsInterface() {
+    	@Override
+    	public void send(String data, final IMethodCallBack methodCallBack) {
+        	//H5 het.send()调用的原生接口  这里可以实现设备发送控制命令
+    	}
+
+    	@Override
+    	public String getModeJson() {
+        	//H5 het.ready() 获取的原生信息
+        	return null;
+    	}
+
+    	@Override
+    	public void onWebViewCreate() {
+        	//界面加载完成时回调
+    	}
+
+    	@Override
+    	public void tips(String str) {
+        	//H5 het.toast()调用的原生接口
+    	}
+
+    	@Override
+    	public void setTitle(String title) {
+        	//H5 het.setTitle()调用的原生接口
+    	}
+
+    	@Override
+    	public void onLoadH5Failed(int errCode, String errMsg) {
+        	//界面加载失败时回调
+    	}
+
+    	@Override
+    	public void h5SendDataToNative(int i, String s, String s1, IH5CallBack ih5CallBack) {
+        	//H5 发送数据到 App 端
+    	}
+
+    	@Override
+    	public void h5GetDataFromNative(int i, String s, IH5CallBack ih5CallBack) {
+    	    //H5 从 App 端获取数据
+    	}
+	};
+
+###3.3.加载H5插件
+
+	HetH5Api.getInstance().getH5ControlPlug(context,deviceBean);
+
+SDK会加载最新的H5插件（下载和检查更新）。加载成功会抛出HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_SUCCESS事件，加载失败会抛出HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_FAILED事件。
+
+###3.4.监听H5插件加载成功与失败
+
+     RxManage.getInstance().register(HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_SUCCESS + model.getProductId(), o -> {
+            if (htmlFiveManager != null) {
+                String localPath = (String) o;
+                String path = Uri.fromFile(new File(localPath)).toString();
+                path += "/index.html";
+                htmlFiveManager.loadUrl(path);
+            }
+        });
+
+H5插件加载成功，调用htmlFiveManager.loadUrl(path); 加载H5页面展示UI。
+
+
+###3.5.上传设备数据给H5
+
+上传运行数据：
+
+	htmlFiveManager.updateRunData(json);
+上传控制数据：
+
+	htmlFiveManager.updateConfigData(json);
+上传异常数据：
+
+	htmlFiveManager.updateErrorData(json);
+
+###3.6.退出释放资源
+
+	@Override
+    public void onDestroy() {
+		if (webView != null) {
+    		webView.removeJavascriptInterface("bindJavaScript");
+    		if (webView.getSettings() != null) {
+        		webView.getSettings().setJavaScriptEnabled(false);
+    		}
+    		webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+    		webView.clearHistory();
+    		((ViewGroup)  webView.getParent()).removeView(mDevice_h5_web);
+    		webView.destroy();
+    		webView = null;
+		}
 	}
-
-
-HtmlFiveManager提供了3个方法把获取到的设备数据提交到H5。  
-updateConfigData()//提交控制数据  
-updateRunData()//提交运行数据  
-updateErrorData()//提交故障数据  
-
-H5可以通过JS-SDK 的 het.send方法把数据提交给原生IAppJavaScriptsInterface接口的send方法。原生只需实现这个send（）来处理H5提交的数据，如：把数据提交到服务器。
