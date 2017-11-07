@@ -148,7 +148,6 @@ SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的
 			<th width="50%">权限</th>
 			<th width="50%">用途</th>
 		</tr>
-		
 	    <tr>
 			<td>VIBRATE</td>
 			<td>允许设置时区的权限</td>
@@ -191,7 +190,7 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
 
 第一步：SDK初始化(SDK的日志信息开关、环境设置、app主题的配置信息)  
 第二步：授权登录和用户模块  (授权登录、获取用户信息、修改密码)  
-第三步：设备绑定 (WIFI设备的AP绑定、smartLink绑定和蓝牙的扫描绑定) 
+第三步：设备绑定 (WIFI设备的AP绑定、smartLink绑定和蓝牙的扫描绑定)  
 第四步：设备管理（获取设备列表、删除设备、设备分享）  
 第五步：设备控制（wifi和蓝牙设备的控制）
 
@@ -231,8 +230,8 @@ SDK初始化接口 HetSdk.getInstance().init（）
 	<tbody>
 		<tr>
 			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
+			<th width="15%">是否必须</th>
+			<th width="15%">字段类型</th>
 			<th width="62%">参数说明</th>
 		</tr>
 		<tr>
@@ -263,14 +262,14 @@ SDK初始化接口 HetSdk.getInstance().init（）
 </table>
 
 **configModel说明**
+
 <table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
 	<tbody>
 		<tr>
 			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
+			<th width="15%">字段类型</th>
 			<th width="74%">字段说明</th>
 		</tr>
-		
 	    <tr>
 			<td>isLog</td>
 			<td>boolean</td>
@@ -315,14 +314,14 @@ SDK的授权登录页面样式可以通过JSON参数来配置，包括是否需�
 	}
 
 字段说明：
+
 <table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
 	<tbody>
 		<tr>
 			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
+			<th width="15%">字段类型</th>
 			<th width="74%">字段说明</th>
 		</tr>
-		
 	    <tr>
 			<td>app_id</td>
 			<td>String</td>
