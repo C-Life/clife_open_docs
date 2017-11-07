@@ -1,23 +1,26 @@
-## 第三方登录
+# 第三方登录
 
 
-### 一、申请各个平台的App key和App secret
+##1. 申请各平台的App key和App secret
 注意：app bundleId跟各平台注册的时候一致。
 
-### 二、通过Pod导入SDK： 
+<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=1417694084&token=&lang=zh_CN">微信接入地址</a>
+
+##2. 导入SDK 
+
 ```
 pod 'WechatOpenSDK', '1.7.7'
 pod 'WeiboSDK', '3.1.3'
 pod 'TencentOpenApiSDK', '2.9.5'
 ```
 
-### 三、项目配置
+##3. 项目配置
 
 
-####1、URLScheme 配置：
+###3.1 URLScheme 配置
 
 ![](/assets/第三方登录URLTypes.jpeg)
-####2、针对iOS9以后，需要添加白名单。
+###3.2 针对iOS9+，添加白名单
 在info.plist文件中加入 LSApplicationQueriesSchemes
 
 ![](/assets/第三方登录白名单.jpeg)
@@ -64,7 +67,7 @@ pod 'TencentOpenApiSDK', '2.9.5'
 
 ```
 
-####3、针对iOS9默认使用https,现在先还原成http请求方式。
+###3.4 针对iOS9默认使用https,现在先还原成http请求方式。
 
   在Info.plist中添加NSAppTransportSecurity类型Dictionary。
 
@@ -74,12 +77,12 @@ pod 'TencentOpenApiSDK', '2.9.5'
 
   第二步：在NSAppTransportSecurity下添加   NSAllowsArbitraryLoads类型为Boolean，value为YES
   
-### 四、接入HETOpenSDK 第三方登录
+##4. 接入HETOpenSDK 第三方登录
 
 
-####1. 在刚刚新建的项目中 appdelegate.m， 添加代码：
+###4.1 在appdelegate.m中，添加代码
 
-a、注入appkey
+第一步：注入appkey
 	
 ```
    [HETOpenSDK setPlaform:HETAuthPlatformType_QQ appKey:QQ_APP_ID appSecret:nil redirectURL:nil];
@@ -89,18 +92,18 @@ a、注入appkey
 ```
 
 
-   b、在添加跳转的请求方法
+第二步：添加请求方法
 	
 ```
 	- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 	{
     	BOOL result = [HETOpenSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-   	 	return result;
+   	 return result;
 	}
 
 	- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 	{
-   	 	BOOL result = [HETOpenSDK handleOpenURL:url];
-   		return result;
+   	BOOL result = [HETOpenSDK handleOpenURL:url];
+   	return result;
 	}
-``
+```

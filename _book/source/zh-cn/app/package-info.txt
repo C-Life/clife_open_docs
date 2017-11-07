@@ -1,7 +1,0 @@
-此文件夹保存“app开发”相关文档
-
-index.md--目录文件
-
-application--应用管理文件夹
-openframework--开源框架文件夹
-SDK--SDK文件夹
