@@ -4,7 +4,7 @@
 ##一、此文档包含 3 个文档，分别为
 1.DriveWifi.c – wifi绑定和通信模块驱动，不可更改文件。
 2.DriveWifi.h – wifi驱动头文件,不可更改文件。
-3.WifiConfig.h –wifi模块配置信息，根据不同的设备而修改。
+3.WifiConfig.h – wifi模块配置信息，根据不同的设备而修改。
 
 ##二、函数 API 说明
 ###2.1	void Het_DriveWifi_WifiInit(pfUartSend _pf_uart_send,pfUartDecode _pf_uart_decode,pfWifiReset _pf_wifi_reset)
@@ -18,21 +18,21 @@ _pf_wifi_reset– 用户wifi 模组复位函数,函数名可自定义，函数�
 void fun(het_uint8_t flag)。
 <3> Return:NONE
 
-###2.2	void Het_DriveWifi_SystickISR (void)
+###2.2 void Het_DriveWifi_SystickISR (void)
 <1> Description:此函数作用是给程序提供 10ms 时钟,必须放在 10ms 定时器里
 <2> Arguments:NONE
 <3> Return: NONE 
-###2.3	void Het_DriveWifi_UsartRecvISR (het_uint8_t _het_data)
+###2.3 void Het_DriveWifi_UsartRecvISR (het_uint8_t _het_data)
 <1> Description:WIFI 模组串口中断接收函数,必须放在串口中断函数里面
 <2> Arguments: data – 串口接收到的字节
 <3> Return: NONE
 
-2.4	void Het_DriveWifi_WifiModuleBindCmd (het_uint8_t _flag)
+###2.4 void Het_DriveWifi_WifiModuleBindCmd (het_uint8_t _flag)
 <1> Description: WIFI绑定触发条件
 <2> Arguments: flag – 如果 flag 大于 0,表示使能绑定操作
 <3> Return:NONE
 
-2.5	void Het_DriveWifi_WifiModuleTestCmd (het_uint8_t _flag)
+2.5 void Het_DriveWifi_WifiModuleTestCmd (het_uint8_t _flag)
 <1> Description:WIFI 进入产测条件
 <2> Arguments: flag – 如果 flag 大于 0,表示使能产测操作
 <3> Return:NONE
