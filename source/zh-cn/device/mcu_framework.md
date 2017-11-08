@@ -1,10 +1,10 @@
-# MCU
+# MCU与WiFi协议模块化软件使用说明
 
 
 ##一、此文档包含 3 个文档，分别为
-1.	DriveWifi.c – wifi绑定和通信模块驱动，不可更改文件。
-2.	DriveWifi.h – wifi驱动头文件,不可更改文件。
-3.	WifiConfig.h –wifi模块配置信息，根据不同的设备而修改。
+1.DriveWifi.c – wifi绑定和通信模块驱动，不可更改文件。
+2.DriveWifi.h – wifi驱动头文件,不可更改文件。
+3.WifiConfig.h –wifi模块配置信息，根据不同的设备而修改。
 
 ##二、函数 API 说明
 ###2.1	void Het_DriveWifi_WifiInit(pfUartSend _pf_uart_send,pfUartDecode _pf_uart_decode,pfWifiReset _pf_wifi_reset)
