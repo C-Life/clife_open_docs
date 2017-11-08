@@ -42,12 +42,12 @@ void fun(het_uint8_t flag)。
 <2> Arguments: NONE
 <3> Return:WiFi 状态值
 
-2.7	het_bool Het_DriveWifi_GetAppSynStatus (void)
+###2.7 het_bool Het_DriveWifi_GetAppSynStatus (void)
 <1> Description:获取 APP 同步状态函数
 <2> Arguments: NONE
 <3> Return:APP 同步值
 
-2.8	enum_WResult Het_DriveWifi_WifiDataSend (enum_CMDType _type,het_uint8_t *_pbuf,het_uint8_t _len)
+###2.8 enum_WResult Het_DriveWifi_WifiDataSend (enum_CMDType _type,het_uint8_t *_pbuf,het_uint8_t _len)
 <1> Description:发送用户私有数据函数,
 <2> Arguments:
 type – 用户发送的数据所处类型， 如CMD_TYPE_CTRL 表示为控制命令数据,
@@ -56,14 +56,14 @@ Pbuf – 用户发送数据缓存的首地址
 Len – 用户发送数据的长度
 <3> Return:发送的状态, WR_OK 表示发送成功 
 
-2.9	enum_WResult Het_DriveWifi_WifiProcess (void)
+###2.9 enum_WResult Het_DriveWifi_WifiProcess (void)
 <1> Description:wifi 绑定和数据交互处理,此函数放在主循环里面
 <2> Arguments:NONE
 <3> Return:返回当前程序的状态。特别注意的是，当返回状态等于
 WR_WAIT_SEND_CTRL_CMD 或者 WR_TIMER_SEND_STATUS_CMD 时，程序正处于
 塞状态,等待用户输入设备控制和状态数据。
 
-三、操作流程
+##三、操作流程
 1、修改 WifiConfig.h 文件里面的如下配置信息：
 <1>DEVICE_TYPE- 设备类型（该信息在开放平台上创建产品后获得）
 <2>DEVICE_KEY - 设备秘钥（该信息在开放平台上创建产品后获得）
