@@ -32,12 +32,12 @@ void fun(het_uint8_t flag)。
 <2> Arguments: flag – 如果 flag 大于 0,表示使能绑定操作
 <3> Return:NONE
 
-2.5 void Het_DriveWifi_WifiModuleTestCmd (het_uint8_t _flag)
+###2.5 void Het_DriveWifi_WifiModuleTestCmd (het_uint8_t _flag)
 <1> Description:WIFI 进入产测条件
 <2> Arguments: flag – 如果 flag 大于 0,表示使能产测操作
 <3> Return:NONE
 
-2.6	het_uint8_t Het_DriveWifi_GetWifiStatus (void)
+###2.6 het_uint8_t Het_DriveWifi_GetWifiStatus (void)
 <1> Description:获取 WiFi 连接状态函数
 <2> Arguments: NONE
 <3> Return:WiFi 状态值
