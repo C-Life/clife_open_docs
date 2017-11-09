@@ -29,7 +29,7 @@ URL： /v1/feedback/addFeedback
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0; border-collapse: collapse;" cellspacing="0">
+<table width="90%" style="border-spacing: 0; border-collapse: collapse;" cellspacing="0">
 	<tbody>
 		<tr>
 			<th width="16%">参数名称</th>
