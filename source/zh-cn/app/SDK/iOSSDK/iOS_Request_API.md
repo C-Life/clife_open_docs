@@ -78,7 +78,7 @@ URL： /v1/feedback/addFeedback
 			<td>feedbackType</td>
 			<td>是</td>
 			<td>number</td>
-			<td>问题类型（1-APP问题，2-硬件设备，3-配网相关，4-意见建议 ，5 -其它）</td>
+			<td>问题类型（1-APP问题，2-硬件设备，3-配网相关，4-意见建议 ，5 -其它）					    </td>
 		</tr>	
 		<tr>
 			<td>source</td>
