@@ -1,27 +1,9 @@
 # 应用辅助接口
 
-### 1、意见反馈
-```
-/**
- *  意见反馈
- *
- *  @param content  意见反馈内容
- *  @param contact  意见反馈联系方式    (非必传递参数)
- *  @param success  意见反馈成功的回调
- *  @param failure  意见反馈失败的回调
- *
- *  成功 Json: { "code":0 }
- *
- */
 
-+ (void)feedbackWithContent:(NSString *)content
-                withContact:(NSString *)contact
-                    success:(void(^)(id responseObject))success
-                    failure:(void(^)( NSError *error))failure;
-                    
-```
 
-### 2、消息模块
+
+### 1、消息模块
 
 SDK提供了`HETApplicationMessageBusiness`来处理相关消息接口。
 
