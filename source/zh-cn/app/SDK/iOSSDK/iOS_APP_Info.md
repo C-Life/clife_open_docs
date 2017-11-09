@@ -1,9 +1,7 @@
-# 应用辅助接口
 
 
 
-
-### 1、消息模块
+## 1、消息模块
 
 SDK提供了`HETApplicationMessageBusiness`来处理相关消息接口。
 
