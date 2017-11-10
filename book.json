@@ -53,8 +53,7 @@
         },
         "tbfed-pagefooter": {
             "copyright":"Copyright ©2017 clife - 深圳和而泰家居在线网络科技有限公司 粤ICP备14057188号-1",
-            "modify_label": "该文件修订时间：",
-            "modify_format": "YYYY-MM-DD HH:mm:ss"
+    
         },
         "simple-page-toc": {
             "maxDepth": 3,
