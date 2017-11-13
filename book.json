@@ -41,7 +41,8 @@
        "favicon@^0.0.2",
        "todo@^0.1.3",
 	   "search-pro",
-       "toggle-chapters"
+       "toggle-chapters",
+	   "top-nav"
    ],
    "pluginsConfig": {
        "theme-default": {
