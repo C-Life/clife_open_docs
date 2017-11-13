@@ -1,0 +1,98 @@
+.w-nav {
+    position: relative;
+    background: #dddddd;
+    z-index: 1000;
+}
+.w-nav:before,
+.w-nav:after {
+    content: " ";
+    display: table;
+}
+.w-nav:after {
+    clear: both;
+}
+.w-container {
+    margin-left: 40px;
+    margin-right: auto;
+    max-width: 940px;
+}
+.w-container:before,
+.w-container:after {
+    content: " ";
+    display: table;
+}
+.w-container:after {
+    clear: both;
+}
+.w-container .w-row {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.w-nav-brand {
+    position: relative;
+    float: left;
+    text-decoration: none;
+    color: #333333;
+}
+.w-nav-menu {
+    position: relative;
+    float: right;
+}
+.w-nav-link {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-decoration: none;
+    color: #222222;
+    padding: 20px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top-nav-header {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    background-color: #fff;
+}
+
+.top-nav-navlink {
+    padding-top: 25px;
+    font-family: 'Lato', sans-serif;
+    color: #a6b5bf;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.top-nav-navlink:hover {
+    color: #000;
+}
+
+.top-nav-navlink.w--current {
+    color: #000;
+    font-weight: 600;
+}
+
+.top-nav-navlink.signup {
+    color: #693453;
+    font-weight: 700;
+}
+
+.top-nav-navlink.signup:hover {
+    color: #48eea5;
+}
+
+.top-nav-logo {
+    padding: 18px 0px;
+    opacity: 0.86;
+    color: #c23939;
+}
+
+.top-nav-logo:hover {
+    box-shadow: 0 0 6px 0 #fff;
+    opacity: 0.74;
+}
