@@ -1,4 +1,21 @@
-# MCU与WiFi协议模块化软件使用说明
+# 和而泰云端通讯MCU程序详解
+## 通讯协议详解
+### 1、通讯数据格式
+![](/images/通信数据格式.png)
+### 2、数据包格式
+![](/images/数据包格式.png)
+#### 说明
+1> 起始标志：固定为5A;
+2> 数据长度：从数据长度到整包数据结束所占用的字节数;
+3> 协议版本：根据用户需要接入的平台选择版本信息，具体如下：
+![](/images/版本信息.png)
+4> wifi状态：wifi模块的连接信息，发送是填0，接收时具体解析如下：
+![](/images/wifi状态信息.png)
+5> 数据帧序：设备主发0x00000000-0x0fffffff;服务器主发0X10000000-0x1fffffff;APP主发0X20000000-0x2fffffff;滚动增加,应答时原样返回;
+6> 保留：固定0x0000;
+7> 数据类型： 
+
+
 
 
 ##一、此文档包含 3 个文档，分别为
@@ -8,19 +25,19 @@
 
 ##二、函数 API 说明
 ###2.1	void Het_DriveWifi_WifiInit(pfUartSend _pf_uart_send,pfUartDecode _pf_uart_decode,pfWifiReset _pf_wifi_reset)
-<1> Description:wifi 模组初始函数，用于注册用户函数。
+<1> Description: wifi 模组初始函数，用于注册用户函数。
 <2> Arguments:
 _pf_uart_send – 用户串口发送字符串函数，函数名可自定义，函数原型必须为： 
 void fun(het_uint8_t*pbuf,het_uint16_t len)。
 _pf_uart_decode – 用户命令解码函数，函数名可自定义，函数原型必须为： 
 void fun(het_uint16_t cmd,het_uint8_t *pbuf,het_uint16_t len)。
-_pf_wifi_reset– 用户wifi 模组复位函数,函数名可自定义，函数原型必须为:
+_pf_wifi_reset – 用户wifi 模组复位函数,函数名可自定义，函数原型必须为:
 void fun(het_uint8_t flag)。
 <3> Return:NONE
 
 ###2.2 void Het_DriveWifi_SystickISR (void)
-<1> Description:此函数作用是给程序提供 10ms 时钟,必须放在 10ms 定时器里
-<2> Arguments:NONE
+<1> Description: 此函数作用是给程序提供 10ms 时钟,必须放在 10ms 定时器里
+<2> Arguments: NONE
 <3> Return: NONE 
 ###2.3 void Het_DriveWifi_UsartRecvISR (het_uint8_t _het_data)
 <1> Description:WIFI 模组串口中断接收函数,必须放在串口中断函数里面

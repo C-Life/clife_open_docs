@@ -19,6 +19,10 @@ pod --help
 ```
 pod 'HETOpenSDK','0.1.1'
 
+
+#SDK依赖的第三方库
+pod 'Masonry','1.0.2'
+pod  'SSZipArchive','1.1'
 ```
 
 ###2.3 安装
@@ -37,24 +41,20 @@ pod 'HETOpenSDK','0.1.1'
 ###3.2 在podfile中导入对应的sdk，并且安装，对应类表如下：
 
 ```
-# TI-WiFi模组
-pod 'HETPublicSDK_WiFiModule_TI_CC3200R2',      '1.0.0'
+
+source 'https://github.com/C-Life/HETSDKSpecs.git'
+source 'https://github.com/CocoaPods/Specs.git'  
+
+# 汉枫-WiFi模组 乐鑫-WiFi模组 COOEE-WiFi模组 MarvellV2-WiFi模组
+# 自持模拟器和真机调试
 # 汉枫-WiFi模组
-pod 'HETPublicSDK_WiFiModule_HF_LPT100_V3',     '1.0.0'
-# 科中龙-WiFi模组
-pod 'HETPublicSDK_WiFiModule_Realtek8711AF',    '1.0.0'
-# 信驰达-WiFi模组
-pod 'HETPublicSDK_WiFiModule_MTK7681',          '1.0.0'
-# 信驰达-WiFi模组
-pod 'HETPublicSDK_WiFiModule_MTK7687',          '1.0.1'
-# 新力维-WiFi模组
-pod 'HETPublicSDK_WiFiModule_NL6621',           '1.0.0'
+pod 'HETPublicSDK_WiFiModule/HF_LPT100_V3','1.0.0'
 # 乐鑫-WiFi模组
-pod 'HETPublicSDK_WiFiModule_ESP8266',          '1.0.0'
+pod 'HETPublicSDK_WiFiModule/ESP8266', '1.0.0'
 # COOEE-WiFi模组
-pod 'HETPublicSDK_WiFiModule_COOEE',            '1.0.0'
+pod 'HETPublicSDK_WiFiModule/COOEE','1.0.0'
 # MarvellV2-WiFi模组
-pod 'HETPublicSDK_WiFiModule_Marvell_MW300_V2', '1.0.0'
+pod 'HETPublicSDK_WiFiModule/Marvell_MW300_V2','1.0.0'
 
 ```
 **备注**：在使用了Wifi模组后，就不再支持模拟器调试。
