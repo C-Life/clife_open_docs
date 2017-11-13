@@ -19,6 +19,10 @@ pod --help
 ```
 pod 'HETOpenSDK','0.1.1'
 
+
+#SDK依赖的第三方库
+pod 'Masonry','1.0.2'
+pod  'SSZipArchive','1.1'
 ```
 
 ###2.3 安装
