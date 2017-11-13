@@ -14,7 +14,7 @@ _pf_uart_send – 用户串口发送字符串函数，函数名可自定义，�
 void fun(het_uint8_t*pbuf,het_uint16_t len)。
 _pf_uart_decode – 用户命令解码函数，函数名可自定义，函数原型必须为： 
 void fun(het_uint16_t cmd,het_uint8_t *pbuf,het_uint16_t len)。
-_pf_wifi_reset– 用户wifi 模组复位函数,函数名可自定义，函数原型必须为:
+_pf_wifi_reset – 用户wifi 模组复位函数,函数名可自定义，函数原型必须为:
 void fun(het_uint8_t flag)。
 <3> Return:NONE
 
