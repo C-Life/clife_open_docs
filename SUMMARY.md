@@ -1,12 +1,10 @@
 # 目录
 
-* [首页](index.md)
+
 * [1. 平台概述](./source/zh-cn/overview/index.md)
 	* [1.1平台介绍](./source/zh-cn/overview/platform_introduction.md)
-
 * [2. 产品开发](./source/zh-cn/product/index.md)
 	* [2.1 创建产品](./source/zh-cn/product/product.md)
-
 * [3. APP开发](./source/zh-cn/app/index.md)
 	* [3.1 应用管理](./source/zh-cn/app/application/application.md)
 		* [3.1.1 新建应用](./source/zh-cn/app/application/application.md)
