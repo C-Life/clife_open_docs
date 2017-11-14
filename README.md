@@ -15,7 +15,6 @@
   * /source
     * zh-cn
       * overview   --平台概述
-        * index.md --平台概述首页
         * platform\_introduction.md --平台介绍
         * access\_flow\_introduction.md --接入流程介绍
         * contact\_us.md--联系我们
