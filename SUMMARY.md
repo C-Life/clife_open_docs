@@ -31,7 +31,6 @@
 		* [3.2.3 H5 SDK](./source/zh-cn/app/SDK/H5.md)
 	* [3.3 APP 开源框架](./source/zh-cn/App/app.md)
 		* [3.3.1 android APP 开源框架](./source/zh-cn/app/SDK/android_demo.md)
-		* [3.3.2 iOS APP 开源框架](./source/zh-cn/app/SDK/android_demo.md)
 * [4. 硬件开发](./source/zh-cn/device/index.md)
 	* [4.1 硬件接入准备工作](./source/zh-cn/device/hardware_star.md)
 	* [4.2 硬件MCU及源代码](./source/zh-cn/device/mcu_source.md)
@@ -49,4 +48,3 @@
 	* [6.7 运营管理]()
 * [7. 推送服务](./source/zh-cn/datapush/index.md)
 	* [7.1 Android 推送服务](./source/zh-cn/app/SDK/android_push.md)
-	* [7.2 iOS 推送服务]
