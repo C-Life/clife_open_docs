@@ -9,11 +9,6 @@
 
    "gitbook": ">= 3.0.0",
    "root": "./",
-   "links": {
-       "sidebar": {
-           "Home": "https://clife.cn/#/"
-       }
-   },
   
    "language": "zh-hans",
 
