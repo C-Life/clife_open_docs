@@ -9,7 +9,6 @@
    "language": "zh-hans",
 
    "gitbook": ">= 3.0.0",
-   "root": "./",
    "plugins": [
        "-sharing",
        "-fontsettings",
