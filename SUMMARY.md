@@ -46,5 +46,5 @@
 	* [6.6 书签管理]()
 	* [6.7 运营管理]()
 * [7. 推送服务](./source/zh-cn/datapush/index.md)
-	* [7.1 Android 推送服务](./source/zh-cn/app/application/android_push.md)
+	* [7.1 Android 推送服务](./source/zh-cn/app/SDK/android_push.md)
 	* [7.2 iOS 推送服务]
