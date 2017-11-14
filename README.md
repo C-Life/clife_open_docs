@@ -14,23 +14,10 @@
 * 文档目录存放于`SUMMARY.md`文件中。根据现有文档类别，见文档目录结构制定如下（后期可能会调整文档目录存放位置，但结构不变）：
   * /source
     * zh-cn
-      * overview   --平台概述
-        * index.md --平台概述首页
-        * platform\_introduction.md --平台介绍
-        * access\_flow\_introduction.md --接入流程介绍
-        * contact\_us.md--联系我们
-      * product    --产品开发
-        * index.md--产品开发首页
-        * product.md--创建产品
-        * protocol\_config.md --协议配置
-        * page\_config.md --页面配置
-        * debugging.md --设备调试
-        * access\_scheme.md --接入方案
-        * network\_config.md --联网配置
-        * upgrade.md --固件升级
-        * mac.md --MAC管理
-        * publish\_product.md --发布产品
-        * brand.md--品牌管理
+      * overview   --平台概述  
+        * index.md
+      * product    --产品开发  
+        * index.md
       * app        --app开发
         * application--应用管理
           * application.md
