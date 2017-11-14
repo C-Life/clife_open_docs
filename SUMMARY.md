@@ -1,6 +1,5 @@
 # 目录
 
-* [首页](index.md)
 * [1. 平台概述](./source/zh-cn/overview/index.md)
 	* [1.1平台介绍](./source/zh-cn/overview/platform_introduction.md)
 	* [1.2接入流程介绍](./source/zh-cn/overview/access_flow_introduction.md)
