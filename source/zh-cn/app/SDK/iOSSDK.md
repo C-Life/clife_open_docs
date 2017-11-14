@@ -77,10 +77,10 @@ pod update
 
 ```
 
-##3. 导入硬件模组对应的SDK
-###3.1 根据产品类型找到对应的芯片模组名称，如下：
+###3. 导入硬件模组对应的SDK
+####3.1 根据产品类型找到对应的芯片模组名称，如下：
 ![](/assets/查看芯片模组类型.png)
-###3.2 在podfile中导入对应的sdk，并且安装，对应类表如下：
+####3.2 在podfile中导入对应的sdk，并且安装，对应类表如下：
 
 ```
 source 'https://github.com/C-Life/HETSDKSpecs.git'
@@ -111,8 +111,8 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 ```
 **备注**：在使用了Wifi模组后，就不再支持模拟器调试。
 
-##4. 注册使用SDK
-###4.1 在AppDelegate中如下地方添加，注册使用SDK，打开Log
+###4. 注册使用SDK
+####4.1 在AppDelegate中如下地方添加，注册使用SDK，打开Log
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
