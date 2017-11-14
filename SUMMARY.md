@@ -30,6 +30,7 @@
 		* [3.2.2 iOS SDK](./source/zh-cn/app/SDK/iOSSDK.md)
 		* [3.2.3 H5 SDK](./source/zh-cn/app/SDK/H5.md)
 	* [3.3 APP 开源框架](./source/zh-cn/App/app.md)
+		* [3.2.1 android SDK](./source/zh-cn/app/SDK/android_sdk.md)
 * [4. 硬件开发](./source/zh-cn/device/index.md)
 	* [4.1 硬件接入准备工作](./source/zh-cn/device/hardware_star.md)
 	* [4.2 硬件MCU及源代码](./source/zh-cn/device/mcu_source.md)
