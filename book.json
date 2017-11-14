@@ -41,7 +41,7 @@
    ],
    "pluginsConfig": {
        "theme-default": {
-           "showLevel": false
+           "showLevel": ture
        },
        "disqus": {
            "shortName": "geekjc"
