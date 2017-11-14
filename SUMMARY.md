@@ -1,6 +1,5 @@
 # Summary
 
-
 * [1. 平台概述](./source/zh-cn/overview/index.md)
 * [2. 产品开发](./source/zh-cn/product/index.md)
 * [3. APP开发](./source/zh-cn/app/index.md)
