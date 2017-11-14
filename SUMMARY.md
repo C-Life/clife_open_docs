@@ -39,6 +39,6 @@
 ## test
 
 * test1
-  * bTest1
+  * [bTest1](./source/zh-cn/datapush/index.md)
 * test2
 
