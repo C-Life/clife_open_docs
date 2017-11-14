@@ -36,11 +36,3 @@
 * [7. 推送服务](./source/zh-cn/datapush/index.md)
   * [7.1 Android 推送服务](./source/zh-cn/app/SDK/android_push.md)
 
-## test
-
-* [test1](./source/zh-cn/datapush/index.md)
-  * [bTest1.1](./source/zh-cn/datapush/index.md)
-    * cTest1.1.1
-    * cTest1.1.2
-* test2
-
