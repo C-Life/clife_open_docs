@@ -11,6 +11,12 @@
 - [六、 SDKWIFI设备的控制](#WIFI设备的控制)
 - [七、 SDK蓝牙设备的控制](#SDK蓝牙设备的控制)
 - [八、 SDK设备的分享](#SDK设备的分享)
+- [九、 其他接口](#业务性接口)
+
+
+
+
+
 
 
 
@@ -1147,7 +1153,7 @@ WEAKSELF
 ```
 ## 九、其他接口
 
-** 其他接口指业务性接口，如意见反馈、获取账号信息、常见问题、隐私政策、版本声明 等 **
+** 其他接口指业务性接口，如意见反馈、常见问题、隐私政策、版本声明 等 **
 
 ** 使用方法：用户选择对应的requestUrl作参数，调用sdk提供的通用接口 **
 
@@ -1170,20 +1176,22 @@ WEAKSELF
                  BlockWithSuccess:(successBlock)success
                           failure:(failureBlock)failure
 ```
-```
-requestUrl说明
+**requestUrl说明**
+
 
 | requestUrl |   参数说明   |
 |------------------|------------------|
 | /v1/feedback/addFeedback | 意见反馈       |
-| shareType | 获取账号信息    |
-| shareType | 隐私政策       |
-| shareType | 版本声明       |
+| 暂未开放 | 常见问题       |
+| 暂未开放 | 隐私政策       |
+| 暂未开放 | 版本声明       |
 
+
+### 1.意见反馈
 【示例代码】
-
+```
 WEAKSELF
-[HETDeviceRequestBusiness startRequestWithHTTPMethod:HETRequestMethodPost withRequestUrl:@“/v1/feedback/addFeedback” processParams:params needSign:NO       BlockWithSuccess:^(id responseObject) {
+[HETDeviceRequestBusiness startRequestWithHTTPMethod:HETRequestMethodPost withRequestUrl:@"/v1/feedback/addFeedback" processParams:params needSign:NO BlockWithSuccess:^(id responseObject) {
 [HETCommonHelp hideHudFromView:weakSelf.view];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [HETCommonHelp showHudAutoHidenWithMessage:@"提交成功，谢谢您的反馈"];
