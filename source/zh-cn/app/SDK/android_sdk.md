@@ -660,10 +660,10 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 
 ### 4.2.设备绑定
 
-### 4.2.1.WIFI设备绑定
+#### 4.2.1.WIFI设备绑定
 WIFI设备绑定分AP模式绑定和smartLink模式绑定。
 
-#### 4.2.1.1.绑定模式简介
+##### 4.2.1.1.绑定模式简介
 
 WIFI设备AP绑定流程图如下：
 
@@ -685,7 +685,7 @@ APP启动绑定之前，将设备设置成配置模式。 APP发送要配置的�
 1.获取路由器ssid和密码  
 2.传入参数产品ID productId，路由器ssid 和 密码，启动绑定  
 
-#### 4.2.1.2.启动绑定  
+##### 4.2.1.2.启动绑定  
 
 HetWifiBindApi.getInstance().startBind() 启动绑定。
 
@@ -728,7 +728,7 @@ HetWifiBindApi.getInstance().startBind() 启动绑定。
 
 
 
-### 4.2.2.BLE蓝牙设备绑定
+#### 4.2.2.BLE蓝牙设备绑定
 HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。整个过程有2个步骤：  
 第一步：扫描搜索周围设备；  
 第二步：选择扫描到的某个设备绑定到服务器；  
@@ -1092,7 +1092,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
 
 第三步:被分享者接收设备控制邀请，完成设备的分享。
 
-被分享者通过第三方平台（微信或QQ）收到URL，在浏览器打开URL。浏览器请求打开用户APP（通过scheme协议），用户APP获取到shareCode调用HetDeviceShareApi.getInstance().authShareDevice() 接收设备控制邀请。
+被分享者通过第三方平台（微信或QQ）收到URL，在浏览器打开URL。浏览器请求打开用户APP（通过scheme协议），用户APP获取到shareCode调用HetDeviceShareApi.getInstance().authShareDevice() 接收设备控制邀请。  
 
     HetDeviceShareApi.getInstance().authShareDevice(new IHetCallback() {
         @Override
@@ -1127,7 +1127,15 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
 
 ## 6.设备控制
 
-设备有WIFI设备控制和蓝牙设备控制两种，wifi设备控制流程图示如下：
+SDK封装了WIFI设备控制接口和BLE蓝牙设备控制接口，需要根据具体的设备类型来调用。
+
+| 字段名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| moduleType | number | 模块类型（1-WiFi，2-蓝牙，9-WIFI-AP模式） |
+
+### 6.1.WIFI设备控制 
+
+wifi设备控制流程图示如下：
 
  ![](https://i.imgur.com/6Q1Dk6V.png)
 
@@ -1232,9 +1240,17 @@ WIFI设备控制具体可以分成3个步骤：
 	        HetWifiDeviceControApi.getInstance().stop();
 	    }
 
-注意:设备控制的时候会有一个updateFlag字段。这个字段标识是改变了那几个控制字段。
+注意: 设备控制的时候会有一个updateFlag字段。  
+这个修改标记位是为了做统计和配置下发的时候设备执行相应的功能。下发数据必须传递updateflag标志
 
-第二种 蓝牙设备控制：  
+例如，空气净化器（广磊K180）配置信息协议：
+紫外线(1)、负离子(2)、臭氧(3)、儿童锁(4)、开关(5)、WiFi(6)、过滤网(7)、模式(8)、定时(9)、风量(10) 上面一共上10个功能，那么updateFlag就2个字节，没超过8个功能为1个字节，超过8个为2个字节，超过16个为3个字节，以此类推。
+
+打开负离子，2个字节，每一个bit的值为下：
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
+
+### 6.2.蓝牙设备控制 
+  
 蓝牙设备控制主要是通过手机和蓝牙设备先建立连接，然后根据定义的协议进行数据交互，具体的交互流程图如下：
 
  ![](https://i.imgur.com/mFZmrXE.png)
@@ -1306,14 +1322,18 @@ SDK对开放平台蓝牙设备提供写数据的标准接口 HetCommonBleControl
     };
 
 第一个参数是设备mac。  
-第二个参数是开放平台蓝牙协议标准接口类型。可以参照一下：  
-CmdIndexConstant.HET_COMMAND_BIND_APP      			绑定APP  
-CmdIndexConstant.HET_COMMAND_GET_TIME_APP   		获取设备时间  
-CmdIndexConstant.HET_COMMAND_SET_TIME_APP			设置设备时间  
-CmdIndexConstant.HET_COMMAND_GET_HISTORY_DATA_APP	获取设备历史数据  
-CmdIndexConstant.HET_COMMAND_CLEAR_HISTORY_DATA_APP 清楚设备历史数据  
-CmdIndexConstant.HET_COMMAND_GET_REAL_TIME_DATA_APP 获取真实的设备数据 
-CmdIndexConstant.HET_COMMAND_CONFIG_DATA_APP		下发控制协议  
+第二个参数是开放平台蓝牙协议标准指令类型。可以参照一下：    
+
+| 指令类型 | 指令说明 |
+|---------|---------|
+| CmdIndexConstant.HET_COMMAND_BIND_APP | 绑定APP |
+| CmdIndexConstant.HET_COMMAND_GET_TIME_APP | 获取设备时间 |
+| CmdIndexConstant.HET_COMMAND_SET_TIME_APP | 设置设备时间 |
+| CmdIndexConstant.HET_COMMAND_GET_HISTORY_DATA_APP | 获取设备历史数据 |
+| CmdIndexConstant.HET_COMMAND_CLEAR_HISTORY_DATA_APP | 清楚设备历史数据 |
+| CmdIndexConstant.HET_COMMAND_GET_REAL_TIME_DATA_APP | 获取真实的设备数据 |
+| CmdIndexConstant.HET_COMMAND_CONFIG_DATA_APP | 下发控制协议 |
+ 
 第三个参数是写数据成功与否的监听回调。这里开发者可以自行做重发处理。  
 
 第四步：读数据  
@@ -1339,16 +1359,20 @@ SDK对开放平台蓝牙设备提供写数据的标准接口 HetCommonBleControl
     };
 
 第一个参数是设备mac。  
-第二个参数是开放平台蓝牙协议标准接口类型。可以参照一下：  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SYSTEM_ID     			System Id  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_FIRMWARE_REVISION   	Firmware Revision  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_HARDWARE_REVISION		Hardware Revision  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SOFTWARE_REVISION		Software Revision  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SERIAL_NUMBER 			Serial Number  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_MANUFACTURE_NAME 		Manufacture Name（）  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_MODEL_NUMBER			Model Number  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_PNP_ID					PnP ID  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_BATTERY					Battery Level  
+第二个参数是开放平台蓝牙协议标准指令类型。可以参照一下：  
+
+| 指令类型 | 指令说明 |
+|---------|---------|
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SYSTEM_ID | System Id  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_FIRMWARE_REVISION | Firmware Revision   |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_HARDWARE_REVISION | Hardware Revision  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SOFTWARE_REVISION | Software Revision  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SERIAL_NUMBER | Serial Number  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_MANUFACTURE_NAME | Manufacture Name  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_MODEL_NUMBER | Model Number  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_PNP_ID | PnP ID  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_BATTERY | Battery Level  |
+
 第三个参数是读数据成功与否的监听回调。  
 
 第五步：释放资源(断开连接)
