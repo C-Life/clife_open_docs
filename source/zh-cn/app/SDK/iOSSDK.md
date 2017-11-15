@@ -1088,21 +1088,23 @@ weakSelf
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     // 将URL转成字符串
-    // URL sechmel: hetopenplatform
-    NSString *urlString = url.absoluteString;
-    if ([urlString isEqualToString:@"hetopenplatform://"]) {
+    NSString *urlString = url.scheme;
+    if ([urlString isEqualToString:@"hetopenplatform"]) {
         NSString *shareCode = [[url.host  componentsSeparatedByString:@"="] lastObject];
-        [HETDeviceShareBusiness authShareDeviceWithShareCode:shareCode shareType:HETDeviceShareType_FaceToFaceShare success:^(id responseObject) {
-            NSLog(@"获取设备权限成功 == %@",responseObject);
-            
+        [HETDeviceShareBusiness authShareDeviceWithShareCode:shareCode shareType:HETDeviceShareType_ThirthShare success:^(id responseObject) {
+            OPLog(@"responseObject == %@",responseObject);
+            [HETCommonHelp showHudAutoHidenWithMessage:@"获取设备权限成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:BindDeviceSuccess object:nil];
+
         } failure:^(NSError *error) {
-            NSLog(@"error == %@",error);
+            OPLog(@"error == %@",error);
+            [HETCommonHelp showHudAutoHidenWithMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
         }];
         return YES;
+    }else{
+        BOOL result = [HETOpenSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+        return result;
     }
-
-    BOOL result = [HETOpenSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-    return result;
 }
                             
 ```
