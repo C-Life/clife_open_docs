@@ -19,9 +19,11 @@ Not Only Demo 以开放平台sdk和主流的APP开发框架为基础搭建一套
 <img src="/assets/iOS/ios代码主题结构.png"  alt="设备主框架" align=center />
 
 </center>
+
 #### 项目包括的主要UI
 
 ##### 登录
+
 <center>
 <img src="/assets/登录授权界面.png" width = "300" height = "520" alt="设备主框架" align=center />
 <img src="/assets/我的界面.png" width = "300" height = "520" alt="H5页面控制页面" align=center />
@@ -39,6 +41,7 @@ Not Only Demo 以开放平台sdk和主流的APP开发框架为基础搭建一套
 
 
 #### 3.设备类型选择页面，设备扫描页面，设备绑定页面
+
 <center>
 <img src="/assets/iOS/绑定获取大类页面.PNG" width = "300" height = "520" alt="设备大类选择" align=center />
 <img src="/assets/iOS/绑定获取子类页面.PNG" width = "300" height = "520" alt="设备小类选择" align=center />
