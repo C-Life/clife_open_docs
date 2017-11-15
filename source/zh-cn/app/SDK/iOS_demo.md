@@ -16,7 +16,7 @@ Not Only Demo 以开放平台sdk和主流的APP开发框架为基础搭建一套
 #### 目录结构
 
 <center>
-<img src="/assets/iOS/ios代码主题结构.png" width = "300" height = "520" alt="设备主框架" align=center />
+<img src="/assets/iOS/ios代码主题结构.png"  alt="设备主框架" align=center />
 
 </center>
 #### 项目包括的主要UI
