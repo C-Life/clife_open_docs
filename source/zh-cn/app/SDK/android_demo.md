@@ -13,9 +13,11 @@ Not Only Demo 以开放平台sdk和主流的APP开发框架为基础搭建一套
 ### Not Only Demo项目功能模块说明
 
 #### 目录结构
+
 <center>
-![](https://i.imgur.com/rQdI4cb.jpg)
+<img src="https://i.imgur.com/rQdI4cb.jpg"  align=center />
 </center>
+
 #### 项目包括的主要UI
  
 ##### 1.账号授权页面和APP侧边栏框架
