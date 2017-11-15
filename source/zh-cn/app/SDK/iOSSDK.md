@@ -1147,8 +1147,11 @@ WEAKSELF
 ```
 ## 九、其他接口
 
-** 其他接口一般是一般是业务性接口
-### 1.意见反馈
+** 其他接口指业务性接口，如意见反馈、获取账号信息、常见问题、隐私政策、版本声明 等 **
+
+** 使用方法：用户选择对应的requestUrl作参数，调用sdk提供的通用接口 **
+
+** 通用接口如下：**
 ```
 /**
  *  普通网络请求
@@ -1166,4 +1169,30 @@ WEAKSELF
                          needSign:(BOOL)needSign
                  BlockWithSuccess:(successBlock)success
                           failure:(failureBlock)failure
+```
+```
+requestUrl说明
+
+| requestUrl |   参数说明   |
+|------------------|------------------|
+| /v1/feedback/addFeedback | 意见反馈       |
+| shareType | 获取账号信息    |
+| shareType | 隐私政策       |
+| shareType | 版本声明       |
+
+【示例代码】
+
+WEAKSELF
+[HETDeviceRequestBusiness startRequestWithHTTPMethod:HETRequestMethodPost withRequestUrl:@“/v1/feedback/addFeedback” processParams:params needSign:NO       BlockWithSuccess:^(id responseObject) {
+[HETCommonHelp hideHudFromView:weakSelf.view];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HETCommonHelp showHudAutoHidenWithMessage:@"提交成功，谢谢您的反馈"];
+    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf.navigationController  popViewControllerAnimated: YES];
+    });
+} failure:^(NSError *error) {
+    [HETCommonHelp hideHudFromView:weakSelf.view];
+    [HETCommonHelp showHudAutoHidenWithMessage:@"提交失败，请检测网络连接"];
+}];
 ```
