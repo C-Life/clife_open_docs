@@ -25,8 +25,8 @@ Not Only Demo 以开放平台sdk和主流的APP开发框架为基础搭建一套
 ##### 登录
 
 <center>
-<img src="/assets/登录授权界面.png" width = "300" height = "520" alt="设备主框架" align=center />
-<img src="/assets/我的界面.png" width = "300" height = "520" alt="H5页面控制页面" align=center />
+<img src="/assets/登录授权界面.png" width="300" height="520" alt="设备主框架" align=center />
+<img src="/assets/我的界面.png" width="300" height="520" alt="H5页面控制页面" align=center />
 </center>
 
 
