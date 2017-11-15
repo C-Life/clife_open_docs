@@ -15,15 +15,15 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 
 这里的硬件模组是指的WIFI模组。在开放平台创建WIFI产品的时候需要指定设备的WIFI模组。开发者需要在APP中先注册WIFI模组才可以进行设备绑定。
 
-### 2.3.productId
+### 2.3.产品ID
 
-产品唯一标识。开发平台创建产品，自动分配。
+产品唯一标识。
 
-### 2.4.deviceId
+### 2.4.设备ID
 
-设备的唯一标识。设备绑定成功，自动分配。
+设备的唯一标识。
 
-## 3.SDK 快速开发，相关第三方库支持
+## 3.SDK 快速开发，第三方库支持
 
 ### 3.1.RxJava 函数式编程  
 
@@ -44,13 +44,13 @@ RxBus事件的取消订阅：
 
     RxManage.getInstance().unregister(HetCodeConstants.Login.LOGIN_SUCCESS);
 
-### 3.3.retrofit+okhttp 网络库的支持
+### 3.3.retrofit+okhttp 网络库
 
 开放平台SDK集成了retrofit+okhttp的网络库，用于请求服务器数据。
-### 3.4.ActiveAndroid 数据库支持
+### 3.4.ActiveAndroid 数据库
 
 开放平台SDK集成了 ActiveAndroid 第三方的轻量级的数据库,方便轻量级数据的存取。
-### 3.5.X5内核 浏览服务的支持
+### 3.5.X5内核 浏览服务
 
 开放平台SDK集成了X5内核的浏览服务，来提高移动端webview的加载性能和兼容性。  
 使用实例：
@@ -65,7 +65,7 @@ RxBus事件的取消订阅：
 注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：  
 android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 。
 
-### 3.6.第三方社交平台服务的支持
+### 3.6.第三方社交平台服务
 
 SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的分享和登录。 详细使用请查看 **第三方平台服务的集成（登录和分享）**
 
@@ -76,7 +76,7 @@ SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的
 
 ### 4.2.下载SDK终端DEMO 请前往下载中心下载最新SDK包。
 
-### 4.3.在Android Studio上集成SDK，配置项目根目录build.gradle如下：
+### 4.3.配置项目根目录build.gradle
 
 	allprojects {
 	    repositories {
@@ -90,7 +90,6 @@ SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的
 	    //clifesdk库
 	     compile 'com.github.szhittech:HetOpenSdk:1.0.7-SNAPSHOT'
 	}
-
 
 ### 4.4.引用SDK到工程中
 	 dependencies {
@@ -130,7 +129,9 @@ SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的
 	    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
 	}
 
-引用SDK，根据自己硬件的模组选择对应的库。
+查看开放平台产品模组类型，选择模组的依赖包。 
+
+![](https://i.imgur.com/98xFDg4.png)
 
 ### 4.5.配置AndroidManifest.xml 添加权限
 
@@ -218,7 +219,7 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
     }
 
 1、appId、appSecret可以在开放平台创建的应用的应用详情里查看。  
-2、HetSdkThirdDelegate 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **3.3（SDK第三方登录的集成）**。  
+2、HetSdkThirdDelegate 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **（SDK第三方登录的集成）**。  
 3、configModel.setH5UIconfig 配置授权登录页面主题样式; 通过参数定义的JSON字符串来进行配置，例如demoAPP是通过assets/h5UIConfig.json这个文件来组装JSON字符串的。
 
 **接口调用请求说明**  
@@ -314,7 +315,7 @@ SDK的授权登录页面样式可以通过JSON参数来配置，包括是否需�
         }
     }
 
-模组注册是按需注册，根据APP需要支持的设备模组类型来选择性注册。
+模组注册是按需注册，根据开放平台产品模组类型来选择。
 
 ## 3.授权登录和用户模块
 
@@ -367,7 +368,6 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 
 	HetSdk.getInstance().logout();
 
-退出登录之后记得发出通知APP相应的页面跳转到首页，并刷新到未登录的状态。
 例如：
 
 	 public void logout() {
@@ -496,17 +496,10 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 
 开放平台封装了wifi设备和蓝牙设备绑定接口，包括手机与服务器、手机与智能设备的通讯接口。开发者只要获取到设备的产品ID就可以调用SDK的绑定接口进行设备绑定，不需要关注复杂的绑定流程。  
 
-WIFI设备AP绑定流程图如下：
-
-![](https://i.imgur.com/AXPq6FR.png)
-
-WIFI设备SmartLink绑定流程图如下：
-
- ![](https://i.imgur.com/J5AWpvN.png)
-
+### 4.1.获取产品ID 
 开放平台SDK提供了三种方式来获取产品ID。  
 
-第一种：获取设备大类和设备小类（设备小类信息包含产品ID，也就是productId字段），具体分成2个步骤。  
+第一种：获取设备大类和设备小类（设备小类信息包含产品ID），具体分成2个步骤。  
 1.获取设备大类型  
 HetDeviceListApi.getInstance().getTypeList() 获取APP支持绑定的设备大类型。  
 调用实例：
@@ -529,9 +522,30 @@ HetDeviceListApi.getInstance().getTypeList() 获取APP支持绑定的设备大�
             }
      });
 
+服务器返回的结果示例：  
+
+	{
+	    "data": [
+	    {
+	
+	        "deviceTypeId": 1,
+	        "deviceTypeName": "冰箱",
+	        "deviceTypeIcon": null
+	    }],
+	    "code": 0
+	}
+
+DeviceTypeModel参数说明：
+
+| 字段名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| deviceTypeId | number | 设备大分类标识 |
+| deviceTypeName | String | 设备大分类名称 |
+| deviceTypeIcon | String | 设备图标 |
+
 2.获取设备小类型  
-HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的设备大类型。  
-通过选择的设备大类，查询大类下的小类列表。
+HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的设备小类型。  
+通过选择的设备大类，查询大类下的小类列表。  
 
 	HetDeviceListApi.getInstance().getSubTypeListProduct(new IHetCallback() {
             @Override
@@ -547,10 +561,66 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 				//获取设备小类列表失败
                    .............
             }
-        }, deviceType);//deviceType 是大类类型
+        }, deviceType);//deviceType 设备大分类标识
+
+服务器返回结果示例：  
+
+	{
+	    "data": [
+	    {
+	        "deviceTypeId": 1,
+	        "deviceSubtypeId": 1,
+	        "deviceSubtypeName": "冰箱",
+	        "productId": 1,
+	        "productName": "惠而浦-KST",
+	        "productCode": "kst-001",
+	        "productIcon": "http://200.200.200.50/v1/device/icon/1.png",
+	        "moduleId": 3,
+	        "moduleType": 1,
+	        "moduleName": "汉枫"，
+	        "remark": "备注",
+	        "radiocastName":null,
+	        "ssid":null,
+	        "ssidPassword":null,
+	        "deviceCode": "0000C3AA00010105",
+	        "guideUrl"："http://200.200.200.50/XXX
+	    }],
+	    "code": 0
+	}
+
+返回字段说明：  
+
+| 字段名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| deviceTypeId	 | number | 设备大分类标识 |
+| deviceSubtypeId | number | 设备子分类标识 |
+| deviceSubtypeName	 | string | 设备子分类名称 |
+| productId | number | 设备型号标识 |
+| productName | string | 设备型号名称 |
+| productCode | string | 设备型号编码 |
+| productIcon | string | 设备型号图标 |
+| moduleId | number | 模块类型（1-WiFi，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
+| moduleType | number | 设备型号图标 |
+| moduleName | string | 模块名称 |
+| remark | string | 备注 |
+| radiocastName | string | 设备广播名 |
+| ssid | string | WIFI ssid |
+| ssidPassword | string | ssid密码 |
+| deviceCode | string | 设备编码 |
+| guideUrl | string | 引导页URL |
+
+获取到设备的产品ID（productId 字段），就可以开始绑定了。
 
 第二种：扫描开放平台创建的产品二维码来获取。  
-扫描到的结果调用SDK的HetQrCodeApi的dealQrCode方法获取产品信息。产品信息包含了产品ID
+![](https://i.imgur.com/Tge2Ypk.png)
+
+扫描结果示例：  
+
+	http://open.clife.net/v1/web/open/product?param={"a":3531}
+
+3531 即是产品ID。
+
+解析扫描结果，调用 HetQrCodeApi.getInstance().dealQrCode()方法获取产品信息
 
 	//二维码规则
     private void parseQrCodeVersion(String url) {
@@ -574,13 +644,50 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
     }
 
 第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。  
+![](https://i.imgur.com/TDwtXPH.png)
 
-通过项目需求选择合适的方式来获取产品ID。然后根据设备类型选择SDK的绑定接口。 具体分为WIFI绑定和蓝牙绑定2种。通过设备小类(moduleType字段)判断是WIFI设备还是蓝牙设备，进入相应的绑定设备绑定流程。 如：
+
+根据项目需求选择合适的方式来获取产品ID。然后根据设备类型选择SDK的绑定接口。 具体分为WIFI绑定和蓝牙绑定2种。通过设备小类(moduleType字段)判断是WIFI设备还是蓝牙设备，进入相应的绑定设备绑定流程。 如：
 
 	int type = deviceSubModel.getModuleType(); // type == 1标识WIFI  type ==2标识蓝牙  type ==9标识AP模式
 
-下面对这2种绑定做具体说明    
-WIFI设备绑定：SHetWifiBindApi.getInstance().startBind() 启动绑定。
+| moduleType | 绑定类型 |
+|---------|---------|
+| 1	 | wifi设备 SmartLink绑定 |
+| 2 |  蓝牙设备 |
+| 9	 | wifi设备 AP绑定 |
+
+
+### 4.2.设备绑定
+
+### 4.2.1.WIFI设备绑定
+WIFI设备绑定分AP模式绑定和smartLink模式绑定。
+
+#### 4.2.1.1.绑定模式简介
+
+WIFI设备AP绑定流程图如下：
+
+![](https://i.imgur.com/AXPq6FR.png)
+
+APP启动绑定之前，将设备设置成配置模式，设备将会成为一个Wifi热点。 手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP从服务器查询绑定状态。  
+使用开放平台提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。  
+AP绑定的交互流程：  
+1.获取路由器ssid和密码  
+2.手机连接路由器热点  
+3.手机切换设备热点  
+4.传入参数 产品ID productId、设备大类ID、设备小类ID、路由器ssid 和 密码，启动绑定  
+
+WIFI设备SmartLink绑定流程图如下：
+
+ ![](https://i.imgur.com/J5AWpvN.png)
+
+APP启动绑定之前，将设备设置成配置模式。 APP发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。  
+1.获取路由器ssid和密码  
+2.传入参数产品ID productId，路由器ssid 和 密码，启动绑定  
+
+#### 4.2.1.2.启动绑定  
+
+HetWifiBindApi.getInstance().startBind() 启动绑定。
 
 	/**
 	     * 开始绑定设备
@@ -621,9 +728,11 @@ WIFI设备绑定：SHetWifiBindApi.getInstance().startBind() 启动绑定。
 
 
 
-BLE蓝牙设备绑定：HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。整个过程有2个步骤：  
+### 4.2.2.BLE蓝牙设备绑定
+HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。整个过程有2个步骤：  
 第一步：扫描搜索周围设备；  
 第二步：选择扫描到的某个设备绑定到服务器；  
+
 蓝牙网关设备绑定方式跟前面的方式有些小区别，两种方式的蓝牙设备绑定流程图如下：
 
  ![](https://i.imgur.com/b4qGgZi.png)
