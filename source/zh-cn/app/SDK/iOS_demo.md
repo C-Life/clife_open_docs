@@ -43,10 +43,10 @@ Not Only Demo 以开放平台sdk和主流的APP开发框架为基础搭建一套
 #### 3.设备类型选择页面，设备扫描页面，设备绑定页面
 
 <center>
-<img src="/assets/iOS/绑定获取大类页面.PNG" width = "300" height = "520" alt="设备大类选择" align=center />
-<img src="/assets/iOS/绑定获取子类页面.PNG" width = "300" height = "520" alt="设备小类选择" align=center />
-<img src="/assets/iOS/wifi绑定设备ssid和密码页面.PNG" width = "300" height = "520" alt="输入WIFI密码" align=center />
-<img src="/assets/iOS/绑定进行中页面.PNG" width = "300" height = "520" alt="设备搜索" align=center />
-<img src="/assets/iOS/设备注册云端页面.PNG" width = "300" height = "520" alt="输入WIFI密码" align=center />
-<img src="/assets/iOS/设备绑定成功.PNG" width = "300" height = "520" alt="搜索失败常见问题" align=center />
+<img src="/assets/iOS/绑定获取大类页面.PNG" width="250" alt="设备大类选择" align=center />
+<img src="/assets/iOS/绑定获取子类页面.PNG" width="250" alt="设备小类选择" align=center />
+<img src="/assets/iOS/wifi绑定设备ssid和密码页面.PNG" width="250" alt="输入WIFI密码" align=center />
+<img src="/assets/iOS/绑定进行中页面.PNG" width="250" alt="设备搜索" align=center />
+<img src="/assets/iOS/设备注册云端页面.PNG" width="250" alt="输入WIFI密码" align=center />
+<img src="/assets/iOS/设备绑定成功.PNG" width="250" alt="搜索失败常见问题" align=center />
 </center>
