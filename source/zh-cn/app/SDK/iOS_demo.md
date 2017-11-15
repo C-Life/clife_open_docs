@@ -34,9 +34,9 @@ Not Only Demo 以开放平台sdk和主流的APP开发框架为基础搭建一套
 ##### 设备列表
 
 <center>
-<img src="/assets/iOS/首页设备列表.PNG" width="300" height="520" alt="设备主框架" align=center />
-<img src="/assets/iOS/H5香薰机控制页面.PNG" width="300" height="520" alt="H5页面控制页面" align=center />
-<img src="/assets/iOS/原生LED控制页面.PNG" width="300" height="520" alt="原生控制页面" align=center />
+<img src="/assets/iOS/首页设备列表.PNG" width="250"  alt="设备主框架" align=center />
+<img src="/assets/iOS/H5香薰机控制页面.PNG" width="250" alt="H5页面控制页面" align=center />
+<img src="/assets/iOS/原生LED控制页面.PNG" width="250" alt="原生控制页面" align=center />
 </center>
 
 
