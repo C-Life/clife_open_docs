@@ -1145,3 +1145,25 @@ WEAKSELF
 }];
     
 ```
+## 九、其他接口
+
+** 其他接口一般是一般是业务性接口
+### 1.意见反馈
+```
+/**
+ *  普通网络请求
+ *
+ *  @param method     HTTP网络请求方法
+ *  @param requestUrl 网络请求的URL
+ *  @param params     请求参数
+ *  @param needSign   是否需要签名
+ *  @param success    网络请求成功的回调
+ *  @param failure    网络请求失败的回调
+ */
++(void)startRequestWithHTTPMethod:(HETRequestMethod)method
+                   withRequestUrl:(NSString *)requestUrl
+                    processParams:(NSDictionary *)params
+                         needSign:(BOOL)needSign
+                 BlockWithSuccess:(successBlock)success
+                          failure:(failureBlock)failure
+```
