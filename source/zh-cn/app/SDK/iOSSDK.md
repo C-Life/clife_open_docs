@@ -999,7 +999,7 @@ completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
 ```
 
 <span id="SDK设备的分享"></span>
-##八、IOS 设备分享
+##八、iOS 设备分享
 
 C-Life设备分享分为面对面分享和第三方应用分享,分享相关接口请参考`HETDeviceShareBusiness`
 

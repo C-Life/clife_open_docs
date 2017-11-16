@@ -646,7 +646,6 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。  
 ![](https://i.imgur.com/TDwtXPH.png)
 
-
 根据项目需求选择合适的方式来获取产品ID。然后根据设备类型选择SDK的绑定接口。 具体分为WIFI绑定和蓝牙绑定2种。通过设备小类(moduleType字段)判断是WIFI设备还是蓝牙设备，进入相应的绑定设备绑定流程。 如：
 
 	int type = deviceSubModel.getModuleType(); // type == 1标识WIFI  type ==2标识蓝牙  type ==9标识AP模式
@@ -660,10 +659,17 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 
 ### 4.2.设备绑定
 
+<<<<<<< HEAD
+### 4.2.1.WIFI设备绑定
+WIFI设备绑定分AP模式绑定和smartLink模式绑定。
+
+#### 4.2.1.1.绑定模式简介
+=======
 #### 4.2.1.WIFI设备绑定
 WIFI设备绑定分AP模式绑定和smartLink模式绑定。
 
 ##### 4.2.1.1.绑定模式简介
+>>>>>>> e254dfaa4ff0be9d1b8d80170d5be41ade60323b
 
 WIFI设备AP绑定流程图如下：
 
@@ -685,7 +691,11 @@ APP启动绑定之前，将设备设置成配置模式。 APP发送要配置的�
 1.获取路由器ssid和密码  
 2.传入参数产品ID productId，路由器ssid 和 密码，启动绑定  
 
+<<<<<<< HEAD
+#### 4.2.1.2.启动绑定  
+=======
 ##### 4.2.1.2.启动绑定  
+>>>>>>> e254dfaa4ff0be9d1b8d80170d5be41ade60323b
 
 HetWifiBindApi.getInstance().startBind() 启动绑定。
 
@@ -728,7 +738,11 @@ HetWifiBindApi.getInstance().startBind() 启动绑定。
 
 
 
+<<<<<<< HEAD
+### 4.2.2.BLE蓝牙设备绑定
+=======
 #### 4.2.2.BLE蓝牙设备绑定
+>>>>>>> e254dfaa4ff0be9d1b8d80170d5be41ade60323b
 HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。整个过程有2个步骤：  
 第一步：扫描搜索周围设备；  
 第二步：选择扫描到的某个设备绑定到服务器；  
