@@ -15,15 +15,15 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 
 这里的硬件模组是指的WIFI模组。在开放平台创建WIFI产品的时候需要指定设备的WIFI模组。开发者需要在APP中先注册WIFI模组才可以进行设备绑定。
 
-### 2.3.productId
+### 2.3.产品ID
 
-产品唯一标识。开发平台创建产品，自动分配。
+产品唯一标识。
 
-### 2.4.deviceId
+### 2.4.设备ID
 
-设备的唯一标识。设备绑定成功，自动分配。
+设备的唯一标识。
 
-## 3.SDK 快速开发，相关第三方库支持
+## 3.SDK 快速开发，第三方库支持
 
 ### 3.1.RxJava 函数式编程  
 
@@ -33,24 +33,24 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 开放平台SDK提供了RxBus事件总线的支持，用于事件的发布和订阅，实现数据的传递。  
 RxBus事件的发布：  
 
-	//发布 HetLoginSDKEvent.Login.LOGIN_SUCCESS 事件
-	RxManage.getInstance().post(HetLoginSDKEvent.Login.LOGIN_SUCCESS, object);
+	//发布 HetCodeConstants.Login.LOGIN_SUCCESS 事件
+	RxManage.getInstance().post(HetCodeConstants.Login.LOGIN_SUCCESS, object);
 RxBus事件的订阅：  
 
-    RxManage.getInstance().register(HetLoginSDKEvent.Login.LOGIN_SUCCESS, o -> {
-         //订阅 HetLoginSDKEvent.Login.LOGIN_SUCCESS 事件
+    RxManage.getInstance().register(HetCodeConstants.Login.LOGIN_SUCCESS, o -> {
+         //订阅 HetCodeConstants.Login.LOGIN_SUCCESS 事件
     });
 RxBus事件的取消订阅：
 
-    RxManage.getInstance().unregister(HetLoginSDKEvent.Login.LOGIN_SUCCESS);
+    RxManage.getInstance().unregister(HetCodeConstants.Login.LOGIN_SUCCESS);
 
-### 3.3.retrofit+okhttp 网络库的支持
+### 3.3.retrofit+okhttp 网络库
 
 开放平台SDK集成了retrofit+okhttp的网络库，用于请求服务器数据。
-### 3.4.ActiveAndroid 数据库支持
+### 3.4.ActiveAndroid 数据库
 
 开放平台SDK集成了 ActiveAndroid 第三方的轻量级的数据库,方便轻量级数据的存取。
-### 3.5.X5内核 浏览服务的支持
+### 3.5.X5内核 浏览服务
 
 开放平台SDK集成了X5内核的浏览服务，来提高移动端webview的加载性能和兼容性。  
 使用实例：
@@ -65,7 +65,7 @@ RxBus事件的取消订阅：
 注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：  
 android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 。
 
-### 3.6.第三方社交平台服务的支持
+### 3.6.第三方社交平台服务
 
 SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的分享和登录。 详细使用请查看 **第三方平台服务的集成（登录和分享）**
 
@@ -76,7 +76,7 @@ SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的
 
 ### 4.2.下载SDK终端DEMO 请前往下载中心下载最新SDK包。
 
-### 4.3.在Android Studio上集成SDK，配置项目根目录build.gradle如下：
+### 4.3.配置项目根目录build.gradle
 
 	allprojects {
 	    repositories {
@@ -90,7 +90,6 @@ SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的
 	    //clifesdk库
 	     compile 'com.github.szhittech:HetOpenSdk:1.0.7-SNAPSHOT'
 	}
-
 
 ### 4.4.引用SDK到工程中
 	 dependencies {
@@ -130,42 +129,43 @@ SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的
 	    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
 	}
 
-引用SDK，根据自己硬件的模组选择对应的库。
+查看开放平台产品模组类型，选择模组的依赖包。 
+
+![](https://i.imgur.com/98xFDg4.png)
 
 ### 4.5.配置AndroidManifest.xml 添加权限
+
 请将下面权限配置代码复制到 AndroidManifest.xml 文件中：
 
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 权限说明：
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="50%">权限</th>
-			<th width="50%">用途</th>
-		</tr>
-	    <tr>
-			<td>VIBRATE</td>
-			<td>允许设置时区的权限</td>
-		</tr>
-		<tr>
-			<td>CAMERA</td>
-			<td>相机权限</td>
-		</tr>
-		<tr>
-			<td>INTERNET</td>
-			<td>允许程序打开网络接口</td>
-		</tr>
-		<tr>
-			<td>WAKE_LOCK</td>
-			<td>电源管理</td>
-		</tr>
-	</tbody>
-</table>
+|权限 | 用途 |
+|--------|------------------------------------|
+| INTERNET | 允许应用可以访问网络 |
+| READ_PHONE_STATE | 允许应用访问手机状态 |
+| ACCESS_NETWORK_STATE | 允许应用获取网络信息状态，如当前的网络连接是否有效 |
+| RECEIVE_BOOT_COMPLETED | 系统广播权限 |
+| WRITE_SETTINGS | 允许应用读写系统设置项 |
+| VIBRATE | 允许应用震动 |
+| WRITE_EXTERNAL_STORAGE | 	允许应用写入外部存储 |
+| DISABLE_KEYGUARD | 	允许程序禁用键盘锁  |
+| ACCESS_COARSE_LOCATION | 	允许程序访问位置信息  |
+| ACCESS_WIFI_STATE | 	允许程序访问Wi-Fi网络状态信息  |
+| CAMERA | 	允许程序打开相机  |
+| WAKE_LOCK | 	允许应用在手机屏幕关闭后后台进程仍然运行  |
 
 #### 4.6.Android6.0系统文件读写权限设置
 Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态申请。开发者可以使用SDK提供的RxPermissions来动态申请权限。
@@ -207,7 +207,7 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
     private void configApplication(String appId, String appSecret) {
         ConfigModel configModel = new ConfigModel();
         configModel.setLog(true); //是否开启log信息
-        configModel.setHost(GlobalAddr.TYPE_PRODUCE_HOST); //环境设置
+        configModel.setHost(HetCodeConstants.TYPE_PRODUCE_HOST); //环境设置
         configModel.setH5UIconfig(UIJsonConfig.getInstance(this).getJsonString(UIJsonConfig.fileName, this));
         //配置第三方登录
         mLoginDelegate = new HetSdkThirdDelegate.Builder(this)
@@ -219,74 +219,28 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
     }
 
 1、appId、appSecret可以在开放平台创建的应用的应用详情里查看。  
-2、HetSdkThirdDelegate 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **3.3（SDK第三方登录的集成）**。  
+2、HetSdkThirdDelegate 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **（SDK第三方登录的集成）**。  
 3、configModel.setH5UIconfig 配置授权登录页面主题样式; 通过参数定义的JSON字符串来进行配置，例如demoAPP是通过assets/h5UIConfig.json这个文件来组装JSON字符串的。
 
 **接口调用请求说明**  
 SDK初始化接口 HetSdk.getInstance().init（）
 
-**参数说明**
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="15%">是否必须</th>
-			<th width="15%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>context</td>
-			<td>是</td>
-			<td>Context</td>
-			<td>上下文常量</td>
-		</tr>
-		<tr>
-			<td>secret </td>
-			<td>是</td>
-			<td>string</td>
-			<td>用户密匙</td>
-		</tr>
-		<tr>
-			<td>configModel</td>
-			<td>是</td>
-			<td>ConfigModel</td>
-			<td>初始配置</td>
-		</tr>
-	</tbody>
-</table>
+**参数说明**  
+
+| 参数名称 | 是否必须 | 字段类型 | 参数说明 |
+|---------|---------|---------|---------|
+| appId | 是 | string | 应用标识 |
+| context | 是 | Context | 上下文常量 |
+| secret | 是 | string | 用户密匙 |
+| configModel | 是 | ConfigModel | 初始配置 |
 
 **configModel说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="15%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-	    <tr>
-			<td>isLog</td>
-			<td>boolean</td>
-			<td>是否开启调试信息</td>
-		</tr>
-		<tr>
-			<td>host</td>
-			<td>int</td>
-			<td>网络环境设置: 0x01：正式 0x02：预发布 0x03:内网 0x04：测试环境</td>
-		</tr>
-		<tr>
-			<td>H5UIconfig</td>
-			<td>String</td>
-			<td>APP初始配置</td>
-		</tr>
-	</tbody>
-</table>
+| 字段名称 | 字段类型 | 字段说明 |
+|---------|---------|---------|
+| isLog | boolean | 是否开启调试信息 |
+| host | int | 网络环境设置: 0x01：正式 0x02：预发布 0x03:内网 0x04：测试环境 |
+| H5UIconfig | String | APP初始配置 |
 
 **H5UIconfig配置说明**  
 SDK的授权登录页面样式可以通过JSON参数来配置，包括是否需要第三方登录，登录页面的样式等。可以参考SDk的DEMO工程通过assets/h5UIConfig.json的配置，配置详情：  
@@ -315,110 +269,27 @@ SDK的授权登录页面样式可以通过JSON参数来配置，包括是否需�
 
 字段说明：
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="15%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-	    <tr>
-			<td>app_id</td>
-			<td>String</td>
-			<td>APP标识(可以在开放平台创建应用申请获得)</td>
-		</tr>
-		<tr>
-			<td>app_secret</td>
-			<td>String</td>
-			<td>APP密钥(可以在开放平台创建应用申请获得) </td>
-		</tr>
-		<tr>
-			<td>navBackgroundColor</td>
-			<td>String</td>
-			<td>授权登录标题栏的背景色（例如：FF3285FF ） </td>
-		</tr>
-		<tr>
-			<td>navTitleColor</td>
-			<td>String</td>
-			<td>授权登录标题栏的文字颜色（例如：FFFFFFFF） </td>
-		</tr>
-		<tr>
-			<td>logoshow</td>
-			<td>boolean</td>
-			<td>授权登录页面的安全登录的图标是否显示（false，true） </td>
-		</tr>
-		<tr>
-			<td>loginBtnBackgroundColor</td>
-			<td>String</td>
-			<td>授权登录页面登录按钮背景颜色（例如：FFFFFFFF）</td>
-		</tr>
-		<tr>
-			<td>loginBtnBorderColor</td>
-			<td>String</td>
-			<td>授权登录页面登录按钮背景边框颜色（例如：FF5BA532）</td>
-		</tr>
-		<tr>
-			<td>loginBtnFontColor</td>
-			<td>String</td>
-			<td>授权登录页面登录按钮文字颜色（例如：FF000000）</td>
-		</tr>
-		<tr>
-			<td>weiboLogin</td>
-			<td>boolean</td>
-			<td>授权登录页面，是否显示微博登录（false，true）</td>
-		</tr>
-		<tr>
-			<td>weixinLogin</td>
-			<td>boolean</td>
-			<td>授权登录页面，是否显示微信登录（false，true）</td>
-		</tr>
-		<tr>
-			<td>qqLogin</td>
-			<td>boolean</td>
-			<td>授权登录页面，是否显示QQ登录（false，true）</td>
-		</tr>
-		<tr>
-			<td>tencent_app_id</td>
-			<td>String</td>
-			<td>QQ登录的应用标识（可以在腾讯开放平台创建应用申请获得）</td>
-		</tr>
-		<tr>
-			<td>wechat_app_id</td>
-			<td>String</td>
-			<td>微信登录的应用标识（可以在微信开放平台创建应用申请获得）</td>
-		</tr>
-		<tr>
-			<td>wechat_app_secret</td>
-			<td>String</td>
-			<td>微信登录的应用密钥（可以在微信开放平台创建应用申请获得）</td>
-		</tr>
-		<tr>
-			<td>sina_app_id</td>
-			<td>String</td>
-			<td>新浪微博登录的应用标识（可以在新浪开放平台创建应用申请获得）</td>
-		</tr>
-		<tr>
-			<td>sina_app_secret</td>
-			<td>String</td>
-			<td>新浪微博的应用密钥（可以在新浪开放平台创建应用申请获得）</td>
-		</tr>
-		<tr>
-			<td>copyRight</td>
-			<td>String</td>
-			<td>保留字段</td>
-		</tr>
-		<tr>
-			<td>privacyPolicy</td>
-			<td>String</td>
-			<td>保留字段</td>
-		</tr>
-		<tr>
-			<td>SMSTemplet</td>
-			<td>String</td>
-			<td>保留字段</td>
-		</tr>
-	</tbody>
-</table>
+| 字段名称 | 字段类型 | 字段说明 |
+|---------|---------|---------|
+| app_id | String | APP标识(开放平台创建应用申请获得) |
+| app_secret | String | APP密钥(开放平台创建应用申请获得) |
+| navBackgroundColor | String | 授权登录标题栏的背景色（例如：FF3285FF ）|
+| navTitleColor | String | 授权登录标题栏的文字颜色（例如：FFFFFFFF）|
+| logoshow | boolean | 授权登录页面的安全登录的图标是否显示（false，true）|
+| loginBtnBackgroundColor | String | 授权登录页面登录按钮背景颜色（例如：FFFFFFFF）|
+| loginBtnBorderColor | String | 授权登录页面登录按钮背景边框颜色（例如：FF5BA532）|
+| loginBtnFontColor | String | 授权登录页面登录按钮文字颜色（例如：FF000000）|
+| weiboLogin | boolean | 授权登录页面，是否显示微博登录（false，true）|
+| weixinLogin | boolean | 授权登录页面，是否显示微信登录（false，true）|
+| qqLogin | boolean | 授权登录页面，是否显示QQ登录（false，true）|
+| tencent_app_id | String | QQ登录的应用标识（腾讯开放平台创建应用申请获得）|
+| wechat_app_id | String | 微信登录的应用标识（微信开放平台创建应用申请获得）|
+| wechat_app_secret | String | 微信登录的应用密钥（微信开放平台创建应用申请获得）|
+| sina_app_id | String | 新浪微博登录的应用标识（新浪开放平台创建应用申请获得）|
+| sina_app_secret | String | 新浪微博的应用密钥（新浪开放平台创建应用申请获得）|
+| copyRight | String | 保留字段|
+| privacyPolicy | String | 保留字段|
+| SMSTemplet | String | 保留字段|
 
 **备注:   颜色值都使用argb的格式，前2位表示透明度，后6位是rgb颜色值。**
 
@@ -444,7 +315,7 @@ SDK的授权登录页面样式可以通过JSON参数来配置，包括是否需�
         }
     }
 
-模组注册是按需注册，根据APP需要支持的设备模组类型来选择性注册。
+模组注册是按需注册，根据开放平台产品模组类型来选择。
 
 ## 3.授权登录和用户模块
 
@@ -459,7 +330,7 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 	  * @param navigationBarTextColor 标题栏文字颜色
 	  * @param navBackground 标题栏背景颜色
 	*/
-	public void authorize(Context mContext, AuthCallback authCallback,String specifyTitle,int navigationBarTextColor,int navBackground) throws Exception {
+	public void authorize(Context mContext, AuthCallback authCallback,String specifyTitle,int navigationBarTextColor,int navBackground) {
 	    ...
 	}
 	protected void auth() {
@@ -477,6 +348,12 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 	       
 	    }
 
+登录成功之后，SDK还会抛出HetCodeConstants.Login.LOGIN_SUCCESS事件。 开发者也可以订阅这个事件来监听登录状态。  
+
+	RxManage.getInstance().register(HetCodeConstants.Login.LOGIN_SUCCESS, o -> {
+	            //登录成功  刷新界面
+	});
+
 授权登录页面：  
 
 <img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
@@ -491,7 +368,6 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 
 	HetSdk.getInstance().logout();
 
-退出登录之后记得发出通知APP相应的页面跳转到首页，并刷新到未登录的状态。
 例如：
 
 	 public void logout() {
@@ -499,20 +375,17 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 	                .setMessage(activity.getString(R.string.confirm_logout))
 	                .setPositiveButton(activity.getString(R.string.logout_sure), (dialog, which) -> {
 	                    dialog.dismiss();
-	                    if (HetSdk.getInstance().isAuthLogin()) {
 	                        HetSdk.getInstance().logout();
-	                        RxManage.getInstance().post(HetLoginSDKEvent.Login.LOGINOUT_SUCCESS, "");
-	                    }
 	                })
 	                .setNegativeButton(activity.getString(R.string.logout_cancel), null)
 	                .show();
 	    }
 
 
-调用HetSdk.getInstance.logout(),并使用RxBu来发送通知到相应的页面来刷新页面状态。
+退出登录成功，SDK会抛出HetCodeConstants.Login.LOGINOUT_SUCCESS事件。开发者可以订阅这个事件来监听退出登录。
 如：接收退出登录的事件，刷新页面
 
-	RxManage.getInstance().register(HetLoginSDKEvent.Login.LOGINOUT_SUCCESS, o -> {
+	RxManage.getInstance().register(HetCodeConstants.Login.LOGINOUT_SUCCESS, o -> {
 	            //退出登录刷新页面
 	});
 
@@ -524,10 +397,10 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 
 ### 3.5.异地登录
 
-开放平台的账号只能在一台设备上登录。当同一个账号同时在2台设备上登录时，服务器会把前面登录成功的设备踢下线。 被踢下线设备的SDK会退出登录，并且抛出ECode.Token.EC_LOGINOUT的RxBus事件，通知账号在其他设备登录。  
+开放平台的账号只能在一台设备上登录。当同一个账号同时在2台设备上登录时，服务器会把前面登录成功的设备踢下线。 被踢下线设备的SDK会退出登录，并且抛出HetCodeConstants.Login.EC_LOGINOUT的RxBus事件，通知账号在其他设备登录。  
 开发者可以订阅这个事件，处理异地登录。 例：
 	
-	RxManage.getInstance().register(ECode.Token.EC_LOGINOUT, s -> {
+	RxManage.getInstance().register(HetCodeConstants.Login.EC_LOGINOUTT, s -> {
 	          //账号在其他设备登录，此时HetSdk.getInstance().isAuthLogin() 为false，跳转页面刷新到未登录状态。
 	          .............
 	});
@@ -569,60 +442,17 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 
 接口返回UserInfoBean的用户详细参数说明：
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>userId</td>
-			<td>String</td>
-			<td>用户ID</td>
-		</tr>
-		<tr>
-			<td>userName</td>
-			<td>String</td>
-			<td>用户名称</td>
-		</tr>
-		<tr>
-			<td>email</td>
-			<td>String</td>
-			<td>用户邮箱</td>
-		</tr>
-		<tr>
-			<td>sex</td>
-			<td>number</td>
-			<td>性别（1-男，2-女）</td>
-		</tr>		
-		<tr>
-			<td>birthday</td>
-			<td>String</td>
-			<td>生日（yyyy-MM-dd）</td>
-		</tr>		
-		<tr>
-			<td>weight</td>
-			<td>number</td>
-			<td>体重（克）</td>
-		</tr>	
-		<tr>
-			<td>height</td>
-			<td>number</td>
-			<td>身高（厘米）</td>
-		</tr>	
-		<tr>
-			<td>avatar</td>
-			<td>String</td>
-			<td>头像URL</td>
-		</tr>	
-		<tr>
-			<td>city</td>
-			<td>String</td>
-			<td>	城市名</td>
-		</tr>	
-	</tbody>
-</table>
+| 参数名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| userId | String | 用户ID |
+| userName | String | 用户名称 |
+| email | String | 用户邮箱 |
+| sex | number | 性别（1-男，2-女）|
+| birthday | String | 生日（yyyy-MM-dd）|
+| weight | number | 体重（克）|
+| height | number | 身高（厘米）|
+| avatar | String | 头像URL |
+| city | String | 城市名 |
 
 ### 3.7.修改密码
 
@@ -666,17 +496,10 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 
 开放平台封装了wifi设备和蓝牙设备绑定接口，包括手机与服务器、手机与智能设备的通讯接口。开发者只要获取到设备的产品ID就可以调用SDK的绑定接口进行设备绑定，不需要关注复杂的绑定流程。  
 
-WIFI设备AP绑定流程图如下：
-
-![](https://i.imgur.com/AXPq6FR.png)
-
-WIFI设备SmartLink绑定流程图如下：
-
- ![](https://i.imgur.com/J5AWpvN.png)
-
+### 4.1.获取产品ID 
 开放平台SDK提供了三种方式来获取产品ID。  
 
-第一种：获取设备大类和设备小类（设备小类信息包含产品ID，也就是productId字段），具体分成2个步骤。  
+第一种：获取设备大类和设备小类（设备小类信息包含产品ID），具体分成2个步骤。  
 1.获取设备大类型  
 HetDeviceListApi.getInstance().getTypeList() 获取APP支持绑定的设备大类型。  
 调用实例：
@@ -699,9 +522,30 @@ HetDeviceListApi.getInstance().getTypeList() 获取APP支持绑定的设备大�
             }
      });
 
+服务器返回的结果示例：  
+
+	{
+	    "data": [
+	    {
+	
+	        "deviceTypeId": 1,
+	        "deviceTypeName": "冰箱",
+	        "deviceTypeIcon": null
+	    }],
+	    "code": 0
+	}
+
+DeviceTypeModel参数说明：
+
+| 字段名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| deviceTypeId | number | 设备大分类标识 |
+| deviceTypeName | String | 设备大分类名称 |
+| deviceTypeIcon | String | 设备图标 |
+
 2.获取设备小类型  
-HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的设备大类型。  
-通过选择的设备大类，查询大类下的小类列表。
+HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的设备小类型。  
+通过选择的设备大类，查询大类下的小类列表。  
 
 	HetDeviceListApi.getInstance().getSubTypeListProduct(new IHetCallback() {
             @Override
@@ -717,10 +561,66 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 				//获取设备小类列表失败
                    .............
             }
-        }, deviceType);//deviceType 是大类类型
+        }, deviceType);//deviceType 设备大分类标识
+
+服务器返回结果示例：  
+
+	{
+	    "data": [
+	    {
+	        "deviceTypeId": 1,
+	        "deviceSubtypeId": 1,
+	        "deviceSubtypeName": "冰箱",
+	        "productId": 1,
+	        "productName": "惠而浦-KST",
+	        "productCode": "kst-001",
+	        "productIcon": "http://200.200.200.50/v1/device/icon/1.png",
+	        "moduleId": 3,
+	        "moduleType": 1,
+	        "moduleName": "汉枫"，
+	        "remark": "备注",
+	        "radiocastName":null,
+	        "ssid":null,
+	        "ssidPassword":null,
+	        "deviceCode": "0000C3AA00010105",
+	        "guideUrl"："http://200.200.200.50/XXX
+	    }],
+	    "code": 0
+	}
+
+返回字段说明：  
+
+| 字段名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| deviceTypeId	 | number | 设备大分类标识 |
+| deviceSubtypeId | number | 设备子分类标识 |
+| deviceSubtypeName	 | string | 设备子分类名称 |
+| productId | number | 设备型号标识 |
+| productName | string | 设备型号名称 |
+| productCode | string | 设备型号编码 |
+| productIcon | string | 设备型号图标 |
+| moduleId | number | 模块类型（1-WiFi，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
+| moduleType | number | 设备型号图标 |
+| moduleName | string | 模块名称 |
+| remark | string | 备注 |
+| radiocastName | string | 设备广播名 |
+| ssid | string | WIFI ssid |
+| ssidPassword | string | ssid密码 |
+| deviceCode | string | 设备编码 |
+| guideUrl | string | 引导页URL |
+
+获取到设备的产品ID（productId 字段），就可以开始绑定了。
 
 第二种：扫描开放平台创建的产品二维码来获取。  
-扫描到的结果调用SDK的HetQrCodeApi的dealQrCode方法获取产品信息。产品信息包含了产品ID
+![](https://i.imgur.com/Tge2Ypk.png)
+
+扫描结果示例：  
+
+	http://open.clife.net/v1/web/open/product?param={"a":3531}
+
+3531 即是产品ID。
+
+解析扫描结果，调用 HetQrCodeApi.getInstance().dealQrCode()方法获取产品信息
 
 	//二维码规则
     private void parseQrCodeVersion(String url) {
@@ -744,13 +644,60 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
     }
 
 第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。  
+![](https://i.imgur.com/TDwtXPH.png)
 
-通过项目需求选择合适的方式来获取产品ID。然后根据设备类型选择SDK的绑定接口。 具体分为WIFI绑定和蓝牙绑定2种。通过设备小类(moduleType字段)判断是WIFI设备还是蓝牙设备，进入相应的绑定设备绑定流程。 如：
+根据项目需求选择合适的方式来获取产品ID。然后根据设备类型选择SDK的绑定接口。 具体分为WIFI绑定和蓝牙绑定2种。通过设备小类(moduleType字段)判断是WIFI设备还是蓝牙设备，进入相应的绑定设备绑定流程。 如：
 
 	int type = deviceSubModel.getModuleType(); // type == 1标识WIFI  type ==2标识蓝牙  type ==9标识AP模式
 
-下面对这2种绑定做具体说明    
-WIFI设备绑定：SHetWifiBindApi.getInstance().startBind() 启动绑定。
+| moduleType | 绑定类型 |
+|---------|---------|
+| 1	 | wifi设备 SmartLink绑定 |
+| 2 |  蓝牙设备 |
+| 9	 | wifi设备 AP绑定 |
+
+
+### 4.2.设备绑定
+
+<<<<<<< HEAD
+### 4.2.1.WIFI设备绑定
+WIFI设备绑定分AP模式绑定和smartLink模式绑定。
+
+#### 4.2.1.1.绑定模式简介
+=======
+#### 4.2.1.WIFI设备绑定
+WIFI设备绑定分AP模式绑定和smartLink模式绑定。
+
+##### 4.2.1.1.绑定模式简介
+>>>>>>> e254dfaa4ff0be9d1b8d80170d5be41ade60323b
+
+WIFI设备AP绑定流程图如下：
+
+![](https://i.imgur.com/AXPq6FR.png)
+
+APP启动绑定之前，将设备设置成配置模式，设备将会成为一个Wifi热点。 手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP从服务器查询绑定状态。  
+使用开放平台提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。  
+AP绑定的交互流程：  
+1.获取路由器ssid和密码  
+2.手机连接路由器热点  
+3.手机切换设备热点  
+4.传入参数 产品ID productId、设备大类ID、设备小类ID、路由器ssid 和 密码，启动绑定  
+
+WIFI设备SmartLink绑定流程图如下：
+
+ ![](https://i.imgur.com/J5AWpvN.png)
+
+APP启动绑定之前，将设备设置成配置模式。 APP发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。  
+1.获取路由器ssid和密码  
+2.传入参数产品ID productId，路由器ssid 和 密码，启动绑定  
+
+<<<<<<< HEAD
+#### 4.2.1.2.启动绑定  
+=======
+##### 4.2.1.2.启动绑定  
+>>>>>>> e254dfaa4ff0be9d1b8d80170d5be41ade60323b
+
+HetWifiBindApi.getInstance().startBind() 启动绑定。
 
 	/**
 	     * 开始绑定设备
@@ -791,9 +738,15 @@ WIFI设备绑定：SHetWifiBindApi.getInstance().startBind() 启动绑定。
 
 
 
-BLE蓝牙设备绑定：HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。整个过程有2个步骤：  
+<<<<<<< HEAD
+### 4.2.2.BLE蓝牙设备绑定
+=======
+#### 4.2.2.BLE蓝牙设备绑定
+>>>>>>> e254dfaa4ff0be9d1b8d80170d5be41ade60323b
+HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。整个过程有2个步骤：  
 第一步：扫描搜索周围设备；  
 第二步：选择扫描到的某个设备绑定到服务器；  
+
 蓝牙网关设备绑定方式跟前面的方式有些小区别，两种方式的蓝牙设备绑定流程图如下：
 
  ![](https://i.imgur.com/b4qGgZi.png)
@@ -849,147 +802,36 @@ APP端服务是否开启（udpservice）
 
 ### 5.1.设备model说明
 
-SDK所有的设备devicemodel，参数说明
+SDK所有的设备devicemodel，参数说明  
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>deviceId</td>
-			<td>string</td>
-			<td>设备标识</td>
-		</tr>
-		<tr>
-			<td>macAddress</td>
-			<td>string</td>
-			<td>MAC地址</td>
-		</tr>
-		<tr>
-			<td>deviceBrandId</td>
-			<td>number</td>
-			<td>设备品牌标识</td>
-		</tr>
-		<tr>
-			<td>deviceBrandName</td>
-			<td>string</td>
-			<td>设备品牌名称</td>
-		</tr>
-		<tr>
-			<td>deviceTypeId</td>
-			<td>number</td>
-			<td>设备大分类标识</td>
-		</tr>
-		<tr>
-			<td>deviceTypeName</td>
-			<td>string</td>
-			<td>设备大分类名称</td>
-		</tr>
-		<tr>
-			<td>deviceSubtypeId</td>
-			<td>number</td>
-			<td>设备子分标识</td>
-		</tr>
-		<tr>
-			<td>deviceSubtypeName</td>
-			<td>string</td>
-			<td>设备子分类名称</td>
-		</tr>
-		<tr>
-			<td>deviceName</td>
-			<td>string</td>
-			<td>设备名称</td>
-		</tr>
-		<tr>
-			<td>roomId</td>
-			<td>string</td>
-			<td>房间标识</td>
-		</tr>
-		<tr>
-			<td>roomName</td>
-			<td>string</td>
-			<td>房间名称</td>
-		</tr>
-		<tr>
-			<td>authUserId</td>
-			<td>string</td>
-			<td>授权设备用户标识</td>
-		</tr>
-		<tr>
-			<td>bindTime</td>
-			<td>string</td>
-			<td>绑定时间</td>
-		</tr>
-		<tr>
-			<td>onlineStatus</td>
-			<td>number</td>
-			<td>在线状态（1-正常，2-异常）</td>
-		</tr>
-		<tr>
-			<td>share</td>
-			<td>number</td>
-			<td>设备分享（1-是，2-否，3-扫描分享）</td>
-		</tr>
-		<tr>
-			<td>controlType</td>
-			<td>number</td>
-			<td>控制类型（1-原生，2-插件，3-H5插件）</td>
-		</tr>
-		<tr>
-			<td>userKey</td>
-			<td>string</td>
-			<td>MAC与设备ID生成的KEY</td>
-		</tr>
-		<tr>
-			<td>productId</td>
-			<td>number</td>
-			<td>设备型号标识</td>
-		</tr>
-		<tr>
-			<td>productName</td>
-			<td>string</td>
-			<td>设备型号名称</td>
-		</tr>
-		<tr>
-			<td>productCode</td>
-			<td>string</td>
-			<td>设备型号编码</td>
-		</tr>
-		<tr>
-			<td>productIcon</td>
-			<td>string</td>
-			<td>设备型号图标</td>
-		</tr>
-		<tr>
-			<td>moduleId</td>
-			<td>number</td>
-			<td>模块标识</td>
-		</tr>
-		<tr>
-			<td>moduleType</td>
-			<td>number</td>
-			<td>模块类型（1-WiFi，2-蓝牙，9-AP模式）</td>
-		</tr>
-		<tr>
-			<td>moduleName</td>
-			<td>string</td>
-			<td>模块名称</td>
-		</tr>
-		<tr>
-			<td>radiocastName</td>
-			<td>string</td>
-			<td>设备广播名</td>
-		</tr>
-		<tr>
-			<td>deviceCode</td>
-			<td>string</td>
-			<td>设备编码</td>
-		</tr>
-	</tbody>
-</table>
+| 字段名称 | 字段类型 | 字段说明 |
+|---------|---------|---------|
+| deviceId | String | 设备标识 |
+| macAddress | String | MAC地址 |
+| deviceBrandId | number | 设备品牌标识 |
+| deviceBrandName | String | 设备品牌名称 |
+| deviceTypeId | number | 设备大分类标识 |
+| deviceTypeName | String | 设备大分类名称 |
+| deviceSubtypeId | number | 设备子分标识 |
+| deviceSubtypeName | String | 设备子分类名称 |
+| deviceName | String | 设备名称 |
+| roomId | String | 房间标识 |
+| roomName | String | 房间名称 |
+| authUserId | String | 授权设备用户标识 |
+| bindTime | String | 绑定时间 |
+| onlineStatus | number | 在线状态（1-正常，2-异常） |
+| share | number | 设备分享（1-是，2-否，3-扫描分享） |
+| controlType | number | 控制类型（1-原生，2-插件，3-H5插件） |
+| userKey | String | MAC与设备ID生成的KEY |
+| productId | number | 设备型号标识 |
+| productName | String | 设备型号名称 |
+| productCode | String | 设备型号编码 |
+| productIcon | String | 设备型号图标 |
+| moduleId | number | 模块标识 |
+| moduleType | number | 模块类型（1-WiFi，2-蓝牙，9-AP模式） |
+| moduleName | String | 模块名称 |
+| radiocastName | String | 设备广播名 |
+| deviceCode | String | 设备编码 |
 
 ### 5.2.获取设备列表
 
@@ -1073,35 +915,12 @@ SDK删除设备列表中的设备有2中情况：
 
 DeviceAuthUserModel 的字段说明：
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="15%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>userId</td>
-			<td>String</td>
-			<td>用户ID</td>
-		</tr>
-		<tr>
-			<td>userName</td>
-			<td>String</td>
-			<td>用户名称</td>
-		</tr>
-		<tr>
-			<td>avatar</td>
-			<td>String</td>
-			<td>用户头像</td>
-		</tr>
-		<tr>
-			<td>authTime</td>
-			<td>String</td>
-			<td>授权时间</td>
-		</tr>
-	</tbody>
-</table>
+| 参数名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| userId | String | 用户ID |
+| userName | String | 用户名称 |
+| avatar | String | 用户名称 |
+| authTime | String | 授权时间 |
 
 #### 5.4.2.用户设备授权删除  
 
@@ -1124,7 +943,7 @@ DeviceAuthUserModel 的字段说明：
 
 #### 5.4.3.分享设备 
 
-设备分享有面对面二维码分享和远程第三方平台（微信 、QQ等）分享两种方式。 绑定设备才能分享，分享设备不能再分享给其他用户。  
+设备分享有面对面二维码分享和第三方平台（微信 、QQ等）分享两种方式。 绑定设备才能分享，分享设备不能再分享给其他用户。  
 
 第一种：面对面分享，通过deviceId（要分享的设备的标识）获取分享码，分享的流程图如下：
 
@@ -1133,7 +952,7 @@ DeviceAuthUserModel 的字段说明：
 具体的接口调用说明：
 
 	 /**
-	 * @param shareType   5是面对面分享  6远程分享
+	 * @param shareType   5是面对面分享  6第三方分享
 	 */
 	HetDeviceShareApi.getInstance().getShareCode(new IHetCallback() {
             @Override
@@ -1151,27 +970,12 @@ DeviceAuthUserModel 的字段说明：
             }
         }, deviceId, shareType);
 
-ShareCodeModel字段说明:
+ShareCodeModel字段说明:  
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="15%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>shareCode</td>
-			<td>String</td>
-			<td>设备分享码 （面对面分享）</td>
-		</tr>
-		<tr>
-			<td>h5Url</td>
-			<td>String</td>
-			<td>H5 页面地址（远程分享）</td>
-		</tr>
-	</tbody>
-</table>
+| 参数名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| shareCode | String | 设备分享码 （面对面分享） |
+| h5Url | String | H5 页面地址（第三方分享） |
 
 将分享码用二维码的形式展示。被分享的用户，通过二维码扫描，调用 HetDeviceShareApi.getInstance().authShareDevice()完成设备分享。
 
@@ -1190,12 +994,13 @@ ShareCodeModel字段说明:
 
 设备分享成功，抛出RxBus事件，监听事件刷新设备列表。  
 
-第二种：远程分享（通过QQ、微信分享设备）  
+第二种：第三方分享（通过QQ、微信分享设备）  
 利用第三方社交平台，可以快速的实现设备分享。有利于实现产品的快速推广。 远程的第三方分享一定要集成第三方分享服务。详细集成实例请参考下面 **第三方平台服务的集成（登录和分享）**的集成。 分享的流程图如下：
 
  ![](https://i.imgur.com/KkINUuf.png)
 
-具体的接口调用说明：
+具体的流程有3个步骤：  
+第一步：获取分享URL地址  
 
 HetDeviceShareApi.getInstance().getShareCode(IHetCallback callback,String deviceId,String shareType)
 参数 shareType(5是面对面分享  6远程分享) 标识分享类型，返回远程分享设备的分享地址。
@@ -1220,12 +1025,14 @@ HetDeviceShareApi.getInstance().getShareCode(IHetCallback callback,String device
         }, deviceId, "6");
 
 
-SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)，实现第三方分享非常简单，只需要五步就可以完成：
+第二步:分享者分享URL到第三方平台
 
-第一步：集成第三方服务  
+SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)。分享者把URL分享地址通过第三方平台发送给分享者，邀请被分享者控制设备。
+
+1.集成第三方服务  
 详细的集成流程请查看 [第三方平台服务的集成（登录和分享）](#jump)
 
-第二步：初始化SKD第三方分享接口
+2.初始化SKD第三方分享接口
 
     HetSdkThirdDelegate mShareManager = HetSdkThirdDelegate.getInstance();
         CommonShareProxy mShareProxy = new CommonShareProxy(this);
@@ -1264,7 +1071,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
             }
         };
 
-第二步：添加回调
+3.添加回调
  
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1272,8 +1079,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
             mShareProxy.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-第三步：开始分享
+4.开始分享
 
 	mICommonShareListener.onStartShare(CommonSharePlatform.WeixinFriend);//微信分享
 	mICommonShareListener.onStartShare(CommonSharePlatform.QQ_Friend);//QQ分享
@@ -1287,7 +1093,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
 	.....
 	}
 
-第四步：退出释放资源
+5.退出释放资源
 
     @Override
     public void onDestroy() {
@@ -1298,9 +1104,52 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
         }
     }
 
+第三步:被分享者接收设备控制邀请，完成设备的分享。
+
+被分享者通过第三方平台（微信或QQ）收到URL，在浏览器打开URL。浏览器请求打开用户APP（通过scheme协议），用户APP获取到shareCode调用HetDeviceShareApi.getInstance().authShareDevice() 接收设备控制邀请。  
+
+    HetDeviceShareApi.getInstance().authShareDevice(new IHetCallback() {
+        @Override
+        public void onSuccess(int code, String msg) {
+            RxManage.getInstance().post(HetShareEvent.HET_EVENT_MAIN_SHARE_SUCCEE, null);
+        }
+
+        @Override
+        public void onFailed(int code, String msg) {
+        }
+    }, shareCode, "6");
+
+浏览器打开用户APP的scheme协议，需要在 AndroidManifest.xml 中加上一下代码
+
+        <activity
+            android:name="your_open_activity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="hetopenplatform" />
+            </intent-filter>
+
+        </activity>
+
+注意：该Activity是浏览器请求打开app第一个请求打开的界面。
+
+
 ## 6.设备控制
 
-设备有WIFI设备控制和蓝牙设备控制两种，wifi设备控制流程图示如下：
+SDK封装了WIFI设备控制接口和BLE蓝牙设备控制接口，需要根据具体的设备类型来调用。
+
+| 字段名称 | 字段类型 | 参数说明 |
+|---------|---------|---------|
+| moduleType | number | 模块类型（1-WiFi，2-蓝牙，9-WIFI-AP模式） |
+
+### 6.1.WIFI设备控制 
+
+wifi设备控制流程图示如下：
 
  ![](https://i.imgur.com/6Q1Dk6V.png)
 
@@ -1343,11 +1192,9 @@ IWifiDeviceData 的接口说明：
 	    void onDataError(int code, String msg);
 	}
 
-WIFI设备控制具体可以分成4个步骤：  
-第一步：初始化
+WIFI设备控制具体可以分成3个步骤：  
 
-	HetWifiDeviceControApi.getInstance().init(this, iWifiDeviceData);
-第二步：设置接收设备数据的监听 
+第一步：设置接收设备数据的监听 
 
 	HetWifiDeviceControApi.getInstance().start(deviceModel.getDeviceId(), deviceModel.getMacAddress());
 	private IWifiDeviceData iWifiDeviceData = new IWifiDeviceData() {
@@ -1385,7 +1232,7 @@ WIFI设备控制具体可以分成4个步骤：
 
 可以根据IWifiDeviceData 的回调接口接收设备数据渲染UI。  
 
-第三步：控制设备  
+第二步：控制设备  
 
 调用HetDeviceWifiControlApi.getInstance().setDataToDevice()发送控制数据到服务器。调用的时候把需要发送的控制数据组装好。
 
@@ -1398,7 +1245,7 @@ WIFI设备控制具体可以分成4个步骤：
 	            }
 	       }, deviceModel.getDeviceId(), GsonUtil.getInstance().toJson(ledConfigModel));
 
-第四步：释放资源  
+第三步：释放资源  
 停止使用设备控制功能的时候释放资源，例如退出控制界面时，实例：
 
 	 @Override
@@ -1407,9 +1254,17 @@ WIFI设备控制具体可以分成4个步骤：
 	        HetWifiDeviceControApi.getInstance().stop();
 	    }
 
-注意:设备控制的时候会有一个updateFlag字段。这个字段标识是改变了那几个控制字段。
+注意: 设备控制的时候会有一个updateFlag字段。  
+这个修改标记位是为了做统计和配置下发的时候设备执行相应的功能。下发数据必须传递updateflag标志
 
-第二种 蓝牙设备控制：  
+例如，空气净化器（广磊K180）配置信息协议：
+紫外线(1)、负离子(2)、臭氧(3)、儿童锁(4)、开关(5)、WiFi(6)、过滤网(7)、模式(8)、定时(9)、风量(10) 上面一共上10个功能，那么updateFlag就2个字节，没超过8个功能为1个字节，超过8个为2个字节，超过16个为3个字节，以此类推。
+
+打开负离子，2个字节，每一个bit的值为下：
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
+
+### 6.2.蓝牙设备控制 
+  
 蓝牙设备控制主要是通过手机和蓝牙设备先建立连接，然后根据定义的协议进行数据交互，具体的交互流程图如下：
 
  ![](https://i.imgur.com/mFZmrXE.png)
@@ -1481,14 +1336,18 @@ SDK对开放平台蓝牙设备提供写数据的标准接口 HetCommonBleControl
     };
 
 第一个参数是设备mac。  
-第二个参数是开放平台蓝牙协议标准接口类型。可以参照一下：  
-CmdIndexConstant.HET_COMMAND_BIND_APP      			绑定APP  
-CmdIndexConstant.HET_COMMAND_GET_TIME_APP   		获取设备时间  
-CmdIndexConstant.HET_COMMAND_SET_TIME_APP			设置设备时间  
-CmdIndexConstant.HET_COMMAND_GET_HISTORY_DATA_APP	获取设备历史数据  
-CmdIndexConstant.HET_COMMAND_CLEAR_HISTORY_DATA_APP 清楚设备历史数据  
-CmdIndexConstant.HET_COMMAND_GET_REAL_TIME_DATA_APP 获取真实的设备数据 
-CmdIndexConstant.HET_COMMAND_CONFIG_DATA_APP		下发控制协议  
+第二个参数是开放平台蓝牙协议标准指令类型。可以参照一下：    
+
+| 指令类型 | 指令说明 |
+|---------|---------|
+| CmdIndexConstant.HET_COMMAND_BIND_APP | 绑定APP |
+| CmdIndexConstant.HET_COMMAND_GET_TIME_APP | 获取设备时间 |
+| CmdIndexConstant.HET_COMMAND_SET_TIME_APP | 设置设备时间 |
+| CmdIndexConstant.HET_COMMAND_GET_HISTORY_DATA_APP | 获取设备历史数据 |
+| CmdIndexConstant.HET_COMMAND_CLEAR_HISTORY_DATA_APP | 清楚设备历史数据 |
+| CmdIndexConstant.HET_COMMAND_GET_REAL_TIME_DATA_APP | 获取真实的设备数据 |
+| CmdIndexConstant.HET_COMMAND_CONFIG_DATA_APP | 下发控制协议 |
+ 
 第三个参数是写数据成功与否的监听回调。这里开发者可以自行做重发处理。  
 
 第四步：读数据  
@@ -1514,16 +1373,20 @@ SDK对开放平台蓝牙设备提供写数据的标准接口 HetCommonBleControl
     };
 
 第一个参数是设备mac。  
-第二个参数是开放平台蓝牙协议标准接口类型。可以参照一下：  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SYSTEM_ID     			System Id  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_FIRMWARE_REVISION   	Firmware Revision  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_HARDWARE_REVISION		Hardware Revision  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SOFTWARE_REVISION		Software Revision  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SERIAL_NUMBER 			Serial Number  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_MANUFACTURE_NAME 		Manufacture Name（）  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_MODEL_NUMBER			Model Number  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_PNP_ID					PnP ID  
-CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_BATTERY					Battery Level  
+第二个参数是开放平台蓝牙协议标准指令类型。可以参照一下：  
+
+| 指令类型 | 指令说明 |
+|---------|---------|
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SYSTEM_ID | System Id  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_FIRMWARE_REVISION | Firmware Revision   |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_HARDWARE_REVISION | Hardware Revision  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SOFTWARE_REVISION | Software Revision  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_SERIAL_NUMBER | Serial Number  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_MANUFACTURE_NAME | Manufacture Name  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_MODEL_NUMBER | Model Number  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_PNP_ID | PnP ID  |
+| CmdIndexConstant.DeviceInfoConstant.HET_COMMAND_BATTERY | Battery Level  |
+
 第三个参数是读数据成功与否的监听回调。  
 
 第五步：释放资源(断开连接)
@@ -1607,64 +1470,17 @@ SDK提供了操作消息的接口HetMessageApi
 根据项目的需求来调用相关接口。
 
 调用HetMessageApi.getInstance().refreshList()获取消息列表，调用传参说明：
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>访问凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>messageId</td>
-			<td>否</td>
-			<td>number</td>
-			<td>消息标识，只有上拉时传值，下拉时不能传值</td>
-		</tr>
-		<tr>
-			<td>messageType</td>
-			<td>否</td>
-			<td>number</td>
-			<td>0-系统消息；1-添加好友；2-邀请控制设备；3-查看帖子评论；5-运营互动</td>
-		</tr>
-		<tr>
-			<td>selType</td>
-			<td>否</td>
-			<td>number</td>
-			<td>查询类型。<font color="red">按照人查询消息时不传值，按照app查询时，必传1</font></td>
-		</tr>
-		<tr>
-			<td>pageRows</td>
-			<td>否</td>
-			<td>number</td>
-			<td>每页数据大小</td>
-		</tr>
-		<tr>
-			<td>pageIndex</td>
-			<td>否</td>
-			<td>number</td>
-			<td>加载第几页</td>
-		</tr>
-	</tbody>
-</table>
+
+| 参数名称 | 是否必须 | 字段类型 | 参数说明 |
+|---------|---------|---------|---------|
+| appId | 是 | string | 应用标识 |
+| accessToken | 是 | string | 访问凭证 |
+| timestamp | 是 | number | 时间戳 |
+| messageId | 是 | number | 消息标识，只有上拉时传值，下拉时不能传值 |
+| messageType | 否 | number | 0-系统消息；1-添加好友；2-邀请控制设备；3-查看帖子评论；5-运营互动 |
+| selType | 否 | number | 查询类型。<font color="red">按照人查询消息时不传值，按照app查询时，必传1</font> |
+| pageRows | 否 | number | 每页数据大小 |
+| pageIndex | 否 | number | 加载第几页 |
 
 返回json结果：
 
@@ -1702,97 +1518,24 @@ SDK提供了操作消息的接口HetMessageApi
 	          },
 	    "code": 0
 	} 
-返回的结果字段说明：
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>messageId</td>
-			<td>number</td>
-			<td>消息标识</td>
-		</tr>
-		<tr>
-			<td>title</td>
-			<td>string</td>
-			<td>标题</td>
-		</tr>
-		<tr>
-			<td>description</td>
-			<td>string</td>
-			<td>描述</td>
-		</tr>
-		<tr>
-			<td>businessParam</td>
-			<td>string</td>
-			<td>业务参数的值(系统推送消息对应消息详情URL(businessParam为空时不要跳转)；添加好友消息对应用户Id，控制设备消息对应设备ID，查看帖子评论对应帖子详情URL。）
-			</td>
-		</tr>
-		<tr>
-			<td>sender</td>
-			<td>number</td>
-			<td>发送者ID</td>
-		</tr>
-		<tr>
-			<td>icon</td>
-			<td>string</td>
-			<td>图标URL</td>
-		</tr>
-		<tr><td>messageType</td>
-			<td>number</td>
-			<td>消息类型：0-系统消息；1-添加好友；2-邀请控制设备；3-查看帖子评论；5-运营互动；其他后续补充
-			</td>
-		</tr>
-		<tr>
-			<td>createTime</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>status</td>
-			<td>number</td>
-			<td>消息状态(0-删除；1-未处理；2-已处理)</td>
-		</tr>
-		<tr>
-			<td>level2</td>
-			<td>number</td>
-			<td> (系统消息的时候如果操作类标识)系统消息下的二级分类：1-无正文；2-文本H5；3-外链；4-设备
-			</td>
-		</tr>
-		<tr>
-			<td>content</td>
-			<td>String</td>
-			<td> (表示设备信息时候建议接口调用时传json格式值)系统消息内容
-			</td>
-		</tr>
-		<tr>
-			<td>readed</td>
-			<td>number</td>
-			<td>消息是否已读（0-已读 1-未读）
-			</td>
-		</tr>	
-		<tr>
-			<td>readonly</td>
-			<td>number</td>
-			<td>消息是否只读（0-只读类 1-操作类）
-			</td>
-		</tr>
-		<tr>
-			<td>summary</td>
-			<td>String</td>
-			<td>简要描述</td>
-		</tr>
-		<tr>
-			<td>pictureUrl</td>
-			<td>String</td>
-			<td>简图路径</td>
-		</tr>
-	</tbody>
-</table>
+返回的结果字段说明：  
 
+| 字段名称 | 字段类型 | 字段说明 |
+|---------|---------|---------|
+| messageId | number | 消息标识 |
+| title | string | 标题 |
+| description | string | 描述 |
+| businessParam | string | 业务参数的值(系统推送消息对应消息详情URL(businessParam为空时不要跳转)；添加好友消息对应用户Id，控制设备消息对应设备ID，查看帖子评论对应帖子详情URL。）|
+| sender | number | 发送者ID |
+| icon | string | 图标URL |
+| messageType | number | 消息类型：0-系统消息；1-添加好友；2-邀请控制设备；3-查看帖子评论；5-运营互动；其他后续补充 |
+| createTime | number | 时间戳 |
+| status | number | (系统消息的时候如果操作类标识)系统消息下的二级分类：1-无正文；2-文本H5；3-外链；4-设备 |
+| content | String | 表示设备信息时候建议接口调用时传json格式值)系统消息内容 |
+| readed | number | 消息是否已读（0-已读 1-未读）|
+| readonly | number | 消息是否只读（0-只读类 1-操作类） |
+| summary | String | 简要描述 |
+| pictureUrl | String | 简图路径 |
 
 # <span id="jump">第三方平台服务的集成（登录和分享）</span>
 
@@ -1964,186 +1707,57 @@ SDK提供了操作消息的接口HetMessageApi
 
 	每次调用接口时，可能获得正确或错误的返回码，可以根据返回码信息调试接口，排查错误。
 全局返回码说明如下：  
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">返回码</th>
-			<th width="84%">说明</th>
-		</tr>
-		<tr>
-			<td>0</td>
-			<td>请求成功</td>
-		</tr>
-		<tr>
-			<td>100010100</td>
-			<td>缺少授权信息</td>
-		</tr>
-		<tr>
-			<td>100010101</td>
-			<td>AccessToken错误或已过期</td>
-		</tr>
-		<tr>
-			<td>100010102</td>
-			<td>RefreshToken错误或已过期</td>
-		</tr>
-		<tr>
-			<td>100010103</td>
-			<td>AppId不合法</td>
-		</tr>
-		<tr>
-			<td>100010104</td>
-			<td>timestamp过期</td>
-		</tr>
-		<tr>
-			<td>100010105</td>
-			<td>签名错误</td>
-		</tr>
-		<tr>
-			<td>100010200</td>
-			<td>失败</td>
-		</tr>
-		<tr>
-			<td>100010201</td>
-			<td>缺少参数</td>
-		</tr>
-		<tr>
-			<td>100010202</td>
-			<td>参数错误</td>
-		</tr>
-		<tr>
-			<td>100010203</td>
-			<td>必须使用https</td>
-		</tr>
-		<tr>
-			<td>100010208</td>
-			<td>产品不存在</td>
-		</tr>
-		<tr>
-			<td>100021000</td>
-			<td>帐号已注册</td>
-		</tr>
-		<tr>
-			<td>100021001</td>
-			<td>帐号未注册</td>
-		</tr>
-		<tr>
-			<td>100021007</td>
-			<td>帐号已邀请</td>
-		</tr>
-		<tr>
-			<td>100021008</td>
-			<td>邀请你的用户已解绑该设备</td>
-		</tr>
-		<tr>
-			<td>100021010</td>
-			<td>邀请已被接受</td>
-		</tr>
-		<tr>
-			<td>100021301</td>
-			<td>验证码错误</td>
-		</tr>
-		<tr>
-			<td>100021302</td>
-			<td>随机码错误</td>
-		</tr>
-		<tr>
-			<td>100021303</td>
-			<td>您的访问太过频繁，请15分钟之后再尝试</td>
-		</tr>
-		<tr>
-			<td>100021304</td>
-			<td>重新获取验证码成功</td>
-		</tr>
-		<tr>
-			<td>100021401</td>
-			<td>用户不存在</td>
-		</tr>
-		<tr>
-			<td>100021500</td>
-			<td>密码错误</td>
-		</tr>
-		<tr>
-			<td>100021603</td>
-			<td>数据不存在</td>
-		</tr>
-		<tr>
-			<td>100022000</td>
-			<td>设备不存在</td>
-		</tr>
-		<tr>
-			<td>100022001</td>
-			<td>设备未绑定</td>
-		</tr>
-		<tr>
-			<td>100022002</td>
-			<td>设备已绑定</td>
-		</tr>
-		<tr>
-			<td>100022003</td>
-			<td>设备解绑失败</td>
-		</tr>
-		<tr>
-			<td>100022004</td>
-			<td>MAC地址已绑定另一种设备</td>
-		</tr>
-		<tr>
-			<td>100022005</td>
-			<td>设备控制JSON错误</td>
-		</tr>	
-		<tr>
-			<td>100022006</td>
-			<td>设备不在线</td>
-		</tr>
-		<tr>
-			<td>10002208</td>
-			<td>不能邀请自己控制</td>
-		</tr>
-		<tr>
-			<td>100022011</td>
-			<td>设备已授权</td>
-		</tr>
-		<tr>
-			<td>100022012</td>
-			<td>待更换MAC与原MAC相同</td>
-		</tr>
-		<tr>
-			<td>100022013</td>
-			<td>appId与产品未做关联</td>
-		</tr>
-		<tr>
-			<td>100022014</td>
-			<td>待绑定MAC未进行服务注册</td>
-		</tr>
-		<tr>
-			<td>106000021</td>
-			<td>应用无权限查看该设备信息</td>
-		</tr>
-		<tr>
-			<td>106000026</td>
-			<td>产品不存在</td>
-		</tr>
-		<tr>
-			<td>106000031</td>
-			<td>应用包名错误</td>
-		</tr>
-		<tr>
-			<td>106000036</td>
-			<td>openId错误</td>
-		</tr>
-		<tr>
-			<td>106000037</td>
-			<td>手机号码错误</td>
-		</tr>
-		<tr>
-			<td>106000041</td>
-			<td>帐号错误，请使用开放平台账号登录</td>
-		</tr>
-	</tbody>
-</table>
+
+| 返回码 | 说明 |
+|---------|---------|
+| 0 | 请求成功 |
+| 100010100 | 缺少授权信息 |
+| 100010101 | AccessToken错误或已过期 |
+| 100010102 | RefreshToken错误或已过期 |
+| 100010103 | AppId不合法 |
+| 100010104 | timestamp过期 |
+| 100010105 | 签名错误 |
+| 100010200 | 失败 |
+| 100010201 | 缺少参数 |
+| 100010202 | 参数错误 |
+| 100010203 | 必须使用https |
+| 100010208 | 产品不存在 |
+| 100021000 | 帐号已注册 |
+| 100021001 | 帐号未注册 |
+| 100021007 | 帐号已邀请 |
+| 100021008 | 邀请你的用户已解绑该设备 |
+| 100021010 | 邀请已被接受 |
+| 100021301 | 验证码错误 |
+| 100021302 | 随机码错误 |
+| 100021303 | 您的访问太过频繁，请15分钟之后再尝试 |
+| 100021304 | 重新获取验证码成功 |
+| 100021401 | 用户不存在 |
+| 100021500 | 密码错误 |
+| 100021603 | 数据不存在 |
+| 100022000 | 设备不存在 |
+| 100022001 | 设备未绑定 |
+| 100022002 | 设备已绑定 |
+| 100022003 | 设备解绑失败 |
+| 100022004 | MAC地址已绑定另一种设备 |
+| 100022005 | 设备控制JSON错误 |
+| 100022006 | 设备不在线 |
+| 10002208  | 不能邀请自己控制 |
+| 100022011 | 设备已授权 |
+| 100022012 | 待更换MAC与原MAC相同 |
+| 100022013 | appId与产品未做关联 |
+| 100022014 | 待绑定MAC未进行服务注册 |
+| 106000021 | 应用无权限查看该设备信息 |
+| 106000026 | 产品不存在 |
+| 106000031 | 应用包名错误 |
+| 106000036 | openId错误 |
+| 106000037 | 手机号码错误 |
+| 106000041 | 帐号错误，请使用开放平台账号登录 |
 
 # H5+Native混合框架
+
 为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
+
 请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
 ## 2.Android和H5通讯流程图
 
@@ -2153,12 +1767,14 @@ SDK提供了操作消息的接口HetMessageApi
 
 SDK封装了H5插件下载和原生与H5通讯接口，开发者可以轻松实现H5插件的设备控制。 
  
-###3.1.上传H5开发包
+### 3.1.上传H5开发包
 
 开发者需要在开放平台上传完整的H5开发包待审核，审核通过之后才可以正常使用。
 
-###3.2.初始化webView和H5交互接口
-####3.2.1.初始化webView
+### 3.2.初始化webView和H5交互接口
+
+#### 3.2.1.初始化webView
+
 SDK采用了X5内核的浏览服务，添加方式有2种：  
 第一种：通过xml方式创建布局  
 
@@ -2176,7 +1792,7 @@ SDK采用了X5内核的浏览服务，添加方式有2种：
 注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：  
 android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 。
 
-####3.2.2.初始化H5交互接口
+#### 3.2.2.初始化H5交互接口
 
 	HtmlFiveManager htmlFiveManager = new HtmlFiveManager(activity, webView, iAppJavaScriptsInterface);
 
@@ -2225,13 +1841,13 @@ HtmlFiveManager是封装了H5与Android原生的交互接口，通过IAppJavaScr
     	}
 	};
 
-###3.3.加载H5插件
+### 3.3.加载H5插件
 
 	HetH5Api.getInstance().getH5ControlPlug(context,deviceBean);
 
 SDK会加载最新的H5插件（下载和检查更新）。加载成功会抛出HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_SUCCESS事件，加载失败会抛出HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_FAILED事件。
 
-###3.4.监听H5插件加载成功与失败
+### 3.4.监听H5插件加载成功与失败
 
      RxManage.getInstance().register(HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_SUCCESS + model.getProductId(), o -> {
             if (htmlFiveManager != null) {
@@ -2245,7 +1861,7 @@ SDK会加载最新的H5插件（下载和检查更新）。加载成功会抛出
 H5插件加载成功，调用htmlFiveManager.loadUrl(path); 加载H5页面展示UI。
 
 
-###3.5.上传设备数据给H5
+### 3.5.上传设备数据给H5
 
 上传运行数据：
 
@@ -2257,7 +1873,7 @@ H5插件加载成功，调用htmlFiveManager.loadUrl(path); 加载H5页面展示
 
 	htmlFiveManager.updateErrorData(json);
 
-###3.6.退出释放资源
+### 3.6.退出释放资源
 
 	@Override
     public void onDestroy() {
@@ -2273,3 +1889,4 @@ H5插件加载成功，调用htmlFiveManager.loadUrl(path); 加载H5页面展示
     		webView = null;
 		}
 	}
+
