@@ -5,7 +5,7 @@
    "output.name": "site",
    "language": "zh-hans",
    "gitbook": ">= 3.0.0",
-   "structure": {"readme": "README.md"},
+   "structure": {"readme": "index.md"},
    "plugins": [
        "-sharing",
        "-fontsettings",
