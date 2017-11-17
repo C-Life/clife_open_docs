@@ -221,7 +221,7 @@ WEAKSELF
 
 ![](/assets/产品详细信息.jpg)
 
-* 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
+> 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
 
 ####3.2.2 通过大类小类获取设备信息
@@ -272,10 +272,7 @@ WEAKSELF
 #### 3.3.1 smartLink绑定
 >在开始配置前，设备要先进入配置模式，然后APP发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。
 
-**第一步：获取路由器ssid和密码 **
-
-**HETWIFIBindBusiness** 获取路由器ssid
-
+**第一步：获取路由器ssid **
 【示例代码】
 
 ```
@@ -284,8 +281,6 @@ NSString  *macAddr = [[HETWIFIBindBusiness sharedInstance] fetchmacSSIDInfo];
 ```
 
 第二步：传入参数产品ID **productId**，**路由器ssid** 和 **密码**，启动绑定流程
-
-**传入参数，通过 **HETWIFIBindBusiness** 调用接口， 启动绑定**
 
 【示例代码】
 
@@ -304,6 +299,8 @@ startSmartLinkBindDeviceWithProductId:[NSString stringWithFormat:@"%@",self.devi
     }
 
 }];
+
+```
 
 
 #### 3.3.2 AP绑定
