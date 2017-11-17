@@ -1,138 +1,16 @@
-#iOS SDK 概述
-
-## 目录
-<!-- MarkdownTOC depth=4 autolink=true bracket=round -->
-
-- [一、 设备接入SDK概述](#概述)
-- [二、 SDK初始化](#SDK初始化)
-- [三、 SDK授权](#SDK授权)
-- [四、 SDK第三方登录](#SDK第三方登录)
-- [五、 SDK设备扫描绑定](#SDK设备扫描绑定)
-- [六、 SDKWIFI设备的控制](#WIFI设备的控制)
-- [七、 SDK蓝牙设备的控制](#SDK蓝牙设备的控制)
-- [八、 SDK设备的分享](#SDK设备的分享)
-- [九、 H5设备控制](#H5设备控制) 
-- [十、 其他接口](#业务性接口)
-
-
-# APP 集成流程
-## 1.导入SDK，SDK配置
-    ### 1.1 SDK注册（注入appId、appSecret）
-    ### 1.2 设置SDK的日志信息开启
-    ### 1.3 .配置网络环境
-    ### 1.4 配置APP主题的信息
-    ### 1.5 集成注意事项
-## 2.用户模块
-    ### 2.1 获取登录状态
-    ### 2.2 Clife 授权登录
-    ### 2.3 云云对接用户授权登录
-    ### 2.4 退出登录
-    ### 2.5 获取用户信息
-    ### 2.6 异地登录通知
-    ### 2.7修改密码   
-## 3.设备绑定
-  ### 3.1绑定概述
-    #### 3.1.1 绑定流程
-    #### 3.1.2 设备分类
-  ### 3.2 获取设备信息
-    #### 3.2.1 设备信息说明
-  ### 3.3 WiFi设备绑定
-    #### 3.3.1 smartLink绑定
-    #### 3.3.2 AP绑定
-  ### 3.4 蓝牙设备绑定
-## 4.设备控制
-  ### 4.1 WIFI设备控制
-  ### 4.2 蓝牙设备控制
-## 5.设备管理
-  ### 5.1 获取设备列表
-  ### 5.2 解绑设备
-  ### 5.3 设备分享
-## 6.其他接口（通用接口介绍）
-  ### 6.1 意见反馈
-  ### 6.2 消息模块
-## 7.全局返回码
-## 8.H5+Native混合框架
-  ### 8.1 H5开放框架概述
-  ### 8.2 Android/iOS 和H5通讯流程图
-  ### 8.3 H5设备控制集成流程
-    #### 8.3.1 初始化
-    #### 8.3.2 加载H5资源
-    #### 8.3.3 H5与原生数据交互
-## 9.补充说明
-  ### 9.1第三方社交平台登录
-  ### 9.2配置第三方社交平台
-
-
-
-
-
-
-
-<span id="概述"></span>
-## 一、设备接入SDK概述
-
-
-###1. SDK功能简介
-clife开放平台（以下简称开放平台）设备接入的SDK封装了clife对外开放的服务接口，以及手机与智能硬件通讯接口。包括用户模块，设备绑定模块，设备控制模块和其他的开放平台接口。开发者不需要关注这些模块的具体内部逻辑，只需要根据自己的业务需求编写界面和调用SDK接口就可以完成APP的快速开发。
-
-###2. SDK的总体框架
-![](/assets/SDK架构图.jpg)
-
-###3. 相关名词定义
-
-
-####3.1 大循环
-
-智能设备通过路由器或直接接入互联网以实现用户的远程监测与控制，我们称为大循环。
-
-####3.2 productId
-
-设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
-
-####3.3 deviceId
-
-设备号，当一个设备通过设备绑定的接口初次接入开放平台时，开放平台会自动根据productId以及设备的mac地址为此设备注册一个deviceId，此deviceId全网唯一，用于通过开放平台进行设备的操作。
-
-
-
-<span id="SDK初始化"></span>
-## 二、初始化
-###1. 注册开放平台账号
-
-在<a href="https://open.clife.cn/#/home">C-Life开发平台</a>注册开发者账号，创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。
-
-![](/assets/注册开放平台账号1.png)
-
-
-###2. 下载C-Life iOS SDK文件，并且配置工程
-####2.1 确认本机安装的cocoapods能正常工作
-
-```
-pod --help 
-
-```
-
-####2.2 编辑Podfile文件
-
+#
+APP 集成流程
+## 1.SDK配置
+### 1.1 SDK初始化
+第一步：导入sdk 库
 ```
 pod 'HETOpenSDK','2.0.0'
 
 ```
 
-####2.3 安装
-
-以下两种方式任选一种就可以：
-
-```
-pod install 
-pod update 
-
-```
-
-###3. 导入硬件模组对应的SDK
-####3.1 根据产品类型找到对应的芯片模组名称，如下：
+第二步：导入 模组库
+** 根据产品类型找到对应的芯片模组名称，如下：**
 ![](/assets/查看芯片模组类型.png)
-####3.2 在podfile中导入对应的sdk，并且安装，对应类表如下：
 
 ```
 source 'https://github.com/C-Life/HETSDKSpecs.git'
@@ -160,27 +38,26 @@ pod 'HETPublicSDK_WiFiModule/MTK7687',     '1.0.0'
 # 新力维-WiFi模组
 pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 
-```
-**备注**：在使用了Wifi模组后，就不再支持模拟器调试。
-
-###4. 注册使用SDK
-####4.1 在AppDelegate中如下地方添加，注册使用SDK，打开Log
+第三步：注册使用SDK
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   // 1.注册HET开发平台SDK
-   [HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
-   [HETOpenSDK openLog:YES];
-   return YES;
+// 1.SDK注册
+[HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
+// 2.设置SDK的日志信息开启
+[HETOpenSDK openLog:YES];
+//3.配置网络环境
+[HETOpenSDK setNetWorkConfig:HETNetWorkConfigType_ETE];
+return YES;
 }
 
 ```
+### 1.2 配置APP主题的信息
+** 通过参数定义的JSON字符串来进行配置APP主题色，demoAPP是通过HETAuthorizeTheme.plist 这个文件来组装JSON字符串的。**
+![](/assets/修改app主题色配置文件.png)
 
-**yourAPPId**、**yourAPPSecret** 的值是在“应用创建”时生成的 **AppID**、**AppSecret**。 在如下图查看: 
 
-
-![](/assets/获取appkeyandappsecrect.jpg)
-
+### 1.3 集成注意事项
 **注意**:如果网络请求出现AppID不合法，请检查Xcode工程里面的BundleId和appId，必须跟在开放平台创建应用时填的BundleId和AppID保持一致。
 
 
