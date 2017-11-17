@@ -1,14 +1,13 @@
-#
-APP 集成流程
+#APP 集成流程
 ## 1.SDK配置
 ### 1.1 SDK初始化
-第一步：导入sdk 库
+**第一步:导入sdk库**
 ```
 pod 'HETOpenSDK','2.0.0'
 
 ```
 
-第二步：导入 模组库
+**第二步：导入模组库**
 ** 根据产品类型找到对应的芯片模组名称，如下：**
 ![](/assets/查看芯片模组类型.png)
 
@@ -38,7 +37,8 @@ pod 'HETPublicSDK_WiFiModule/MTK7687',     '1.0.0'
 # 新力维-WiFi模组
 pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 
-第三步：注册使用SDK
+```
+**第三步：注册使用SDK **
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -61,7 +61,14 @@ return YES;
 **注意**:如果网络请求出现AppID不合法，请检查Xcode工程里面的BundleId和appId，必须跟在开放平台创建应用时填的BundleId和AppID保持一致。
 
 
-<span id="SDK授权"></span>
+## 2.用户模块
+### 2.1 获取登录状态
+### 2.2 Clife 授权登录
+### 2.3 云云对接用户授权登录
+### 2.4 退出登录
+### 2.5 获取用户信息
+### 2.6 异地登录通知
+### 2.7修改密码
 ## 三、授权登录
 
 参考`HETAuthorize`类里面方法,调用`authorizeWithCompleted`接口会弹出授权登录的界面，登录成功后接口返回openId（授权用户唯一标识）可用于与自己平台的账户体系关联。
