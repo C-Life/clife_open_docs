@@ -365,7 +365,7 @@ deviceTypeId:self.deviceTypeId.integerValue
 deviceSubtypeId:self.deviceSubtypeId.integerValue];
 ```
 
-** 第二部 蓝牙扫描设备 **
+** 第二步 蓝牙扫描设备 **
 
 开始扫描蓝牙设备，扫描到的蓝牙设备，用tableView显示出来，给用户选择。
 
@@ -386,6 +386,8 @@ if (peripherals) {
   return;
 }
 }];
+
+```
 
 ** 第二步：选择需要绑定的设备，启动绑定流程**
 
