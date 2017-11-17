@@ -308,8 +308,6 @@ startSmartLinkBindDeviceWithProductId:[NSString stringWithFormat:@"%@",self.devi
 
 >使用C-life提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。
 
-AP绑定的交互流程：
-
 **第一步：获取路由器ssid **
 【示例代码】
 
@@ -351,6 +349,7 @@ NSString *subTypeId = [NSString stringWithFormat:@"%@",self.device.deviceSubtype
              [weakSelf doSomeThingWithState:state deviceObj:deviceObj];
         }    
 }];
+```
 
 
 ### 3.4 蓝牙设备绑定
