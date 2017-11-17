@@ -3,7 +3,6 @@
 * [开放平台文档中心](README.md)
 * [1. 平台概述](./source/zh-cn/overview/index.md)
 	* [1.2接入流程介绍](./source/zh-cn/overview/access_flow_introduction.md)
-	* [1.3联系我们](./source/zh-cn/overview/contact_us.md)
 * [2. 产品开发](./source/zh-cn/product/index.md)
  	* [2.2 协议配置](./source/zh-cn/product/protocol_config.md)
  	* [2.3 页面配置](./source/zh-cn/product/page_config.md)
