@@ -310,10 +310,7 @@ startSmartLinkBindDeviceWithProductId:[NSString stringWithFormat:@"%@",self.devi
 
 AP绑定的交互流程：
 
-**第一步：获取路由器ssid和密码 **
-
-**HETWIFIBindBusiness** 获取路由器ssid
-
+**第一步：获取路由器ssid **
 【示例代码】
 
 ```
@@ -323,17 +320,13 @@ NSString  *macAddr = [[HETWIFIBindBusiness sharedInstance] fetchmacSSIDInfo];
 
 ** 第二步：手机连接路由器热点 **
 
-第三步：手机切换设备热点
-
-** 校验用户是否连接设备 **
+** 第三步：手机切换设备热点 **
 
 设备AP热点命名规则: `radiocastName_deviceTypeId_deviceSubtypeId`
 
 当判断用户已经成功连接设备AP热点，即可进入绑定流程。
 
 ** 第四步：传入参数 产品ID **productId**、**设备大类ID**、**设备小类ID**、**路由器ssid** 和 **密码**，启动绑定流程 **
-
-**HETWIFIBindBusiness** 调用接口， 启动绑定
 
 【示例代码】
 
@@ -361,12 +354,9 @@ NSString *subTypeId = [NSString stringWithFormat:@"%@",self.device.deviceSubtype
 
 
 ### 3.4 蓝牙设备绑定
-** 第一步：传入参数 产品ID **productId**、**设备大类ID**、**设备小类ID**，初始化**
-
-** 初始化HETBLEBusiness对象**
+** 第一步：传入参数 产品ID **productId**、**设备大类ID**、**设备小类ID**，初始化 HETBLEBusiness对象**
 
 【示例代码】
-
 
 ```
 //初始化蓝牙设备的业务类，需要设备的productId，deviceTypeId，deviceSubtypeId
@@ -397,11 +387,9 @@ if (peripherals) {
 }
 }];
 
-** 第二步：启动绑定流程 **
-** 选择需要绑定的设备，启动绑定流程。**
+** 第二步：选择需要绑定的设备，启动绑定流程**
 
 【示例代码】
-
 
 ```
 [self.bleBusiness bindBleDeviceWithPeripheral:cbp macAddress:nil completionHandler:^(NSString *deviceId, NSError *error) {
