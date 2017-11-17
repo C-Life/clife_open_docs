@@ -277,6 +277,8 @@ Het_DriveWifi_WifiDataSend(CMD_010E_ERROR,UartTxBuf,WIFI_ERROR_LEN);
 ![](/images/数据处理函数.png)
 
 ### 3.8 关于在线升级说明
-本工程模板包括两个项目工程，其中HetBootloader工程负责管理芯片上电后检测是否有在线升级动作，如果有则把新的程序内容拷贝至原来的APP应用区，替换掉原来的老程序，如果没有则直接跳转到应用区启动程序。而HerApplication则是应用程序代码区。该在线升级完全在芯片内部实现，并未外挂flash用于存储升级的数据，具体的分区信息可以点击FlashDivision.h文件查看。
-####说明：
+本工程模板包括两个项目工程，其中HetBootloader工程负责管理芯片上电后检测是否有在线升级动作，如果有则把新的程序内容拷贝至原来的APP应用区，替换掉原来的老程序，如果没有则直接跳转到应用区启动程序。而HerApplication则是应用程序代码区。该在线升级完全在芯片内部实现，并未外挂flash用于存储升级的数据，具体的分区信息可以点击FlashDivision.h文件查看。  
+
+#### 说明： 
+
 使用该工程的时候不要对HetBootloader工程进行操作，以免程序不能正常工作。
