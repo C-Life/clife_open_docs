@@ -349,6 +349,7 @@ NSString *subTypeId = [NSString stringWithFormat:@"%@",self.device.deviceSubtype
              [weakSelf doSomeThingWithState:state deviceObj:deviceObj];
         }    
 }];
+
 ```
 
 
