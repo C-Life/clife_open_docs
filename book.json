@@ -20,7 +20,7 @@
        "-highlight",
        "-livereload",
        "-sharing",
-       "search-plus@^0.0.11",
+       "-search-plus@^0.0.11",
        "simple-page-toc@^0.1.1",
        "prism@^2.1.0",
        "prism-themes@^0.0.2",
