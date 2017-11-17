@@ -5,7 +5,7 @@
    "output.name": "site",
    "language": "zh-hans",
    "gitbook": ">= 3.0.0",
-   "structure": {"readme": "README.md"},
+   "structure": {"readme": "index.md"},
    "plugins": [
        "-sharing",
        "-fontsettings",
@@ -14,7 +14,7 @@
        "-highlight",
        "-livereload",
        "-sharing",
-       "search-plus@^0.0.11",
+       "-search-plus@^0.0.11",
        "simple-page-toc@^0.1.1",
        "prism@^2.1.0",
        "prism-themes@^0.0.2",
@@ -33,6 +33,7 @@
        "toggle-chapters",
        "book-summary-scroll-position-saver",
 	   "top-nav"
+	   "theme-default"
    ],
    "pluginsConfig": {
        "theme-default": {
