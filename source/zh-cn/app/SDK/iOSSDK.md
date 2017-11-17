@@ -63,20 +63,16 @@ return YES;
 
 ## 2.用户模块
 ### 2.1 获取登录状态
+【示例代码】
+```
+ HETAuthorize *auth = [[HETAuthorize alloc] init];
+ [auth isAuthenticated];
+
+```
 ### 2.2 Clife 授权登录
+
+
 ### 2.3 云云对接用户授权登录
-### 2.4 退出登录
-### 2.5 获取用户信息
-### 2.6 异地登录通知
-### 2.7修改密码
-## 三、授权登录
-
-参考`HETAuthorize`类里面方法,调用`authorizeWithCompleted`接口会弹出授权登录的界面，登录成功后接口返回openId（授权用户唯一标识）可用于与自己平台的账户体系关联。
-
-###1. 授权登录
-
-
-
 【示例代码】
 
 ```
@@ -84,16 +80,11 @@ return YES;
  self.auth = auth;
  if (![self.auth isAuthenticated]) {
       [self.auth authorizeWithCompleted:^(NSString *openId, NSError *error) {
-    }];    
+    }];
   }
 ```
-![](/assets/登录授权界面.png)
-
-###2. 取消授权登录，退出当前账号
-
+### 2.4 退出登录
 【示例代码】
-
-
 ```
 // 在授权登录成功的情况才执行操作
 if ([self.auth isAuthenticated]) {
@@ -101,7 +92,7 @@ if ([self.auth isAuthenticated]) {
 }
 ```
 
-###3. 获取用户信息
+### 2.5 获取用户信息
 
 【示例代码】
 ```
@@ -134,8 +125,17 @@ WEAKSELF
 ```
 
 ![](/assets/获取用户信息图片.png)
+### 2.6 异地登录通知
 
-### 4. 修改密码
+开放平台的账号只能在一台设备上面登录。当有账号在另一台设备登录时，SDK会抛出一个HETLoginOffNotification消息。 开发者可以在首页监听这个消息，处理异地登录的逻辑。 
+例：
+
+【示例代码】
+```
+[[NSNotificationCenter defaultCenter] addObserver:self 
+selector:@selector(XXX) name:HETLoginOffNotification object: nil];
+```
+### 2.7修改密码
 
 【示例代码】
 
@@ -149,144 +149,12 @@ HETAuthorize  *auth = [[HETAuthorize alloc]init];
 ```
 ![](/assets/我的界面.png)
 
-                   
-###5. 异地登录、accessToken过期通知
-
-开放平台的账号只能在一台设备上面登录。当有账号在另一台设备登录时，SDK会抛出一个HETLoginOffNotification消息。 开发者可以在首页监听这个消息，处理异地登录的逻辑。 
-例：
-
-【示例代码】
-```
-[[NSNotificationCenter defaultCenter] addObserver:self 
-selector:@selector(XXX) name:HETLoginOffNotification object: nil];
-```
-
-
-<span id="SDK第三方登录"></span>
-## 四、第三方登录
-
-
-###1. 申请各平台的App key和App secret
-注意：app bundleId跟各平台注册的时候一致。
-
-<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=1417694084&token=&lang=zh_CN">微信接入地址</a>
-
-###2. 导入SDK 
-
-```
-pod 'WechatOpenSDK', '1.7.7'
-pod 'WeiboSDK', '3.1.3'
-pod 'TencentOpenApiSDK', '2.9.5'
-```
-
-###3. 项目配置
-
-
-####3.1 URLScheme 配置
-
-![](/assets/第三方登录URLTypes.jpeg)
-####3.2 针对iOS9+，添加白名单
-在info.plist文件中加入 LSApplicationQueriesSchemes
-
-![](/assets/第三方登录白名单.jpeg)
-
-```
-<key>LSApplicationQueriesSchemes</key>
- <array>
-    <!-- 微信 URL Scheme 白名单-->
-    <string>wechat</string>
-    <string>weixin</string>
-
-    <!-- 新浪微博 URL Scheme 白名单-->
-    <string>sinaweibohd</string>
-    <string>sinaweibo</string>
-    <string>sinaweibosso</string>
-    <string>weibosdk</string>
-    <string>weibosdk2.5</string>
-
-    <!-- QQ、Qzone URL Scheme 白名单-->
-    <string>mqqapi</string>
-    <string>mqq</string>
-    <string>mqqOpensdkSSoLogin</string>
-    <string>mqqconnect</string>
-    <string>mqqopensdkdataline</string>
-    <string>mqqopensdkgrouptribeshare</string>
-    <string>mqqopensdkfriend</string>
-    <string>mqqopensdkapi</string>
-    <string>mqqopensdkapiV2</string>
-    <string>mqqopensdkapiV3</string>
-    <string>mqzoneopensdk</string>
-    <string>wtloginmqq</string>
-    <string>wtloginmqq2</string>
-    <string>mqqwpa</string>
-    <string>mqzone</string>
-    <string>mqzonev2</string>
-    <string>mqzoneshare</string>
-    <string>wtloginqzone</string>
-    <string>mqzonewx</string>
-    <string>mqzoneopensdkapiV2</string>
-    <string>mqzoneopensdkapi19</string>
-    <string>mqzoneopensdkapi</string>
-    <string>mqzoneopensdk</string>
-    
-</array>
-
-```
-
-####3.4 针对iOS9默认使用https,现在先还原成http请求方式。
-
-  在Info.plist中添加NSAppTransportSecurity类型Dictionary。
-
- 在NSAppTransportSecurity下添加NSAllowsArbitraryLoads类型Boolean,值设为YES    
-
-  第一步：在plist中添加NSAppTransportSecurity项，此项为NSDictionary
-
-  第二步：在NSAppTransportSecurity下添加   NSAllowsArbitraryLoads类型为Boolean，value为YES
-  
-###4. 接入HETOpenSDK 第三方登录
-
-
-####4.1 在appdelegate.m中，添加代码
-
-第一步：注入appkey
-
-【示例代码】
-	
-```
-[HETOpenSDK setPlaform:HETAuthPlatformType_QQ appKey:QQ_APP_ID appSecret:nil redirectURL:nil];
-[HETOpenSDK setPlaform:HETAuthPlatformType_Weibo appKey:WB_APP_KEY appSecret:nil redirectURL:nil];
-[HETOpenSDK setPlaform:HETAuthPlatformType_Wechat appKey:WX_APP_KEY appSecret:WX_APP_SECRET redirectURL:nil];
-  
-```
-
-
-第二步：添加请求方法
-
-【示例代码】
-	
-```
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    BOOL result = [HETOpenSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-   	 return result;
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-   	BOOL result = [HETOpenSDK handleOpenURL:url];
-   	return result;
-}
-```
-
-<span id="SDK设备扫描绑定"></span>
-## 五、设备绑定
-
-### 1. 绑定概述
-
-#### 1.1 绑定流程
+## 3.设备绑定
+### 3.1绑定概述
+#### 3.1.1 绑定流程
 ![](/assets/绑定流程介绍.png)
 
-#### 1.2 设备分类
+#### 3.1.2 设备分类
 从设备层级上分为 **设备大类** 和 **设备小类**。例如，冰箱是大类，冰箱下有Clife智能冰箱，即小类。
 
 从设备类型上分为 **蓝牙设备** 和 **wifi设备**，当我们拿到 **设备的信息** 的时候，就能区别设备是wifi设备还是蓝牙设备。
@@ -303,19 +171,15 @@ moduleType | 绑定类型
 
 蓝牙设备暂时只有一种绑定方式（蓝牙绑定）
 
-
-	
-### 2. 获取设备信息
-####2.1 扫描二维码获取设备信息
-##### 2.1.1 二维码命名规则
-	
-二维码命名规则：
+### 3.2 获取设备信息
+####3.2.1 扫描二维码获取设备信息
+** 二维码命名规则：**
 
 ```
 http://open.clife.net/v1/web/open/product?param={"a":产品id}
 ```
-	
-##### 2.1.2 获取产品ID
+  
+** 第一步：获取产品ID**
 
 ```
 扫一扫内容：
@@ -326,7 +190,7 @@ urlStr: http://open.clife.net/v1/web/open/product?param={"a":3531}
 ```
 "a":3531 3531 即是 产品ID
 ```
-##### 2.1.3 根据产品ID获取设备信息
+** 第二步：根据产品ID获取设备信息**
 获取产品信息，区分设备绑定类型。
 
 【示例代码】
@@ -360,12 +224,9 @@ WEAKSELF
 * 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
 
+####3.2.2 通过大类小类获取设备信息
 
-
-####2.2 通过大类小类获取设备信息
-
-
-##### 2.2.1 获取设备大类列表
+** 第一步：获取设备大类列表**
 
 在 **HETDeviceRequestBusiness** 查询设备信息获取相关接口
 
@@ -386,7 +247,7 @@ WEAKSELF
 ![](/assets/查询设备大类接口返回结果.jpg)
 
 
-##### 2.2.2 通过大类ID，获取设备小类
+** 第二步：通过大类ID，获取设备小类 **
 
 【示例代码】
 
@@ -407,60 +268,24 @@ WEAKSELF
 
 >到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
-### 3. Wifi设备绑定方式介绍：
-
-####3.1 smartLink绑定
-
+### 3.3 WiFi设备绑定
+#### 3.3.1 smartLink绑定
 >在开始配置前，设备要先进入配置模式，然后APP发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。
 
+**第一步：获取路由器ssid和密码 **
 
-第一步：获取路由器ssid和密码
-
-第二步：传入参数产品ID **productId**，**路由器ssid** 和 **密码**，启动绑定流程
-
-![](/assets/UML_smartLink绑定流程图.jpg)
-
-####3.2 AP绑定
-
->在开始配置前，设备进入配置模式后，会产生一个Wifi热点。手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP想服务器查询绑定状态。
-
->使用C-life提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。
-
-AP绑定的交互流程：
-
-第一步：获取路由器ssid和密码
-
-第二步：手机连接路由器热点
-
-第三步：手机切换设备热点
-
-第四步：传入参数 产品ID **productId**、**设备大类ID**、**设备小类ID**、**路由器ssid** 和 **密码**，启动绑定流程
-
-![](/assets/UML_设备绑定流程图.jpg)
-
-####3.3 蓝牙设备绑定流程
-第一步：传入参数 产品ID **productId**、**设备大类ID**、**设备小类ID**，初始化
-第二步：启动绑定流程
-
-![](/assets/UML_蓝牙设备绑定.jpg)
-
-
-
-
-###4. 绑定
-
-####4.1 wifi设备的smartLink绑定
-
-#####4.1.1 通过 **HETWIFIBindBusiness** 获取路由器ssid
+**HETWIFIBindBusiness** 获取路由器ssid
 
 【示例代码】
-
 
 ```
 NSString  *macAddr = [[HETWIFIBindBusiness sharedInstance] fetchmacSSIDInfo];
 
 ```
-#####4.1.2 传入参数，通过 **HETWIFIBindBusiness** 调用接口， 启动绑定
+
+第二步：传入参数产品ID **productId**，**路由器ssid** 和 **密码**，启动绑定流程
+
+**传入参数，通过 **HETWIFIBindBusiness** 调用接口， 启动绑定**
 
 【示例代码】
 
@@ -472,29 +297,48 @@ startSmartLinkBindDeviceWithProductId:[NSString stringWithFormat:@"%@",self.devi
                           bindHandler:^(HETWiFiDeviceBindState state, HETDevice *deviceObj, NSError *error) {
        NSLog(@"HETWiFiDeviceBindState: %ld", state);
        
-		if (error) {
-		 			// 扫描失败
-		}else{
-		            // 扫描成功
-		}
+    if (error) {
+          // 扫描失败
+    }else{
+                // 扫描成功
+    }
 
 }];
 
+
+#### 3.3.2 AP绑定
+>在开始配置前，设备进入配置模式后，会产生一个Wifi热点。手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP想服务器查询绑定状态。
+
+>使用C-life提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。
+
+AP绑定的交互流程：
+
+**第一步：获取路由器ssid和密码 **
+
+**HETWIFIBindBusiness** 获取路由器ssid
+
+【示例代码】
+
+```
+NSString  *macAddr = [[HETWIFIBindBusiness sharedInstance] fetchmacSSIDInfo];
+
 ```
 
-###4.2 wifi设备的AP绑定
-####4.2.1 校验用户是否连接设备
+** 第二步：手机连接路由器热点 **
 
+第三步：手机切换设备热点
+
+** 校验用户是否连接设备 **
 
 设备AP热点命名规则: `radiocastName_deviceTypeId_deviceSubtypeId`
 
 当判断用户已经成功连接设备AP热点，即可进入绑定流程。
 
+** 第四步：传入参数 产品ID **productId**、**设备大类ID**、**设备小类ID**、**路由器ssid** 和 **密码**，启动绑定流程 **
 
-####4.2.2 通过 **HETWIFIBindBusiness** 调用接口， 启动绑定
+**HETWIFIBindBusiness** 调用接口， 启动绑定
 
 【示例代码】
-
 
 ```
 
@@ -503,28 +347,26 @@ NSString *typeId = [NSString stringWithFormat:@"%@",self.device.deviceTypeId];
 NSString *subTypeId = [NSString stringWithFormat:@"%@",self.device.deviceSubtypeId];
 
 [[HETWIFIBindBusiness sharedInstance] startAPBindDeviceWithProductId:productId 
- 				                                    withDeviceTypeId:typeId 
+                                            withDeviceTypeId:typeId 
                                                  withDeviceSubtypeId:subTypeId 
-  															withSSID:self.ssid 
-  														withPassWord:self.password 
-  														withTimeOut:timeOut 
+                                withSSID:self.ssid 
+                              withPassWord:self.password 
+                              withTimeOut:timeOut 
   bindHandler:^(HETWiFiDeviceBindState state, HETDevice *deviceObj, NSError *error) {
         OPLog(@"HETWiFiDeviceBindState: %ld", state);
         
         if (error) {
            
         }else{
-        		 [weakSelf doSomeThingWithState:state deviceObj:deviceObj];
+             [weakSelf doSomeThingWithState:state deviceObj:deviceObj];
         }    
 }];
 
-```
 
-###4.3 蓝牙设备的绑定
+### 3.4 蓝牙设备绑定
+** 第一步：传入参数 产品ID **productId**、**设备大类ID**、**设备小类ID**，初始化**
 
-蓝牙的扫描绑定主要看**HETBLEBusiness**相关接口
-
-####4.3.1 初始化HETBLEBusiness对象，启动绑定流程
+** 初始化HETBLEBusiness对象**
 
 【示例代码】
 
@@ -536,32 +378,30 @@ deviceTypeId:self.deviceTypeId.integerValue
 deviceSubtypeId:self.deviceSubtypeId.integerValue];
 ```
 
+** 第二部 蓝牙扫描设备 **
+
 开始扫描蓝牙设备，扫描到的蓝牙设备，用tableView显示出来，给用户选择。
 
 【示例代码】
-
 
 ```
 WEAKSELF
 [self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray<CBPeripheral *> *peripherals, NSError *error) {
 if (error) {
-	// 停止扫描
-	return;
+  // 停止扫描
+  return;
 }
 if (peripherals) {
-	// 返回一个设备数组
-	[peripherals enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-	// 过滤重复的设备，并且刷新蓝牙设备列表
-	}];
-	return;
+  // 返回一个设备数组
+  [peripherals enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+  // 过滤重复的设备，并且刷新蓝牙设备列表
+  }];
+  return;
 }
 }];
 
-```
-
-####4.3.2 绑定设备
-
-选择需要绑定的设备，启动绑定流程。
+** 第二步：启动绑定流程 **
+** 选择需要绑定的设备，启动绑定流程。**
 
 【示例代码】
 
