@@ -102,11 +102,11 @@ if ([self.auth isAuthenticated]) {
 
 【示例代码】
 ```
-WEAKSELF
+typeof(self) __weak weakSelf = self;
 [HETAuthorize getUserInformationSuccess:^(id responseObject) {
-
+	OPLog(@"responseObject = %@",responseObject);
 } failure:^(NSError *error) {
-
+	OPLog(@"error = %@",error);
 }];
 ```
 
@@ -146,10 +146,11 @@ WEAKSELF
 
 ```
 HETAuthorize  *auth = [[HETAuthorize alloc]init];
+typeof(self) __weak weakSelf = self;
 [auth changePasswordSuccess:^(id responseObject) {
-         
+    OPLog(@"responseObject = %@",responseObject);     
 } failure:^(NSError *error) {
-       
+    OPLog(@"error = %@",error);
 }];
 ```
 
@@ -254,9 +255,9 @@ typeof(self) __weak weakSelf = self;
 typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchDeviceTypeListSuccess:^(id responseObject) 
 {
-
+	OPLog(@"responseObject = %@",responseObject);
 } failure:^(NSError *error) {
-
+	OPLog(@"error = %@",error);
 }];
 
 ```
@@ -272,9 +273,9 @@ typeof(self) __weak weakSelf = self;
 // deviceTypeId 从上图获取得到
 NSString *deviceTypeId = [NSString stringWithFormat:@"%@",deviceTypeId]；
 [HETDeviceRequestBusiness fetchDeviceProductListWithDeviceTypeId:deviceTypeId success:^(id responseObject) {
-
+	OPLog(@"responseObject = %@",responseObject);
 } failure:^(NSError *error) {
-
+	OPLog(@"error = %@",error);
 }];
 
 ```
@@ -458,9 +459,9 @@ typeof(self) __weak weakSelf = self;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchAllBindDeviceSuccess:^(NSArray<HETDevice *> *deviceArray) {
-        NSLog(@"responseObject ==%@",deviceArray);
+    OPLog(@"responseObject ==%@",deviceArray);
 } failure:^(NSError *error) {
-        NSLog(@"error ==%@",error);
+    OPLog(@"error ==%@",error);
 }];
 
 ```
@@ -480,11 +481,11 @@ typeof(self) __weak weakSelf = self;
     if (!_controlBusiness) {
         typeof(self) __weak weakSelf = self;
         _controlBusiness = [[HETDeviceControlBusiness alloc]initWithHetDeviceModel:self.device deviceRunData:^(id responseObject) {
-	    // 监听设备运行数据，responseObject请具体参考协议配置。
+	    	// 监听设备运行数据，responseObject请具体参考协议配置。
             OPLog(@"deviceRunData:%@ " ,responseObject);
 
         } deviceCfgData:^(id responseObject) {
- 	    // 监听设备控制数据
+ 	   		// 监听设备控制数据
             OPLog(@"deviceCfgData:%@ " ,responseObject);
          
         } deviceErrorData:^(id responseObject) {
