@@ -205,7 +205,7 @@ urlStr: http://open.clife.net/v1/web/open/product?param={"a":3531}
 【示例代码】
 
 ```
-WEAKSELF
+typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchDeviceInfoWithProductId:productId success:^(id responseObject) {
     // 获取设备信息
     if ([[responseObject allKeys] containsObject:@"data"]) {
@@ -251,6 +251,7 @@ WEAKSELF
 
 ```
 在 **HETDeviceRequestBusiness** 查询相关接口
+typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchDeviceTypeListSuccess:^(id responseObject) 
 {
 
@@ -309,6 +310,7 @@ NSString  *macAddr = [[HETWIFIBindBusiness sharedInstance] fetchmacSSIDInfo];
 
 
 ```
+typeof(self) __weak weakSelf = self;
 NSString *productId = [NSString stringWithFormat:@"%@",self.device.productId];
 [[HETWIFIBindBusiness sharedInstance] 
 startSmartLinkBindDeviceWithProductId:productId
@@ -364,6 +366,7 @@ NSString *productId = [NSString stringWithFormat:@"%@",self.device.productId];
 NSString *typeId = [NSString stringWithFormat:@"%@",self.device.deviceTypeId];
 NSString *subTypeId = [NSString stringWithFormat:@"%@",self.device.deviceSubtypeId];
 
+typeof(self) __weak weakSelf = self;
 [[HETWIFIBindBusiness sharedInstance] startAPBindDeviceWithProductId:productId 
                                             withDeviceTypeId:typeId 
                                                  withDeviceSubtypeId:subTypeId 
@@ -403,7 +406,7 @@ deviceSubtypeId:self.deviceSubtypeId.integerValue];
 【示例代码】
 
 ```
-WEAKSELF
+typeof(self) __weak weakSelf = self;
 [self.bleBusiness scanForPeripheralsWithTimeOut:timeOut name:nil mac:nil scanForPeripheralsBlock:^(NSArray<CBPeripheral *> *peripherals, NSError *error) {
   if (error) {
    // 停止扫描
@@ -425,6 +428,7 @@ if (peripherals) {
 【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [self.bleBusiness bindBleDeviceWithPeripheral:cbp macAddress:nil completionHandler:^(NSString *deviceId, NSError *error) {
   [weakself.bleBusiness disconnectWithPeripheral:cbp];
   if(error) {
@@ -452,6 +456,7 @@ if (peripherals) {
 【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchAllBindDeviceSuccess:^(NSArray<HETDevice *> *deviceArray) {
         NSLog(@"responseObject ==%@",deviceArray);
 } failure:^(NSError *error) {
@@ -473,13 +478,13 @@ if (peripherals) {
 - (HETDeviceControlBusiness *)controlBusiness
 {
     if (!_controlBusiness) {
-        WEAKSELF
+        typeof(self) __weak weakSelf = self;
         _controlBusiness = [[HETDeviceControlBusiness alloc]initWithHetDeviceModel:self.device deviceRunData:^(id responseObject) {
-			       // 监听设备运行数据，responseObject请具体参考协议配置。
+	    // 监听设备运行数据，responseObject请具体参考协议配置。
             OPLog(@"deviceRunData:%@ " ,responseObject);
 
         } deviceCfgData:^(id responseObject) {
- 			      // 监听设备控制数据
+ 	    // 监听设备控制数据
             OPLog(@"deviceCfgData:%@ " ,responseObject);
          
         } deviceErrorData:^(id responseObject) {
@@ -532,12 +537,13 @@ if (peripherals) {
 
     NSData * jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     NSString * jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-
+    
+    typeof(self) __weak weakSelf = self;
     [self.controlBusiness deviceControlRequestWithJson: jsonStr withSuccessBlock:^(id responseObject) {
-        NSLog(@"responseObject = %@",responseObject);
+        OPLog(@"responseObject = %@",responseObject);
 
     } withFailBlock:^(NSError *error) {
-        NSLog(@"error = %@",error);
+        OPLog(@"error = %@",error);
 
 	}];
 }
@@ -565,11 +571,12 @@ if (peripherals) {
 【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchAllBindDeviceSuccess:^(NSArray<HETDevice *> *deviceArray) {
-        NSLog(@"responseObject ==%@",deviceArray);
+        OPLog(@"responseObject ==%@",deviceArray);
 
 } failure:^(NSError *error) {
-        NSLog(@"error ==%@",error);
+        OPLog(@"error ==%@",error);
 
 }];
 
@@ -610,11 +617,11 @@ if (peripherals) {
 【示例代码】
 
 ```
-WEAKSELF;
+typeof(self) __weak weakSelf = self;
 [_bleBusiness fetchStatusDataWithPeripheral:self.blePeripheral 
 macAddress:self.macAddress deviceId:self.deviceId 
 completionHandler:^(CBPeripheral *currentPeripheral,NSDictionary *dic, NSError *error) {
-    STRONGSELF;
+    typeof(weakSelf) __strong strongSelf = weakSelf;
     strongSelf.blePeripheral=currentPeripheral;
     NSLog(@"状态数据:%@,%@",dic,error);
     if(dic)
@@ -640,13 +647,14 @@ completionHandler:^(CBPeripheral *currentPeripheral,NSDictionary *dic, NSError *
 【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [_bleBusiness deviceControlRequestWithPeripheral:self.blePeripheral 
 macAddress:self.macAddress 
 sendDic:@{@"LED":@(ledColor %9)} 
 completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
-    STRONGSELF;
+    typeof(weakSelf) __strong strongSelf = weakSelf;
     strongSelf.blePeripheral=currentPeripheral;
-    NSLog(@"数据发送回调:%@",error);    
+    OPLog(@"数据发送回调:%@",error);    
 }];
 ```
 
@@ -657,11 +665,10 @@ completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
 【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchAllBindDeviceSuccess:^(NSArray<HETDevice *> *deviceArray) {
-        NSLog(@"responseObject ==%@",deviceArray);
 
 } failure:^(NSError *error) {
-        NSLog(@"error ==%@",error);
 
 }];
 ```
@@ -674,9 +681,9 @@ completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
  【示例代码】
 
 ```
- [HETDeviceRequestBusiness unbindDeviceWithDeviceId:device.deviceId success:^(id responseObject) {
+[HETDeviceRequestBusiness unbindDeviceWithDeviceId:device.deviceId success:^(id responseObject) {
 
-        } failure:^(NSError *error) {
+} failure:^(NSError *error) {
            
 }];
 ```
@@ -727,7 +734,7 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 
 ```
 - (void)getShareCode{
-    WEAKSELF
+    typeof(self) __weak weakSelf = self;
     [HETDeviceShareBusiness getShareCodeWithDeviceId:self.deviceId shareType:HETDeviceShareType_FaceToFaceShare success:^(id responseObject) {
         OPLog(@"responseObject == %@",responseObject);
         NSString *shareCode = [responseObject valueForKey:@"shareCode"];
@@ -765,6 +772,7 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness authShareDeviceWithShareCode:shareCode shareType:HETDeviceShareType_FaceToFaceShare success:^(id responseObject) {
 
 } failure:^(NSError *error) {
@@ -779,15 +787,13 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 
 【示例代码】
 ```
-weakSelf
+typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness getShareCodeWithDeviceId:self.deviceId shareType:HETDeviceShareType_ThirthShare success:^(id responseObject) {
 
-            OPLog(@"responseObject == %@",responseObject);
-            NSString *h5Url = [responseObject valueForKey:@"h5Url"];
-
-      } failure:^(NSError *error) {
-            OPLog(@"error == %@",error);
-
+    OPLog(@"responseObject == %@",responseObject);
+    NSString *h5Url = [responseObject valueForKey:@"h5Url"];
+} failure:^(NSError *error) {
+    OPLog(@"error == %@",error);
 }];
 ```
 
@@ -827,6 +833,7 @@ weakSelf
 【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness deviceGetAuthUserWithDeviceId:self.deviceId success:^(id responseObject) {
         OPLog(@"responseObject == %@",responseObject);
 } failure:^(NSError *error) {
@@ -888,7 +895,7 @@ NSString *deviceId=self.hetDeviceModel.deviceId;
 ## 6.1 意见反馈
 【示例代码】
 ```
-WEAKSELF
+typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness startRequestWithHTTPMethod:HETRequestMethodPost withRequestUrl:@"/v1/feedback/addFeedback" processParams:params needSign:NO BlockWithSuccess:^(id responseObject) {
 [HETCommonHelp hideHudFromView:weakSelf.view];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
