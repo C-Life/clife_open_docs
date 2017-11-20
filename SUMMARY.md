@@ -22,7 +22,7 @@
 * [4. 硬件开发](./source/zh-cn/device/index.md)
   * [4.1 硬件接入准备工作](./source/zh-cn/device/hardware_star.md)
   * [4.2 硬件MCU及源代码](./source/zh-cn/device/mcu_source.md)
-    * [4.2.2 mcu源码框架](./source/zh-cn/device/mcu/mcu_framework.md)
+  * [4.2.2 mcu源码框架](./source/zh-cn/device/mcu/mcu_framework.md)
   * [4.3 硬件通讯模组](./source/zh-cn/device/ClifeAgent.md)
 * [5. 云API](./source/zh-cn/cloudAPI/cloudAPI.md)
 * [6. 数据服务](./source/zh-cn/dataservice/index.md)
