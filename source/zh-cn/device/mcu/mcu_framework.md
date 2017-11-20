@@ -1,10 +1,19 @@
 # MCU程序详解
 
 ## 1、程序功能简介及使用流程
+<<<<<<< HEAD
 MCU工程模板可以帮助开发者快速简单的接入平台，无需详细了解平台与接入设备之间的通讯流程，只需要专注于控制器（MCU端）与APP、云端数据交互后的业务处理逻辑，完成产品开发即可。下面是设备接入平台的流程图：
 
 ![](/images/使用流程.png)
 
+=======
+MCU工程模板可以帮助开发者快速简单的接入平台，无需详细了解平台与接入设备之间的通讯流程，只需要专注于控制器（MCU端）与APP、云端数据交互后的业务处理逻辑，完成产品开发即可，具体流程如下图：
+
+![](/images/使用流程.png)
+
+[产品接入指导](../module/产品接入指导.md)
+
+>>>>>>> d454bf01be642bb725c37650a3446f948aea0aaf
 ## 2、代码目录
 ![](/images/工程文件目录.png)
 ### 文件目录说明：
@@ -185,6 +194,10 @@ _len – 用户发送数据的长度
 第三步，在绑定APP中输入一个能上网的wifi账号和密码，并开始扫描设备：
 
 <img src="/images/绑定-大类选择.png" width = "360" height = "620" alt="大类选择" align=center />
+<<<<<<< HEAD
+=======
+
+>>>>>>> d454bf01be642bb725c37650a3446f948aea0aaf
 <img src="/images/绑定-小类选择.png" width = "360" height = "620" alt="小类选择" align=center />
 <img src="/images/绑定-输入wifi账号密码.png" width = "360" height = "620" alt="输入wifi账号密码" align=center />
 <img src="/images/绑定-扫描设备.png" width = "360" height = "620" alt="扫描设备" align=center />
