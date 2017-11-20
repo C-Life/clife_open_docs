@@ -12,7 +12,7 @@
       * 3.1.2.1 开发模式
       * 3.1.2.2 配置模式
     * 3.1.3 关联产品
-  * [3.2 APP SDK](./source/zh-cn/app/SDK/index.md)
+  * [3.2 APP SDK](./source/zh-cn/app/SDK/app_summary.md)
     * [3.2.1 android SDK](./source/zh-cn/app/SDK/android_sdk.md)
     * [3.2.2 iOS SDK](./source/zh-cn/app/SDK/iOSSDK.md)
     * [3.2.3 H5 SDK](./source/zh-cn/app/SDK/H5.md)
