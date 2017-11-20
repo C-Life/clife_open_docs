@@ -186,6 +186,7 @@ _len – 用户发送数据的长度
 
 第三步，在绑定APP中输入一个能上网的wifi账号和密码，并开始扫描设备：
 
+<center>
 <img src="/images/绑定-大类选择.png" width = "360" height = "620" alt="大类选择" align=center />
 
 <img src="/images/绑定-小类选择.png" width = "360" height = "620" alt="小类选择" align=center />
@@ -194,6 +195,7 @@ _len – 用户发送数据的长度
 <img src="/images/绑定-选择设备开始连接服务器.png" width = "360" height = "620" alt="选择设备开始连接服务器" align=center />
 <img src="/images/绑定-连接服务器.png" width = "360" height = "620" alt="连接服务器" align=center />
 <img src="/images/绑定-完成绑定.png" width = "360" height = "620" alt="完成绑定" align=center />
+</center>
 
 
 需要注意一下，示例是IOS版本的APP操作，安卓的APP和IOS界面不同，但是操作类似这里就不另做说明了。
