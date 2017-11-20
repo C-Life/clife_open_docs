@@ -5,6 +5,8 @@ MCU工程模板可以帮助开发者快速简单的接入平台，无需详细�
 
 ![](/images/使用流程.png)
 
+### [1.1 产品接入指导]   (../module/产品接入指导.md)
+
 ## 2、代码目录
 ![](/images/工程文件目录.png)
 ### 文件目录说明：
@@ -185,6 +187,7 @@ _len – 用户发送数据的长度
 第三步，在绑定APP中输入一个能上网的wifi账号和密码，并开始扫描设备：
 
 <img src="/images/绑定-大类选择.png" width = "360" height = "620" alt="大类选择" align=center />
+
 <img src="/images/绑定-小类选择.png" width = "360" height = "620" alt="小类选择" align=center />
 <img src="/images/绑定-输入wifi账号密码.png" width = "360" height = "620" alt="输入wifi账号密码" align=center />
 <img src="/images/绑定-扫描设备.png" width = "360" height = "620" alt="扫描设备" align=center />
