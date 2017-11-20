@@ -16,40 +16,14 @@
     * [3.2.1 android SDK](./source/zh-cn/app/SDK/android_sdk.md)
     * [3.2.2 iOS SDK](./source/zh-cn/app/SDK/iOSSDK.md)
     * [3.2.3 H5 SDK](./source/zh-cn/app/SDK/H5.md)
-    * [3.2.3 H5 JSSDK](./source/zh-cn/app/SDK/./jssdk.md)
-    
   * [3.3 APP 开源框架](./source/zh-cn/App/app.md)
     * [3.3.1 android APP 开源框架](./source/zh-cn/app/SDK/android_demo.md)
     * [3.3.2 iOS APP 开源框架](./source/zh-cn/app/SDK/iOS_demo.md)
 * [4. 硬件开发](./source/zh-cn/device/index.md)
   * [4.1 硬件接入准备工作](./source/zh-cn/device/hardware_star.md)
   * [4.2 硬件MCU及源代码](./source/zh-cn/device/mcu_source.md)
-    * 4.2.1 开发板原理图
-    * [4.2.2 mcu源码框架](./source/zh-cn/device/mcu_framework.md)
-   * [4.3 硬件通讯模组](./source/zh-cn/device/ClifeAgent.md)
-   #1.Wi-Fi模组
-    ##1.1 汉枫HF-LPB100模组
-    * [汉枫HF-LPB100模组规格书]()
-    * [汉枫HF-LPB100模组硬件设计规范](./source/zh-cn/device/module/HF-LPB100硬件设计规范.md)
-    * [接入指导](./source/zh-cn/device/module/产品接入指导.md)
-    * [HF-LPB100串口烧录指导](./source/zh-cn/device/module/HF-LPB100串口烧录指导.md)
-    * [常见问题]()
-
-
-    ##1.2 乐鑫ESP8266模组
-    * [ESP8266规格书]()
-    * [ESP8266硬件设计规范](./source/zh-cn/device/module/ESP8266硬件设计规范.md)
-    * [接入指导](./source/zh-cn/device/module/产品接入指导.md)
-    * [ESP8266串口烧录说明](./source/zh-cn/device/module/ESP8266串口烧录指导.md)
-    * [常见问题]()
-
-    ##1.3 Marvell MW300模组
-    * [HET-MW300规格书](./source/zh-cn/device/module/HET-MW300)
-    * [HET-MW300硬件设计规范](./source/zh-cn/device/module/HET-MW300硬件设计规范.md)
-    * [接入指导](./source/zh-cn/device/module/产品接入指导.md)
-    * [HET-MW300串口烧录说明](./source/zh-cn/device/module/HET-MW300串口烧录指导.md)
-    * [常见问题](./source/zh-cn/device/module/)
-
+    * [4.2.2 mcu源码框架](./source/zh-cn/device/mcu/mcu_framework.md)
+  * [4.3 硬件通讯模组](./source/zh-cn/device/ClifeAgent.md)
 * [5. 云API](./source/zh-cn/cloudAPI/cloudAPI.md)
 * [6. 数据服务](./source/zh-cn/dataservice/index.md)
   * [6.1 概况](source/zh-cn/dataservice/index/61-gai-kuang.md)
