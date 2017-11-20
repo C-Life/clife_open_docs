@@ -977,6 +977,7 @@ SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其
 ### 8.3.1 初始化
 
 ** 下载H5公共包 **
+
 【示例代码】
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -988,6 +989,7 @@ SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其
 ```
 
 ** 选择H5界面设备 **
+
 【示例代码】
 
 ```
@@ -1003,6 +1005,7 @@ SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其
 ```
 
 **跳转H5VC**
+
 【示例代码】
 ```
 - (void)PushTpH5Device:(HETDevice *)deviceModel
