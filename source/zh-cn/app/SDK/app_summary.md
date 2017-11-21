@@ -44,9 +44,9 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 
 <a href="https://github.com/C-Life/android_open_demo">android Demo下载地址</a>
  
-- [iOS SDK接入文档](./iOSSDK.md)
+[iOS SDK接入文档](./iOSSDK.md)
 
-- [Android SDK接入文档](android_sdk.md)
+[Android SDK接入文档](android_sdk.md)
 
 
 
