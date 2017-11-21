@@ -35,6 +35,9 @@ SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的
 
 ## 4.2.下载SDK终端DEMO 请前往下载中心下载最新SDK包。
 
+<a href="iOSSDK.html">iOS SDK接入文档 html</a>
+<a href="iOSSDK.html">iOS SDK接入文档 html</a>
+
 [iOS SDK接入文档](iOSSDK.md)
 [Android SDK接入文档](android_sdk.md)
 
