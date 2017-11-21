@@ -23,7 +23,7 @@
 	     compile 'com.github.szhittech:HetOpenSdk:1.0.7-SNAPSHOT'
 	}
 
-### 1.3.引用SDK到工程
+### 1.3.导入SDK到工程
 	 dependencies {
 	    compile fileTree(include: ['*.jar'], dir: 'libs')
 	    testCompile 'junit:junit:4.12'
@@ -283,7 +283,7 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 <img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
 
 ### 3.2.云云对接用户授权登录
-为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档[C-Life开放平台验证码三方授权流程](%E9%AA%8C%E8%AF%81%E7%A0%81%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83%E6%B5%81%E7%A8%8B)。
+为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档 [云云对接账号授权](./source/zh-cn/cloudAPI/cloudAPI.md)
 
 
 ### 3.3.退出登录
@@ -1669,7 +1669,8 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
 
-请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
+请参考[基于React的JS-SDK框架](./source/zh-cn/app/SDK/jssdk.md)
+
 ## 2.Android和H5通讯流程图
 
 ![](https://i.imgur.com/drm1OoC.png)
