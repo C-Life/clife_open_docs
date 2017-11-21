@@ -16,7 +16,6 @@
 	    }
 	}
 
-<<<<<<< HEAD
 ### 1.3.引用SDK到工程
 
 
@@ -27,22 +26,6 @@ SDK引用
 
 模组注册
 
-=======
-### 1.3.导入SDK到工程
-	 dependencies {
-	    compile fileTree(include: ['*.jar'], dir: 'libs')
-	    testCompile 'junit:junit:4.12'
-	    compile project(':HetOpenLib')
-	    compile 'com.android.support:appcompat-v7:23.0.1'
-	    compile 'com.android.support:support-v4:23.0.1'
-	    compile 'com.android.support:design:23.1.1'
-	    compile 'com.facebook.shimmer:shimmer:0.1.0@aar'
-	    compile 'com.facebook.fresco:fresco:0.8.1+'
-	    compile 'com.google.code.gson:gson:2.5'
-	    compile 'org.greenrobot:eventbus:3.0.0'
-	    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-	    compile 'com.github.szhittech:hetrecyclersdk:1.0.9-SNAPSHOT'
->>>>>>> 035cd98f761571c5776f21626ed60873c0d63174
 	    //乐鑫信息科技(esptouchmodule) 模组ID：7
 	    compile 'com.github.szhittech:esptouchmodule:1.0.1-SNAPSHOT'
 	    //clifeAP绑定(hetapmodule) 模组ID：28
