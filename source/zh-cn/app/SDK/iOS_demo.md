@@ -2,16 +2,16 @@
 
 # iOS开源框架使用指南
 
-### Not Only Demo简介
+### Demo App简介
 
-Not Only Demo 以开放平台sdk和主流的APP开发框架为基础搭建一套可以帮助开发者快速开发APP的脚手架.在此基础上开发者可以一天开发一款智能硬件控制APP.
+Demo App 以开放平台sdk和主流的APP开发框架为基础搭建一套可以帮助开发者快速开发APP的脚手架.在此基础上开发者可以一天开发一款智能硬件控制APP.
 
 
-### Not Only Demo下载地址
+### Demo App下载地址
 
 下载地址 https://github.com/C-Life/clife_open_ios_sdk 。
 
-### Not Only Demo项目功能模块说明
+### Demo App项目功能模块说明
 
 #### 目录结构
 

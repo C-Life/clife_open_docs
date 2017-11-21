@@ -3,44 +3,52 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 下面是SDK的基础架构图：  
  ![](https://i.imgur.com/44UiXao.jpg)
 
+注：本文为C-Life iOS终端SDK的新手使用教程，只涉及教授SDK的使用方法，默认读者已经熟悉XCode开发工具的基本使用方法，以及具有一定的编程知识基础等。
+
 # 2.相关名词定义
 
-## 2.1.appId和appSecret
+## 2.1 小循环
 
-开放平台app的应用标识和密钥。开发者在开放平台接入设备创建APP的时候，后台自动生成appId和appSecret，用于初始化SDK。
+  智能硬件与手机通过连接同一个路由器实现局域网内部的通信，我们称之为小循环。
 
-## 2.2.硬件模组
+## 2.2 大循环
 
-这里的硬件模组是指的WIFI模组。在开放平台创建WIFI产品的时候需要指定设备的WIFI模组。开发者需要在APP中先注册WIFI模组才可以进行设备绑定。
+   智能设备通过路由器或直接接入互联网以实现用户的远程监测与控制，我们称为大循环。
+   
+## 2.3 productId
+   
+   设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
+   
+   
+## 2.4 deviceId
 
-## 2.3.产品ID
-
-产品唯一标识。
-
-## 2.4.设备ID
-
-设备的唯一标识。
-
-# 3.SDK 快速开发，第三方库支持
+   设备号，当一个设备通过设备绑定的接口初次接入开放平台时，开放平台会自动根据productId以及设备的mac地址为此设备注册一个deviceId，此deviceId全网唯一，用于通过开放平台进行设备的操作。
 
 
-## 3.6.第三方社交平台服务
 
-SDK集成了第三方社交平台服务库，支持微信、qq和新浪微博的分享和登录。 详细使用请查看 **第三方平台服务的集成（登录和分享）**
+# 3.集成准备
 
-# 4.集成准备
+## 3.1 C-Life开放平台注册账户
+进入[C-Life开放平台官网](https://open.clife.cn/#/)，注册开发者账号，此部分请参考[C-Life平台接入流程](../../product/index.md)。
+  
+  
+## 3.2 新建设备接入
+此部分请参考[C-Life平台接入流程](../../product/index.md)。
 
-## 4.1.注册开放平台账号  
-  通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《clife开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
+## 3.3 创建应用
+   请到**应用中心**页面创建移动应用，填写资料(必须填写应用包名BundleId)后，将获得AppID和AppSecret，可立即用于开发。但应用登记完成后还需要提交审核，只有审核通过的应用才能正式发布使用。此部分请参考[C-Life平台接入流程](../../product/index.md)。
+   
+## 3.4 下载SDK终端DEMO
 
-## 4.2.下载SDK终端DEMO 请前往下载中心下载最新SDK包。
+<a href="https://github.com/C-Life/clife_iOS_open_demo">iOS Demo下载地址</a>
 
-[iOS SDK接入文档](iOSSDK.md)
+<a href="https://github.com/C-Life/android_open_demo">android Demo下载地址</a>
+ 
+[iOS SDK接入文档](./iOSSDK.md)
+
 [Android SDK接入文档](android_sdk.md)
 
 
-查看开放平台产品模组类型，选择模组的依赖包。 
 
-![](https://i.imgur.com/98xFDg4.png)
 
 
