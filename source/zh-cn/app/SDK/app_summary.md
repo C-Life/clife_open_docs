@@ -29,22 +29,20 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 # 3.集成准备
 
 ## 3.1 C-Life开放平台注册账户
-进入[C-Life开放平台官网](https://open.clife.cn/#/)，注册开发者账号，此部分请参考[C-Life平台接入流程](http://open.clife.net/#/developerdocument)。
+进入[C-Life开放平台官网](https://open.clife.cn/#/)，注册开发者账号，此部分请参考[C-Life平台接入流程](../../product/index.md)。
   
   
 ## 3.2 新建设备接入
-此部分请参考[C-Life平台接入流程](http://open.clife.net/#/developerdocument)。
+此部分请参考[C-Life平台接入流程](../../product/index.md)。
 
 ## 3.3 创建应用
-   请到**应用中心**页面创建移动应用，填写资料(必须填写应用包名BundleId)后，将获得AppID和AppSecret，可立即用于开发。但应用登记完成后还需要提交审核，只有审核通过的应用才能正式发布使用。此部分请参考[C-Life平台接入流程](http://open.clife.net/#/developerdocument)。
+   请到**应用中心**页面创建移动应用，填写资料(必须填写应用包名BundleId)后，将获得AppID和AppSecret，可立即用于开发。但应用登记完成后还需要提交审核，只有审核通过的应用才能正式发布使用。此部分请参考[C-Life平台接入流程](../../product/index.md)。
    
 ## 3.2.下载SDK终端DEMO
 
-<a href="https://github.com/C-Life/clife_iOS_open_demo">iOS SDK下载地址</a>
-<a href="https://github.com/C-Life/android_open_demo">android SDK下载地址</a>
+<a href="https://github.com/C-Life/clife_iOS_open_demo">iOS Demo下载地址</a>
+<a href="https://github.com/C-Life/android_open_demo">android Demo下载地址</a>
 
-<a href="iOSSDK.html">iOS SDK接入文档 html</a>
-<a href="android_sdk.html">android 接入文档 html</a>
 
 [iOS SDK接入文档](iOSSDK.md)
 [Android SDK接入文档](android_sdk.md)
