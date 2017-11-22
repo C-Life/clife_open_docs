@@ -10,35 +10,44 @@ CLife Agent是设备端与C-Life云端以及APP端通信的灵魂。Clife Agent�
 #1.Wi-Fi模组
 ##1.1 汉枫HF-LPB100模组
 * [汉枫HF-LPB100模组规格书](./source/zh-cn/device/module/)
-* [汉枫HF-LPB100模组硬件设计规范](./source/zh-cn/device/module/HF-LPB100硬件设计规范.md)
-* [HF-LPB100串口烧录指导](./source/zh-cn/device/module/HF-LPB100串口烧录指导.md)
+* [汉枫HF-LPB100模组硬件设计规范](./source/zh-cn/device/module/HF-LPB100_hardware_Design_Spec.md)
+* [HF-LPB100无线烧录指导](./source/zh-cn/device/module/HF-LPB100_Wireless_download_Spec.md)
 * [HF-LPB100固件下载](./source/zh-cn/device/module/)
 
 ##1.2 乐鑫ESP8266模组
 * [ESP8266规格书](./source/zh-cn/device/module/)
-* [ESP8266硬件设计规范](./source/zh-cn/device/module/ESP8266硬件设计规范.md)
-* [ESP8266串口烧录说明](./source/zh-cn/device/module/ESP8266串口烧录指导.md)
+* [ESP8266硬件设计规范](./source/zh-cn/device/module/ESP8266_hardware_Design_Spec.md)
+* [ESP8266串口烧录说明](./source/zh-cn/device/module/ESP8266_uart_download_Spec.md)
 * [ESP8266固件下载](./source/zh-cn/device/module/)
 ##1.3 Marvell MW300模组
 * [HET-MW300规格书](./source/zh-cn/device/module/HET-MW300)
-* [HET-MW300硬件设计规范](./source/zh-cn/device/module/HET-MW300硬件设计规范.md)
-* [HET-MW300串口烧录说明](./source/zh-cn/device/module/HET-MW300串口烧录指导.md)
+* [HET-MW300硬件设计规范](./source/zh-cn/device/module/HET-MW300_hardware_Design_Spec.md)
+* [HET-MW300串口烧录说明](./source/zh-cn/device/module/HET-MW300_uart_download_Spec.md)
 * [HET-MW300固件下载](./source/zh-cn/device/module/)
 
 
 
 #2. 蓝牙模组
 ##2.1 CSR1024模组
-* [HET规格书](./source/zh-cn/device/module/)
-* [硬件设计规范](./source/zh-cn/device/module/CSR1024硬件设计规范.md)
-* [串口烧录说明](./source/zh-cn/device/module/CSR1024串口烧录指导.md)
+* [HET-BC1024规格书](./source/zh-cn/device/module/)
+* [硬件设计规范](./source/zh-cn/device/module/CSR1024_hardware_Design_Spec.md)
+* [串口烧录说明](./source/zh-cn/device/module/CSR1024_uart_download_Spec.md)
+##2.2 TI2541模组
+* [HET-BT2541规格书](./source/zh-cn/device/module/)
+* [硬件设计规范](./source/zh-cn/device/module/TI2541_hardware_Design_Spec.md)
+* [串口烧录说明](./source/zh-cn/device/module/TI2541_uart_download_Spec.md)
 
 #3. NB-IoT模组
-##3.1 HET-模组
-* [HET规格书](./source/zh-cn/device/module/)
+##3.1 HET-NB05-01模组
+* [HET-NB05-01规格书](./source/zh-cn/device/module/)
 * [硬件设计规范](./source/zh-cn/device/module/)
-
+##3.2 HET-BC95-B5模组
+* [HET-BC95-B5规格书](./source/zh-cn/device/module/)
+* [硬件设计规范](./source/zh-cn/device/module/)
+##3.3 HET-ME3612模组
+* [HET-ME3612规格书](./source/zh-cn/device/module/)
+* [硬件设计规范](./source/zh-cn/device/module/)
 #4. Zigbee模组
-##3.1 HET-模组
+##3.1 HET-ZT模组
 * [HET规格书](./source/zh-cn/device/module/)
 * [硬件设计规范](./source/zh-cn/device/module/)
