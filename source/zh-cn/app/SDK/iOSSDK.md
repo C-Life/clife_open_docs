@@ -47,13 +47,13 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-// 1.SDK注册
-[HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
-// 2.设置SDK的日志信息开启
-[HETOpenSDK openLog:YES];
-// 3.配置网络环境
-[HETOpenSDK setNetWorkConfig:HETNetWorkConfigType_ETE];
-return YES;
+    // 1.SDK注册
+    [HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
+    // 2.设置SDK的日志信息开启
+    [HETOpenSDK openLog:YES];
+    // 3.配置网络环境
+    [HETOpenSDK setNetWorkConfig:HETNetWorkConfigType_ETE];
+    return YES;
 }
 
 ```
@@ -81,8 +81,9 @@ return YES;
 ```
  HETAuthorize *auth = [[HETAuthorize alloc] init];
  if (![auth isAuthenticated]) {
-      [auth authorizeWithCompleted:^(NSString *openId, NSError *error) {
-    }];
+     [auth authorizeWithCompleted:^(NSString *openId, NSError *error) {
+     
+     }];
   }
 ```
 
@@ -230,7 +231,6 @@ typeof(self) __weak weakSelf = self;
   }
 } failure:^(NSError *error) {
     NSInteger code = [[error.userInfo valueForKey:@"code"] integerValue];
-    
     if (code == 100022013) {
       // msg=appId与产品未做关联
     }else{
@@ -495,7 +495,7 @@ typeof(self) __weak weakSelf = self;
          
         } deviceState:^(HETWiFiDeviceState state) {
             // 监听设备在线状态数据
-            OPLog(@"deviceState:%ld " ,(long)state);  //deviceState:2
+            OPLog(@"deviceState:%ld " ,(long)state);
         }];
     }
     return _controlBusiness;
@@ -546,7 +546,6 @@ typeof(self) __weak weakSelf = self;
 
     } withFailBlock:^(NSError *error) {
         OPLog(@"error = %@",error);
-
 	}];
 }
 
@@ -575,11 +574,9 @@ typeof(self) __weak weakSelf = self;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchAllBindDeviceSuccess:^(NSArray<HETDevice *> *deviceArray) {
-        OPLog(@"responseObject ==%@",deviceArray);
-
+    OPLog(@"responseObject ==%@",deviceArray);
 } failure:^(NSError *error) {
-        OPLog(@"error ==%@",error);
-
+    OPLog(@"error ==%@",error);
 }];
 
 ```
@@ -625,7 +622,7 @@ macAddress:self.macAddress deviceId:self.deviceId
 completionHandler:^(CBPeripheral *currentPeripheral,NSDictionary *dic, NSError *error) {
     typeof(weakSelf) __strong strongSelf = weakSelf;
     strongSelf.blePeripheral=currentPeripheral;
-    NSLog(@"状态数据:%@,%@",dic,error);
+    OPLog(@"状态数据:%@,%@",dic,error);
     if(dic)
     {  
         uint8_t state ;
@@ -683,10 +680,11 @@ typeof(self) __weak weakSelf = self;
  【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness unbindDeviceWithDeviceId:device.deviceId success:^(id responseObject) {
-
+    OPLog(@"responseObject ==%@",responseObject);
 } failure:^(NSError *error) {
-           
+    OPLog(@"error ==%@",error);
 }];
 ```
 
@@ -696,9 +694,9 @@ typeof(self) __weak weakSelf = self;
 
 ```
 [HETDeviceShareBusiness deviceAuthDelWithDeviceId:device.deviceId userId:@"" success:^(id responseObject) {
-        
-   } failure:^(NSError *error) {
-
+    OPLog(@"responseObject ==%@",responseObject);
+} failure:^(NSError *error) {
+    OPLog(@"error ==%@",error);
 }];
 ```
 
@@ -743,7 +741,7 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
         [weakSelf setupGenerateQRCode:shareCode];
     } failure:^(NSError *error) {
         OPLog(@"error == %@",error);
-         [HETCommonHelp showHudAutoHidenWithMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
+        [HETCommonHelp showHudAutoHidenWithMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
     }];
 }
 ```
@@ -776,9 +774,9 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness authShareDeviceWithShareCode:shareCode shareType:HETDeviceShareType_FaceToFaceShare success:^(id responseObject) {
-
+    OPLog(@"responseObject ==%@",responseObject);
 } failure:^(NSError *error) {
-
+    OPLog(@"error ==%@",error);
 }];
 ```
 
@@ -791,7 +789,6 @@ typeof(self) __weak weakSelf = self;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness getShareCodeWithDeviceId:self.deviceId shareType:HETDeviceShareType_ThirthShare success:^(id responseObject) {
-
     OPLog(@"responseObject == %@",responseObject);
     NSString *h5Url = [responseObject valueForKey:@"h5Url"];
 } failure:^(NSError *error) {
@@ -837,9 +834,9 @@ typeof(self) __weak weakSelf = self;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness deviceGetAuthUserWithDeviceId:self.deviceId success:^(id responseObject) {
-        OPLog(@"responseObject == %@",responseObject);
+    OPLog(@"responseObject == %@",responseObject);
 } failure:^(NSError *error) {
-        OPLog(@"error == %@",error);
+    OPLog(@"error == %@",error);
 }];
 ```
 ## 5.4 修改设备信息
@@ -852,9 +849,9 @@ typeof(self) __weak weakSelf = self;
 NSString *deviceId=self.hetDeviceModel.deviceId;
 [HETDeviceRequestBusiness updateDeviceInfoWithDeviceId:deviceId
  deviceName:@"123fsdg" roomId:@"12" success:^(id responseObject) {
-        
-} failure:^(NSError *error) {
-        
+     OPLog(@"responseObject = %@",responseObject);
+ } failure:^(NSError *error) {
+     OPLog(@"error = %@",error);
 }];
 
 ```
@@ -899,16 +896,9 @@ NSString *deviceId=self.hetDeviceModel.deviceId;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness startRequestWithHTTPMethod:HETRequestMethodPost withRequestUrl:@"/v1/feedback/addFeedback" processParams:params needSign:NO BlockWithSuccess:^(id responseObject) {
-[HETCommonHelp hideHudFromView:weakSelf.view];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HETCommonHelp showHudAutoHidenWithMessage:@"提交成功，谢谢您的反馈"];
-    });
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf.navigationController  popViewControllerAnimated: YES];
-    });
+    OPLog(@"responseObject = %@",responseObject);
 } failure:^(NSError *error) {
-    [HETCommonHelp hideHudFromView:weakSelf.view];
-    [HETCommonHelp showHudAutoHidenWithMessage:@"提交失败，请检测网络连接"];
+    OPLog(@"error = %@",error);
 }];
 ```
 
@@ -1076,7 +1066,7 @@ bridge.delegate=self;
                 @try {
                     [_wkWebView loadFileURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@",[self.h5Path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]] allowingReadAccessToURL:[NSURL fileURLWithPath:directory]];
                 } @catch (NSException *exception) {
-                    NSLog(@"%@",exception);
+                    OPLog(@"%@",exception);
                 } @finally {
                     
                 }

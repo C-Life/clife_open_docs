@@ -6,21 +6,13 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 注：本文为C-Life iOS终端SDK的新手使用教程，只涉及教授SDK的使用方法，默认读者已经熟悉XCode开发工具的基本使用方法，以及具有一定的编程知识基础等。
 
 # 2.相关名词定义
-
-## 2.1 小循环
-
-  智能硬件与手机通过连接同一个路由器实现局域网内部的通信，我们称之为小循环。
-
-## 2.2 大循环
-
-   智能设备通过路由器或直接接入互联网以实现用户的远程监测与控制，我们称为大循环。
    
-## 2.3 productId
+## 2.1 productId
    
    设备产品号，设备在开放平台管理系统录入设备的时候，系统会根据设备录入的设备大类、设备小类、客户代码、DeviceKey、设备编码生成一个productId，可在开放平台管理系统上看到。
    
    
-## 2.4 deviceId
+## 2.2 deviceId
 
    设备号，当一个设备通过设备绑定的接口初次接入开放平台时，开放平台会自动根据productId以及设备的mac地址为此设备注册一个deviceId，此deviceId全网唯一，用于通过开放平台进行设备的操作。
 
@@ -44,9 +36,13 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 
 <a href="https://github.com/C-Life/android_open_demo">android Demo下载地址</a>
  
+<a href="https://github.com/C-Life/H5_open_demo">H5 Demo下载地址</a>
+
 [iOS SDK接入文档](./iOSSDK.md)
 
-[Android SDK接入文档](android_sdk.md)
+[Android SDK接入文档](./android_sdk.md)
+
+[H5 SDK接入文档](.H5.md)
 
 
 
