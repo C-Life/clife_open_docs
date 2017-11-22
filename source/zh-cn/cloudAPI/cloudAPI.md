@@ -1224,6 +1224,73 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
     	"data": "152017032818000000025"
 	}
 
+### 8、获取最新的配置数据
+
+**接口调用请求说明**
+
+	http请求方式: GET
+	http(s):https://open.api.clife.cn/v1/cloud/device/data/getConfigData
+
+**参数说明**
+
+<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
+	<tbody>
+		<tr>
+			<th width="16%">参数名称</th>
+			<th width="11%">是否必须</th>
+			<th width="11%">字段类型</th>
+			<th width="62%">参数说明</th>
+		</tr>
+		<tr>
+			<td>appId</td>
+			<td>是</td>
+			<td>string</td>
+			<td>应用标识</td>
+		</tr>
+		<tr>
+			<td>accessToken</td>
+			<td>是</td>
+			<td>string</td>
+			<td>访问凭证</td>
+		</tr>
+		<tr>
+			<td>timestamp</td>
+			<td>是</td>
+			<td>number</td>
+			<td>时间戳</td>
+		</tr>
+		<tr>
+			<td>deviceId</td>
+			<td>是</td>
+			<td>string</td>
+			<td>设备标识</td>
+		</tr>
+	</tbody>
+</table>
+**返回结果**
+
+正确的Json返回结果：
+
+	{
+		code: 0,
+		data: {}
+	}
+<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
+	<tbody>
+		<tr>
+			<th width="16%">字段名称</th>
+			<th width="11%">字段类型</th>
+			<th width="74%">字段说明</th>
+		</tr>
+		<tr>
+			<td>data</td>
+			<td>string</td>
+			<td>配置数据内容</td>
+		</tr>
+
+	</tbody>
+</table>
+
 ## <span id="push">八、PUSH设备数据接口</span>
 
 ### 1、查询推送失败的设备数据
