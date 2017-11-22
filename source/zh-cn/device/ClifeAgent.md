@@ -47,7 +47,4 @@ CLife Agent是设备端与C-Life云端以及APP端通信的灵魂。Clife Agent�
 ##3.3 HET-ME3612模组
 * [HET-ME3612规格书](./source/zh-cn/device/module/)
 * [硬件设计规范](./source/zh-cn/device/module/)
-#4. Zigbee模组
-##3.1 HET-ZT模组
-* [HET规格书](./source/zh-cn/device/module/)
-* [硬件设计规范](./source/zh-cn/device/module/)
+
