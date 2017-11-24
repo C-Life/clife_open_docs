@@ -1,16 +1,19 @@
 
 # 1.SDK配置
 ## 1.1 SDK初始化
+
 **第一步：导入sdk库**
+
 ```
-pod 'HETOpenSDK','2.0.0'
+	pod 'HETOpenSDK','2.0.0'
 
 ```
 
 **第二步：导入模组库**
 
 ** 根据产品类型找到对应的芯片模组名称，如下：**
-![](/assets/查看芯片模组类型.png)
+
+![](/assets/iOS/APPViewModuleType.png)
 
 【示例代码】
 
@@ -59,7 +62,7 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 ```
 ## 1.2 配置APP主题信息
 ** 通过参数定义的JSON字符串来进行配置APP主题色，demoAPP是通过HETAuthorizeTheme.plist 这个文件来组装JSON字符串的，如图所示：**
-![](/assets/修改app主题色配置文件.png)
+![](/assets/APPChangeMainTheme.png)
 
 
 ## 1.3 集成注意事项
@@ -165,7 +168,7 @@ typeof(self) __weak weakSelf = self;
 # 3.设备绑定
 ## 3.1绑定概述
 ### 3.1.1 绑定流程
-![](/assets/绑定流程介绍.png)
+![](/assets/iOS/APPBindProcess)
 
 ### 3.1.2 设备分类
 从设备层级上分为 **设备大类** 和 **设备小类**。例如，冰箱是大类，冰箱下有Clife智能冰箱，即小类。
@@ -240,7 +243,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/产品详细信息.jpg)
+![](/assets/iOS/APPProduceDetailInfo.jpg)
 
 > 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
@@ -263,7 +266,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/查询设备大类接口返回结果.jpg)
+![](/assets/iOS/APPViewMainTypeResult.jpg)
 
 
 ** 第二步：通过大类ID，获取设备小类 **
@@ -281,9 +284,9 @@ NSString *deviceTypeId = [NSString stringWithFormat:@"%@",deviceTypeId]；
 
 ```
 
-![](/assets/根据大类获取设备支持的产品类型返回.png)
+![](/assets/iOS/AppGetProductInfoByMainType.png)
 
-![](/assets/通过大类获取支持设备类型返回字段说明.png)
+![](/assets/iOS/AppGetSupportDeviceTypeBYMainType.png)
 
 >到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
@@ -467,7 +470,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/设备绑定返回参数.png)
+![](/assets/iOS/APPDeviceBindPars.png)
 
 **第二步：根据获取的设备信息，监听设备状态**
 
