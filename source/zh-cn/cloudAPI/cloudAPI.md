@@ -1,5 +1,5 @@
 # C-Life 开放平台云接口 #
-## <span id = "access_method">一、接入方式</span>
+## <span id = "access_method">1. 接入方式</span>
 
 ![](http://i.imgur.com/hZnRP42.png)
 
@@ -9,7 +9,7 @@
 
 **PUSH设备数据**：PUSH设备数据是C-Life云提供给第三方云的一种推送服务，让第三方云及时收集所属产品的设备数据，为后续的产品研发提供最可靠的数据支持。
 
-## <span id="process">二、API调用流程</span>
+## <span id="process">2. API调用流程</span>
 
 **1.	开发者申请appId和appSecret**
 
@@ -45,9 +45,8 @@
 	5. 生成MD5值，如：74B024F42F3075C4C06E4E8F22CA7A5F
 
 
-----------
 
-## 三、<span id="description">PUSH设备数据接入说明</span>
+## 3.<span id="description"> PUSH设备数据接入说明</span>
 
 PUSH设备数据是C-Life云提供给第三方云的一种推送服务，让第三方云及时收集所属产品的设备数据，为后续的产品研发提供最可靠的数据支持。
 
@@ -60,7 +59,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 	1、第三方云服务接口验证阶段（html包体没设备数据）时，直接回复{"code":0,data:token字符串}。
 	2、第三方云服务接口接收推送服务（html包体有设备数据）时，直接回复{"code":0,data:msgId字符串}。
 
-### **接入方案配置**
+### **3.1 接入方案配置**
 
 第三方云可以到C-Life开放平台的产品接入中的接入方案处进行配置。
 
@@ -78,7 +77,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 	第三方云服务接口此时就能返回规定的JSON字符串响应({"code":0,data:Token字符串}，
 	Token字符串即为页面上所填写的Token内容), 否则C-Life云会发起重试机制。
 
-###  **查询推送失败的设备数据**
+###  **3.2 查询推送失败的设备数据**
 
 第三方云发现推送设备数据有缺失的话，可以调用此接口获取产品的推送失败的设备数据。C-Life云会保留30天的推送失败的设备数据。
 
@@ -89,10 +88,8 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 	3)第三方云服务处理业务超时没返回响应；(推送请求超时时间为三秒)
 	4)第三方云服务接口返回的msgId与和C-Life云推送服务发送的msgId不一致。
 
-----------
 
-## <span id="variable">四、变量说明</span>
-
+## <span id="variable">4. 变量说明</span>
 
 ## 4.1 全局返回码
 	
@@ -102,55 +99,18 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **全局返回码说明如下：**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">返回码</th>
-			<th width="84%">说明</th>
-		</tr>
-		<tr>
-			<td>0</td>
-			<td>请求成功</td>
-		</tr>
-		<tr>
-			<td>100010100</td>
-			<td>缺少授权信息</td>
-		</tr>
-		<tr>
-			<td>100010101</td>
-			<td>AccessToken错误或已过期</td>
-		</tr>
-		<tr>
-			<td>100010103</td>
-			<td>AppId不合法</td>
-		</tr>
-		<tr>
-			<td>100010104</td>
-			<td>timestamp过期</td>
-		</tr>
-		<tr>
-			<td>100010105</td>
-			<td>签名错误</td>
-		</tr>
-		<tr>
-			<td>100010111</td>
-			<td>timestamp不合法</td>
-		</tr>
-		<tr>
-			<td>100010200</td>
-			<td>失败</td>
-		</tr>
-		<tr>
-			<td>100010201</td>
-			<td>缺少参数</td>
-		</tr>
-		<tr>
-			<td>100010202</td>
-			<td>参数错误</td>
-		</tr>
-</table>
-
-----------
+| 返回码		| 说明			| 
+|:-----   	|:-----   		|
+| 0			| 请求成功		| 
+| 100010100	| 缺少授权信息	| 
+| 100010101	| AccessToken错误或已过期| 
+| 100010103	| AppId不合法	| 
+| 100010104	| timestamp过期	|	 
+| 100010105	| 签名错误		|	 
+| 100010111	| timestamp不合法| 
+| 100010200	| 失败			| 
+| 100010201	| 缺少参数		| 
+| 100010202	| 参数错误		| 
 
 ## 4.2 分页信息
 
@@ -171,103 +131,33 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **分页信息说明：**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">基础信息</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">字段说明</th>
-		</tr>
-		<tr>
-			<td>pageIndex</td>
-			<td>是</td>
-			<td>number</td>
-			<td>请求的页（从1开始），不设则默认为1</td>
-		</tr>
-		<tr>
-			<td>pageRows</td>
-			<td>是</td>
-			<td>number</td>
-			<td>请求的每页行数，不设则默认为defaultPageRows</td>
-		</tr>
-		<tr>
-			<td>totalRows</td>
-			<td>否</td>
-			<td>string</td>
-			<td>总行数</td>
-		</tr>
-		<tr>
-			<td>totalPages</td>
-			<td>否</td>
-			<td>number</td>
-			<td>总页数</td>
-		</tr>
-		<tr>
-			<td>defaultPageRows</td>
-			<td>是</td>
-			<td>number</td>
-			<td>默认每页行数：20</td>
-		</tr>
-		<tr>
-			<td>currPageRows</td>
-			<td>否</td>
-			<td>number</td>
-			<td>当前页的实际行数</td>
-		</tr>
-		<tr>
-			<td>pageStartRow</td>
-			<td>是</td>
-			<td>number</td>
-			<td>当前页的起始行（从0开始，有可能超出总行数）</td>
-		</tr>
-		<tr>
-			<td>pageEndRow</td>
-			<td>是</td>
-			<td>number</td>
-			<td>当前页的结束行（从0开始，有可能超出总行数）</td>
-		</tr>
-		<tr>
-			<td>hasPrevPage</td>
-			<td>否</td>
-			<td>boolean</td>
-			<td>是否有前一页</td>
-		</tr>
-		<tr>
-			<td>hasNextPage</td>
-			<td>否</td>
-			<td>boolean</td>
-			<td>是否有后一页</td>
-		</tr>
-	</tbody>
-</table>
+| 字段名称		| 基础信息| 	字段类型| 	字段说明| 
+|:-----   		|:-----   |:-----  |:-----  	|
+| pageIndex		| 是		|   number| 请求的页（从1开始），不设则默认为1| 
+| pageRows		| 是		|   number| 请求的每页行数，不设则默认为defaultPageRows| 
+| totalRows		| 否		|   string| 总行数| 
+| totalPages	| 否		| 	number| 总页数| 
+| defaultPageRows| 是	| 	number| 默认每页行数：20| 
+| currPageRows	| 否		|   number| 当前页的实际行数| 
+| pageStartRow	| 是		|   number| 当前页的起始行（从0开始，有可能超出总行数）| 
+| pageEndRow	| 是		| 	number| 当前页的结束行（从0开始，有可能超出总行数）| 
+| hasPrevPage	| 否		| 	boolean| 是否有前一页| 
+| hasNextPage	| 否		| 	boolean| 是否有后一页| 
 
-----------
+
 
 ## 4.3 全局变量说明
 
+|字段		|说明|
+|:-----   	|:-----   |
+|deiveId	|加密后的设备标识|
+|openId	    |加密后的开放账号标识|
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段</th>
-			<th width="84%">说明</th>
-		</tr>
-		<tr>
-			<td>deiveId</td>
-			<td>加密后的设备标识</td>
-		</tr>
-		<tr>
-			<td>openId</td>
-			<td>加密后的开放账号标识</td>
-		</tr>
-</table>
 
-----------
 
-## <span id="accessToken">五、访问凭证接口</span>
+## <span id="accessToken">5. 访问凭证接口</span>
 
-### 1、获取接口访问凭证
+### 5.1 获取接口访问凭证
 
 **接口调用请求说明**
 
@@ -276,34 +166,13 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>appSecret</td>
-			<td>是</td>
-			<td>string</td>
-			<td>凭证密钥</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-	</tbody>
-</table>
+
+|参数名称			|是否必须	|字段类型	|参数说明|
+|:-----         |:----- |:----- |:----- |
+|appId			|是		|string	|应用标识|
+|accessToken	|是		|string	|凭证密钥|
+|timestamp		|是		|number	|时间戳|
+
 
 **返回结果**
 
@@ -317,29 +186,16 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 		"code": 0
 	}
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>string</td>
-			<td>接口调用凭证</td>
-		</tr>
-		<tr>
-			<td>expiresIn</td>
-			<td>string</td>
-			<td>accessToken接口调用凭证超时时间，单位（秒）</td>
-		</tr>
-	</tbody>
-</table>
+|字段名称		|字段类型		|字段说明|
+|:-----      |:-----    |:-----    |
+|accessToken|string	    |接口调用凭证|
+|expiresIn	|string		|accessToken接口调用凭证超时时间，单位（秒）|
 
-## <span id="user">六、用户相关接口</span>
 
-### 1、获取用户基本信息
+
+## <span id="user">6. 用户相关接口</span>
+
+### 6.1 获取用户基本信息
 
 **接口调用请求说明**
 
@@ -348,40 +204,14 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>接口调用凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>openId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>openId（APP SDK里OAuth授权后返回的openId）</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称	    |是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId	    |是	    |string	|应用标识|
+|accessToken|是	    | string|接口调用凭|证
+|timestamp	|是	    | number|时间戳|
+|openId	    |是	    | string|openId（APP SDK里OAuth授权后返回的openId）|
+
+
 
 **返回结果**
 
@@ -401,59 +231,21 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 		}
 	}
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>userName</td>
-			<td>string</td>
-			<td>用户名称</td>
-		</tr>
-		<tr>
-			<td>sex</td>
-			<td>number</td>
-			<td>性别（1-男，2-女）</td>
-		</tr>
-		<tr>
-			<td>birthday</td>
-			<td>string</td>
-			<td>生日（yyyy-MM-dd）</td>
-		</tr>
-		<tr>
-			<td>weight</td>
-			<td>number</td>
-			<td>体重（克）</td>
-		</tr>
-		<tr>
-			<td>height</td>
-			<td>number</td>
-			<td>身高（厘米）</td>
-		</tr>
-		<tr>
-			<td>avatar</td>
-			<td>string</td>
-			<td>头像URL</td>
-		</tr>
-		<tr>
-			<td>city</td>
-			<td>string</td>
-			<td>用户所在城市</td>
-		</tr>
-		<tr>
-			<td>regTime</td>
-			<td>string</td>
-			<td>用户注册时间</td>
-		</tr>
-	</tbody>
-</table>
+| 字段名称 | 字段类型 | 字段说明|
+|:-----   |:-----   |:-----  |
+| userName | string   | 用户名称 | 
+| sex      | number   | 性别 （1-男，2-女）| 
+| birthday | Ostring    | 生日（yyyy-MM-dd） | 
+| weight | Onumber| 体重（克） | 
+| height | number | 身高（厘米） | 
+| avatar | string | 头像URL| 
+| city	| string	| 用户所在城市 |
+| regTime| 	string	| 用户注册时间 |
 
-----------
 
-### 2、获取用户列表
+
+
+### 6.2 获取用户列表
 
 **接口调用请求说明**
 
@@ -462,46 +254,13 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>接口调用凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>pageRows</td>
-			<td>否</td>
-			<td>number</td>
-			<td>每页显示的行数（默认为20,最大为1000）</td>
-		</tr>
-		<tr>
-			<td>pageIndex</td>
-			<td>否</td>
-			<td>number</td>
-			<td>当前页</td>
-		</tr>
-	</tbody>
-</table>
+| 参数名称 |是否必须	|字段类型	 |参数说明 |
+|:-----   |:-----   |:-----  |:-----  |
+|appId	    |是	     |string |	应用标识|
+|accessToken|	是	|string	 | 接口调用凭证|
+|timestamp	|是	    |number	 |时间戳|
+|pageRows	|否	    |number	 |每页显示的行数（默认为20,最大为1000）|
+|pageIndex	|否	    |number	 |当前页|
 
 **返回结果**
 
@@ -530,23 +289,13 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 	    }
 	}
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>list</td>
-			<td>数组</td>
-			<td>开放账号标识列表</td>
-		</tr>
-	</tbody>
-</table>
+|字段名称	|字段类型	|字段说明|
+|:-----   |:-----   |:-----  |
+|list	|数组	|开放账号标识列表|
 
-----------
-### 3、获取用户设备信息
+
+
+### 6.3 获取用户设备信息
 
 **接口调用请求说明**
 
@@ -555,40 +304,14 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>接口调用凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>openId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>openId</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称	    |是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId	    |是	    |string	|应用标识|
+|accessToken|是	    | string|接口调用凭证|
+|timestamp	|是	    | number|时间戳|
+|openId	    |是	    | string|openId|
+
+
 
 **返回结果**
 
@@ -607,117 +330,67 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 		"code": 0
 	}
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>deviceId</td>
-			<td>string</td>
-			<td>设备标识</td>
-		</tr>
-		<tr>
-			<td>macAddress</td>
-			<td>string</td>
-			<td>MAC地址</td>
-		</tr>
-		<tr>
-			<td>deviceName</td>
-			<td>string</td>
-			<td>设备名称</td>
-		</tr>
-		<tr>
-			<td>bindTime</td>
-			<td>string</td>
-			<td>绑定时间</td>
-		</tr>
-		<tr>
-			<td>onlineStatus</td>
-			<td>number</td>
-			<td>在线状态（1-正常，2-异常）</td>
-		</tr>
-		<tr>
-			<td>deviceCode</td>
-			<td>string</td>
-			<td>设备编码</td>
-		</tr>
-	</tbody>
-</table>
 
-----------
+|字段名称	     |字段类型 	|   字段说明|
+|:-----      |:-----    |:-----    |
+|deviceId	 |string	| 	设备标识|
+|macAddress	 |string	|	MAC地址|
+|deviceName	 |string	|	设备名称|
+|bindTime	 |string	|	绑定时间|
+|onlineStatus| number	|	在线状态（1-正常，2-异常）|
+|deviceCode	 |string	|	设备编码|
 
-## <span id="device">七、设备相关接口</span>
 
-### 1、下发设备控制数据
+
+## <span id="device">7. 设备相关接口</span>
+
+### 7.1 获取设备最新配置数据
 
 **接口调用请求说明**
 
-	http请求方式: POST
-	https://open.api.clife.cn/v1/cloud/device/config/single/set
-
-	ps:需要通知CLIFE云添加应用标识白名单
+	http请求方式: GET
+	http(s):https://open.api.clife.cn/v1/cloud/device/data/getConfigData
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>访问凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>deviceId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备标识</td>
-		</tr>
-		<tr>
-			<td>json</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备控制JSON</td>
-		</tr>
-		<tr>
-			<td>sign</td>
-			<td>是</td>
-			<td>string</td>
-			<td>签名</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称	    |是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId	    |是		|string |应用标识|
+|accessToken|是		|string |访问凭证|
+|timestamp  |是		|number |时间戳	|
+|deviceIds  |是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
+
+
+
 
 **返回结果**
 
-正确的Json返回结果：
+正确的Json返回结果：(ps:data里包括设备ID及其配置数据)
 
-	{"code":0}
+	{
+	    "code": 0, 
+	    "data": [
+	        {
+	            "75a06180045a9f4e8228f330bb76f5fa": {
+	                "timehour": 0, 
+	                "reservation": 0, 
+	                "timemin": 16, 
+	                "power": 2
+	            }
+	        }, 
+	        {
+	            "2937f353e51177cec466067f3f430ea7": {
+	                "timehour": 0, 
+	                "reservation": 0, 
+	                "timemin": 15, 
+	                "power": 1
+	            }
+	        }
+	    ]
+	}
 
-----------
 
-### 2、获取设备最新控制数据
+### 7.2 获取设备最新控制数据
 
 **接口调用请求说明**
 
@@ -726,40 +399,13 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>访问凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>deviceIds</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备标识（多个设备用英文逗号隔开，最多支持20个）</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|是		|string	|访问凭证|
+|timestamp	|是		|number	|时间戳|
+|deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
+
 
 **返回结果**
 
@@ -788,10 +434,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 				}]
 	}
 
-
-----------
-
-### 3、获取设备最新运行数据
+### 7.3 获取设备最新运行数据
 
 **接口调用请求说明**
 
@@ -800,40 +443,13 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>访问凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>deviceIds</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备标识（多个设备用英文逗号隔开，最多支持20个）</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|	是	|string	|访问凭证|
+|timestamp	|是		|number	|时间戳|
+|deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
+
 
 **返回结果**
 
@@ -870,10 +486,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 		}]
 	}
 
-
-----------
-
-### 4、获取设备最新故障信息
+### 7.4 获取设备最新故障信息
 
 **接口调用请求说明**
 
@@ -882,40 +495,13 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>访问凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>deviceIds</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备标识（多个设备用英文逗号隔开，最多支持20个）</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|	是	|string	|访问凭证|
+|timestamp	|是		|number	|时间戳|
+|deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
+
 
 **返回结果**
 
@@ -953,9 +539,33 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 			}]
 	}
 
--------------------
+### 7.5 下发设备控制数据
 
-### 5、批量下发控制命令
+**接口调用请求说明**
+
+	http请求方式: POST
+	https://open.api.clife.cn/v1/cloud/device/config/single/set
+
+	ps:需要通知CLIFE云添加应用标识白名单
+
+**参数说明**
+
+|参数名称		|是否必须		|字段类型	|参数说明|
+|:-----     |:-----     |:----- |:----- |
+|appId		|是			|string	|应用标识|
+|accessToken|	是		|string	|访问凭证|
+|timestamp	|是			|number	|时间戳|
+|deviceId	|是			|string	|设备标识|
+|json		|是			|string	|设备控制JSON|
+|sign		|是			|string	|签名|
+
+**返回结果**
+
+正确的Json返回结果：
+
+	{"code":0}
+
+### 7.6 批量下发控制命令
 
 **接口调用请求说明**
 
@@ -966,46 +576,14 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>接口调用凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>json</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备控制JSON</td>
-		</tr>
-		<tr>
-			<td>deviceIds</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备标识列表(deviceId之间以逗号间隔)</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|是		|string	|接口调用凭证|
+|timestamp	|是		|number	|时间戳|
+|json		|是		|string	|设备控制JSON|
+|deviceIds	|是		|string	|设备标识列表(deviceId之间以逗号间隔)|
+
 
 **返回结果**
 
@@ -1018,7 +596,37 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
     	"data": "152017032818000000025"
 	}
 
-### 6、获取控制命令执行结果
+
+### 7.7 广播下发控制命令
+
+**接口调用请求说明**
+
+	http请求方式: POST
+	https://open.api.clife.cn/v1/cloud/device/config/broadcast
+
+**参数说明**
+
+|参数名称|是否必须	|字段类型	|参数说明|
+|:----- |:----- |:----- |:----- |
+|appId|是	|string|应用标识|
+|accessToken|是|string	|接口调用凭证|
+|timestamp|是	|number|时间戳|
+|json	|是	|string|设备控制JSON|
+|productId|是	|int|产品标识|
+
+
+**返回结果**
+
+正确的Json返回结果：
+
+	返回流水批次号
+	
+	{
+    	"code": 0,
+    	"data": "152017032818000000025"
+	}
+
+### 7.8 获取控制命令执行结果
 
 **接口调用请求说明**
 
@@ -1027,40 +635,12 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>接口调用凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>batchSendNo</td>
-			<td>是</td>
-			<td>string</td>
-			<td>流水批次号</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称			|是否必须	|字段类型	|参数说明|
+|:-----         |:----- |:----- |:----- |
+|appId			|是		|string	|应用标识|
+|accessToken	|是		|string	|接口调用凭证|
+|timestamp		|是		|number	|时间戳|
+|batchSendNo	|是		|string	|流水批次号|
 
 **返回结果**
 
@@ -1093,207 +673,24 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 	    }
 	}
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>batch_send_no</td>
-			<td>string</td>
-			<td>流水批次号</td>
-		</tr>
-		<tr>
-			<td>online_num</td>
-			<td>int</td>
-			<td>在线数</td>
-		</tr>
-		<tr>
-			<td>offline_num</td>
-			<td>int</td>
-			<td>离线数</td>
-		</tr>	
-		<tr>
-			<td>online_success_num</td>
-			<td>int</td>
-			<td>在线设备推送成功数</td>
-		</tr>
-		<tr>
-			<td>online_fail_num</td>
-			<td>int</td>
-			<td>在线设备推送失败数</td>
-		</tr>
-		<tr>
-			<td>illegal_num</td>
-			<td>int</td>
-			<td>无效设备数(广播接口无此属性)</td>
-		</tr>
-		<tr>
-			<td>detailResult</td>
-			<td></td>
-			<td>推送结果详情(广播接口无此属性)</td>
-		</tr>
-		<tr>
-			<td>batchSendOnlineResult</td>
-			<td></td>
-			<td>在线推送详情</td>
-		</tr>
-		<tr>
-			<td>send_success</td>
-			<td>数组</td>
-			<td>推送成功MAC列表</td>
-		</tr>
-		<tr>
-			<td>send_fail</td>
-			<td>数组</td>
-			<td>推送失败MAC列表</td>
-		</tr>
-		<tr>
-			<td>offline_info</td>
-			<td>数组</td>
-			<td>离线MAC列表</td>
-		</tr>
-		<tr>
-			<td>illegal_info</td>
-			<td>数组</td>
-			<td>无效MAC列表</td>
-		</tr>
-	</tbody>
-</table>
+|字段名称					|字段类型			|字段说明|
+|:-----                 |:-----         |:----- |
+|batch\_send_no         |string			|流水批次号|
+|online_num				|int			|在线数|
+|offline_num			|int			|离线数|
+|online\_success_num		|int			|在线设备推送成功|
+|online\_fail_num		|int			|在线设备推送失败|
+|illegal_num			|int			|无效设备数(广播接口无此属性)|
+|detailResult			|				|推送结果详情(广播接口无此属性)|
+|batchSendOnlineResult	|				|在线推送详情|
+|send_success			|数组			|推送成功MAC列表|
+|send_fail				|数组			|推送失败MAC列表|
+|offline_info			|数组			|离线MAC列表|
+|illegal_info			|数组			|无效MAC列表|
 
-### 7、广播下发控制命令
+## <span id="push">8. PUSH设备数据接口</span>
 
-**接口调用请求说明**
-
-	http请求方式: POST
-	https://open.api.clife.cn/v1/cloud/device/config/broadcast
-
-**参数说明**
-
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>接口调用凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>json</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备控制JSON</td>
-		</tr>
-		<tr>
-			<td>productId</td>
-			<td>是</td>
-			<td>int</td>
-			<td>产品标识</td>
-		</tr>
-	</tbody>
-</table>
-
-**返回结果**
-
-正确的Json返回结果：
-
-	返回流水批次号
-	
-	{
-    	"code": 0,
-    	"data": "152017032818000000025"
-	}
-
-### 8、获取最新的配置数据
-
-**接口调用请求说明**
-
-	http请求方式: GET
-	http(s):https://open.api.clife.cn/v1/cloud/device/data/getConfigData
-
-**参数说明**
-
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>访问凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>deviceId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>设备标识</td>
-		</tr>
-	</tbody>
-</table>
-**返回结果**
-
-正确的Json返回结果：
-
-	{
-		code: 0,
-		data: {}
-	}
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>data</td>
-			<td>string</td>
-			<td>配置数据内容</td>
-		</tr>
-
-	</tbody>
-</table>
-
-## <span id="push">八、PUSH设备数据接口</span>
-
-### 1、查询推送失败的设备数据
+### 8.1 查询推送失败的设备数据
 
 **接口调用请求说明**
 
@@ -1302,58 +699,15 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>接口调用凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-		<tr>
-			<td>productId</td>
-			<td>是</td>
-			<td>number</td>
-			<td>产品标识</td>
-		</tr>
-		<tr>
-			<td>quaryDate</td>
-			<td>否</td>
-			<td>string</td>
-			<td>查询天数（默认为7天，最多30天）</td>
-		</tr>
-		<tr>
-			<td>pageRows</td>
-			<td>否</td>
-			<td>number</td>
-			<td>每页显示的行数（默认为20）</td>
-		</tr>
-		<tr>
-			<td>pageIndex</td>
-			<td>否</td>
-			<td>number</td>
-			<td>当前页</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----        |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|	是	|	string|接口调用凭证|
+|timestamp	|是		|number	|时间戳|
+|productId	|是		|number	|产品标识|
+|quaryDate	|否		|string	|查询天数（默认为7天，最多30天）|
+|pageRows	|否		|number	|每页显示的行数（默认为20）|
+|pageIndex	|否		|number	|当前页|
 
 **返回结果**
 
@@ -1382,27 +736,14 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 		}
 	}
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>productId</td>
-			<td>int</td>
-			<td>产品ID</td>
-		</tr>
-		<tr>
-			<td>content</td>
-			<td>string</td>
-			<td>失败消息内容，格式详情请看下面说明</td>
-		</tr>
-	</tbody>
-</table>
+|字段名称				|字段类型			|字段说明|
+|:-----             |:-----         |:----- |
+|productId			|int			|产品ID|
+|content			|	string		|失败消息内容，格式详情请看下面说明|
 
-### **推送数据格式说明**
+
+**推送数据格式说明**
+
    推送服务的POST数据示例如下：
 
 	{
@@ -1447,68 +788,23 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 			}]
 	}
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>msgId</td>
-			<td>string</td>
-			<td>消息标识</td>
-		</tr>
-		<tr>
-			<td>list</td>
-			<td>数组</td>
-			<td>设备数据列表</td>
-		</tr>
-		<tr>
-			<td>mac</td>
-			<td>string</td>
-			<td>设备MAC</td>
-		</tr>
-		<tr>
-			<td>dataType</td>
-			<td>int</td>
-			<td>
-				数据类型 2-控制数据 3-运行数据 4-故障数据
-			</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>date</td>
-			<td>时间戳，数据生成时间</td>
-		</tr>
-		<tr>
-			<td>data</td>
-			<td></td>
-			<td>设备数据区</td>
-		</tr>
-		<tr>
-			<td>authUserId</td>
-			<td>string</td>
-			<td>设备协议属性</td>
-		</tr>
-		<tr>
-			<td>breathRate</td>
-			<td>int</td>
-			<td>设备协议属性</td>
-		</tr>
-		<tr>
-			<td>...</td>
-			<td>...</td>
-			<td>设备协议属性</td>
-		</tr>
-	</tbody>
-</table>
+|字段名称		|字段类型	|字段说明|
+|:-----     |:-----       |:----- |
+|msgId		|string	|消息标识|
+|list		|数组	|设备数据列表|
+|mac		|	string|设备MAC|
+|dataType	|int	|数据类型 2-控制数据 3-运行数据 4-故障数据|
+|timestamp	|date	|时间戳，数据生成时间|
+|data		|		|设备数据区|
+|authUserId	|string	|设备协议属性|
+|breathRate	|int	|设备协议属性|
+|...		|	...	|设备协议属性|
 
-----------
 
-## <span id="authorization">九、第三方授权相关接口</span>
 
-### 1、第三方云请求CLife云验证授权码
+## <span id="authorization">9. 第三方授权相关接口</span>
+
+### 9.1 第三方云请求CLife云验证授权码
 
 **接口调用请求说明**
 
@@ -1517,46 +813,14 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 **参数说明**
 
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">参数名称</th>
-			<th width="11%">是否必须</th>
-			<th width="11%">字段类型</th>
-			<th width="62%">参数说明</th>
-		</tr>
-		<tr>
-			<td>appId</td>
-			<td>是</td>
-			<td>number</td>
-			<td>应用标识</td>
-		</tr>
-		<tr>
-			<td>appSecret</td>
-			<td>是</td>
-			<td>string</td>
-			<td>应用密钥AppSecret，在C-Life开放平台提交应用审核通过后获得</td>
-		</tr>
-		<tr>
-			<td>authorizationCode</td>
-			<td>是</td>
-			<td>string</td>
-			<td>第一步得到的授权码，用于获取随机码</td>
-		</tr>
-		<tr>
-			<td>accessToken</td>
-			<td>是</td>
-			<td>string</td>
-			<td>访问凭证</td>
-		</tr>
-		<tr>
-			<td>timestamp</td>
-			<td>是</td>
-			<td>number</td>
-			<td>时间戳</td>
-		</tr>
-	</tbody>
-</table>
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----        |:----- |:----- |:----- |
+|appId		|是		|number	|应用标识|
+|appSecret	|是		|string	|应用密钥AppSecret，在C-Life开放平台提交应用审核通过后获得|
+|authorizationCode|是		|string	|第一步得到的授权码，用于获取随机码|
+|accessToken|	是	|string  |访问凭证|
+|timestamp	|是		|number	|时间戳|
+
 
 **返回结果**
 
@@ -1570,20 +834,10 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 			}
 	}
 	
-<table width="100%" style="border-spacing: 0;  border-collapse: collapse;">
-	<tbody>
-		<tr>
-			<th width="16%">字段名称</th>
-			<th width="11%">字段类型</th>
-			<th width="74%">字段说明</th>
-		</tr>
-		<tr>
-			<td>randomCode</td>
-			<td>string</td>
-			<td>随机码</td>
-		</tr>
-	</tbody>
-</table>
 	
+|字段名称		|字段类型	|字段说明|
+|:-----     |:----- |:----- |
+|randomCode	|string	|随机码|
 
-----------
+
+
