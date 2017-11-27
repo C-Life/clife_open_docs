@@ -268,7 +268,50 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 <img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
 
 ### 3.2.云云对接用户授权登录
-为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档 [云云对接账号授权](./source/zh-cn/cloudAPI/cloudAPI.md)
+为了适应第三方用户拥有独立账号系统后台的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，在这种环境下用户可以使用本身的登录系统，然后再利用云云对接的方式实现
+一次性登录授权，下面是具体的接口调用流程：    
+
+第一步:  通过SDK获取授权码
+    
+    HetThirdCloudAuthApi.getInstance().getAuthorizationCode(new IHetCallback() {
+                    @Override
+                    public void onSuccess(int code, String msg) {
+                        if(code ==0){
+                            authorizationCode = GsonUtil.getInstance().toObject(msg,AuthorizationCode.class);
+                        }else{
+                            ToastUtil.showShortToast(mContext,msg);
+                        }
+                    }
+                    @Override
+                    public void onFailed(int code, String msg) {
+                        ToastUtil.showShortToast(mContext,msg);
+                    }
+                },account,openId);
+参数说明：  
+account：用户账号。   
+openId：首次授权不需传递，默认传空值。   
+注意：首次授权只需传递用户账号即可，二次授权只需传递openId即可。如果两个都传递默认是二次授权。
+
+第二步：开发者调用第三方云服务接口传递第一步获取的授权码，然后第三方服务通过云对接方式调用C-Life云端接口获取随机码给客户端。    
+
+第三步：SDK请求C-Life验证验证码和随机码
+
+    HetThirdCloudAuthApi.getInstance().checkRandomCode(new IHetCallback() {
+                    @Override
+                    public void onSuccess(int code, String s) {
+                          ToastUtil.showShortToast(mContext,"授权成功");
+                    }
+                    @Override
+                    public void onFailed(int code, String msg) {
+                        ToastUtil.showShortToast(mContext,"授权失败");
+                    }
+                },verificationCode,result.getData().getRandomCode());
+     
+参数说明：  
+verificationCode：验证码。
+randomCode：随机码。
+注意：二次授权不需传参数verificationCode。
+
 
 
 ### 3.3.退出登录
@@ -520,7 +563,7 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 
 获取到设备的产品ID（productId 字段），就可以开始绑定了。
 
-第二种：扫描开放平台创建的产品二维码来获取。  
+第二种：扫描C-Life开放平台创建的产品二维码来获取。  
 ![](https://i.imgur.com/Tge2Ypk.png)
 
 扫描结果示例：  
@@ -552,7 +595,7 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
         }
     }
 
-第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。  
+第三种：在开放平台后台直接直接查看产品ID，详情请查《C-Life开发平台使用手册》。  
 ![](https://i.imgur.com/TDwtXPH.png)
 
 
@@ -1651,7 +1694,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 
 # H5+Native混合框架
 
-为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
+为了适应APP不断添加新的设备和动态更新，C-Life平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
 
 请参考[基于React的JS-SDK框架](./source/zh-cn/app/SDK/jssdk.md)
