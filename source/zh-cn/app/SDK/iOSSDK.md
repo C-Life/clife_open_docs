@@ -1,16 +1,19 @@
 
 # 1.SDK配置
 ## 1.1 SDK初始化
+
 **第一步：导入sdk库**
+
 ```
-pod 'HETOpenSDK','2.0.0'
+	pod 'HETOpenSDK','2.0.0'
 
 ```
 
 **第二步：导入模组库**
 
 ** 根据产品类型找到对应的芯片模组名称，如下：**
-![](/assets/查看芯片模组类型.png)
+
+![](/assets/iOS/APPViewModuleType.png)
 
 【示例代码】
 
@@ -47,19 +50,19 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-// 1.SDK注册
-[HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
-// 2.设置SDK的日志信息开启
-[HETOpenSDK openLog:YES];
-// 3.配置网络环境
-[HETOpenSDK setNetWorkConfig:HETNetWorkConfigType_ETE];
-return YES;
+    // 1.SDK注册
+    [HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
+    // 2.设置SDK的日志信息开启
+    [HETOpenSDK openLog:YES];
+    // 3.配置网络环境
+    [HETOpenSDK setNetWorkConfig:HETNetWorkConfigType_ETE];
+    return YES;
 }
 
 ```
 ## 1.2 配置APP主题信息
 ** 通过参数定义的JSON字符串来进行配置APP主题色，demoAPP是通过HETAuthorizeTheme.plist 这个文件来组装JSON字符串的，如图所示：**
-![](/assets/修改app主题色配置文件.png)
+![](/assets/APPChangeMainTheme.png)
 
 
 ## 1.3 集成注意事项
@@ -81,8 +84,9 @@ return YES;
 ```
  HETAuthorize *auth = [[HETAuthorize alloc] init];
  if (![auth isAuthenticated]) {
-      [auth authorizeWithCompleted:^(NSString *openId, NSError *error) {
-    }];
+     [auth authorizeWithCompleted:^(NSString *openId, NSError *error) {
+     
+     }];
   }
 ```
 
@@ -164,7 +168,7 @@ typeof(self) __weak weakSelf = self;
 # 3.设备绑定
 ## 3.1绑定概述
 ### 3.1.1 绑定流程
-![](/assets/绑定流程介绍.png)
+![](/assets/iOS/APPBindProcess)
 
 ### 3.1.2 设备分类
 从设备层级上分为 **设备大类** 和 **设备小类**。例如，冰箱是大类，冰箱下有Clife智能冰箱，即小类。
@@ -230,7 +234,6 @@ typeof(self) __weak weakSelf = self;
   }
 } failure:^(NSError *error) {
     NSInteger code = [[error.userInfo valueForKey:@"code"] integerValue];
-    
     if (code == 100022013) {
       // msg=appId与产品未做关联
     }else{
@@ -240,7 +243,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/产品详细信息.jpg)
+![](/assets/iOS/APPProduceDetailInfo.jpg)
 
 > 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
@@ -263,7 +266,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/查询设备大类接口返回结果.jpg)
+![](/assets/iOS/APPViewMainTypeResult.jpg)
 
 
 ** 第二步：通过大类ID，获取设备小类 **
@@ -281,9 +284,9 @@ NSString *deviceTypeId = [NSString stringWithFormat:@"%@",deviceTypeId]；
 
 ```
 
-![](/assets/根据大类获取设备支持的产品类型返回.png)
+![](/assets/iOS/AppGetProductInfoByMainType.png)
 
-![](/assets/通过大类获取支持设备类型返回字段说明.png)
+![](/assets/iOS/AppGetSupportDeviceTypeBYMainType.png)
 
 >到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
@@ -467,7 +470,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/设备绑定返回参数.png)
+![](/assets/iOS/APPDeviceBindPars.png)
 
 **第二步：根据获取的设备信息，监听设备状态**
 
@@ -495,7 +498,7 @@ typeof(self) __weak weakSelf = self;
          
         } deviceState:^(HETWiFiDeviceState state) {
             // 监听设备在线状态数据
-            OPLog(@"deviceState:%ld " ,(long)state);  //deviceState:2
+            OPLog(@"deviceState:%ld " ,(long)state);
         }];
     }
     return _controlBusiness;
@@ -546,7 +549,6 @@ typeof(self) __weak weakSelf = self;
 
     } withFailBlock:^(NSError *error) {
         OPLog(@"error = %@",error);
-
 	}];
 }
 
@@ -575,11 +577,9 @@ typeof(self) __weak weakSelf = self;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness fetchAllBindDeviceSuccess:^(NSArray<HETDevice *> *deviceArray) {
-        OPLog(@"responseObject ==%@",deviceArray);
-
+    OPLog(@"responseObject ==%@",deviceArray);
 } failure:^(NSError *error) {
-        OPLog(@"error ==%@",error);
-
+    OPLog(@"error ==%@",error);
 }];
 
 ```
@@ -625,7 +625,7 @@ macAddress:self.macAddress deviceId:self.deviceId
 completionHandler:^(CBPeripheral *currentPeripheral,NSDictionary *dic, NSError *error) {
     typeof(weakSelf) __strong strongSelf = weakSelf;
     strongSelf.blePeripheral=currentPeripheral;
-    NSLog(@"状态数据:%@,%@",dic,error);
+    OPLog(@"状态数据:%@,%@",dic,error);
     if(dic)
     {  
         uint8_t state ;
@@ -683,10 +683,11 @@ typeof(self) __weak weakSelf = self;
  【示例代码】
 
 ```
+typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness unbindDeviceWithDeviceId:device.deviceId success:^(id responseObject) {
-
+    OPLog(@"responseObject ==%@",responseObject);
 } failure:^(NSError *error) {
-           
+    OPLog(@"error ==%@",error);
 }];
 ```
 
@@ -696,9 +697,9 @@ typeof(self) __weak weakSelf = self;
 
 ```
 [HETDeviceShareBusiness deviceAuthDelWithDeviceId:device.deviceId userId:@"" success:^(id responseObject) {
-        
-   } failure:^(NSError *error) {
-
+    OPLog(@"responseObject ==%@",responseObject);
+} failure:^(NSError *error) {
+    OPLog(@"error ==%@",error);
 }];
 ```
 
@@ -743,7 +744,7 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
         [weakSelf setupGenerateQRCode:shareCode];
     } failure:^(NSError *error) {
         OPLog(@"error == %@",error);
-         [HETCommonHelp showHudAutoHidenWithMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
+        [HETCommonHelp showHudAutoHidenWithMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
     }];
 }
 ```
@@ -776,9 +777,9 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness authShareDeviceWithShareCode:shareCode shareType:HETDeviceShareType_FaceToFaceShare success:^(id responseObject) {
-
+    OPLog(@"responseObject ==%@",responseObject);
 } failure:^(NSError *error) {
-
+    OPLog(@"error ==%@",error);
 }];
 ```
 
@@ -791,7 +792,6 @@ typeof(self) __weak weakSelf = self;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness getShareCodeWithDeviceId:self.deviceId shareType:HETDeviceShareType_ThirthShare success:^(id responseObject) {
-
     OPLog(@"responseObject == %@",responseObject);
     NSString *h5Url = [responseObject valueForKey:@"h5Url"];
 } failure:^(NSError *error) {
@@ -837,9 +837,9 @@ typeof(self) __weak weakSelf = self;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceShareBusiness deviceGetAuthUserWithDeviceId:self.deviceId success:^(id responseObject) {
-        OPLog(@"responseObject == %@",responseObject);
+    OPLog(@"responseObject == %@",responseObject);
 } failure:^(NSError *error) {
-        OPLog(@"error == %@",error);
+    OPLog(@"error == %@",error);
 }];
 ```
 ## 5.4 修改设备信息
@@ -852,9 +852,9 @@ typeof(self) __weak weakSelf = self;
 NSString *deviceId=self.hetDeviceModel.deviceId;
 [HETDeviceRequestBusiness updateDeviceInfoWithDeviceId:deviceId
  deviceName:@"123fsdg" roomId:@"12" success:^(id responseObject) {
-        
-} failure:^(NSError *error) {
-        
+     OPLog(@"responseObject = %@",responseObject);
+ } failure:^(NSError *error) {
+     OPLog(@"error = %@",error);
 }];
 
 ```
@@ -899,16 +899,9 @@ NSString *deviceId=self.hetDeviceModel.deviceId;
 ```
 typeof(self) __weak weakSelf = self;
 [HETDeviceRequestBusiness startRequestWithHTTPMethod:HETRequestMethodPost withRequestUrl:@"/v1/feedback/addFeedback" processParams:params needSign:NO BlockWithSuccess:^(id responseObject) {
-[HETCommonHelp hideHudFromView:weakSelf.view];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HETCommonHelp showHudAutoHidenWithMessage:@"提交成功，谢谢您的反馈"];
-    });
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf.navigationController  popViewControllerAnimated: YES];
-    });
+    OPLog(@"responseObject = %@",responseObject);
 } failure:^(NSError *error) {
-    [HETCommonHelp hideHudFromView:weakSelf.view];
-    [HETCommonHelp showHudAutoHidenWithMessage:@"提交失败，请检测网络连接"];
+    OPLog(@"error = %@",error);
 }];
 ```
 
@@ -1076,7 +1069,7 @@ bridge.delegate=self;
                 @try {
                     [_wkWebView loadFileURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@",[self.h5Path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]] allowingReadAccessToURL:[NSURL fileURLWithPath:directory]];
                 } @catch (NSException *exception) {
-                    NSLog(@"%@",exception);
+                    OPLog(@"%@",exception);
                 } @finally {
                     
                 }
