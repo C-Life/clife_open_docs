@@ -60,8 +60,8 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 }
 
 ```
-## 1.2 配置APP主题信息
-** 通过参数定义的JSON字符串来进行配置APP主题色，demoAPP是通过HETAuthorizeTheme.plist 这个文件来组装JSON字符串的，如图所示：**
+## 1.2 配置App主题信息
+** 通过参数定义的JSON字符串来进行配置App主题色，demoApp是通过HETAuthorizeTheme.plist 这个文件来组装JSON字符串的，如图所示：**
 ![](/assets/APPChangeMainTheme.png)
 
 
@@ -78,7 +78,7 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
  [auth isAuthenticated];
 
 ```
-## 2.2 Clife 授权登录
+## 2.2 C-Life 授权登录
 【示例代码】
 
 ```
@@ -171,19 +171,19 @@ typeof(self) __weak weakSelf = self;
 ![](/assets/iOS/APPBindProcess)
 
 ### 3.1.2 设备分类
-从设备层级上分为 **设备大类** 和 **设备小类**。例如，冰箱是大类，冰箱下有Clife智能冰箱，即小类。
+从设备层级上分为 **设备大类** 和 **设备小类**。例如，冰箱是大类，冰箱下有C-Life智能冰箱，即小类。
 
-从设备类型上分为 **蓝牙设备** 和 **wifi设备**，当我们拿到 **设备的信息** 的时候，就能区别设备是wifi设备还是蓝牙设备。
+从设备类型上分为 **蓝牙设备** 和 **WiFi设备**，当我们拿到 **设备的信息** 的时候，就能区别设备是WiFi设备还是蓝牙设备。
 
-wifi设备绑定方式为 **smartLink绑定 **或者 **AP绑定**；蓝牙设备绑定方式为 **蓝牙绑定**。
+WiFi设备绑定方式为 **smartLink绑定 **或者 **AP绑定**；蓝牙设备绑定方式为 **蓝牙绑定**。
 
 smartLink 、AP和蓝牙绑定都是根据 **moduleType **来区分，如下图所示：
 
 moduleType | 绑定类型
 ------------- |-------------
-1 | wifi设备 SmartLink绑定
+1 | WiFi设备 SmartLink绑定
 2 | 蓝牙设备
-9 | wifi设备 AP绑定
+9 | WiFi设备 AP绑定
 
 蓝牙设备暂时只有一种绑定方式（蓝牙绑定）
 
@@ -218,7 +218,7 @@ typeof(self) __weak weakSelf = self;
          NSDictionary *dataDict = [responseObject valueForKey:@"data"];
        // 根据moduleType 区分设备绑定类型
        HETDevice *device = [HETDevice mj_objectWithKeyValues:dataDict];
-       // wifi绑定
+       // WiFi绑定
        if ([device.moduleType integerValue] == 1 
        || [device.moduleType integerValue] == 9) 
        {
@@ -292,7 +292,7 @@ NSString *deviceTypeId = [NSString stringWithFormat:@"%@",deviceTypeId]；
 
 ## 3.3 WiFi设备绑定
 ### 3.3.1 smartLink绑定
->在开始配置前，设备要先进入配置模式，然后APP发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。
+>在开始配置前，设备要先进入配置模式，然后App发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。
 
 **第一步：连接路由器热点 **
 
@@ -334,9 +334,9 @@ startSmartLinkBindDeviceWithProductId:productId
 
 
 ### 3.3.2 AP绑定
->在开始配置前，设备进入配置模式后，会产生一个Wifi热点。手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP想服务器查询绑定状态。
+>在开始配置前，设备进入配置模式后，会产生一个WiFi热点。手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后App将配置信息给设备，之后设备自行于服务器绑定，App想服务器查询绑定状态。
 
->使用C-life提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。
+>使用C-Life提供的模组固件，设备产生的WiFi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。
 
 **第一步：连接路由器热点 **
 
@@ -708,19 +708,19 @@ typeof(self) __weak weakSelf = self;
 ### 5.3.1 设备分享方式分类
 ** 1、面对面分享：**
 
-A用户打开APP设备面对面分享产生一个分享二维码，
-B用户打开APP的扫一扫，直接获取设备的控制权限。
+A用户打开App设备面对面分享产生一个分享二维码，
+B用户打开App的扫一扫，直接获取设备的控制权限。
 
 ** 2、第三方社交分享：**
 
-A用户打开APP设备第三方应用分享（微信，QQ），例如分享到微信好友，
-B用户识别微信中的二维码，打开分享网页，尝试打开APP成功即获取设备的控制权限，失败就提示用户B下载APP。
+A用户打开App设备第三方应用分享（微信，QQ），例如分享到微信好友，
+B用户识别微信中的二维码，打开分享网页，尝试打开App成功即获取设备的控制权限，失败就提示用户B下载App。
 
  **注意：**
  
  1、URL scheme
  
- * 第三方分享需要APP提供URL scheme，方便web页面打开APP，并且传递分享码给APP。
+ * 第三方分享需要App提供URL scheme，方便web页面打开App，并且传递分享码给App。
  
  
 2、分享码有效期
@@ -768,9 +768,9 @@ B用户识别微信中的二维码，打开分享网页，尝试打开APP成功�
 }
 ```
 
-**第二步：对方用app扫描分享码，获取设备权限**
+**第二步：对方用App扫描分享码，获取设备权限**
 
-**app扫描二维码获取设备权限**
+**App扫描二维码获取设备权限**
 
 【示例代码】
 
@@ -799,9 +799,9 @@ typeof(self) __weak weakSelf = self;
 }];
 ```
 
-**第二步：B用户通过第三方应用打开连接，web页面尝试打开APP**
+**第二步：B用户通过第三方应用打开连接，web页面尝试打开App**
 
-**第三步：B用户的app验证分享码，获取设备权限**
+**第三步：B用户的App验证分享码，获取设备权限**
 
 【示例代码】
 
@@ -958,10 +958,10 @@ typeof(self) __weak weakSelf = self;
 
 # 8.H5+Native混合框架
 ## 8.1 H5开放框架概述
-为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
-H5设备控制，是指设备控制页面用html5开发，嵌入到原生APP，实现设备控制页面动态更新的一种方式。
+为了适应App不断添加新的设备和动态更新，C-Life平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现App功能的快速开发迭代，减少产品的上线周期。
+H5设备控制，是指设备控制页面用html5开发，嵌入到原生App，实现设备控制页面动态更新的一种方式。
 
-## 8.2 iOS app和H5通讯流程图
+## 8.2 iOS App和H5通讯流程图
  
 SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其通讯原理图如下：
 ![](https://i.imgur.com/drm1OoC.png)
@@ -1138,9 +1138,9 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 /**
  *  js调用的发送数据接口
  *
- *  @param data 将发送给app的数据，一般是完整的控制数据(json字符串)
- *  @param successCallback  app方数据处理成功时将调用该方法
- *  @param errorCallback    app方数据处理失败时将调用该方法
+ *  @param data 将发送给App的数据，一般是完整的控制数据(json字符串)
+ *  @param successCallback  App方数据处理成功时将调用该方法
+ *  @param errorCallback    App方数据处理失败时将调用该方法
  */
 -(void)send:(id)data successCallback:(id)successCallback errorCallback:(id)errorCallback
 {
@@ -1164,7 +1164,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 
 
 /**
- *  js调用的设置页面标题接口(该方法用于将标题发送给app，以供app进行标题更新。)
+ *  js调用的设置页面标题接口(该方法用于将标题发送给App，以供App进行标题更新。)
  *
  *  @param data  将设置的标题
  */
@@ -1176,7 +1176,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 
 
 /**
- *  js调用的系统toast接口(方法用于调用系统toast，以便app方统一toast风格)
+ *  js调用的系统toast接口(方法用于调用系统toast，以便App方统一toast风格)
  *
  *  @param data 将要弹出的提示信息
  */
@@ -1186,7 +1186,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 }
 
 /**
- *  H5调用config接口后需要APP调用此方法，告知js准备好了(注意此方法调用之后，一般需要紧接着调用webViewConfigDataRepaint传配置数据给H5初始化界面)
+ *  H5调用config接口后需要App调用此方法，告知js准备好了(注意此方法调用之后，一般需要紧接着调用webViewConfigDataRepaint传配置数据给H5初始化界面)
  *
  *  @param dic
  */
@@ -1196,7 +1196,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 }
 
 /**
- *  H5调用config接口后需要APP调用此方法，告知js准备好了(注意此方法调用之后，一般需要紧接着调用webViewConfigDataRepaint传配置数据给H5初始化界面)
+ *  H5调用config接口后需要App调用此方法，告知js准备好了(注意此方法调用之后，一般需要紧接着调用webViewConfigDataRepaint传配置数据给H5初始化界面)
  *
  *  @param dic
  */
@@ -1217,7 +1217,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 }
 
 /**
- *  H5调用config接口后需要APP调用此方法，告知js准备好了(注意此方法调用之后，一般需要紧接着调用webViewConfigDataRepaint传配置数据给H5初始化界面)
+ *  H5调用config接口后需要App调用此方法，告知js准备好了(注意此方法调用之后，一般需要紧接着调用webViewConfigDataRepaint传配置数据给H5初始化界面)
  *
  *  @param dic
  */
@@ -1227,7 +1227,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 }
 
 /**
- *  H5调用config接口后需要APP调用此方法，告知js准备好了(注意此方法调用之后，一般需要紧接着调用webViewConfigDataRepaint传配置数据给H5初始化界面)
+ *  H5调用config接口后需要App调用此方法，告知js准备好了(注意此方法调用之后，一般需要紧接着调用webViewConfigDataRepaint传配置数据给H5初始化界面)
  *
  *  @param dic
  */
