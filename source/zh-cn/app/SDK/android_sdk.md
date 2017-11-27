@@ -446,7 +446,7 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 
 ## 4.设备绑定
 
-开放平台封装了wifi设备和蓝牙设备绑定接口，包括手机与服务器、手机与智能设备的通讯接口。开发者只要获取到设备的产品ID就可以调用SDK的绑定接口进行设备绑定，不需要关注复杂的绑定流程。  
+开放平台封装了WIFI设备和蓝牙设备绑定接口，包括手机与服务器、手机与智能设备的通讯接口。开发者只要获取到设备的产品ID就可以调用SDK的绑定接口进行设备绑定，不需要关注复杂的绑定流程。  
 
 ### 4.1.获取产品ID 
 开放平台SDK提供了三种方式来获取产品ID。  
@@ -551,7 +551,7 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 | productName | string | 设备型号名称 |
 | productCode | string | 设备型号编码 |
 | productIcon | string | 设备型号图标 |
-| moduleId | number | 模块类型（1-WiFi，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
+| moduleId | number | 模块类型（1-WIFI，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
 | moduleType | number | 设备型号图标 |
 | moduleName | string | 模块名称 |
 | remark | string | 备注 |
@@ -605,9 +605,9 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 
 | moduleType | 绑定类型 |
 |---------|---------|
-| 1	 | wifi设备 SmartLink绑定 |
+| 1	 | WIFI设备 SmartLink绑定 |
 | 2 |  蓝牙设备 |
-| 9	 | wifi设备 AP绑定 |
+| 9	 | WIFI设备 AP绑定 |
 
 
 ### 4.2.设备绑定
@@ -621,10 +621,10 @@ WIFI设备AP绑定流程图如下：
 
 ![](https://i.imgur.com/AXPq6FR.png)
 
-APP启动绑定之前，将设备设置成配置模式，设备将会成为一个Wifi热点。 手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP从服务器查询绑定状态。  
-使用开放平台提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。  
+APP启动绑定之前，将设备设置成配置模式，设备将会成为一个WIFI热点。 手机连接设备热点，将发送要配置的路由器SSID和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP从服务器查询绑定状态。  
+使用开放平台提供的模组固件，设备产生的WIFI热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。  
 AP绑定的交互流程：  
-1.获取路由器ssid和密码  
+1.获取路由器SSID和密码  
 2.手机连接路由器热点  
 3.手机切换设备热点  
 4.传入参数 产品ID productId、设备大类ID、设备小类ID、路由器ssid 和 密码，启动绑定  
@@ -634,8 +634,8 @@ WIFI设备SmartLink绑定流程图如下：
  ![](https://i.imgur.com/J5AWpvN.png)
 
 APP启动绑定之前，将设备设置成配置模式。 APP发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。  
-1.获取路由器ssid和密码  
-2.传入参数产品ID productId，路由器ssid 和 密码，启动绑定  
+1.获取路由器SSID和密码  
+2.传入参数产品ID productId，路由器SSID和密码，启动绑定  
 
 ##### 4.2.1.2.启动绑定  
 
@@ -730,9 +730,9 @@ HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。�
 **绑定无法绑定？这里给出设备无法绑定的几种检查方法：**  
 
 设备是否置为绑定模式，是否在绑定的有效时间内  
-是否正确输入wifi密码,请确认手机是否能正常连接网络  
+是否正确输入WIFI密码,请确认手机是否能正常连接网络  
 是扫描不到设备还是绑定不了设备,扫描失败会有对应提示是扫描不到设备，还是绑定不了设备  
-设备是否已在CLife开放平台注册，并按照要求将大小类信息写入设备中  
+设备是否已在C-Life开放平台注册，并按照要求将大小类信息写入设备中  
 APP端服务是否开启（udpservice）
 
 
@@ -766,7 +766,7 @@ SDK所有的设备devicemodel，参数说明
 | productCode | String | 设备型号编码 |
 | productIcon | String | 设备型号图标 |
 | moduleId | number | 模块标识 |
-| moduleType | number | 模块类型（1-WiFi，2-蓝牙，9-AP模式） |
+| moduleType | number | 模块类型（1-WIFI，2-蓝牙，9-AP模式） |
 | moduleName | String | 模块名称 |
 | radiocastName | String | 设备广播名 |
 | deviceCode | String | 设备编码 |
@@ -1083,11 +1083,11 @@ SDK封装了WIFI设备控制接口和BLE蓝牙设备控制接口，需要根据�
 
 | 字段名称 | 字段类型 | 参数说明 |
 |---------|---------|---------|
-| moduleType | number | 模块类型（1-WiFi，2-蓝牙，9-WIFI-AP模式） |
+| moduleType | number | 模块类型（1-WIFI，2-蓝牙，9-WIFI-AP模式） |
 
 ### 6.1.WIFI设备控制 
 
-wifi设备控制流程图示如下：
+WIFI设备控制流程图示如下：
 
  ![](https://i.imgur.com/6Q1Dk6V.png)
 
@@ -1196,7 +1196,7 @@ WIFI设备控制具体可以分成3个步骤：
 这个修改标记位是为了做统计和配置下发的时候设备执行相应的功能。下发数据必须传递updateflag标志
 
 例如，空气净化器（广磊K180）配置信息协议：
-紫外线(1)、负离子(2)、臭氧(3)、儿童锁(4)、开关(5)、WiFi(6)、过滤网(7)、模式(8)、定时(9)、风量(10) 上面一共上10个功能，那么updateFlag就2个字节，没超过8个功能为1个字节，超过8个为2个字节，超过16个为3个字节，以此类推。
+紫外线(1)、负离子(2)、臭氧(3)、儿童锁(4)、开关(5)、WIFI(6)、过滤网(7)、模式(8)、定时(9)、风量(10) 上面一共上10个功能，那么updateFlag就2个字节，没超过8个功能为1个字节，超过8个为2个字节，超过16个为3个字节，以此类推。
 
 打开负离子，2个字节，每一个bit的值为下：
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
