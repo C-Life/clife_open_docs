@@ -268,7 +268,50 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 <img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
 
 ### 3.2.云云对接用户授权登录
-为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档 [云云对接账号授权](./source/zh-cn/cloudAPI/cloudAPI.md)
+为了适应第三方用户拥有独立账号系统后台的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，在这种环境下用户可以使用本身的登录系统，然后再利用云云对接的方式实现
+一次性登录授权，下面是具体的接口调用流程：    
+
+第一步:  通过SDK获取授权码
+    
+    HetThirdCloudAuthApi.getInstance().getAuthorizationCode(new IHetCallback() {
+                    @Override
+                    public void onSuccess(int code, String msg) {
+                        if(code ==0){
+                            authorizationCode = GsonUtil.getInstance().toObject(msg,AuthorizationCode.class);
+                        }else{
+                            ToastUtil.showShortToast(mContext,msg);
+                        }
+                    }
+                    @Override
+                    public void onFailed(int code, String msg) {
+                        ToastUtil.showShortToast(mContext,msg);
+                    }
+                },account,openId);
+参数说明：  
+account：用户账号。   
+openId：首次授权不需传递，默认传空值。   
+注意：首次授权只需传递用户账号即可，二次授权只需传递openId即可。如果两个都传递默认是二次授权。
+
+第二步：开发者调用第三方云服务接口传递第一步获取的授权码，然后第三方服务通过云对接方式调用C-Life云端接口获取随机码给客户端。    
+
+第三步：SDK请求C-Life验证验证码和随机码
+
+    HetThirdCloudAuthApi.getInstance().checkRandomCode(new IHetCallback() {
+                    @Override
+                    public void onSuccess(int code, String s) {
+                          ToastUtil.showShortToast(mContext,"授权成功");
+                    }
+                    @Override
+                    public void onFailed(int code, String msg) {
+                        ToastUtil.showShortToast(mContext,"授权失败");
+                    }
+                },verificationCode,result.getData().getRandomCode());
+     
+参数说明：  
+verificationCode：验证码。
+randomCode：随机码。
+注意：二次授权不需传参数verificationCode。
+
 
 
 ### 3.3.退出登录
@@ -403,7 +446,7 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 
 ## 4.设备绑定
 
-开放平台封装了wifi设备和蓝牙设备绑定接口，包括手机与服务器、手机与智能设备的通讯接口。开发者只要获取到设备的产品ID就可以调用SDK的绑定接口进行设备绑定，不需要关注复杂的绑定流程。  
+开放平台封装了WIFI设备和蓝牙设备绑定接口，包括手机与服务器、手机与智能设备的通讯接口。开发者只要获取到设备的产品ID就可以调用SDK的绑定接口进行设备绑定，不需要关注复杂的绑定流程。  
 
 ### 4.1.获取产品ID 
 开放平台SDK提供了三种方式来获取产品ID。  
@@ -508,7 +551,7 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 | productName | string | 设备型号名称 |
 | productCode | string | 设备型号编码 |
 | productIcon | string | 设备型号图标 |
-| moduleId | number | 模块类型（1-WiFi，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
+| moduleId | number | 模块类型（1-WIFI，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
 | moduleType | number | 设备型号图标 |
 | moduleName | string | 模块名称 |
 | remark | string | 备注 |
@@ -520,7 +563,7 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 
 获取到设备的产品ID（productId 字段），就可以开始绑定了。
 
-第二种：扫描开放平台创建的产品二维码来获取。  
+第二种：扫描C-Life开放平台创建的产品二维码来获取。  
 ![](https://i.imgur.com/Tge2Ypk.png)
 
 扫描结果示例：  
@@ -552,7 +595,7 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
         }
     }
 
-第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。  
+第三种：在开放平台后台直接直接查看产品ID，详情请查《C-Life开发平台使用手册》。  
 ![](https://i.imgur.com/TDwtXPH.png)
 
 
@@ -562,9 +605,9 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 
 | moduleType | 绑定类型 |
 |---------|---------|
-| 1	 | wifi设备 SmartLink绑定 |
+| 1	 | WIFI设备 SmartLink绑定 |
 | 2 |  蓝牙设备 |
-| 9	 | wifi设备 AP绑定 |
+| 9	 | WIFI设备 AP绑定 |
 
 
 ### 4.2.设备绑定
@@ -578,10 +621,10 @@ WIFI设备AP绑定流程图如下：
 
 ![](https://i.imgur.com/AXPq6FR.png)
 
-APP启动绑定之前，将设备设置成配置模式，设备将会成为一个Wifi热点。 手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP从服务器查询绑定状态。  
-使用开放平台提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。  
+APP启动绑定之前，将设备设置成配置模式，设备将会成为一个WIFI热点。 手机连接设备热点，将发送要配置的路由器SSID和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP从服务器查询绑定状态。  
+使用开放平台提供的模组固件，设备产生的WIFI热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。  
 AP绑定的交互流程：  
-1.获取路由器ssid和密码  
+1.获取路由器SSID和密码  
 2.手机连接路由器热点  
 3.手机切换设备热点  
 4.传入参数 产品ID productId、设备大类ID、设备小类ID、路由器ssid 和 密码，启动绑定  
@@ -591,8 +634,8 @@ WIFI设备SmartLink绑定流程图如下：
  ![](https://i.imgur.com/J5AWpvN.png)
 
 APP启动绑定之前，将设备设置成配置模式。 APP发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。  
-1.获取路由器ssid和密码  
-2.传入参数产品ID productId，路由器ssid 和 密码，启动绑定  
+1.获取路由器SSID和密码  
+2.传入参数产品ID productId，路由器SSID和密码，启动绑定  
 
 ##### 4.2.1.2.启动绑定  
 
@@ -687,9 +730,9 @@ HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。�
 **绑定无法绑定？这里给出设备无法绑定的几种检查方法：**  
 
 设备是否置为绑定模式，是否在绑定的有效时间内  
-是否正确输入wifi密码,请确认手机是否能正常连接网络  
+是否正确输入WIFI密码,请确认手机是否能正常连接网络  
 是扫描不到设备还是绑定不了设备,扫描失败会有对应提示是扫描不到设备，还是绑定不了设备  
-设备是否已在CLife开放平台注册，并按照要求将大小类信息写入设备中  
+设备是否已在C-Life开放平台注册，并按照要求将大小类信息写入设备中  
 APP端服务是否开启（udpservice）
 
 
@@ -723,7 +766,7 @@ SDK所有的设备devicemodel，参数说明
 | productCode | String | 设备型号编码 |
 | productIcon | String | 设备型号图标 |
 | moduleId | number | 模块标识 |
-| moduleType | number | 模块类型（1-WiFi，2-蓝牙，9-AP模式） |
+| moduleType | number | 模块类型（1-WIFI，2-蓝牙，9-AP模式） |
 | moduleName | String | 模块名称 |
 | radiocastName | String | 设备广播名 |
 | deviceCode | String | 设备编码 |
@@ -1040,11 +1083,11 @@ SDK封装了WIFI设备控制接口和BLE蓝牙设备控制接口，需要根据�
 
 | 字段名称 | 字段类型 | 参数说明 |
 |---------|---------|---------|
-| moduleType | number | 模块类型（1-WiFi，2-蓝牙，9-WIFI-AP模式） |
+| moduleType | number | 模块类型（1-WIFI，2-蓝牙，9-WIFI-AP模式） |
 
 ### 6.1.WIFI设备控制 
 
-wifi设备控制流程图示如下：
+WIFI设备控制流程图示如下：
 
  ![](https://i.imgur.com/6Q1Dk6V.png)
 
@@ -1153,7 +1196,7 @@ WIFI设备控制具体可以分成3个步骤：
 这个修改标记位是为了做统计和配置下发的时候设备执行相应的功能。下发数据必须传递updateflag标志
 
 例如，空气净化器（广磊K180）配置信息协议：
-紫外线(1)、负离子(2)、臭氧(3)、儿童锁(4)、开关(5)、WiFi(6)、过滤网(7)、模式(8)、定时(9)、风量(10) 上面一共上10个功能，那么updateFlag就2个字节，没超过8个功能为1个字节，超过8个为2个字节，超过16个为3个字节，以此类推。
+紫外线(1)、负离子(2)、臭氧(3)、儿童锁(4)、开关(5)、WIFI(6)、过滤网(7)、模式(8)、定时(9)、风量(10) 上面一共上10个功能，那么updateFlag就2个字节，没超过8个功能为1个字节，超过8个为2个字节，超过16个为3个字节，以此类推。
 
 打开负离子，2个字节，每一个bit的值为下：
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
@@ -1651,7 +1694,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 
 # H5+Native混合框架
 
-为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
+为了适应APP不断添加新的设备和动态更新，C-Life平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
 
 请参考[基于React的JS-SDK框架](./source/zh-cn/app/SDK/jssdk.md)
