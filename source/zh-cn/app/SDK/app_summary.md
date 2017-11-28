@@ -42,7 +42,7 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 
 [Android SDK接入文档](./android_sdk.html)
 
-[H5 SDK接入文档](.H5.html)
+[H5 SDK接入文档](./H5.html)
 
 
 
