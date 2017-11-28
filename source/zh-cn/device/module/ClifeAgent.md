@@ -1,9 +1,9 @@
 
 
 # 通信模组简介
-## Clife Agent简介
+## C-Life Agent简介
 
-CLife Agent是设备端与C-Life云端以及APP端通信的灵魂。Clife Agent主要的作用是数据转发，是设备数据、Clife云、应用端（APP）的数据交互桥梁。C-Life Agent包含CLife云连接、认证、数据通信、网络安全、数据错误等软件模块。Clife Agent构架已经在Wi-Fi、蓝牙、GPRS、NB-IoT、Zigbee等通信方式实现。 
+C-Life Agent是设备端与C-Life云端以及APP端通信的灵魂。C-Life Agent主要的作用是数据转发，是设备数据、C-Life云、应用端（APP）的数据交互桥梁。C-Life Agent包含C-Life云连接、认证、数据通信、网络安全、数据错误等软件模块。C-Life Agent构架已经在Wi-Fi、蓝牙、GPRS、NB-IoT、Zigbee等通信方式实现。 
 
 
 
