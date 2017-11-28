@@ -62,7 +62,7 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 ```
 ## 1.2 配置App主题信息
 ** 通过参数定义的JSON字符串来进行配置App主题色，demoApp是通过HETAuthorizeTheme.plist 这个文件来组装JSON字符串的，如图所示：**
-![](/assets/APPChangeMainTheme.png)
+![](/assets/iOS/APPChangeMainTheme.png)
 
 
 ## 1.3 集成注意事项
@@ -135,7 +135,7 @@ typeof(self) __weak weakSelf = self;
 }
 ```
 接口数据说明：
-![](/assets/获取用户信息图片.png)
+![](/assets/iOS/iOSGetUserInfo.png)
 ## 2.6 异地登录通知
 
 开放平台的账号只能在一台手机设备上面登录，当有账号在另一台手机设备登录时，SDK会抛出一个HETLoginOffNotification消息，开发者** 必须 **监听这个消息，处理异地登录的逻辑。 
@@ -160,15 +160,14 @@ typeof(self) __weak weakSelf = self;
 ```
 
 <center>
-<img src="/assets/我的界面.png" width="250"  alt="我的界面" align=left />
-<img src="/assets/修改密码界面.png" width="250"  alt="修改密码界面" align=center />
-<img src="/assets/" width="250"  alt="" align=center />
+<img src="/assets/iOS/iOSMyUI.png" width="250"  alt="我的界面" align=left />
+<img src="/assets/iOS/iOSChageMyPassword.png" width="250"  alt="修改密码界面" align=center />
 </center>
 
 # 3.设备绑定
 ## 3.1绑定概述
 ### 3.1.1 绑定流程
-![](/assets/iOS/APPBindProcess)
+![](/assets/iOS/APPBindProcess.png)
 
 ### 3.1.2 设备分类
 从设备层级上分为 **设备大类** 和 **设备小类**。例如，冰箱是大类，冰箱下有C-Life智能冰箱，即小类。
@@ -297,7 +296,7 @@ NSString *deviceTypeId = [NSString stringWithFormat:@"%@",deviceTypeId]；
 **第一步：连接路由器热点 **
 
 <center>
-<img src="/assets/连接路由器热点.png" width="250"  alt="连接路由器热点" align=center/>
+<img src="/assets/iOS/iOSConnectWifi.png" width="250"  alt="连接路由器热点" align=center/>
 </center>
 
 **第二步：获取路由器ssid **
@@ -341,7 +340,7 @@ startSmartLinkBindDeviceWithProductId:productId
 **第一步：连接路由器热点 **
 
 <center>
-<img src="/assets/连接路由器热点.png" width="250"  alt="连接路由器热点" align=center/>
+<img src="/assets/iOS/iOSConnectWifi.png" width="250"  alt="连接路由器热点" align=center/>
 </center>
 
 **第二步：获取路由器ssid **
@@ -355,7 +354,7 @@ NSString  *macAddr = [[HETWIFIBindBusiness sharedInstance] fetchmacSSIDInfo];
 ** 第三步：手机切换设备热点 **
 
 <center>
-<img src="/assets/手机切换设备热点.png" width="250"  alt="手机切换设备热点" align=center/>
+<img src="/assets/iOS/iOSAppChangeWifi.png" width="250"  alt="手机切换设备热点" align=center/>
 </center>
 
 设备AP热点命名规则: `radiocastName_deviceTypeId_deviceSubtypeId`
