@@ -14,7 +14,7 @@
 第二步，选择技术方案
 
   &emsp;&emsp;根据产品模组选择技术方案，不同的技术方案将有不同的联网模式
-![](/assets/product/CreateProduct-1.jpg)
+![](/assets/product/programme.jpg)
 
 
 
