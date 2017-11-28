@@ -247,7 +247,7 @@ typeof(self) __weak weakSelf = self;
 > 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
 
-###3.2.2 大类小类获取设备信息
+### 3.2.2 大类小类获取设备信息
 
 ** 第一步：获取设备大类列表**
 
