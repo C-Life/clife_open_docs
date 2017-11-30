@@ -1,12 +1,12 @@
 
 # 开放平台 Android SDK 集成
 
-开放平台SDK是在android Studio（以下称AS）环境上使用的。封装了设备接入所需的接口，集成简单，操作方便。
+开放平台SDK是在Android Studio（以下称AS）环境上使用的。封装了设备接入所需的接口，集成简单，操作方便。
 
 ## 1.SDK集成准备
 
 ### 1.1.创建应用
-  AS新建Android项目，然后通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《clife开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
+  AS新建Android项目，然后通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《C-Life开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
 
 ### 1.2.配置项目根目录build.gradle
 
@@ -129,7 +129,7 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
 
 1、appId、appSecret可以在开放平台创建的应用的应用详情里查看。  
 2、HetSdkThirdDelegate 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **（SDK第三方登录的集成）**。  
-3、configModel.setH5UIconfig 配置授权登录页面主题样式; 通过参数定义的JSON字符串来进行配置，例如demoAPP是通过assets/h5UIConfig.json这个文件来组装JSON字符串的。
+3、configModel.setH5UIconfig 配置授权登录页面主题样式; 通过参数定义的JSON字符串来进行配置，例如Demo APP是通过assets/h5UIConfig.json这个文件来组装JSON字符串的。
 
 **接口调用请求说明**  
 SDK初始化接口 HetSdk.getInstance().init（）
@@ -1074,7 +1074,7 @@ SDK提供了第三方分享的接口(暂时只支持微信，QQ，新浪微博)�
 
         </activity>
 
-注意：该Activity是浏览器请求打开app第一个请求打开的界面。
+注意：该Activity是浏览器请求打开APP第一个请求打开的界面。
 
 
 ## 6.设备控制
@@ -1236,7 +1236,7 @@ WIFI设备控制具体可以分成3个步骤：
 	}
 
 
-IHookCallBack 监听发送数据和接收数据的回调。开发者可以在此监听app发送的数据和收到的设备数据。
+IHookCallBack 监听发送数据和接收数据的回调。开发者可以在此监听APP发送的数据和收到的设备数据。
 	
 	 private IHookCallBack hookCallBack = new IHookCallBack() {
 	        @Override
@@ -1417,7 +1417,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 | timestamp | 是 | number | 时间戳 |
 | messageId | 是 | number | 消息标识，只有上拉时传值，下拉时不能传值 |
 | messageType | 否 | number | 0-系统消息；1-添加好友；2-邀请控制设备；3-查看帖子评论；5-运营互动 |
-| selType | 否 | number | 查询类型。<font color="red">按照人查询消息时不传值，按照app查询时，必传1</font> |
+| selType | 否 | number | 查询类型。<font color="red">按照人查询消息时不传值，按照APP查询时，必传1</font> |
 | pageRows | 否 | number | 每页数据大小 |
 | pageIndex | 否 | number | 加载第几页 |
 
@@ -1578,7 +1578,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 	    }
 	}
 
-注意：wxapi和WXEntryActivity的位置和名字都不能改变，否则不能回调到app中来。例如:DEMO APP的包名是com.het.sdk.demo，那WXEntryActivity的完整名称就是com.het.sdk.demo.wxapi.WXEntryActivity。  
+注意：wxapi和WXEntryActivity的位置和名字都不能改变，否则不能回调到APP中来。例如:Demo APP的包名是com.het.sdk.demo，那WXEntryActivity的完整名称就是com.het.sdk.demo.wxapi.WXEntryActivity。  
 新浪微博分享回调SDK已经集成，com.het.open.lib.wb.WBEntryActivity,开发者不需要关注。
 
 # 通用的业务接口
@@ -1694,7 +1694,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 
 # H5+Native混合框架
 
-为了适应APP不断添加新的设备和动态更新，C-Life平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
+为了适应APP不断添加新的设备和动态更新，C-Life平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现APP功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
 
 请参考[基于React的JS-SDK框架](./source/zh-cn/app/SDK/jssdk.md)
