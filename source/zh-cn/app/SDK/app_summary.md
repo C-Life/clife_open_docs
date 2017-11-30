@@ -1,5 +1,5 @@
 # 1.SDK功能简介
-clife开放平台（以下简称开放平台）设备接入的SDK封装了clife对外开放的服务接口，以及手机与智能硬件通讯接口。包括用户模块，设备绑定模块，设备控制模块和其他的开放平台接口。开发者不需要关注这些模块的具体内部逻辑，只需要根据自己的业务需求编写界面和调用SDK接口就可以完成APP的快速开发。
+C-Life开放平台（以下简称开放平台）设备接入的SDK封装了C-Life对外开放的服务接口，以及手机与智能硬件通讯接口。包括用户模块，设备绑定模块，设备控制模块和其他的开放平台接口。开发者不需要关注这些模块的具体内部逻辑，只需要根据自己的业务需求编写界面和调用SDK接口就可以完成APP的快速开发。
 下面是SDK的基础架构图：  
  ![](https://i.imgur.com/44UiXao.jpg)
 
@@ -21,14 +21,14 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
 # 3.集成准备
 
 ## 3.1 C-Life开放平台注册账户
-进入[C-Life开放平台官网](https://open.clife.cn/#/)，注册开发者账号，此部分请参考[C-Life平台接入流程](../../product/index.md)。
+进入[C-Life开放平台官网](https://open.clife.cn/#/)，注册开发者账号，此部分请参考[C-Life平台接入流程](../../product/index.html)。
   
   
 ## 3.2 新建设备接入
-此部分请参考[C-Life平台接入流程](../../product/index.md)。
+此部分请参考[C-Life平台接入流程](../../product/index.html)。
 
 ## 3.3 创建应用
-   请到**应用中心**页面创建移动应用，填写资料(必须填写应用包名BundleId)后，将获得AppID和AppSecret，可立即用于开发。但应用登记完成后还需要提交审核，只有审核通过的应用才能正式发布使用。此部分请参考[C-Life平台接入流程](../../product/index.md)。
+   请到**应用中心**页面创建移动应用，填写资料(必须填写应用包名BundleId)后，将获得AppID和AppSecret，可立即用于开发。但应用登记完成后还需要提交审核，只有审核通过的应用才能正式发布使用。此部分请参考[C-Life平台接入流程](../../product/index.html)。
    
 ## 3.4 下载SDK终端DEMO
 
@@ -38,11 +38,11 @@ clife开放平台（以下简称开放平台）设备接入的SDK封装了clife�
  
 <a href="https://github.com/C-Life/H5_open_demo">H5 Demo下载地址</a>
 
-[iOS SDK接入文档](./iOSSDK.md)
+[iOS SDK接入文档](./iOSSDK.html)
 
-[Android SDK接入文档](./android_sdk.md)
+[Android SDK接入文档](./android_sdk.html)
 
-[H5 SDK接入文档](.H5.md)
+[H5 SDK接入文档](./H5.html)
 
 
 
