@@ -29,7 +29,7 @@ C-Life Agent是设备端与C-Life云端以及APP端通信的灵魂。C-Life Agen
 
 # 2. 蓝牙模组
 ## 2.1 CSR1024模组
-* [CSR1024模组规格书](./assets/mcu/PDF/)
+* [CSR1024模组规格书](./assets/mcu/PDF/HET-BC1024_A05_规格书V1.0.pdf)
 * [CSR1024模组硬件设计规范](./CSR1024_hardware_Design_Spec.html)
 * [CSR1024模组串口烧录说明](./CSR1024_uart_download_Spec.html)
 * [CSR1024模组固件下载]()
