@@ -9,18 +9,30 @@ C-Life Agent是设备端与C-Life云端以及APP端通信的灵魂。C-Life Agen
 
 # 1.Wi-Fi模组
 ## 1.1 汉枫HF-LPB100模组
+<<<<<<< HEAD
 * HF-LPB100模组规格书
+=======
+* [HF-LPB100模组规格书](./assets/mcu/PDF/HF-LPB100用户手册-V1.6.pdf)
+>>>>>>> e9fa23ea00bc48f5093641a8f4188bf0e57dde0f
 * [HF-LPB100模组硬件设计规范](./HF-LPB100_hardware_Design_Spec.html)
 * [HF-LPB100模组无线烧录指导](./HF-LPB100_Wireless_download_Spec.html)
 * HF-LPB100模组固件下载
 
 ## 1.2 乐鑫ESP8266模组
+<<<<<<< HEAD
 * ESP8266模组规格书
+=======
+* [ESP8266模组规格书](./assets/mcu/PDF/ESP8266_WiFi模块用户手册V1.0.pdf)
+>>>>>>> e9fa23ea00bc48f5093641a8f4188bf0e57dde0f
 * [ESP8266模组硬件设计规范](./ESP8266_hardware_Design_Spec.html)
 * [ESP8266模组串口烧录说明](./ESP8266_uart_download_Spec.html)
 * ESP8266模组固件下载
 ## 1.3 Marvell MW300模组
+<<<<<<< HEAD
 * MW300模组规格书
+=======
+* [MW300模组规格书](./assets/mcu/PDF/HET-WM300规格书V1.0.pdf)
+>>>>>>> e9fa23ea00bc48f5093641a8f4188bf0e57dde0f
 * [MW300模组硬件设计规范](./HET-MW300_hardware_Design_Spec.html)
 * [MW300模组串口烧录说明](./HET-MW300_uart_download_Spec.html)
 * MW300模组固件下载
@@ -29,12 +41,20 @@ C-Life Agent是设备端与C-Life云端以及APP端通信的灵魂。C-Life Agen
 
 # 2. 蓝牙模组
 ## 2.1 CSR1024模组
+<<<<<<< HEAD
 * CSR1024模组规格书
+=======
+* [CSR1024模组规格书](./assets/mcu/PDF/)
+>>>>>>> e9fa23ea00bc48f5093641a8f4188bf0e57dde0f
 * [CSR1024模组硬件设计规范](./CSR1024_hardware_Design_Spec.html)
 * [CSR1024模组串口烧录说明](./CSR1024_uart_download_Spec.html)
 * CSR1024模组固件下载
 ## 2.2 TI CC2541模组
+<<<<<<< HEAD
 * CC2541模组规格书
+=======
+* [CC2541模组规格书](./assets/mcu/PDF/HET-BT2541规格书V1.2.pdf)
+>>>>>>> e9fa23ea00bc48f5093641a8f4188bf0e57dde0f
 * [CC2541模组硬件设计规范](./TI2541_hardware_Design_Spec.html)
 * [CC2541模组串口烧录说明](./TI2541_uart_download_Spec.html)
 * CC2541模组固件下载
