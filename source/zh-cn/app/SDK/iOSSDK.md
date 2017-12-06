@@ -72,7 +72,9 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 
 # 2.用户模块
 ## 2.1 获取登录状态
+
 【示例代码】
+
 ```
  HETAuthorize *auth = [[HETAuthorize alloc] init];
  [auth isAuthenticated];
@@ -92,7 +94,63 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 
 ## 2.3 云云对接用户授权登录
 
-** 暂未补充文档 **
+为了适应第三方用户拥有独立账号系统后台的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，在这种环境下用户可以使用本身的登录系统，然后再利用云云对接的方式实现
+一次性登录授权，下面是具体的接口调用流程：
+
+![](https://i.imgur.com/v5RMC8x.png)
+
+
+第一步：通过SDK获取授权码
+
+【示例代码】
+
+
+```
+[[HETThirdCloudAuthorize shareInstance]getAuthorizationCodeWithAccount:_account withOpenId:self.openID  Completed:^(NSDictionary *responseDic, NSError *error) {
+      NSLog(@"user info success: %@", responseDic);
+      if(error){
+                
+      }else{
+             if([responseDic isKindOfClass:[NSDictionary class]]){
+                NSString * authorizationCode = [responseDic objectForKey:@"authorizationCode"];
+                    
+                }
+                
+      }
+}];
+        
+```
+
+>注意：
+>
+* account （首次授权时传入用户账号,openId传nil） 
+* openId  （二次授权时传入，同时传入account和openId）
+
+第二步：开发者调用第三方云服务接口传递第一步获取的授权码，然后第三方服务通过云对接方式调用C-Life云端接口获取**随机码**给客户端。
+
+第三步：SDK请求C-Life验证验证码和随机码
+
+
+【示例代码】
+
+```
+[[HETThirdCloudAuthorize shareInstance]autoAuthorizeWithRandomCode:_randomCode 
+verificationCode:verifyCode withCompleted:^(NSString *openId, NSError *error) 
+{
+     NSLog(@"openId: %@", openId);
+     if(error){
+               
+      }else
+          if (openId) {
+              self.openID = openId;
+           }
+}];
+        
+```
+>注意：
+>
+* randomCode  【必须】 随机码
+* verificationCode  验证码（用户第一次授权需要用到验证码,不提交则默认为二次授权）
 
 ## 2.4 退出登录
 【示例代码】
