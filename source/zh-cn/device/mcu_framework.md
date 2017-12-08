@@ -591,4 +591,4 @@ Het_DriveWifi_WifiDataSend(CMD_010E_ERROR,UartTxBuf,WIFI_ERROR_LEN);
 
 
 
->>>>>>> 600b0dfbb830044fc4487bc06b1ead1ed04f4330
+

@@ -1,6 +1,6 @@
-# MCU程序详解
+# 硬件MCU程序详解
 
-## 1、程序功能简介及使用流程
+## 1.程序功能简介及使用流程
 MCU工程模板可以帮助开发者快速简单的接入平台，无需详细了解平台与接入设备之间的通讯流程，只需要专注于控制器（MCU端）与App、云端数据交互后的业务处理逻辑，完成产品开发即可，具体流程如下图：
 
 ![](/assets/mcu/hardSummary.png)
@@ -9,7 +9,7 @@ MCU工程模板可以帮助开发者快速简单的接入平台，无需详细�
 [串口数据协议]()
 [串口通讯流程](./serialPortCommunicationProcess.html)
 
-## 2、代码目录
+## 2.代码目录
 ![](/assets/mcu/ProjectDirectory.png)
 ### 文件目录说明：
 | 文件夹名称 | 说明 |
@@ -35,7 +35,7 @@ MCU工程模板可以帮助开发者快速简单的接入平台，无需详细�
  | WifiConfig.h | WiFi模组接入平台选择、模组绑定信息、设备信息、服务功能选择、数据长度等声明非常重要 |
  | WifiPro.c | 用户与服务器数据交互业务处理 |
  | WifiPro.h | 为WifiPro.c对应头文件 |
-## 3、程序操作介绍
+## 3.程序操作介绍
 ### 3.1 修改WifiConfig.h配置文件确定功能需求
 ![](/assets/mcu/ConfigOptions.png)
 接入模块可选种类有三种：普通低速WiFi模组、GPRS模组、高速WiFi模组。
@@ -52,7 +52,7 @@ MCU工程模板可以帮助开发者快速简单的接入平台，无需详细�
 ![](/assets/mcu/DataLenght.png)
 数据长度是16位对齐，如果长度不正确解析数据时会报错。
 
-### 3.2 WiFi通讯重要函数API说明
+### 3.2WiFi通讯重要函数API说明
 #### 3.2.1 初始化函数	
 	void Het_DriveWifi_WifiInit(pfUartSend _pf_uart_send,pfUartDecode _pf_uart_decode,pfWifiReset _pf_wifi_reset)
 功能描述：WiFi模组初始函数，用于注册用户函数。
@@ -237,6 +237,6 @@ WiFi数据处理都是在WifiPro.c文件中，通讯数据分为两种，一种�
 #### 说明： 
 使用该工程的时候不要对HetBootloader工程进行操作，以免程序不能正常工作。
 
-# 4、常见问题分析
+## 4.常见问题分析
 
 [接入常见问题详解](./CommonProblem.html) 

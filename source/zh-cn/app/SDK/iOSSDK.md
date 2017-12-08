@@ -203,7 +203,7 @@ typeof(self) __weak weakSelf = self;
 ```
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(XXX) name:HETLoginOffNotification object: nil];
 ```
-## 2.7修改密码
+## 2.7 修改密码
 
 【示例代码】
 
@@ -223,7 +223,7 @@ typeof(self) __weak weakSelf = self;
 </center>
 
 # 3.设备绑定
-## 3.1绑定概述
+## 3.1 绑定概述
 ### 3.1.1 绑定流程
 ![](/assets/iOS/APPBindProcess.png)
 
@@ -1295,7 +1295,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 
 ```
 # 9.补充说明
-## 9.1第三方社交平台登录
+## 9.1 第三方社交平台登录
 目前第三方社交平台支持 ** 微信、QQ、微博** 
 
 【示例代码】
@@ -1312,7 +1312,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 }];
 ```
 
-## 9.2配置第三方社交平台
+## 9.2 配置第三方社交平台
 ### 9.2.1 集成准备
 
 ```
