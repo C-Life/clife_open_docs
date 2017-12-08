@@ -38,7 +38,7 @@ C-Life开放平台（以下简称开放平台）设备接入的SDK封装了C-Lif
 
 <a href="https://github.com/C-Life/android_open_demo">android Demo下载地址</a>
  
-<a href="https://github.com/C-Life/H5_open_demo">H5 Demo下载地址</a>
+<a href="https://github.com/C-Life/clife_h5_open_demo">H5 Demo下载地址</a>
 
 [iOS SDK接入文档](./iOSSDK.html)
 
