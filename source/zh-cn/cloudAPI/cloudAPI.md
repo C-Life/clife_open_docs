@@ -207,7 +207,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |参数名称	    |是否必须	|字段类型	|参数说明|
 |:-----     |:----- |:----- |:----- |
 |appId	    |是	    |string	|应用标识|
-|accessToken|是	    | string|接口调用凭|证
+|accessToken|是	    | string|接口调用凭证|
 |timestamp	|是	    | number|时间戳|
 |openId	    |是	    | string|openId（APP SDK里OAuth授权后返回的openId）|
 
