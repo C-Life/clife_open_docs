@@ -170,7 +170,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |参数名称			|是否必须	|字段类型	|参数说明|
 |:-----         |:----- |:----- |:----- |
 |appId			|是		|string	|应用标识|
-|accessToken	|是		|string	|凭证密钥|
+|appSecret	|是		|string	|应用密钥|
 |timestamp		|是		|number	|时间戳|
 
 
