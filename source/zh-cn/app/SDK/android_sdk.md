@@ -6,24 +6,28 @@
 ## 1.SDK集成准备
 
 ### 1.1.创建应用
-  AS新建Android项目，然后通过[开放平台](https://open.clife.cn/#/home)注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《clife开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
+  AS新建Android项目，然后通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《clife开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
 
 ### 1.2.配置项目根目录build.gradle
 
 	allprojects {
 	    repositories {
 	        jcenter()
-            maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+	         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	    }
 	}
 
 ### 1.3.引用SDK到工程
 
+集成了第三方登录的gradle依赖 
 
-SDK引用
+	//引用库形式 集成了第三方登录的引用
+	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.2-SNAPSHOT'
 
-    	//引用库形式
-    	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.0-SNAPSHOT'
+基础SDK的gradle依赖
+
+	//引用库形式 
+	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.2-SNAPSHOT'
 
 模组注册
 
@@ -119,7 +123,7 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
         configModel.setLog(true); //是否开启log信息
         configModel.setHost(HetCodeConstants.TYPE_PRODUCE_HOST); //环境设置
         configModel.setH5UIconfig(UIJsonConfig.getInstance(this).getJsonString(UIJsonConfig.fileName, this));
-        //配置第三方登录
+        //配置开放平台第三方登录  不需要使用开放平台第三方登录的不需要
         mLoginDelegate = new HetSdkThirdDelegate.Builder(this)
                 .registerQQ(UIJsonConfig.getTencentAppID())
                 .registerWeixin(UIJsonConfig.getWechatAppID(),UIJsonConfig.getWechatAppSecret())
@@ -269,7 +273,7 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 <img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
 
 ### 3.2.云云对接用户授权登录
-为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档[C-Life开放平台验证码三方授权流程](../../cloudAPI/cloudAPI.html)。
+为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档[C-Life开放平台验证码三方授权流程](%E9%AA%8C%E8%AF%81%E7%A0%81%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83%E6%B5%81%E7%A8%8B)。
 
 
 ### 3.3.退出登录
@@ -553,6 +557,7 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
         }
     }
 
+
 第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。  
 ![](https://i.imgur.com/TDwtXPH.png)
 
@@ -568,12 +573,78 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 | 9	 | wifi设备 AP绑定 |
 
 
-### 4.2.设备绑定
+### 4.2.根据产品ID获取产品信息
+	/**
+     * 根据产品id获取信息
+     * @param productId 产品ID
+     * @param callback
+     */
+	public static void getProductByProductId(String productId, IHetCallback callback) {
+       ....
+    }
+调用示例：  
 
-#### 4.2.1.WIFI设备绑定
+    HetQrCodeApi.getProductByProductId(productId, new IHetCallback() {
+            @Override
+            public void onSuccess(int i, String s) {
+                //获取产品信息成功
+                ............
+            }
+
+            @Override
+            public void onFailed(int i, String s) {
+               //获取产品信息失败
+			   ............
+            }
+    });
+
+正确的Json返回结果：
+
+	{
+	    "code": 0,
+	    "data": {
+	            "productId": 6,
+	            "deviceSubtypeId": 3,
+	            "deviceSubtypeName": "多门冰箱",
+	            "productIcon": "http://200.200.200.50/v1/device/icon",
+	            "productName": "通用冰箱",
+	            "productCode": "CC-1003",
+	            "bindType": 1,
+	            "moduleId": 2,
+	            "moduleName": "TI CC3200R2",
+	            "moduleType": 1,
+	            "deviceTypeId": 1,
+	            "radiocastName": "HET_",
+	            "deviceCode": "00000199000B0301",
+	            "guideUrl"："http://200.200.200.50/XXX
+	    }
+	}
+返回字段说明：  
+
+| 字段名称 | 字段类型 | 字段说明 |
+|---------|---------|---------|
+| productId | int | 产品ID |
+| deviceSubtypeId | int | 设备子分类ID |
+| deviceSubTypeName | string | 设备子分类名称 |
+| productIcon | string | 产品LOGO |
+| productName | string | 设备接入秘钥 |
+| productCode | 	string | 	产品型号 |
+| bindType | int | 绑定类型 |
+| moduleId | int | 芯片模块ID |
+| moduleName | string | 芯片模块名称 |
+| moduleType | int | 模块类型（1-WiFi，2-蓝牙，9-ap模式） |
+| deviceTypeId | int | 设备分类ID |
+| radiocastName | string | 设备广播名 |
+| deviceTypeName | string | 设备分类名称 |
+| deviceCode | string | 设备编码 |
+| guideUrl | string | 引导页URL |
+
+### 4.3.设备绑定
+
+#### 4.3.1.WIFI设备绑定
 WIFI设备绑定分AP模式绑定和smartLink模式绑定。
 
-##### 4.2.1.1.绑定模式简介
+##### 4.3.1.1.绑定模式简介
 
 WIFI设备AP绑定流程图如下：
 
@@ -595,7 +666,7 @@ APP启动绑定之前，将设备设置成配置模式。 APP发送要配置的�
 1.获取路由器ssid和密码  
 2.传入参数产品ID productId，路由器ssid 和 密码，启动绑定  
 
-##### 4.2.1.2.启动绑定  
+##### 4.3.1.2.启动绑定  
 
 HetWifiBindApi.getInstance().startBind() 启动绑定。
 
@@ -638,7 +709,7 @@ HetWifiBindApi.getInstance().startBind() 启动绑定。
 
 
 
-#### 4.2.2.BLE蓝牙设备绑定
+#### 4.3.2.BLE蓝牙设备绑定
 HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。整个过程有2个步骤：  
 第一步：扫描搜索周围设备；  
 第二步：选择扫描到的某个设备绑定到服务器；  
@@ -1434,13 +1505,18 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 | summary | String | 简要描述 |
 | pictureUrl | String | 简图路径 |
 
+
 # <span id="jump">第三方社交平台服务集成</span>
 
 第三方登录和分享的集成，SDK目前只支持三种方式，也是目前比较主流的第三方平台。包括微信、QQ、和新浪微博。  
-具体过程分4个步骤：  
+具体过程分5个步骤：  
+第一步：gradle 引用
 
-第一步：在集成之前需要在微信开放平台、腾讯开放平台、新浪开放平台创建应用，获取到相应的appID和appSecret。  
-第二步：在Application里面配置第三方登录SDK。  
+	//引用库形式 集成了第三方登录和分享的引用
+	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.1-SNAPSHOT'
+
+第二步：在集成之前需要在微信开放平台、腾讯开放平台、新浪开放平台创建应用，获取到相应的appID和appSecret。  
+第三步：在Application里面配置第三方登录SDK。  
 
     //配置第三方登录
     mLoginDelegate = new HetSdkThirdDelegate.Builder(this)
@@ -1451,7 +1527,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 
 注意：your_sina_redirect_url是新浪微博用于OAuth authorize页面回调的url。
 
-第三步：配置清单文件AndroidManifest.xml
+第四步：配置清单文件AndroidManifest.xml
 
     <!-- ====================第三方登录分享开始 ========================== -->
   		<activity
@@ -1508,7 +1584,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 	<uses-permission android:name="android.permission.WRITE_APN_SETTINGS"></uses-permission>
 	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
 
-第四步：设置微信登录的回调页面。  
+第五步：设置微信登录的回调页面。  
 在项目包名目录下添加一个wxapi目录在wxapi里面新建一个WXEntryActivity页面，如：
 
 	public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
@@ -1655,7 +1731,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
 
-请参考 [基于C-Life JSSDK框架](./H5.html)
+请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
 ## 2.Android和H5通讯流程图
 
 ![](https://i.imgur.com/drm1OoC.png)
