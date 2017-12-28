@@ -67,7 +67,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 	1)选择第三方云连接C-Life硬件云通道(设备连接第三方云服务器后，可通过设备openAPI与C-Life硬件云对接)
 	2)填写URL和Token
-    		URL:第三方云务接口的惟一标识，供C-Life云推送服务给第三方云推送数据用的。（现在仅支持http方式）
+    		URL:第三方云服务接口的惟一标识，供C-Life云推送服务给第三方云推送数据用的。（现在仅支持http方式）
     		Token:第三方云服务接口在和C-Life云推送服务的凭证，用来验证厂商服务接口的合法性。
 
 **请注意：**
@@ -539,7 +539,217 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 			}]
 	}
 
-## 7.5 下发设备控制数据
+## 7.5 获取设备运行数据列表（最多获取7天，每页最多20条）
+
+**接口调用请求说明**
+
+	http请求方式: GET
+	https://open.api.clife.cn/v1/cloud/device/data/runDataList
+
+**参数说明**
+
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|	是	|string	|访问凭证|
+|timestamp	|是		|number	|时间戳|
+|deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
+|startDate	|是		|string	|开始时间，格式：yyyy-MM-dd|
+|endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
+|pageRows	|否		|number	|每页显示的行数(每页最多显示20行)|
+|pageIndex	|否		|number	|当前页(默认为第一页)|
+
+
+**返回结果**
+
+正确的Json返回结果：(ps:data里包括设备ID及其运行数据列表)
+
+	{
+    code: 0,
+    data: {
+        "list": [
+              {
+                "7dfebf6b9db29806be60e445102204d8": [
+                  {
+                    "timestamp": 1514023771918,
+                    "rowkey": "2a54a1c-1715-23384186-20170929080022000",
+                    "dataTimeStamp": "1506617896755",
+                    "station": "3",
+                    "ifctram": "0",
+                    "nowAm": "255"
+                  },
+                  {
+                    "timestamp": 1514023771918,
+                    "rowkey": "2a54a1c-1715-23384186-20170928125405000",
+                    "dataTimeStamp": "1506563643839",
+                    "station": "3",
+                    "ifctram": "0",
+                    "nowAm": "255"
+                  }
+                ]
+              },
+              {
+                "7dfebf6b9db29806be60e44510220438": {
+                  "error": "deviceId不存在"
+                }
+              }
+            ]
+        }
+	}
+
+## 7.6 获取设备故障数据列表（最多获取7天，每页最多20条）
+
+**接口调用请求说明**
+
+	http请求方式: GET
+	https://open.api.clife.cn/v1/cloud/device/data/errorDataList
+
+**参数说明**
+
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|	是	|string	|访问凭证|
+|timestamp	|是		|number	|时间戳|
+|deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
+|startDate	|是		|string	|开始时间，格式：yyyy-MM-dd|
+|endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
+|pageRows	|否		|number	|每页显示的行数(每页最多显示20行)|
+|pageIndex	|否		|number	|当前页(默认为第一页)|
+
+
+**返回结果**
+
+正确的Json返回结果：(ps:data里包括设备ID及其故障数据列表)
+
+	{
+    code: 0,
+    data: {
+        "list": [
+              {
+                "7dfebf6b9db29806be60e445102204d8": []
+              },
+              {
+                "7dfebf6b9db29806be60e44510220438": {
+                  "error": "deviceId不存在"
+                }
+              }
+            ]
+        }  
+	}
+
+## 7.7 获取设备控制数据列表（最多获取7天，每页最多20条）
+
+**接口调用请求说明**
+
+	http请求方式: GET
+	https://open.api.clife.cn/v1/cloud/device/data/configDataList
+
+**参数说明**
+
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|	是	|string	|访问凭证|
+|timestamp	|是		|number	|时间戳|
+|deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
+|startDate	|是		|string	|开始时间，格式：yyyy-MM-dd|
+|endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
+|pageRows	|否		|number	|每页显示的行数(每页最多显示20行)|
+|pageIndex	|否		|number	|当前页(默认为第一页)|
+
+
+**返回结果**
+
+正确的Json返回结果：(ps:data里包括设备ID及其控制数据列表)
+
+	{
+    code: 0,
+    data: {
+        "list": [
+              {
+                "7dfebf6b9db29806be60e445102204d8": [
+                  {
+                    "control": "1",
+                    "ctram": "0",
+                    "rowkey": "2a54a1c-1715-23384186-20170929005806000",
+                    "dataTimeStamp": "1506617886387",
+                    "_source": "1",
+                    "reserved": "00",
+                    "timestamp": 1511871229382,
+                    "reserved4": "00",
+                    "updateFlag": "0000",
+                    "reserved2": "00",
+                    "reserved3": "00",
+                    "_status": "4"
+                  },
+                  {
+                    "control": "3",
+                    "ctram": "0",
+                    "rowkey": "2a54a1c-1715-23384186-20170928100613000",
+                    "dataTimeStamp": "1506564373253",
+                    "_source": "1",
+                    "reserved": "40",
+                    "timestamp": 1511871229382,
+                    "reserved4": "10",
+                    "updateFlag": "0001",
+                    "reserved2": "12",
+                    "reserved3": "06",
+                    "_status": "4"
+                  }
+                ]
+              },
+              {
+                "7dfebf6b9db29806be60e44510220438": {
+                  "error": "deviceId不存在"
+                }
+              }
+            ]
+        }  
+	}
+
+## 7.8 获取设备配置数据列表（最多获取7天，每页最多20条）
+
+**接口调用请求说明**
+
+	http请求方式: GET
+	https://open.api.clife.cn/v1/cloud/device/data/configurationDataList
+
+**参数说明**
+
+|参数名称		|是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId		|是		|string	|应用标识|
+|accessToken|	是	|string	|访问凭证|
+|timestamp	|是		|number	|时间戳|
+|deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
+|startDate	|是		|string	|开始时间，格式：yyyy-MM-dd|
+|endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
+|pageRows	|否		|number	|每页显示的行数(每页最多显示20行)|
+|pageIndex	|否		|number	|当前页(默认为第一页)|
+
+
+**返回结果**
+
+正确的Json返回结果：(ps:data里包括设备ID及其配置数据列表)
+
+	{
+    code: 0,
+    data: {
+        "list": [
+              {
+                "7dfebf6b9db29806be60e445102204d8": []
+              },
+              {
+                "7dfebf6b9db29806be60e44510220438": {
+                  "error": "deviceId不存在"
+                }
+              }
+            ]
+        }  
+	}
+
+## 7.9 下发设备控制数据
 
 **接口调用请求说明**
 
@@ -565,7 +775,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 
 	{"code":0}
 
-## 7.6 批量下发控制命令
+## 7.10 批量下发控制命令
 
 **接口调用请求说明**
 
@@ -597,7 +807,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 	}
 
 
-## 7.7 广播下发控制命令
+## 7.11 广播下发控制命令
 
 **接口调用请求说明**
 
@@ -626,7 +836,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
     	"data": "152017032818000000025"
 	}
 
-## 7.8 获取控制命令执行结果
+## 7.12 获取控制命令执行结果
 
 **接口调用请求说明**
 
