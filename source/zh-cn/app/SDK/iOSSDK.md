@@ -5,7 +5,7 @@
 **第一步：导入sdk库**
 
 ```
-	pod 'HETOpenSDK','2.0.0'
+	pod 'HETOpenSDK','2.0.2'
 
 ```
 
@@ -52,10 +52,14 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // 1.SDK注册
     [HETOpenSDK registerAppId:@"yourAPPId" appSecret:@"yourAPPSecret"];
-    // 2.设置SDK的日志信息开启
+    // 2.配置网络环境
+    [HETOpenSDK setNetWorkConfig:HETNetWorkConfigType_PE];
+    // 3.设置SDK的日志信息开启
     [HETOpenSDK openLog:YES];
-    // 3.配置网络环境
-    [HETOpenSDK setNetWorkConfig:HETNetWorkConfigType_ETE];
+    
+
+    // 4.H5设备公共包
+    [HETH5Manager launch];
     return YES;
 }
 
@@ -1033,7 +1037,7 @@ SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [HETH5Manager launchWithAppSign:@"com.het.beauty.common"];
+    [HETH5Manager launch];
     return YES;
 }
 
@@ -1059,34 +1063,33 @@ SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其
 
 【示例代码】
 ```
+#pragma mark - H5设备
 - (void)PushTpH5Device:(HETDevice *)deviceModel
 {
-    //明灯香薰机
-    UIViewController  *insertVc;
     HETH5ViewController *h5vc = [[HETH5ViewController alloc]init];
     h5vc.deviceModel=deviceModel;
-    insertVc = h5vc;
-    HETH5Manager *manager = [HETH5Manager deviceId:deviceModel.deviceId productId:[NSString stringWithFormat:@"%@",deviceModel.productId]];
-    NSInteger index = 0;
-    NSMutableArray *h5NeedControlViews=[self.navigationController.viewControllers mutableCopy];
-    for (UIViewController *vc in h5NeedControlViews)
-    {
-        if ([vc isKindOfClass:[self class]])
-        {
-            index  = [h5NeedControlViews indexOfObject:vc];
+    
+    WEAKSELF
+    [HETCommonHelp showCustomHudtitle:@"正在加载"];
+    [[HETH5Manager shareInstance] getH5Path:^(NSString *h5Path,BOOL needRefresh,NSError *error) {
+        OPLog(@"needRefresh == %@",@(needRefresh));
+        OPLog(@"h5PagePath--->:%@",h5Path);
+        [HETCommonHelp HidHud];
+        if(error){
+            NSLog(@"获取H5失败");
+        }else{
+            NSString *desPath  = [NSString stringWithFormat:@"%@/index.html",h5Path];
+            h5vc.h5Path = desPath;
+            if(needRefresh == YES){
+                [h5vc.wkWebView reload];
+            }else{
+                [weakSelf.navigationController pushViewController:h5vc animated:YES];
+            }
         }
-    }
-    OPLog(@"h5NeedControlViews = %@",h5NeedControlViews);
-    [h5NeedControlViews insertObject:insertVc atIndex:index +1];
-    [manager configWithController:self controllers:^NSArray<UIViewController *> *(NSString *h5PagePath) {
-        OPLog(@"h5PagePath--->:%@",h5PagePath);
-        NSString *desPath  = [NSString stringWithFormat:@"%@/index.html",h5PagePath];
-        HETH5ViewController *cleanVC = (HETH5ViewController *)insertVc;
-        cleanVC.h5Path = desPath;
-        [cleanVC.wkWebView reload];
-        return h5NeedControlViews;
-    }];
+
+    } productId:[NSString stringWithFormat:@"%@",deviceModel.productId]];
 }
+
 ```
 ### 8.3.2 加载H5资源
 1、创建webView，添加bridge
