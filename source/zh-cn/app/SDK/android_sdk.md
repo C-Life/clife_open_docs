@@ -22,12 +22,12 @@
 集成了第三方登录的gradle依赖 
 
 	//引用库形式 集成了第三方登录的引用
-	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.1-SNAPSHOT'
+	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.3-SNAPSHOT'
 
 基础SDK的gradle依赖
 
-	//引用库形式 
-	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.1-SNAPSHOT'
+	//引用库形式
+	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.3-SNAPSHOT'
 
 模组注册
 
@@ -51,7 +51,7 @@
 	    compile 'com.github.szhittech:cooeemodule:1.0.1-SNAPSHOT'
 
 
-查看开放平台产品模组类型，选择模组的依赖包。 
+查看开放平台产品模组类型，选择模组的依赖包。
 
 ![](https://i.imgur.com/98xFDg4.png)
 
@@ -124,22 +124,22 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
         configModel.setHost(HetCodeConstants.TYPE_PRODUCE_HOST); //环境设置
         configModel.setH5UIconfig(UIJsonConfig.getInstance(this).getJsonString(UIJsonConfig.fileName, this));
         //配置开放平台第三方登录  不需要使用开放平台第三方登录的不需要
-        mLoginDelegate = new HetSdkThirdDelegate.Builder(this)
-                .registerQQ(UIJsonConfig.getTencentAppID())
-                .registerWeixin(UIJsonConfig.getWechatAppID(),UIJsonConfig.getWechatAppSecret())
-                .registerSinaWeibo(UIJsonConfig.getSinaAppID(), UIJsonConfig.getSinaAppSecret(), this.mSinaRedirectURL)
-               .create();
+         mLoginDelegate = new HetSdkThirdDelegateBuilder(this)
+                        .registerQQ("your_tencent_app_id")
+                        .registerWeixin("your_wechat_app_id", "your_wechat_app_secret")
+                        .registerSinaWeibo("your_sina_app_id", "your_sina_app_secret", "your_sina_redirecturl")
+                        .create();
         HetSdk.getInstance().init(this, appId, appSecret, configModel);
     }
 
-1、appId、appSecret可以在开放平台创建的应用的应用详情里查看。  
-2、HetSdkThirdDelegate 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **（SDK第三方登录的集成）**。  
+1、appId、appSecret可以在开放平台创建的应用的应用详情里查看。
+2、HetSdkThirdDelegateBuilder 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **（SDK第三方登录的集成）**。
 3、configModel.setH5UIconfig 配置授权登录页面主题样式; 通过参数定义的JSON字符串来进行配置，例如demoAPP是通过assets/h5UIConfig.json这个文件来组装JSON字符串的。
 
-**接口调用请求说明**  
-SDK初始化接口 HetSdk.getInstance().init（）
+**接口调用请求说明**
+SDK初始化接口 HetSdk.getInstance().init();
 
-**参数说明**  
+**参数说明**
 
 | 参数名称 | 是否必须 | 字段类型 | 参数说明 |
 |---------|---------|---------|---------|
@@ -156,8 +156,8 @@ SDK初始化接口 HetSdk.getInstance().init（）
 | host | int | 网络环境设置: 0x01：正式 0x02：预发布 0x03:内网 0x04：测试环境 |
 | H5UIconfig | String | APP初始配置 |
 
-**H5UIconfig配置说明**  
-SDK的授权登录页面样式可以通过JSON参数来配置，包括是否需要第三方登录，登录页面的样式等。可以参考SDk的DEMO工程通过assets/h5UIConfig.json的配置，配置详情：  
+**H5UIconfig配置说明**
+SDK的授权登录页面样式可以通过JSON参数来配置，包括是否需要第三方登录，登录页面的样式等。可以参考SDk的DEMO工程通过assets/h5UIConfig.json的配置，配置详情：
 
 	 {
 	  "app_id": "your_app_id",
@@ -248,7 +248,7 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 	    ...
 	}
 	protected void auth() {
-	  
+
 	       HetNewAuthApi.getInstance().authorize(activity, new AuthCallback() {
 	          @Override
 	          public void onSuccess(int code, String msg) {
@@ -259,21 +259,25 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 	                       //登录失败 do something
 	          	}
 	          },"授权登录",Color.parseColor("#ff3285ff")，Color.parseColor("#FFFFFFFF"));
-	       
+
 	    }
 
-登录成功之后，SDK还会抛出HetCodeConstants.Login.LOGIN_SUCCESS事件。 开发者也可以订阅这个事件来监听登录状态。  
+登录成功之后，SDK还会抛出HetCodeConstants.Login.LOGIN_SUCCESS事件。 开发者也可以订阅这个事件来监听登录状态。
 
 	RxManage.getInstance().register(HetCodeConstants.Login.LOGIN_SUCCESS, o -> {
 	            //登录成功  刷新界面
 	});
 
-授权登录页面：  
+授权登录页面：
 
 <img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
 
 ### 3.2.云云对接用户授权登录
 为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档[C-Life开放平台验证码三方授权流程](%E9%AA%8C%E8%AF%81%E7%A0%81%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83%E6%B5%81%E7%A8%8B)。
+
+注意：云云对接用户授权登录成功之后需要使用RxBus发送登录成功的消息通知，如：
+
+    RxManage.getInstance().post(HetCodeConstants.Login.LOGIN_SUCCESS, null);
 
 
 ### 3.3.退出登录
@@ -311,9 +315,9 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 
 ### 3.5.异地登录
 
-开放平台的账号只能在一台设备上登录。当同一个账号同时在2台设备上登录时，服务器会把前面登录成功的设备踢下线。 被踢下线设备的SDK会退出登录，并且抛出HetCodeConstants.Login.EC_LOGINOUT的RxBus事件，通知账号在其他设备登录。  
+开放平台的账号只能在一台设备上登录。当同一个账号同时在2台设备上登录时，服务器会把前面登录成功的设备踢下线。 被踢下线设备的SDK会退出登录，并且抛出HetCodeConstants.Login.EC_LOGINOUT的RxBus事件，通知账号在其他设备登录。
 开发者可以订阅这个事件，处理异地登录。 例：
-	
+
 	RxManage.getInstance().register(HetCodeConstants.Login.EC_LOGINOUTT, s -> {
 	          //账号在其他设备登录，此时HetSdk.getInstance().isAuthLogin() 为false，跳转页面刷新到未登录状态。
 	          .............
@@ -341,10 +345,10 @@ HetUserApi.getInstance().getUserMess()获取用户信息
             @Override
             public void onSuccess(int code, String msg) {
                 //获取用户信息成功
-                Type type = new TypeToken<UserInfoBean>() {
+                Type type = new TypeToken<HetUserInfoBean>() {
                 }.getType();
                 //users 包含账号的所有用户信息
-                UserInfoBean users = GsonUtil.getGsonInstance().fromJson(msg, type);
+                HetUserInfoBean users = GsonUtil.getGsonInstance().fromJson(msg, type);
             }
             @Override
             public void onFailed(int code, String msg) {
@@ -367,6 +371,7 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 | height | number | 身高（厘米）|
 | avatar | String | 头像URL |
 | city | String | 城市名 |
+| account | String | 登录账号 |
 
 ### 3.7.修改密码
 
@@ -376,19 +381,19 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 	     * 修改密码
 	     * @param mContext 上下文
 	     * @param authCallback  回调
-	     * @param phone 手机号
+	     * @param account 登录账号
 	     * @param specifyTitle 标题栏文字
 	     * @param navigationBarTextColor 标题栏文字颜色
 	     * @param navBackground 标题栏背景颜色
 	     * @throws Exception
 	     */
-	public void alterPassword(Context mContext, AuthCallback authCallback, String phone,String specifyTitle,int navigationBarTextColor,int navBackground) throws Exception{
+	public void alterPassword(Context mContext, AuthCallback authCallback, String account,String specifyTitle,int navigationBarTextColor,int navBackground) throws Exception{
 	        ............
 	}
 
-通过用户的手机号来修改密码，调用实例：
+通过用户的登录账号来修改密码，调用实例：
 
-	public void editPwd(String phone) {
+	public void editPwd(String account) {
 	        if (!HetSdk.getInstance().isAuthLogin()) return;
 	        HetNewAuthApi.getInstance().alterPassword(activity, new AuthCallback() {
 	           @Override
@@ -399,7 +404,7 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 	           public void onFailed(int code, String msg) {
 	                   //修改密码失败
 	           }
-	        }, phone, "修改密码",Color.parseColor("#ff3285ff")，Color.parseColor("#FFFFFFFF"));
+	        }, account, "修改密码",Color.parseColor("#ff3285ff")，Color.parseColor("#FFFFFFFF"));
 	}
 
 修改密码页面：  
@@ -1513,16 +1518,16 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 第一步：gradle 引用
 
 	//引用库形式 集成了第三方登录和分享的引用
-	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.1-SNAPSHOT'
+	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.3-SNAPSHOT'
 
 第二步：在集成之前需要在微信开放平台、腾讯开放平台、新浪开放平台创建应用，获取到相应的appID和appSecret。  
 第三步：在Application里面配置第三方登录SDK。  
 
     //配置第三方登录
-    mLoginDelegate = new HetSdkThirdDelegate.Builder(this)
+    mLoginDelegate = new HetSdkThirdDelegateBuilder(this)
                 .registerQQ("your_qq_app_id")
                 .registerWeixin("your_weixin_app_id", "your_weixin_app_secret")
-                .registerSinaWeibo("your_sina_app_id", "your_sina_app_secret", "your_sina_redirect_url"L)
+                .registerSinaWeibo("your_sina_app_id", "your_sina_app_secret", "your_sina_redirect_url")
                 .create();
 
 注意：your_sina_redirect_url是新浪微博用于OAuth authorize页面回调的url。
