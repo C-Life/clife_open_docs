@@ -66,8 +66,27 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
 ```
 ## 1.2 配置App主题信息
 ** 通过参数定义的JSON字符串来进行配置App主题色，demoApp是通过HETAuthorizeTheme.plist 这个文件来组装JSON字符串的，如图所示：**
-![](/assets/iOS/APPChangeMainTheme.png)
 
+```
+HETAuthorizeTheme *theme = [HETAuthorizeTheme new];
+theme.navHeadlineContent = @"安全登录";           // 标题
+theme.logoshow = YES;                           // logo显示
+theme.weixinLogin = YES;                        // 微信登录显示
+theme.qqLogin = NO;                            // QQ登录显示
+theme.weiboLogin = NO;                         // 微博登录显示
+theme.loginType =@"1";                         // 主题样式（1、2、3）
+theme.navTitleColor = @"FFFFFFFF";              // 导航标题文字颜色
+theme.loginBtnFontColor = @"FF3b96ff";          // 登录按钮文字颜色
+theme.navBackgroundColor = @"FF3b96ff";         // 导航颜色
+theme.navBackBtnType = @"white";                // 返回按钮
+theme.loginBtnBackgroundColor = @"FFFFFFFF";    // 登录按钮颜色
+theme.loginBtnBorderColor = @"FF3b96ff";        // 登录边框颜色
+HETOpenSDK setAuthorizeTheme:theme];
+
+```
+>注意：
+>
+>	颜色设置为`FF3b96ff`，前面两个`FF`表示的是透明度，后面的`3b96ff`表示的是RGB颜色
 
 ## 1.3 集成注意事项
 **注意1**:如果网络请求出现AppID不合法，请检查Xcode工程里面的BundleId和appId，必须跟在开放平台创建应用时填的BundleId和AppID保持一致。
@@ -617,6 +636,8 @@ typeof(self) __weak weakSelf = self;
 
 ** 关于updateflag:**
 
+关于updateflag
+
 这个修改标记位是为了做统计和配置下发的时候设备执行相应的功能。下发数据必须传递updateflag标志
 
 例如，空气净化器（广磊K180）配置信息协议：
@@ -626,6 +647,7 @@ typeof(self) __weak weakSelf = self;
 打开负离子，2个字节，每一个bit的值为下：
 
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
+  
 
 ## 4.2 蓝牙设备控制
 
