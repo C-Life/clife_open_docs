@@ -25,7 +25,7 @@
 	accessToken是全局唯一接口调用凭据，调用各接口时都需使用accessToken，开发者需要进行妥善保存。
 	accessToken的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的accessToken失效。
 
-**4.	开发者使用accessToken参数调用其他业务接口**d
+**4.	开发者使用accessToken参数调用其他业务接口**
 
 **5.	开发者提交timestamp参数的值为当前北京时间戳**
 
