@@ -17,7 +17,7 @@ SDK 提供了以下功能模块：
 *  JDK 版本要求1.8 或以上版本
 
 ### 1.2.创建应用
-  Android Studio新建Android项目，然后通过https://open.clife.cn/#/home注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《clife开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
+  Android Studio新建Android项目，然后通过https://open.clife.cn/#/home  注册一个开发者账号。登录到开放平台创建应用完善详细资料。此部分请参考《clife开发平台使用手册》。  创建产品之后创建APP获取到后台分配的appId和appSecret。
 
 ### 1.3.配置项目根目录build.gradle
 
@@ -100,7 +100,7 @@ SDK 提供了以下功能模块：
 | CAMERA | 	允许程序打开相机  |
 | WAKE_LOCK | 	允许应用在手机屏幕关闭后后台进程仍然运行  |
 
-#### 1.6.Android6.0系统文件读写权限设置
+### 1.6.Android6.0系统文件读写权限设置
 Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态申请。开发者可以使用SDK提供的RxPermissions来动态申请权限。
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -284,7 +284,7 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 <img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
 
 ### 3.2.云云对接用户授权登录
-为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档[C-Life开放平台验证码三方授权流程](%E9%AA%8C%E8%AF%81%E7%A0%81%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83%E6%B5%81%E7%A8%8B)。
+为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档[C-Life开放平台验证码三方授权流程](../../cloudAPI/cloudAPI.html)。
 
 #### 3.2.1.云云对接接口调用
 
@@ -1979,8 +1979,30 @@ RxBus事件的取消订阅：
 
 注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：  
 android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 。
+## 2.授权登录页面模板配置
+为了满足不同项目对登录界面的审美要求，开放平台SDK提供了3套可供选择的授权登录页面模板。  
+使用方法：  
+ 
+    HetNewAuthApi.getInstance().authorize(activity, new AuthCallback() {
+	          @Override
+	          public void onSuccess(int code, String msg) {
+	                       //登录成功 do something
+	          	}
+	          @Override
+	          public void onFailed(int code, String msg) {
+	                       //登录失败 do something
+	          	}
+	          },"授权登录",Color.parseColor("#ff3285ff")，Color.parseColor("#FFFFFFFF")，"模板登录页编号");  
 
-## 2.SDK 混淆说明
+只需要在参数传模板登录页的编号就可以完成登录页的配置。具体的配置表如下：  
+
+| 模板登录页编号 | 模板登录页 |
+|---------|----------|
+| 1 | 授权登录页模板1 |
+| 2 | 授权登录页模板2 |
+| 3 | 授权登录页模板3 |
+
+## 3.SDK 混淆说明
 	
 	#**************************DEMO混淆区域*******************************
     #---------------------------------实体类-------------------------------------
