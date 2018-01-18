@@ -202,11 +202,11 @@ Skill资料设置
 语音命令配置
 此部分配置需结合在alexa端配置的Interaction Model页进行配置，将会详细介绍开放平台中的配置与alexa端的配置对应关系。点击页面“添加按钮”，显示当前产品对应的控制协议，如图15所示：
 
-<img src="/assets/echo/15Productcontrolprotocol.jpg"  alt="产品控制协议" align=center />                         
+<img src="/assets/echo/15Productcontrolprotocol.png"  alt="产品控制协议" align=center />                         
 图15 产品控制协议
 
 枚举类型属性：选择想要配置的属性，如“模式设置”，点击下一步，进入具体属性值对应配置，如图16所示：
-<img src="/assets/echo/16Configurethepatternsettingproperty.jpg"  alt="配置'模式设置'属性" align=center />                               
+<img src="/assets/echo/16Configurethepatternsettingproperty.png"  alt="配置'模式设置'属性" align=center />                               
 图16 配置“模式设置”属性
 
 * Type对应alexa端配置Interaction Model页，Intent Schema中对应的Slots中的name（注意，这里是小写），此处对应mode
