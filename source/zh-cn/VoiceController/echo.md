@@ -215,7 +215,7 @@ Skill资料设置
 
 范围值属性：选择想要配置的属性，如“亮度等级”，点击下一步进入详细配置，如图17所示：
 
-<img src="/assets/echo/17Selectthebrightnesslevel.png"  alt="配置'模式设置'属性" align=center />                        
+<img src="/assets/echo/17Selectthebrightnesslevel.png"  alt="模式设置" align=center />                        
 图17 选择亮度等级
 
 对于范围值属性，仅需配置Type为alexa端配置Interaction Model页，Intent Schema中对应的Slots中的name即可，执行控制时，后台会自动计算传入的数值是否超出协议属性值的范围，如图18所示：
