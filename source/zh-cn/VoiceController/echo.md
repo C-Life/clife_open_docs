@@ -27,7 +27,7 @@ Alexa 开发者平台：https://developer.amazon.com/alexa
 
 ### 2.3.1 Alexa账号登录
 
-打开alexa开发者平台首页后，首先点击右上角“Sign In”登录系统，若没有账号（若没有账号，根据要求注册一个，此处略），登陆成功后，点击右上角“Your Alexa Dashboards”，进入alexa技能选择页面，选择Alexa Skills Kit下Get Started，进入列表管理页面，如图1、2所示：
+打开alexa开发者平台首页后，首先点击右上角“Sign In”登录系统，（若没有账号，根据要求注册一个，此处略），登陆成功后，点击右上角“Your Alexa Dashboards”，进入alexa技能选择页面，选择Alexa Skills Kit下Get Started，进入列表管理页面，如图1、2所示：
 
 <img src="/assets/echo/1Thelocationoftheloginlinkandthelistlink.jpg"  alt="设备主框架" align=center />              
 图1 登录链接、列表链接所在位置
