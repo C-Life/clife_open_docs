@@ -132,6 +132,8 @@ Interaction Model
 <img src="/assets/echo/8Acontrolphrasesupportedbyanaromatherapymachine.jpg"  alt="香薰机支持的控制短语" align=center />                                                      
 图8 香薰机支持的控制短语
 
+应用小提示：可根据自己的需求，配置多个{name}组合短语，如：tell aroma to turn {power} and switch to {mode} mode
+
 至此，Interaction Model 页面已配置完成。
 Configuration
 此页面配置技能响应的服务接口、账号关联接口及相关政策地址等。
