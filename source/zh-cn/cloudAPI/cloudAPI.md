@@ -539,12 +539,12 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 			}]
 	}
 
-## 7.5 获取设备运行数据列表（最多获取7天，每页最多20条）
+## 7.5 获取设备运行数据列表（最多获取7天，每页最多100条）
 
 **接口调用请求说明**
 
 	http请求方式: GET
-	https://open.api.clife.cn/v1/cloud/device/data/runDataList
+	https://open.api.clife.cn/v1/cloud/device/data/getRunDataLists
 
 **参数说明**
 
@@ -556,8 +556,9 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
 |startDate	|是		|string	|开始时间，格式：yyyy-MM-dd|
 |endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
-|pageRows	|否		|number	|每页显示的行数(每页最多显示20行)|
-|pageIndex	|否		|number	|当前页(默认为第一页)|
+|pageRows	|否		|number	|每页显示的行数(每页最多显示100行)|
+|pageUpOrDown	|否		|number	|查询上一页还是下一页(0-上一页 1-下一页,默认下一页)|
+|rowDate	|否		|number	|row时间，为NULL是首次查询(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate)|
 
 
 **返回结果**
@@ -597,12 +598,12 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
         }
 	}
 
-## 7.6 获取设备故障数据列表（最多获取7天，每页最多20条）
+## 7.6 获取设备故障数据列表（最多获取7天，每页最多100条）
 
 **接口调用请求说明**
 
 	http请求方式: GET
-	https://open.api.clife.cn/v1/cloud/device/data/errorDataList
+	https://open.api.clife.cn/v1/cloud/device/data/getErrorDataLists
 
 **参数说明**
 
@@ -614,8 +615,9 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
 |startDate	|是		|string	|开始时间，格式：yyyy-MM-dd|
 |endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
-|pageRows	|否		|number	|每页显示的行数(每页最多显示20行)|
-|pageIndex	|否		|number	|当前页(默认为第一页)|
+|pageRows	|否		|number	|每页显示的行数(每页最多显示100行)|
+|pageUpOrDown	|否		|number	|查询上一页还是下一页(0-上一页 1-下一页,默认下一页)|
+|rowDate	|否		|number	|row时间，为NULL是首次查询(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate)|
 
 
 **返回结果**
@@ -638,7 +640,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
         }  
 	}
 
-## 7.7 获取设备控制数据列表（最多获取7天，每页最多20条）
+## 7.7 获取设备控制数据列表（最多获取7天，每页最多100条）
 
 **接口调用请求说明**
 
@@ -655,8 +657,9 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
 |startDate	|是		|string	|开始时间，格式：yyyy-MM-dd|
 |endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
-|pageRows	|否		|number	|每页显示的行数(每页最多显示20行)|
-|pageIndex	|否		|number	|当前页(默认为第一页)|
+|pageRows	|否		|number	|每页显示的行数(每页最多显示100行)|
+|pageUpOrDown	|否		|number	|查询上一页还是下一页(0-上一页 1-下一页,默认下一页)|
+|rowDate	|否		|number	|row时间，为NULL是首次查询(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate)|
 
 
 **返回结果**
@@ -708,12 +711,12 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
         }  
 	}
 
-## 7.8 获取设备配置数据列表（最多获取7天，每页最多20条）
+## 7.8 获取设备配置数据列表（最多获取7天，每页最多100条）
 
 **接口调用请求说明**
 
 	http请求方式: GET
-	https://open.api.clife.cn/v1/cloud/device/data/configurationDataList
+	https://open.api.clife.cn/v1/cloud/device/data/getConfigurationDataLists
 
 **参数说明**
 
@@ -725,8 +728,9 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |deviceIds	|是		|string	|设备标识（多个设备用英文逗号隔开，最多支持20个）|
 |startDate	|是		|string	|开始时间，格式：yyyy-MM-dd|
 |endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
-|pageRows	|否		|number	|每页显示的行数(每页最多显示20行)|
-|pageIndex	|否		|number	|当前页(默认为第一页)|
+|pageRows	|否		|number	|每页显示的行数(每页最多显示100行)|
+|pageUpOrDown	|否		|number	|查询上一页还是下一页(0-上一页 1-下一页,默认下一页)|
+|rowDate	|否		|number	|row时间，为NULL是首次查询(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate)|
 
 
 **返回结果**
