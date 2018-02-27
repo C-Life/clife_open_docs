@@ -6,7 +6,7 @@ MCU工程模板可以帮助开发者快速简单的接入平台，无需详细�
 ![](/assets/mcu/hardSummary.png)
 
 开发者如需了解详细的串口通讯流程可以阅读以下文档：
-[串口数据协议]()
+[串口数据协议](/assets/mcu/PDF/WiFi-McuProtocol.pdf)
 [串口通讯流程](./serialPortCommunicationProcess.html)
 
 ## 2.代码目录
@@ -14,19 +14,19 @@ MCU工程模板可以帮助开发者快速简单的接入平台，无需详细�
 ### 文件目录说明：
 | 文件夹名称 | 说明 |
 |-----------|------|
-| BootLoader | IAP程序目录 |
-| Component | WiFi通讯、flash驱动、在线升级驱动目录 |
-| Libraries | STM32驱动目录 |
+| Bsp | 硬件驱动程序目录 |
+| HetWiFi | WiFi通讯、flash驱动、在线升级驱动目录 |
+| Libraries | STM32官方驱动目录 |
 | Project | 工程文件目录 |
-| Startup | 控制数据 |
-| User | 用户主程序及终端服务程序目录 |
-| UserApp | 用户应用程序目录 |
+| Startup | 官方启动文件 |
+| UserAPP | 用户应用程序目录 |
+| UserOTA | 用户升级程序目录 |
 ### 模板工程及相关文件说明
 ![](/assets/mcu/MCUProjectDetails.png)
 #### 重点文件说明
  | 文件名称 | 说明 |
  |-----------|------|
- | IapHandler.c | 升级数据处理、App应用区跳转等 |
+ | het_ota.c | 升级数据处理、App应用区跳转等 |
  | FlashDivision.h | 单片机flash地址分区及升级信息 |
  | Upgrade.c | WiFi升级数据处理 |
  | Upgrade.h | 为Upgrade.c对应头文件 |
@@ -59,15 +59,15 @@ MCU工程模板可以帮助开发者快速简单的接入平台，无需详细�
 参数描述：
 _pf_uart_send – 用户串口发送字符串函数，函数名可自定义，函数原型必须为：
 
-	void fun(het_uint8_t*pbuf,het_uint16_t len)
+	void fun(uint8_t*pbuf,uint16_t len)
 
 _pf_uart_decode – 用户命令解码函数，函数名可自定义，函数原型必须为：  
 
-	void fun(het_uint16_t cmd, het_uint8_t *pbuf,het_uint16_t len)
+	void fun(uint16_t cmd, uint8_t *pbuf,uint16_t len)
 
 _pf_wifi_reset – 用户WiFi模组复位函数,函数名可自定义，函数原型必须为：
 
-    void fun(het_uint8_t flag)
+    void fun(uint8_t flag)
 返回值：无
 ##### 示例如下：
 
@@ -89,16 +89,18 @@ _pf_wifi_reset – 用户WiFi模组复位函数,函数名可自定义，函数�
 ![](/assets/mcu/TimInterrupt_wifi.png)
 
 #### 3.2.3 串口接收函数
-	void Het_DriveWifi_UsartRecvISR(het_uint8_t _het_data)
+	void Het_DriveWifi_UsartRecvISR(uint8_t *_pbuf, uint16_t _data_len)
 功能描述：WiFi模组串口中断接收函数,必须放在串口中断函数里面
-参数描述：_het_data – 串口接收到的字节
+参数描述：
+_pbuf – 串口接收数据首地址
+_data_len – 接收数据长度
 返回值：无 
 ##### 示例如下：
 
 ![](/assets/mcu/RxInterrupt_Wifi.png)
 
 #### 3.2.4 绑定函数
-	void Het_DriveWifi_WifiModuleBindCmd(het_uint8_t _flag)
+	void Het_DriveWifi_WifiModuleBindCmd(uint8_t _flag)
 功能描述：WiFi绑定触发条件
 参数描述：_flag – 如果_flag大于0,表示使能绑定操作
 返回值：无
@@ -107,7 +109,7 @@ _pf_wifi_reset – 用户WiFi模组复位函数,函数名可自定义，函数�
 ![](/assets/mcu/Banding.png)
 
 #### 3.2.5 厂测函数
-	void Het_DriveWifi_WifiModuleTestCmd (het_uint8_t _flag)
+	void Het_DriveWifi_WifiModuleTestCmd (uint8_t _flag)
 功能描述：WiFi进入产测条件
 参数描述：_flag – 如果_flag大于0,表示使能产测操作
 返回值：无
@@ -123,7 +125,7 @@ _pf_wifi_reset – 用户WiFi模组复位函数,函数名可自定义，函数�
 ![](/assets/mcu/WifiStatus.png)
 
 #### 3.2.7 数据发送函数
-	enum_WResult Het_DriveWifi_WifiDataSend(enum_CMDType _type,het_uint8_t *_pbuf,het_uint8_t _len)
+	enum_WResult Het_DriveWifi_WifiDataSend(enum_CMDType _type,uint8_t *_pbuf,uint8_t _len)
 功能描述：发送用户私有数据函数,
 参数描述：
 _type – 用户发送的数据所处类型，如CMD_TYPE_CTRL表示为控制命令数据,CMD_TYPE_STATUS表示为状态命令数据
