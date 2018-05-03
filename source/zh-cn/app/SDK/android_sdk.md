@@ -576,8 +576,8 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 | productName | string | 设备型号名称 |
 | productCode | string | 设备型号编码 |
 | productIcon | string | 设备型号图标 |
-| moduleId | number | 模块类型（1-WiFi，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
-| moduleType | number | 设备型号图标 |
+| moduleId | number |  模块ID |
+| moduleType | number | 模块类型（1-WiFi，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
 | moduleName | string | 模块名称 |
 | remark | string | 备注 |
 | radiocastName | string | 设备广播名 |
