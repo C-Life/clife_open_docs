@@ -34,7 +34,7 @@
 **步骤：**
 
 	1. 将请求方法+请求地址+所有参数按照参数名的字母顺序升序排序后拼接+appSecret
-	2. 将第1步的结果MD5后生成签名参数sign。
+	2. 将第1步的结果MD5后生成签名参数sign。（签名后的MD5需要转换成小写）
 
 **说明：**
 
@@ -42,7 +42,7 @@
 	2. 请求地址为客户端请求完整地址，如：http://open.api.clife.cn/v1/data/get
 	3. 参数拼接，按照参数名的字母顺序升序排序后进行拼接，如：accessToken=xxx&appId=xxx&name1=value1&name2=value2&
 	4. 组成完整的拼接，如：GEThttp://open.api.clife.cn/v1/data/getaccessToken=xxx&appId=xxx&name1=value1&name2=value2&appSecret
-	5. 生成MD5值，如：74B024F42F3075C4C06E4E8F22CA7A5F
+	5. 生成MD5值，如：74b024f42f3075c4c06e4e8f22ca7a5f
 
 
 
