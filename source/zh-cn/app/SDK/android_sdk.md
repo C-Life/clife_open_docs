@@ -33,12 +33,12 @@ SDK 提供了以下功能模块：
 集成了第三方登录的gradle依赖
 
 	//引用库形式 集成了第三方登录(目前只支持微信、QQ和新浪微博)的引用
-	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.3-SNAPSHOT'
+	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.4-SNAPSHOT'
 
 基础SDK的gradle依赖
 
 	//引用库形式
-	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.3-SNAPSHOT'
+	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.4-SNAPSHOT'
 
 模组注册
 
