@@ -341,6 +341,92 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |deviceCode	 |string	|	设备编码|
 
 
+## 6.4 根据deviceId获取设备详情
+
+**接口调用请求说明**
+
+	http请求方式: POST
+	https://open.api.clife.cn/v1/cloud/user/device/info
+
+
+**参数说明**
+
+|参数名称	    |是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId	    |是	    |string	|应用标识|
+|accessToken|是	    | string|接口调用凭证|
+|timestamp	|是	    | number|时间戳|
+|deviceId	|是	    | string|设备唯一标识（加密）|
+
+**返回结果**
+
+正确的Json返回结果：
+
+	{
+	    "code": 0,
+	    "data": {
+	        "deviceId": "AD56A554A6A3C96A909AA02BBDC15F05",
+	        "macAddress": "ACCF23F269F0",
+	        "deviceName": "明灯智能香薰机",
+	        "onlineStatus": 2,
+	        "bindTime": "2018-05-10 09:32:10",
+	        "deviceCode": "00000001000B0104"
+	    }
+	}
+
+|字段名称	     |字段类型 	|   字段说明|
+|:-----      |:-----    |:-----    |
+|deviceId	 |string	| 	设备标识|
+|macAddress	 |string	|	MAC地址|
+|deviceName	 |string	|	设备名称|
+|bindTime	 |string	|	绑定时间|
+|onlineStatus| number	|	在线状态（1-正常，2-异常）|
+|deviceCode	 |string	|	设备编码|
+
+## 6.5 根据应用id获取绑定设备信息列表
+
+**接口调用请求说明**
+
+	http请求方式: POST
+	https://open.api.clife.cn/v1/cloud/user/device/bindlist
+
+
+**参数说明**
+
+|参数名称	    |是否必须	|字段类型	|参数说明|
+|:-----     |:----- |:----- |:----- |
+|appId	    |是	    |string	|应用标识|
+|accessToken|是	    | string|接口调用凭证|
+|timestamp	|是	    | number|时间戳|
+|pageIndex	|否	    | number|当前页（默认第一页）|
+|pageRows	|否	    | number|每页显示的行数（默认20行）|
+
+**返回结果**
+
+正确的Json返回结果：
+
+	{
+	    "code": 0,
+	    "data":[
+		 {
+	        "deviceId": "AD56A554A6A3C96A909AA02BBDC15F05",
+	        "macAddress": "ACCF23F269F0",
+	        "deviceName": "明灯智能香薰机",
+	        "onlineStatus": 2,
+	        "bindTime": "2018-05-10 09:32:10",
+	        "deviceCode": "00000001000B0104"
+	    }]
+	}
+
+
+|字段名称	     |字段类型 	|   字段说明|
+|:-----      |:-----    |:-----    |
+|deviceId	 |string	| 	设备标识|
+|macAddress	 |string	|	MAC地址|
+|deviceName	 |string	|	设备名称|
+|bindTime	 |string	|	绑定时间|
+|onlineStatus| number	|	在线状态（1-正常，2-异常）|
+|deviceCode	 |string	|	设备编码|
 
 # 7. 设备相关接口
 
