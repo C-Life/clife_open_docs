@@ -383,7 +383,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |onlineStatus| number	|	在线状态（1-正常，2-异常）|
 |deviceCode	 |string	|	设备编码|
 
-## 6.5 获取设备列表
+## 6.5  获取设备列表
 
 **接口调用请求说明**
 
@@ -404,18 +404,32 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 **返回结果**
 
 正确的Json返回结果：
-
 	{
-	    "code": 0,
-	    "data":[
-		 {
-	        "deviceId": "AD56A554A6A3C96A909AA02BBDC15F05",
-	        "macAddress": "ACCF23F269F0",
-	        "deviceName": "明灯智能香薰机",
-	        "onlineStatus": 2,
-	        "bindTime": "2018-05-10 09:32:10",
-	        "deviceCode": "00000001000B0104"
-	    }]
+	    "data": {
+	        "pager": {
+	            "totalRows": 193,
+	            "pageRows": 20,
+	            "pageIndex": 1,
+	            "paged": false,
+	            "defaultPageRows": 20,
+	            "totalPages": 10,
+	            "currPageRows": 20,
+	            "pageStartRow": 0,
+	            "pageEndRow": 19,
+	            "hasPrevPage": false,
+	            "hasNextPage": true
+	        },
+	        "list": [
+	            {
+	                "deviceId": "F6CEB018B367FA5C752CA2598AE7C1FD",
+	                "macAddress": "ACCF234422D7",
+	                "deviceName": "乐鑫-AP",
+	                "onlineStatus": 2,
+	                "bindTime": "2018-03-26 08:55:31",
+	                "deviceCode": "0000C558000B0104"
+	            }]
+	    },
+	    "code": 0
 	}
 
 
@@ -425,8 +439,20 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |macAddress	 |string	|	MAC地址|
 |deviceName	 |string	|	设备名称|
 |bindTime	 |string	|	绑定时间|
-|onlineStatus| number	|	在线状态（1-正常，2-异常）|
+|onlineStatus|number	|	在线状态（1-正常，2-异常）|
 |deviceCode	 |string	|	设备编码|
+
+|totalRows	 |number	|	总行数|
+|pageRows	 |number	|	每页显示的行数|
+|pageIndex	 |number	|	当前页|
+|paged	 	 |boolean	|	是否传递分页对象|
+|defaultPageRows	 |number	|	每页默认行数|
+|totalPages	 |number	|	总页数|
+|currPageRows	 |number	|	当前页显示的行数|
+|pageStartRow	 |number	|	当前页起始行号|
+|pageEndRow	 |number	|	当前页结束行号|
+|hasPrevPage	 |boolean	|	是否有前一页|
+|hasNextPage	 |boolean	|	是否有后一页|
 
 # 7. 设备相关接口
 
