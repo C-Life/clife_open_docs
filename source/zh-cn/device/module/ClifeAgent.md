@@ -19,7 +19,7 @@ C-Life Agent构架已经在Wi-Fi、蓝牙、GPRS、NB-IoT、Zigbee等通信硬�
 
 ## 1.2 乐鑫ESP8266模组
 
-* [ESP8266模组规格书](/assets/mcu/PDF/ESP8266_WiFiV1.0.pdf)
+* [ESP8266模组规格书](/assets/mcu/PDF/ESP8266.pdf)
 * [ESP8266模组硬件设计规范](./ESP8266_hardware_Design_Spec.html)
 * [ESP8266模组串口烧录指导](./ESP8266_uart_download_Spec.html)
 * ESP8266模组固件下载
