@@ -33,12 +33,12 @@ SDK 提供了以下功能模块：
 集成了第三方登录的gradle依赖
 
 	//引用库形式 集成了第三方登录(目前只支持微信、QQ和新浪微博)的引用
-	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.3-SNAPSHOT'
+	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.4-SNAPSHOT'
 
 基础SDK的gradle依赖
 
 	//引用库形式
-	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.3-SNAPSHOT'
+	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.4-SNAPSHOT'
 
 模组注册
 
@@ -1794,7 +1794,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
 
-请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
+请参考 [基于React的JS-SDK框架](./H5.html)
 ## 2.Android和H5通讯流程图
 
 ![](https://i.imgur.com/drm1OoC.png)
