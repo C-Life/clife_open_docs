@@ -240,21 +240,17 @@ _len – 用户发送数据的长度
 注意：SmartLink(快连)目前只支持2.4G WiFi，暂不支持5G WiFi。
 1、首先手机必须先连接上无线路由器（该路由器可以正常上网）。
 2、打开下载好的Demo App注册并登陆，点击添加设备，并进入绑定。
-<center class="half">
+<center>
 <img src="/assets/mcu/SmartlinkAddDevice.png" width="250" alt="SmartlinkAddDevice" align=center />
 <img src="/assets/mcu/SmartlinkMainType.png" width="250" alt="SmartlinkMainType" align=center />
-</center>
-<center class="half">
 <img src="/assets/mcu/SmartlinkSubType.png" width="250"  alt="SmartlinkSubType" align=center />
 <img src="/assets/mcu/SmartlinkSelectWifi.png" width="250"  alt="SmartlinkSelectWifi" align=center />
 </center>
 3、操作设备进入SmartLink绑定中，本模板中是长按S4键2S后，设备进入绑定模式。
 4、返回到Demo App中进行绑定操作，直到绑定成功。
-<center class="half">
+<center>
 <img src="/assets/mcu/SmartlinkFindDevice.png" width="250" alt="SmartlinkFindDevice" align=center />
 <img src="/assets/mcu/SmartlinkBinding.png" width="250" alt="SmartlinkBinding" align=center />
-</center>
-<center class="half">
 <img src="/assets/mcu/SmartlinkBindFinish.png" width="250"  alt="SmartlinkBindFinish" align=center />
 <img src="/assets/mcu/SmartlinkDeviceOnline.png" width="250"  alt="SmartlinkDeviceOnline" align=center />
 </center>
@@ -262,25 +258,19 @@ _len – 用户发送数据的长度
 通过按键或其他方式开启设备AP配网模式.开启后设备设置为AP模式，手机连接可用的WiFi网络后，输入WiFi密码；通过C-Life APP 扫描周围AP，发现特定AP(HET_XXXXXX_XXXX)后连接此AP,并将可用WiFi的SSID和密码发送给设备,设备接收到之后自动连接此WiFi网络，连接后配网完成。
 1、首先手机必须先连接上无线路由器（改路由器可以正常上网）。
 2、打开下载好的Demo App注册并登陆，点击添加设备，并进入绑定。
-<center class="half">
+<center>
 <img src="/assets/mcu/ApAddDevice.png" width="250" alt="ApAddDevice" align=center />
 <img src="/assets/mcu/ApMainType.png" width="250" alt="ApMainType" align=center />
-</center>
-<center class="half">
 <img src="/assets/mcu/ApSubType.png" width="250"  alt="ApSubType" align=center />
 <img src="/assets/mcu/ApSelectWifi.png" width="250"  alt="ApSelectWifi" align=center />
 </center>
 3、操作设备进入SmartLink绑定中，本模板中是长按S4键2S后，设备进入绑定模式。
 4、手动切换WiFi模组广播出来的热点(由于手机系统权限原因，IOS系统手机手动切换，安卓系统手机则自动切换)，连接成功后返回到Demo App中进行绑定操作。
-<center class="half">
+<center>
 <img src="/assets/mcu/ApCutoverWifi.png" width="250" alt="ApCutoverWifi" align=center />
 <img src="/assets/mcu/ApSelectWifi2.png" width="250" alt="ApSelectWifi2" align=center />
-</center>
-<center class="half">
 <img src="/assets/mcu/ApNext.png" width="250"  alt="ApNext" align=center />
 <img src="/assets/mcu/ApFinish.png" width="250"  alt="ApFinish" align=center />
-</center>
-<center>
 <img src="/assets/mcu/ApDeviceOnline.png" width="250"  alt="ApDeviceOnline" align=center />
 </center>
 需要注意一下，示例是IOS版本的App操作，安卓和IOS界面不同，但是操作类似这里就不另做说明了。
