@@ -757,7 +757,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 **接口调用请求说明**
 
 	http请求方式: GET
-	https://open.api.clife.cn/v1/cloud/device/data/configDataList
+	https://open.api.clife.cn/v1/cloud/device/data/getConfigDataLists
 
 **参数说明**
 
