@@ -670,7 +670,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
 |pageRows	|否		|number	|每页显示的行数(每页最多显示100行)|
 |pageUpOrDown	|否		|number	|查询上一页还是下一页(0-上一页 1-下一页,默认下一页)|
-|rowDate	|否		|string	|row时间，,格式:deciceId1:timestamp1,首次查询为NULL(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate,多个rowDate用英文逗号隔开) |
+|rowDate	|否		|string	|row时间，,格式:deciceId:timestamp,首次查询为NULL(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate,多个rowDate用英文逗号隔开) |
 
 
 **返回结果**
@@ -729,7 +729,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
 |pageRows	|否		|number	|每页显示的行数(每页最多显示100行)|
 |pageUpOrDown	|否		|number	|查询上一页还是下一页(0-上一页 1-下一页,默认下一页)|
-|rowDate	|否		|string	|row时间，,格式:deciceId1:timestamp1,首次查询为NULL(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate,多个rowDate用英文逗号隔开) |
+|rowDate	|否		|string	|row时间，,格式:deciceId:timestamp,首次查询为NULL(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate,多个rowDate用英文逗号隔开) |
 
 
 **返回结果**
@@ -771,7 +771,7 @@ C-Life云推送服务在将设备数据发给第三方云的推送服务器地�
 |endDate	|否		|string	|结束时间，默认当前时间，格式：yyyy-MM-dd，开始时间与结束时间间隔不能大于7天|
 |pageRows	|否		|number	|每页显示的行数(每页最多显示100行)|
 |pageUpOrDown	|否		|number	|查询上一页还是下一页(0-上一页 1-下一页,默认下一页)|
-|rowDate	|否		|string	|row时间，,格式:deciceId1:timestamp1,首次查询为NULL(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate,多个rowDate用英文逗号隔开) |
+|rowDate	|否		|string	|row时间，,格式:deciceId:timestamp,首次查询为NULL(查询上一页传第一条数据的rowDate,查询下一页传最后一条数据的rowDate,多个rowDate用英文逗号隔开) |
 
 
 **返回结果**
