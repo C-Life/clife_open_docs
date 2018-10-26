@@ -33,12 +33,12 @@ SDK 提供了以下功能模块：
 集成了第三方登录的gradle依赖
 
 	//引用库形式 集成了第三方登录(目前只支持微信、QQ和新浪微博)的引用
-	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.4-SNAPSHOT'
+	compile 'com.github.szhittech:HetCLifeOpenSdk:1.1.5-SNAPSHOT'
 
 基础SDK的gradle依赖
 
 	//引用库形式
-	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.4-SNAPSHOT'
+	compile 'com.github.szhittech:HetCLifeOpenSdkBase:1.0.5-SNAPSHOT'
 
 模组注册
 
@@ -118,7 +118,7 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
 
 
 ## 2.SDK配置
-	
+
 ### 2.1.初始化SDK
 
  	/**
@@ -142,11 +142,11 @@ Android 6.0+新增了运行时权限动态检测，敏感权限必须要动态�
         HetSdk.getInstance().init(this, appId, appSecret, configModel);
     }
 
-1、appId、appSecret可以在开放平台创建的应用的应用详情里查看。  
-2、HetSdkThirdDelegateBuilder 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **（SDK第三方登录的集成）**。  
+1、appId、appSecret可以在开放平台创建的应用的应用详情里查看。
+2、HetSdkThirdDelegateBuilder 配置第三方社交平台（微信、QQ、新浪微博登录和分享），需要的开发者自行配置，不需要的可以不要。关于第三方登录的集成请参考   **（SDK第三方登录的集成）**。
 3、configModel.setH5UIconfig 配置授权登录页面主题样式; 通过参数定义的JSON字符串来进行配置。
 
-**接口调用请求说明**  
+**接口调用请求说明**
 SDK初始化接口 HetSdk.getInstance().init();
 
 **参数说明**
@@ -576,7 +576,7 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 | productName | string | 设备型号名称 |
 | productCode | string | 设备型号编码 |
 | productIcon | string | 设备型号图标 |
-| moduleId | number |  模块ID |
+| moduleId | number | 模块ID |
 | moduleType | number | 模块类型（1-WiFi，2-蓝牙，3-音频，4-GSM，5-红外，6-直连，8-zigbee，9-ap模式） |
 | moduleName | string | 模块名称 |
 | remark | string | 备注 |
@@ -781,7 +781,7 @@ HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。�
 
  ![](https://i.imgur.com/b4qGgZi.png)
 
-具体的接口调用说明：
+接口调用示例：
 
 	HetCommonBleBindApi.getInstance().startBind(this, "" + deviceProductBean1.getProductId(), new ICommonBleBind() {
 	            @Override
@@ -817,6 +817,31 @@ HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。�
 
 	//扫描到设备列表，选择其中一个设备，绑定到服务器
 	HetCommonBleBindApi.getInstance().bindToServer(deviceProductBean);
+
+#### 4.3.3.直连设备绑定
+开放平台同时也支持NBIoT、ZigBee、GPRS和内嵌android系统等多种物联网解决方案。采用直连绑定方式连接开放平台。  
+具体步骤：  
+
+* 设备上电连接开放平台注册MAC或IMEI码
+* 输入设备MAC或IMEI码
+* 调用HetGprsBindApi.getInstance().startBind 进行设备绑定
+
+
+接口调用示例：
+
+ 	HetGprsBindApi.getInstance().startBind(new IHetCallback() {
+            @Override
+            public void onSuccess(int code, String msg) {
+
+            }
+
+            @Override
+            public void onFailed(int code, String msg) {
+                CommonToast.showToast(MacImeiBindActivity.this, msg);
+                hideDialog();
+            }
+        }, mMac, mImei, mProductId);
+
 
 
 **绑定无法绑定？这里给出设备无法绑定的几种检查方法：**
@@ -1226,7 +1251,27 @@ WIFI设备控制具体可以分成3个步骤：
 
 第一步：设置接收设备数据的监听
 
-	HetWifiDeviceControApi.getInstance().start(deviceModel.getDeviceId(), deviceModel.getMacAddress());
+检查wifi设备是否支持UDP
+
+	/**
+     * @param deviceBean 设备信息
+     * @return 是否支持小循环
+     */
+    public static boolean isSupportUdp(DeviceBean deviceBean) {
+        if (TextUtils.isEmpty(deviceBean.getDeviceId())) return false;
+        if (TextUtils.isEmpty(deviceBean.getMacAddress())) return false;
+        if (deviceBean.getProductId() == 0) return false;
+        if (TextUtils.isEmpty(deviceBean.getUserKey())) return false;
+        return true;
+    }
+
+设置控制监听  
+
+	//支持小循环
+	HetWifiDeviceControlApi.getInstance().startWithUdp(deviceBean, iWifiDeviceData);
+
+	//不支持小循环
+	HetWifiDeviceControlApi.getInstance().start(deviceBean.getDeviceId(), iWifiDeviceData);
 	private IWifiDeviceData iWifiDeviceData = new IWifiDeviceData() {
 	        @Override
 	        public void onGetConfigData(String jsonData) {
@@ -1794,7 +1839,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 为了适应APP不断添加新的设备和动态更新，clife平台结合APP开发一套动态的插件更新框架。基于这套框架可以实现app功能的快速开发迭代，减少产品的上线周期。
 ## 1.H5开发框架
 
-请参考 [基于React的JS-SDK框架](./H5.html)
+请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
 ## 2.Android和H5通讯流程图
 
 ![](https://i.imgur.com/drm1OoC.png)
@@ -1807,125 +1852,24 @@ SDK封装了H5插件下载和原生与H5通讯接口，开发者可以轻松实�
 
 开发者需要在开放平台上传完整的H5开发包待审核，审核通过之后才可以正常使用。
 
-### 3.2.初始化webView和H5交互接口
+### 3.2.H5控制
+根据设备类型，SDK提供了对应的H5控制接口。使用实例请参考提供的DEMO示例。
 
-#### 3.2.1.初始化webView
+#### 3.2.1.WIFI设备  
 
-SDK采用了X5内核的浏览服务，添加方式有2种：
-第一种：通过xml方式创建布局
+	H5ComWifiControlActivity.startH5ComWifiControlActivity(getActivity(), h5PackParamBean);
 
-	<com.tencent.smtt.sdk.WebView
-	        android:id="@+id/device_h5_web"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        />
+#### 3.2.2.蓝牙(3A协议)设备 
 
-	WebView webView = (WebView) findViewById(R.id.device_h5_web);
-第二种：代码动态创建
-		WebView webView = new WebView(mContext);
+	H5ComBle3AControlActivity.startH5Ble3AControlActivity(mContext,h5PackParamBean);
 
+#### 3.2.3.NBIoT设备  
+ 
+	H5ComNbControlActivity.startH5ComNbControlActivity(mContext,h5PackParamBean);
 
-注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：
-android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 。
+#### 3.2.4.ZigBee设备  
 
-#### 3.2.2.初始化H5交互接口
-
-	HtmlFiveManager htmlFiveManager = new HtmlFiveManager(activity, webView, iAppJavaScriptsInterface);
-
-HtmlFiveManager是封装了H5与Android原生的交互接口，通过IAppJavaScriptsInterface来暴露H5接口给原生和从原生获取数据。
-
-	IAppJavaScriptsInterface iAppJavaScriptsInterface = new IAppJavaScriptsInterface() {
-    	@Override
-    	public void send(String data, final IMethodCallBack methodCallBack) {
-        	//H5 het.send()调用的原生接口  这里可以实现设备发送控制命令
-    	}
-
-    	@Override
-    	public String getModeJson() {
-        	//H5 het.ready() 获取的原生信息
-        	return null;
-    	}
-
-    	@Override
-    	public void onWebViewCreate() {
-        	//界面加载完成时回调
-    	}
-
-    	@Override
-    	public void tips(String str) {
-        	//H5 het.toast()调用的原生接口
-    	}
-
-    	@Override
-    	public void setTitle(String title) {
-        	//H5 het.setTitle()调用的原生接口
-    	}
-
-    	@Override
-    	public void onLoadH5Failed(int errCode, String errMsg) {
-        	//界面加载失败时回调
-    	}
-
-    	@Override
-    	public void h5SendDataToNative(int i, String s, String s1, IH5CallBack ih5CallBack) {
-        	//H5 发送数据到 App 端
-    	}
-
-    	@Override
-    	public void h5GetDataFromNative(int i, String s, IH5CallBack ih5CallBack) {
-    	    //H5 从 App 端获取数据
-    	}
-	};
-
-### 3.3.加载H5插件
-
-	HetH5Api.getInstance().getH5ControlPlug(context,deviceBean);
-
-SDK会加载最新的H5插件（下载和检查更新）。加载成功会抛出HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_SUCCESS事件，加载失败会抛出HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_FAILED事件。
-
-### 3.4.监听H5插件加载成功与失败
-
-     RxManage.getInstance().register(HetH5PlugEvent.HET_EVENT_H5_PLUG_GET_LOCAL_URL_SUCCESS + model.getProductId(), o -> {
-            if (htmlFiveManager != null) {
-                String localPath = (String) o;
-                String path = Uri.fromFile(new File(localPath)).toString();
-                path += "/index.html";
-                htmlFiveManager.loadUrl(path);
-            }
-        });
-
-H5插件加载成功，调用htmlFiveManager.loadUrl(path); 加载H5页面展示UI。
-
-
-### 3.5.上传设备数据给H5
-
-上传运行数据：
-
-	htmlFiveManager.updateRunData(json);
-上传控制数据：
-
-	htmlFiveManager.updateConfigData(json);
-上传异常数据：
-
-	htmlFiveManager.updateErrorData(json);
-
-### 3.6.退出释放资源
-
-	@Override
-    public void onDestroy() {
-		if (webView != null) {
-    		webView.removeJavascriptInterface("bindJavaScript");
-    		if (webView.getSettings() != null) {
-        		webView.getSettings().setJavaScriptEnabled(false);
-    		}
-    		webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
-    		webView.clearHistory();
-    		((ViewGroup)  webView.getParent()).removeView(mDevice_h5_web);
-    		webView.destroy();
-    		webView = null;
-		}
-	}
-
+	H5ComZigbeeControlActivity.startH5ComZigbeeControlActivity(mContext,h5PackParamBean);
 
 # 补充说明
 ## 1.SDK 第三方库支持
@@ -1970,8 +1914,8 @@ RxBus事件的取消订阅：
 注意：将源码和XML里的系统包和类替换为SDK里的包和类，如：
 android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient 。
 ## 2.授权登录页面模板配置
-为了满足不同项目对登录界面的审美要求，开放平台SDK提供了3套可供选择的授权登录页面模板。  
-使用方法1： 在Application里面初始化SDK，配置H5登录界面 
+为了满足不同项目对登录界面的审美要求，开放平台SDK提供了3套可供选择的授权登录页面模板。
+使用方法1： 在Application里面初始化SDK，配置H5登录界面
 
 	new UIJsonConfig.ConfigUiBuilder(this, "30765", "5f699a78c319444cb8a291296049572c")// appId 、app_secret
                 .setNavBackgroundColor("FF3285FF")//标题栏颜色
@@ -1992,10 +1936,10 @@ android.webkit.WebChromeClient 替换成 com.tencent.smtt.sdk.WebChromeClient �
                 .build();
 
 
-setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三   
+setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
 详情参考 ***SDK配置***
 
-使用方法2：  
+使用方法2：
 
     HetNewAuthApi.getInstance().authorize(activity, new AuthCallback() {
 	          @Override
@@ -2053,6 +1997,10 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
     -dontwarn cn.sharesdk.**
     -dontwarn **.R$*
 
+    #xstream
+    -dontwarn com.thoughtworks.xstream.**
+    -keep class com.thoughtworks.xstream.** {*;}
+
     #===========nineoldandroids-2.4.0.jar===========
     -keep public class com.nineoldandroids.** {*;}
 
@@ -2082,10 +2030,6 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
     -keep class com.baidu.**{*; }
     #==============百度推送结束==============#
 
-    #===========okhttp===========
-    -dontwarn com.squareup.okhttp3.**
-    -keep class com.squareup.okhttp3.** { *;}
-    -dontwarn okio.**
     # Retrofit
     -dontwarn retrofit2.**
     -keep class retrofit2.** { *; }
@@ -2137,12 +2081,6 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
     -keepclassmembers class * {
         native <methods>;
     }
-    -dontwarn okio.**
-    -dontwarn com.squareup.okhttp.**
-    -dontwarn okhttp3.**
-    -dontwarn javax.annotation.**
-    -dontwarn com.android.volley.toolbox.**
-    -dontwarn com.facebook.infer.**
 
     # Keep our interfaces so they can be used by other ProGuard rules.
     # See http://sourceforge.net/p/proguard/bugs/466/
@@ -2212,7 +2150,6 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
         <init>(java.lang.Throwable);
     }
 
-
     #==========EventBus==========
     -keepclassmembers class ** {
         public void onEvent*(**);
@@ -2220,7 +2157,6 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
     -keepclassmembers class ** {
     public void xxxxxx(**);
     }
-
 
     #==========gson==========
     -keep class com.google.gson.** {*;}
@@ -2241,8 +2177,6 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
         java.lang.Object writeReplace();
         java.lang.Object readResolve();
     }
-
-
 
     # ==========support-v4==========
     -dontwarn android.support.v4.**
@@ -2307,10 +2241,6 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
     -keep public class com.het.basic.data.api.utils.** { *; }
     -keep public class com.het.basic.data.http.retrofit2.RetrofitManager { *; }
     -keep public class com.het.basic.data.http.okhttp.listener.DownloadProgressListener { *; }
-
-    #====xstream库====
-    -dontwarn com.thoughtworks.xstream.**
-    -keep class com.thoughtworks.xstream.io.xml.** { *; }
 
     #-keep class com.third.factory.Const  { *; }
     -keep class com.hiflying.smartlink.SmartLinkedModule  { *; }
@@ -2409,17 +2339,19 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
     	public <methods>;
     }
 
-    # OkHttp
+    #===========okhttp===========
+    -dontwarn com.squareup.okhttp3.**
     -dontwarn okhttp3.**
     -dontwarn okio.**
     -dontwarn com.squareup.okhttp.**
+    -keep class com.squareup.okhttp3.** { *;}
     -keep class okio.**{*;}
     -keep class com.squareup.okhttp.** { *; }
     -keep interface com.squareup.okhttp.** { *; }
 
+    -dontwarn com.android.volley.toolbox.**
+    -dontwarn com.facebook.infer.**
     -dontwarn java.nio.file.*
     -dontwarn javax.annotation.**
     -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
-	
-	
