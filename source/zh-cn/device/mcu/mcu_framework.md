@@ -12,6 +12,7 @@
 第四步，选择产品技术方案，目前用的最多是AP和smartlink方式，本文档中也有对这两种方式做过说明，这个就不多说，下图是用的比较多的两种模块的示例（乐鑫8266和汉枫LPB100）：
 ![](/assets/mcu/ESP8266.png)
 ![](/assets/mcu/LPB100.png)
+
 第五步，点击确定，创建产品过程结束，下面展示一下smartlink和AP创建成果之后的界面：
 ![](/assets/mcu/Smartlink.png)
 ![](/assets/mcu/AP.png)
