@@ -13,7 +13,7 @@
 
 ** 根据产品类型找到对应的芯片模组名称，如下：**
 
-![](/assets/iOS/APPViewModuleType.png)
+![](/open_clife_document/assets/iOS/APPViewModuleType.png)
 
 【示例代码】
 
@@ -56,7 +56,7 @@ pod 'HETPublicSDK_WiFiModule/NL6621',     '1.0.0'
     [HETOpenSDK setNetWorkConfig:HETNetWorkConfigType_PE];
     // 3.设置SDK的日志信息开启
     [HETOpenSDK openLog:YES];
-    
+
 
     // 4.H5设备公共包
     [HETH5Manager launch];
@@ -110,7 +110,7 @@ HETOpenSDK setAuthorizeTheme:theme];
  HETAuthorize *auth = [[HETAuthorize alloc] init];
  if (![auth isAuthenticated]) {
      [auth authorizeWithCompleted:^(NSString *openId, NSError *error) {
-     
+
      }];
   }
 ```
@@ -132,21 +132,21 @@ HETOpenSDK setAuthorizeTheme:theme];
 [[HETThirdCloudAuthorize shareInstance]getAuthorizationCodeWithAccount:_account withOpenId:self.openID  Completed:^(NSDictionary *responseDic, NSError *error) {
       NSLog(@"user info success: %@", responseDic);
       if(error){
-                
+
       }else{
              if([responseDic isKindOfClass:[NSDictionary class]]){
                 NSString * authorizationCode = [responseDic objectForKey:@"authorizationCode"];
-                    
+
                 }
-                
+
       }
 }];
-        
+
 ```
 
 >注意：
 >
-* account （首次授权时传入用户账号,openId传nil） 
+* account （首次授权时传入用户账号,openId传nil）
 * openId  （二次授权时传入，同时传入account和openId）
 
 第二步：开发者调用第三方云服务接口传递第一步获取的授权码，然后第三方服务通过云对接方式调用C-Life云端接口获取**随机码**给客户端。
@@ -157,18 +157,18 @@ HETOpenSDK setAuthorizeTheme:theme];
 【示例代码】
 
 ```
-[[HETThirdCloudAuthorize shareInstance]autoAuthorizeWithRandomCode:_randomCode 
-verificationCode:verifyCode withCompleted:^(NSString *openId, NSError *error) 
+[[HETThirdCloudAuthorize shareInstance]autoAuthorizeWithRandomCode:_randomCode
+verificationCode:verifyCode withCompleted:^(NSString *openId, NSError *error)
 {
      NSLog(@"openId: %@", openId);
      if(error){
-               
+
       }else
           if (openId) {
               self.openID = openId;
            }
 }];
-        
+
 ```
 >注意：
 >
@@ -202,7 +202,7 @@ typeof(self) __weak weakSelf = self;
 {
  "code":0,
  "data":{
-    "userId": "d09f572c60ffced144d6cfc55a6881b9",   
+    "userId": "d09f572c60ffced144d6cfc55a6881b9",
     "userName": "葫芦娃",
     "email":"",
     "phone":"",
@@ -216,10 +216,10 @@ typeof(self) __weak weakSelf = self;
 }
 ```
 接口数据说明：
-![](/assets/iOS/iOSGetUserInfo.png)
+![](/open_clife_document/assets/iOS/iOSGetUserInfo.png)
 ## 2.6 异地登录通知
 
-开放平台的账号只能在一台手机设备上面登录，当有账号在另一台手机设备登录时，SDK会抛出一个HETLoginOffNotification消息，开发者** 必须 **监听这个消息，处理异地登录的逻辑。 
+开放平台的账号只能在一台手机设备上面登录，当有账号在另一台手机设备登录时，SDK会抛出一个HETLoginOffNotification消息，开发者** 必须 **监听这个消息，处理异地登录的逻辑。
 例：
 
 【示例代码】
@@ -234,21 +234,21 @@ typeof(self) __weak weakSelf = self;
 HETAuthorize  *auth = [[HETAuthorize alloc]init];
 typeof(self) __weak weakSelf = self;
 [auth changePasswordSuccess:^(id responseObject) {
-    OPLog(@"responseObject = %@",responseObject);     
+    OPLog(@"responseObject = %@",responseObject);
 } failure:^(NSError *error) {
     OPLog(@"error = %@",error);
 }];
 ```
 
 <center>
-<img src="/assets/iOS/iOSMyUI.png" width="250"  alt="我的界面" align=left />
-<img src="/assets/iOS/iOSChageMyPassword.png" width="250"  alt="修改密码界面" align=center />
+<img src="/open_clife_document/assets/iOS/iOSMyUI.png" width="250"  alt="我的界面" align=left />
+<img src="/open_clife_document/assets/iOS/iOSChageMyPassword.png" width="250"  alt="修改密码界面" align=center />
 </center>
 
 # 3.设备绑定
 ## 3.1 绑定概述
 ### 3.1.1 绑定流程
-![](/assets/iOS/APPBindProcess.png)
+![](/open_clife_document/assets/iOS/APPBindProcess.png)
 
 ### 3.1.2 设备分类
 从设备层级上分为 **设备大类** 和 **设备小类**。例如，冰箱是大类，冰箱下有C-Life智能冰箱，即小类。
@@ -274,7 +274,7 @@ moduleType | 绑定类型
 ```
 http://open.clife.net/v1/web/open/product?param={"a":产品id}
 ```
-  
+
 ** 第一步：获取产品ID**
 
 ```
@@ -299,17 +299,17 @@ typeof(self) __weak weakSelf = self;
        // 根据moduleType 区分设备绑定类型
        HETDevice *device = [HETDevice mj_objectWithKeyValues:dataDict];
        // WiFi绑定
-       if ([device.moduleType integerValue] == 1 
-       || [device.moduleType integerValue] == 9) 
+       if ([device.moduleType integerValue] == 1
+       || [device.moduleType integerValue] == 9)
        {
           // 需要填写跳转界面逻辑
-          return;         
+          return;
        }
        // 蓝牙绑定
        if ([device.moduleType integerValue] == 2)
        {
           // 需要填写跳转界面逻辑
-         return;   
+         return;
        }
   }
 } failure:^(NSError *error) {
@@ -323,7 +323,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/iOS/APPProduceDetailInfo.jpg)
+![](/open_clife_document/assets/iOS/APPProduceDetailInfo.jpg)
 
 > 到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
@@ -337,7 +337,7 @@ typeof(self) __weak weakSelf = self;
 ```
 在 **HETDeviceRequestBusiness** 查询相关接口
 typeof(self) __weak weakSelf = self;
-[HETDeviceRequestBusiness fetchDeviceTypeListSuccess:^(id responseObject) 
+[HETDeviceRequestBusiness fetchDeviceTypeListSuccess:^(id responseObject)
 {
 	OPLog(@"responseObject = %@",responseObject);
 } failure:^(NSError *error) {
@@ -346,7 +346,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/iOS/APPViewMainTypeResult.jpg)
+![](/open_clife_document/assets/iOS/APPViewMainTypeResult.jpg)
 
 
 ** 第二步：通过大类ID，获取设备小类 **
@@ -364,9 +364,9 @@ NSString *deviceTypeId = [NSString stringWithFormat:@"%@",deviceTypeId]；
 
 ```
 
-![](/assets/iOS/AppGetProductInfoByMainType.png)
+![](/open_clife_document/assets/iOS/AppGetProductInfoByMainType.png)
 
-![](/assets/iOS/AppGetSupportDeviceTypeBYMainType.png)
+![](/open_clife_document/assets/iOS/AppGetSupportDeviceTypeBYMainType.png)
 
 >到此，在上图中已经获取到 **productId**、**moduleType**、deviceTypeId、deviceSubTypeId 可以进行设备绑定。
 
@@ -377,7 +377,7 @@ NSString *deviceTypeId = [NSString stringWithFormat:@"%@",deviceTypeId]；
 **第一步：连接路由器热点 **
 
 <center>
-<img src="/assets/iOS/iOSConnectWifi.png" width="250"  alt="连接路由器热点" align=center/>
+<img src="/open_clife_document/assets/iOS/iOSConnectWifi.png" width="250"  alt="连接路由器热点" align=center/>
 </center>
 
 **第二步：获取路由器ssid **
@@ -397,12 +397,12 @@ NSString  *macAddr = [[HETWIFIBindBusiness sharedInstance] fetchmacSSIDInfo];
 ```
 typeof(self) __weak weakSelf = self;
 NSString *productId = [NSString stringWithFormat:@"%@",self.device.productId];
-[[HETWIFIBindBusiness sharedInstance] 
+[[HETWIFIBindBusiness sharedInstance]
 startSmartLinkBindDeviceWithProductId:productId
                              withSSID:self.ssid withPassWord:self.password withTimeOut:timeOut
                           bindHandler:^(HETWiFiDeviceBindState state, HETDevice *deviceObj, NSError *error) {
     OPLog(@"HETWiFiDeviceBindState: %ld", state);
-       
+
     if (error) {
           // 扫描失败
     }else{
@@ -421,7 +421,7 @@ startSmartLinkBindDeviceWithProductId:productId
 **第一步：连接路由器热点 **
 
 <center>
-<img src="/assets/iOS/iOSConnectWifi.png" width="250"  alt="连接路由器热点" align=center/>
+<img src="/open_clife_document/assets/iOS/iOSConnectWifi.png" width="250"  alt="连接路由器热点" align=center/>
 </center>
 
 **第二步：获取路由器ssid **
@@ -435,7 +435,7 @@ NSString  *macAddr = [[HETWIFIBindBusiness sharedInstance] fetchmacSSIDInfo];
 ** 第三步：手机切换设备热点 **
 
 <center>
-<img src="/assets/iOS/iOSAppChangeWifi.png" width="250"  alt="手机切换设备热点" align=center/>
+<img src="/open_clife_document/assets/iOS/iOSAppChangeWifi.png" width="250"  alt="手机切换设备热点" align=center/>
 </center>
 
 设备AP热点命名规则: `radiocastName_deviceTypeId_deviceSubtypeId`
@@ -452,19 +452,19 @@ NSString *typeId = [NSString stringWithFormat:@"%@",self.device.deviceTypeId];
 NSString *subTypeId = [NSString stringWithFormat:@"%@",self.device.deviceSubtypeId];
 
 typeof(self) __weak weakSelf = self;
-[[HETWIFIBindBusiness sharedInstance] startAPBindDeviceWithProductId:productId 
-                                            withDeviceTypeId:typeId 
-                                                 withDeviceSubtypeId:subTypeId 
-                                withSSID:self.ssid 
-                              withPassWord:self.password 
-                              withTimeOut:timeOut 
+[[HETWIFIBindBusiness sharedInstance] startAPBindDeviceWithProductId:productId
+                                            withDeviceTypeId:typeId
+                                                 withDeviceSubtypeId:subTypeId
+                                withSSID:self.ssid
+                              withPassWord:self.password
+                              withTimeOut:timeOut
   bindHandler:^(HETWiFiDeviceBindState state, HETDevice *deviceObj, NSError *error) {
         OPLog(@"HETWiFiDeviceBindState: %ld", state);
         if (error) {
           // 绑定失败
         }else{
           // 绑定成功
-        }    
+        }
 }];
 
 ```
@@ -479,8 +479,8 @@ typeof(self) __weak weakSelf = self;
 
 ```
 //初始化蓝牙设备的业务类，需要设备的productId，deviceTypeId，deviceSubtypeId
-self.bleBusiness = [[HETBLEBusiness alloc]initWithProductId:self.productId.integerValue 
-deviceTypeId:self.deviceTypeId.integerValue 
+self.bleBusiness = [[HETBLEBusiness alloc]initWithProductId:self.productId.integerValue
+deviceTypeId:self.deviceTypeId.integerValue
 deviceSubtypeId:self.deviceSubtypeId.integerValue];
 ```
 
@@ -550,7 +550,7 @@ typeof(self) __weak weakSelf = self;
 
 ```
 
-![](/assets/iOS/APPDeviceBindPars.png)
+![](/open_clife_document/assets/iOS/APPDeviceBindPars.png)
 
 **第二步：根据获取的设备信息，监听设备状态**
 
@@ -571,11 +571,11 @@ typeof(self) __weak weakSelf = self;
         } deviceCfgData:^(id responseObject) {
  	   		// 监听设备控制数据
             OPLog(@"deviceCfgData:%@ " ,responseObject);
-         
+
         } deviceErrorData:^(id responseObject) {
             // 监听设备错误数据
             OPLog(@"deviceErrorData:%@ " ,responseObject);
-         
+
         } deviceState:^(HETWiFiDeviceState state) {
             // 监听设备在线状态数据
             OPLog(@"deviceState:%ld " ,(long)state);
@@ -622,7 +622,7 @@ typeof(self) __weak weakSelf = self;
 
     NSData * jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     NSString * jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
+
     typeof(self) __weak weakSelf = self;
     [self.controlBusiness deviceControlRequestWithJson: jsonStr withSuccessBlock:^(id responseObject) {
         OPLog(@"responseObject = %@",responseObject);
@@ -647,7 +647,7 @@ typeof(self) __weak weakSelf = self;
 打开负离子，2个字节，每一个bit的值为下：
 
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
-  
+
 
 ## 4.2 蓝牙设备控制
 
@@ -686,15 +686,15 @@ typeof(self) __weak weakSelf = self;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     if(!_bleBusiness)
     {
         _bleBusiness=[[[HETBLEBusiness alloc]init]initWithProductId:self.productId
          deviceTypeId:self.deviceType deviceSubtypeId:self.deviceSubType];
-        
+
     }
 }
-    
+
 ```
 
 **第三步：监听设备状态**
@@ -703,14 +703,14 @@ typeof(self) __weak weakSelf = self;
 
 ```
 typeof(self) __weak weakSelf = self;
-[_bleBusiness fetchStatusDataWithPeripheral:self.blePeripheral 
-macAddress:self.macAddress deviceId:self.deviceId 
+[_bleBusiness fetchStatusDataWithPeripheral:self.blePeripheral
+macAddress:self.macAddress deviceId:self.deviceId
 completionHandler:^(CBPeripheral *currentPeripheral,NSDictionary *dic, NSError *error) {
     typeof(weakSelf) __strong strongSelf = weakSelf;
     strongSelf.blePeripheral=currentPeripheral;
     OPLog(@"状态数据:%@,%@",dic,error);
     if(dic)
-    {  
+    {
         uint8_t state ;
         UInt8 color;
         NSString *colorStr=dic[@"LED"];
@@ -723,7 +723,7 @@ completionHandler:^(CBPeripheral *currentPeripheral,NSDictionary *dic, NSError *
             [strongSelf changeLED_color:0];//灯是关掉的
         }else if(state == 1) {
             [strongSelf changeLED_color:color];
-        }    
+        }
     }
 }];
 ```
@@ -733,13 +733,13 @@ completionHandler:^(CBPeripheral *currentPeripheral,NSDictionary *dic, NSError *
 
 ```
 typeof(self) __weak weakSelf = self;
-[_bleBusiness deviceControlRequestWithPeripheral:self.blePeripheral 
-macAddress:self.macAddress 
-sendDic:@{@"LED":@(ledColor %9)} 
+[_bleBusiness deviceControlRequestWithPeripheral:self.blePeripheral
+macAddress:self.macAddress
+sendDic:@{@"LED":@(ledColor %9)}
 completionHandler:^(CBPeripheral *currentPeripheral,NSError *error) {
     typeof(weakSelf) __strong strongSelf = weakSelf;
     strongSelf.blePeripheral=currentPeripheral;
-    OPLog(@"数据发送回调:%@",error);    
+    OPLog(@"数据发送回调:%@",error);
 }];
 ```
 
@@ -762,7 +762,7 @@ typeof(self) __weak weakSelf = self;
 设备删除有2中情况,需要自己根据设备分享类型（device.share）来区分：
 
 第一种：设备是用户自己绑定的设备。调用HETDeviceRequestBusiness提供的方法来解除绑定关系。
- 
+
  【示例代码】
 
 ```
@@ -774,7 +774,7 @@ typeof(self) __weak weakSelf = self;
 }];
 ```
 
-第二种：设备是别人分享的过来的设备。调用HETDeviceShareBusiness 提供的方法来解绑分享关系。 
+第二种：设备是别人分享的过来的设备。调用HETDeviceShareBusiness 提供的方法来解绑分享关系。
 
 【示例代码】
 
@@ -800,14 +800,14 @@ A用户打开App设备第三方应用分享（微信，QQ），例如分享到�
 B用户识别微信中的二维码，打开分享网页，尝试打开App成功即获取设备的控制权限，失败就提示用户B下载App。
 
  **注意：**
- 
+
  1、URL scheme
- 
+
  * 第三方分享需要App提供URL scheme，方便web页面打开App，并且传递分享码给App。
- 
- 
+
+
 2、分享码有效期
- 
+
  * 面对面分享码有效期为10分钟
  * 第三方分享码有效期为一个小时
 
@@ -910,7 +910,7 @@ typeof(self) __weak weakSelf = self;
         return result;
     }
 }
-                            
+
 ```
 
 ### 5.3.3 获取设备授权用户列表
@@ -992,7 +992,7 @@ typeof(self) __weak weakSelf = self;
 全局返回码说明
 
   每次调用接口时，可能获得正确或错误的返回码，可以根据返回码信息调试接口，排查错误。
-全局返回码说明如下：  
+全局返回码说明如下：
 
 | 返回码 | 说明 |
 |---------|---------|
@@ -1045,7 +1045,7 @@ typeof(self) __weak weakSelf = self;
 H5设备控制，是指设备控制页面用html5开发，嵌入到原生App，实现设备控制页面动态更新的一种方式。
 
 ## 8.2 iOS App和H5通讯流程图
- 
+
 SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其通讯原理图如下：
 ![](https://i.imgur.com/drm1OoC.png)
 
@@ -1090,7 +1090,7 @@ SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其
 {
     HETH5ViewController *h5vc = [[HETH5ViewController alloc]init];
     h5vc.deviceModel=deviceModel;
-    
+
     WEAKSELF
     [HETCommonHelp showCustomHudtitle:@"正在加载"];
     [[HETH5Manager shareInstance] getH5Path:^(NSString *h5Path,BOOL needRefresh,NSError *error) {
@@ -1124,7 +1124,7 @@ SDK提供了原生与H5通讯的管理接口`HETWKWebViewJavascriptBridge`，其
 HETWKWebViewJavascriptBridge* bridge = [HETWKWebViewJavascriptBridge   bridgeForWebView:webView];
 bridge.delegate=self;
 [bridge setNavigationDelegate:self];
-    
+
 ```
 
 2、加载本地H5
@@ -1132,9 +1132,9 @@ bridge.delegate=self;
 - (void)loadRequest
 {
     if (self.h5Path&&self.h5Path.length>0) {
-        
+
         if ([self.h5Path hasPrefix:@"http"]) {
-            
+
             [_wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.h5Path]]];
         }else{
             NSRange webRange = [_h5Path rangeOfString:@"web"];
@@ -1146,14 +1146,14 @@ bridge.delegate=self;
             if (locationRange.length>0) {
                 directory = [_h5Path substringWithRange:NSMakeRange(0, locationRange.length+locationRange.location+1)];
             }
-            
+
             if (NSFoundationVersionNumber>NSFoundationVersionNumber_iOS_8_x_Max) {
                 @try {
                     [_wkWebView loadFileURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@",[self.h5Path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]] allowingReadAccessToURL:[NSURL fileURLWithPath:directory]];
                 } @catch (NSException *exception) {
                     OPLog(@"%@",exception);
                 } @finally {
-                    
+
                 }
             }else{
                 [_wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@",[self.h5Path  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]];
@@ -1189,13 +1189,13 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
         NSMutableDictionary *infoDic = [NSMutableDictionary dictionary];
         [infoDic setObject:@(state) forKey:@"onlineStatus"];
         [_bridge webViewRunDataRepaint:infoDic];
-        
+
     } failBlock:^(NSError *error) {
         NSLog(@"失败了:%@",error);
 }];
-    
+
 [_communicationManager start];
-     
+
 ```
 4、实现`HETWKWebViewJavascriptBridgeDelegate`,接受H5传递过来的参数
 
@@ -1240,8 +1240,8 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
     } withFailBlock:^(NSError *error) {
         [_bridge updateDataError:responseObject errorCallBlock:errorCallback];
     }];
-    
-    
+
+
 }
 
 
@@ -1264,7 +1264,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
  */
 -(void)toast:(id)data
 {
-    
+
 }
 
 /**
@@ -1274,7 +1274,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
  */
 -(void)relProxyHttp:(id)url data:(id)data httpType:(id) type sucCallbackId:(id) sucCallbackId errCallbackId:(id) errCallbackId needSign:(id) needSign
 {
-    
+
 }
 
 /**
@@ -1284,7 +1284,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
  */
 -(void)absProxyHttp:(id)url data:(id)data httpType:(id) type sucCallbackId:(id) sucCallbackId errCallbackId:(id) errCallbackId
 {
-    
+
 }
 
 /**
@@ -1295,7 +1295,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
  */
 -(void)onLoadH5Failed:(id)errCode errMsg:(id)errMsg
 {
-    
+
 }
 
 /**
@@ -1321,7 +1321,7 @@ _communicationManager=[[HETDeviceControlBusiness alloc]initWithHetDeviceModel:se
 ```
 # 9.补充说明
 ## 9.1 第三方社交平台登录
-目前第三方社交平台支持 ** 微信、QQ、微博** 
+目前第三方社交平台支持 ** 微信、QQ、微博**
 
 【示例代码】
 ```
