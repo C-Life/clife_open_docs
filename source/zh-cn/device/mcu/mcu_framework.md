@@ -69,180 +69,269 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 ### 4.1 MCU工程代码目录
 ![](/assets/mcu/ProjectDirectory.png)
 #### 4.1.1 文件目录说明：
-| 文件夹名称 | 说明 |
-|-----------|------|
-| Bsp | 硬件驱动程序目录 |
-| HetWiFi | WiFi通讯、flash驱动、在线升级驱动目录 |
-| Libraries | STM32官方驱动目录 |
-| Project | 工程文件目录 |
-| Startup | 官方启动文件 |
-| UserAPP | 用户应用程序目录 |
-| UserOTA | 用户升级程序目录 |
+| 文件夹名称 | 说明 |       
+|-----------|------|   
+| Bsp | 硬件驱动程序目录 |    
+| HetWiFi | WiFi通讯、flash驱动、在线升级驱动目录 |   
+| Libraries | STM32官方驱动目录 |   
+| Project | 工程文件目录 |   
+| Startup | 官方启动文件 |  
+| UserAPP | 用户应用程序目录 |   
+| UserOTA | 用户升级程序目录 |   
 #### 4.1.2 模板工程及相关文件说明
-![](/assets/mcu/MCUProjectDetails.png)
+![](/assets/mcu/MCUProjectDetailsNew.png)
 #### 4.1.3 重点文件说明
- | 文件名称 | 说明 |
- |-----------|------|
- | het_ota.c | 升级数据处理、App应用区跳转等 |
- | FlashDivision.h | 单片机flash地址分区及升级信息 |
- | Upgrade.c | WiFi升级数据处理 |
- | Upgrade.h | 为Upgrade.c对应头文件 |
- | DriveWifi.c | WiFi通讯流程管控处理 |
- | DriveWifi.h | 为DriveWifi.c对应头文件，WiFi通讯流程管控处理相关信息声明 |
- | WifiConfig.h | WiFi模组接入平台选择、模组绑定信息、设备信息、服务功能选择、数据长度等声明非常重要 |
- | WifiPro.c | 用户与服务器数据交互业务处理 |
- | WifiPro.h | 为WifiPro.c对应头文件 |
+ | 文件名称 | 说明 |     
+ |-----------|------|    
+ | HET_OTA.c | 升级数据处理、App应用区跳转等 |    
+ | FlashDivision.h | 单片机flash地址分区及升级信息 |     
+ | het_config.h | 通讯数据内容结构体定义头文件 |    
+ | HET_ClifeProtocol.c | WiFi通讯流程管控处理 |    
+ | HET_ClifeProtocol.h | 为DriveWifi.c对应头文件，WiFi通讯流程管控处理相关信息声明 |    
+ | WifiConfig.h | WiFi模组接入平台选择、模组绑定信息、设备信息、服务功能选择等声明非常重要 |    
+ | Product_Wifi.c | 用户与服务器数据交互业务处理 |    
+ | Product_Wifi.h | 为WifiPro.c对应头文件 |    
 ### 4.2 程序操作介绍
-#### 4.2.1 修改WifiConfig.h配置文件确定功能需求
-![](/assets/mcu/ConfigOptions.png)
-接入模块可选种类有三种：普通低速WiFi模组、GPRS模组、高速WiFi模组。
-联网的绑定方式可选两种：AP绑定方式、smartlink绑定方式。
+#### 4.2.1 修改WifiConfig.h绑定信息配置文件确定绑定信息
+![](/assets/mcu/ConfigOptionsNew.png)   
+接入模块可选种类有三种：普通低速WiFi模组、GPRS模组、高速WiFi模组。  
+联网的绑定方式可选两种：AP绑定方式、smartlink绑定方式。  
 接入平台可选择三种：和而泰C-Life平台、微信平台、京东平台。
 
-![](/assets/mcu/DeviceInfo.png)
+![](/assets/mcu/DeviceInfoNew.png)    
 这部分的信息是在和而泰开放平台创建产品之后系统自动分配的，每一款产品对应唯一信息，如下图所示：
-![](/assets/mcu/WebDeviceInfo.png)
+![](/assets/mcu/WebDeviceInfo.png)   
 #### 特别说明：绑定过程中如果产品devicekey和设备编码错误是无法绑定成功的。
-![](/assets/mcu/VersionInfo.png)
+![](/assets/mcu/VersionInfo.png)    
 此信息是设备绑定之后在云平台上记录的设备信息，包括设备的软件版本、硬件版本、整机型号等重要信息，信息由用户自定义，项目编号和整机型号都是由15位长度的ASCII组成，不足15位会自动用0补齐。
+#### 4.2.2 修改het_config.h配置文件确定功能需求
+新版本的驱动代码中实现了数据自动发送，用户不需要再关注数据上报的操作，只需负责数据解析即可。由于需要自动发送数据，因此WiFi相关数据的结构体命名必须统一，而结构体的成员则由用户自定义，下面对数据结构体进行一一讲解。  
+##### 4.2.2.1 控制数据结构体
+控制数据结构体中包含三部分用户自定义数据、保留字、功能变更位，如下图所示：   
+![](/assets/mcu/ControlStruct.png)    
+### 注意：   
+1、保留字：保留字之所以存在是因为数据内容长度必须是16的整数倍，所有用来补齐字节长度。   
+2、功能变更位(updataflag)：关于功能变更位解释：解析服务器或者APP下发的控制数据时先解析对应的功能变更位，再解析功能变更位对应的数据内容。
+置位规则：功能变更位的字节个数=数据内容总长度（包括功能变更位）/8
+对应关系：功能变更位的第一个字节，bit0对应控制数据的起始字节，依次类推，如下表格所示（以两字节updataflag为例）：    
+|功能变更位|updataflag1|updataflag2|   
+|对应关系|bit7|。。。|bit0|bit15|。。。|bit8|    
+|数据内容|字节7|。。。|字节0|字节15|。。。|字节8|    
+##### 4.2.2.2 运行数据结构体    
+运行数据结构体中包含两部分用户自定义数据、保留字，如下图所示：     
+![](/assets/mcu/StatusStruct.png)  
+##### 4.2.2.3 故障数据结构体    
+故障数据结构体中包含两部分用户自定义数据、保留字，如下图所示：     
+![](/assets/mcu/ErrorStruct.png)  
+##### 4.2.2.4 故障数据结构体      
+配置数据结构体中包含两部分用户自定义数据、保留字，如下图所示：     
+![](/assets/mcu/ConfigStruct.png)  
 
-![](/assets/mcu/DataLenght.png)
-数据长度是16位对齐，如果长度不正确解析数据时会报错。
+结构体名称不能改变，声明如下图：   
+![](/assets/mcu/StructDefine.png)    
 
-#### 4.2.2 WiFi通讯重要函数API说明
-##### 4.2.2.1 初始化函数	
-	void Het_DriveWifi_WifiInit(pfUartSend _pf_uart_send,pfUartDecode _pf_uart_decode,pfWifiReset _pf_wifi_reset)
-功能描述：WiFi模组初始函数，用于注册用户函数。
-参数描述：
-_pf_uart_send – 用户串口发送字符串函数，函数名可自定义，函数原型必须为：
+###所有结构体内容必须要对齐，所以需要在定义结构体数据前加上对齐付“#pragma pack(1)”和“#pragma pack()”，否则在数据传递的时候会出现指针地址不合法导致程序跑飞的情况。     
 
-	void fun(uint8_t*pbuf,uint16_t len)
-
-_pf_uart_decode – 用户命令解码函数，函数名可自定义，函数原型必须为：  
-
-	void fun(uint16_t cmd, uint8_t *pbuf,uint16_t len)
-
-_pf_wifi_reset – 用户WiFi模组复位函数,函数名可自定义，函数原型必须为：
-
-    void fun(uint8_t flag)
-返回值：无
+#### 4.2.3 WiFi通讯重要函数API说明
+##### 4.2.3.1 初始化函数 
+	TE_HET_STA HET_Wifi_Open(void)  
+函数名称：HET_Wifi_Open         
+功能描述：WiFi通讯功能打开        
+参数：无       
+返回值：TE_HET_STA:返回错误代码       
+示例：HET_Wifi_Open();       
 ##### 示例如下：
+![](/assets/mcu/OpenProtocol.png)     
+初始化代码中有关于串口硬件驱动的初始化需要用户添加，如下图：    
+![](/assets/mcu/UartInit.png) 
 
-![](/assets/mcu/InitializationFunction.png)
+##### 4.2.3.2 复位函数
+	void HET_Wifi_Comm_Reset(value)	  
+函数名称：HET_Wifi_Comm_Reset   
+功能描述：WiFi模块复位脚控制        
+参数：0:失效 1:有效         	
+返回值：无    
+示例：HET_Wifi_Comm_Reset(value);       
+##### 示例如下：   
+![](/assets/mcu/ResetNew.png)     
 
-![](/assets/mcu/SendFunction.png)
+##### 4.2.3.3 串口接收函数
+	void HET_Wifi_RecvCB(uint8_t *_pbuf, uint16_t _data_len)
+函数名称：HET_Wifi_RecvCB   
+功能描述：Wifi串口接收回调   
+参数：pBuf:数据指针 Len:数据长度   
+返回值：无   
+示例：HET_Wifi_RecvCB(pBuf,Len);   
+##### 示例如下：   
+![](/assets/mcu/RecvNew.png)   
+串口接收函数必须按照函数原来来定义，否则接收数据会出错。   
 
-![](/assets/mcu/HandleFunction.png)
+##### 4.2.3.4 串口发送函数
+	void HET_Wifi_Usart_Send(uint8_t *_pbuf, uint16_t _data_len)
+函数名称：HET_Wifi_Usart_Send   
+功能描述：Wifi串口数据发送   
+参数：pBuf:数据指针 Len:数据长度   
+返回值：TE_HET_STA:返回错误代码   
+示例：HET_Wifi_Usart_Send(pBuf,Len);    
+##### 示例如下：   
+![](/assets/mcu/SendNew.png)   
+串口发送函数必须按照函数原来来定义，否则发送数据会出错。   
 
-![](/assets/mcu/ResetFunction.png)
+##### 4.2.3.5 Flash擦除函数
+	void HET_Wifi_UpgradeFlashErase(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
+函数名称：HET_Wifi_UpgradeFlashErase    
+功能描述：Flash擦除   
+参数：Type:flash类型，0-内部flash，1-外部flash(只有在使用外部flash的情况下才有效)
+           StartAddress:开始地址    
+           EndAddress:结束地址    
+返回值：TE_HET_STA:返回错误代码     
+示例：HET_Wifi_UpgradeFlashErase(Type,StartAddress,EndAddress);    
+##### 示例如下：   
+![](/assets/mcu/FlashErase.png)      
+如果需要修改Flash擦除函数，请与函数原型保持一致，否则会因为擦除数据出错，导致程序跑飞。      
 
-##### 4.2.2.2 心跳函数
-	void Het_DriveWifi_SystickISR(void)
-功能描述：此函数作用是给WiFi处理程序提供10ms时钟,必须放在10ms定时器里
-参数描述：无
-返回值：无 
-##### 示例如下：
+##### 4.2.3.6 Flash写入函数
+	void HET_Wifi_UpgradeFlashWrite(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
+函数名称：HET_Wifi_UpgradeFlashWrite   
+功能描述：写入升级数据   
+参数：Type:0-内部flash，1-外部flash(只有在使用外部flash的情况下才有效)   
+		   Address:写入地址   
+           pData:数据指针  
+           Len:数据长度   
+返回值：TE_HET_STA:返回错误代码   
+示例：HET_Wifi_UpgradeFlashWrite(Type,Address,pData,Len);   
+  
+##### 示例如下：   
+![](/assets/mcu/FlashWrite.png)      
+如果需要修改Flash写入函数，请与函数原型保持一致，否则会因为写入数据出错，导致程序跑飞。
 
-![](/assets/mcu/TimInterrupt_wifi.png)
+##### 4.2.3.7 Flash写入函数
+	void HET_Wifi_UpgradeFlashWrite(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
+函数名称：HET_Wifi_UpgradeFlashRead   
+功能描述：读取升级数据   
+参数：Type:flash类型，0-内部flash，1-外部flash(只有在使用外部flash的情况下才有效)   
+		   Address:写入地址   
+           pData:数据指针   
+           Len:数据长度   
+返回值：空   
+示例：HET_Wifi_UpgradeFlashRead(Type,Address,pData,Len);   
 
-##### 4.2.2.3 串口接收函数
-	void Het_DriveWifi_UsartRecvISR(uint8_t *_pbuf, uint16_t _data_len)
-功能描述：WiFi模组串口中断接收函数,必须放在串口中断函数里面
-参数描述：
-_pbuf – 串口接收数据首地址
-_data_len – 接收数据长度
-返回值：无 
-##### 示例如下：
+##### 示例如下：   
+![](/assets/mcu/FlashRead.png)         
+如果需要修改Flash读取函数，请与函数原型保持一致，否则会因为读取数据出错，导致程序跑飞。   
 
-![](/assets/mcu/RxInterrupt_Wifi.png)
+##### 4.2.3.8 绑定、产测操作函数
+	TE_HET_STA HET_CP_WriteCMD(TE_HET_CP_CONTROL Cmd)
+函数名称：HET_CP_WriteCMD  
+功能描述：发送CP操作指令   
+参数：Cmd：HET_CP_BINDCMD-绑定，HET_CP_TESTCMD-产测   
+返回值：TE_HET_STA：返回错误代码  
+示例：HET_CP_WriteCMD(Cmd);  
 
-##### 4.2.2.4 绑定函数
-	void Het_DriveWifi_WifiModuleBindCmd(uint8_t _flag)
-功能描述：WiFi绑定触发条件
-参数描述：_flag – 如果_flag大于0,表示使能绑定操作
-返回值：无
 ##### 示例如下（本示例是通过长按按键触发绑定）：
 
 ![](/assets/mcu/Banding.png)
+#### 产测操作用法和绑定命令一样，都是调用同一个函数，只是输入的参数不一样，这里就不做过多说明。 
+触发产测之后，等待产测结果产生之后程序会自动进入产测处理函数中，用户可以自行添加产测处理代码，如下图所示：   
+![](/assets/mcu/TestHandle.png)   
 
-##### 4.2.2.5 厂测函数
-	void Het_DriveWifi_WifiModuleTestCmd (uint8_t _flag)
-功能描述：WiFi进入产测条件
-参数描述：_flag – 如果_flag大于0,表示使能产测操作
-返回值：无
-#### 用法和绑定命令一样，这里就不做过多说明。 
+##### 4.2.3.9 通讯故障处理函数
+	void HET_Wifi_ErrHandler(uint32_t Fault)
+函数名称：HET_Wifi_ErrHandler   
+功能描述：Wifi通讯故障处理   
+参数：FaultCode - 故障代码   
+返回值：空   
+示例：HET_Wifi_ErrHandler(Fault);
+##### 示例如下：
+![](/assets/mcu/ErrorHandle.png)     
+   
+##### 4.2.3.10 主动获取本地时间函数
+	TE_HET_STA HET_Wifi_SyncLocalTime(void)
+函数名称：HET_Wifi_SyncLocalTime   
+功能描述：本地数据上报类型标识控制   
+参数：无   
+返回值：TE_HET_STA:返回错误代码   
+示例：HET_Wifi_SyncLocalData();   
+##### 示例如下：
+![](/assets/mcu/GetTime.png)  
 
-##### 4.2.2.6 获取WiFi状态函数
-	het_uint8_t Het_DriveWifi_GetWifiStatus(void)
-功能描述：获取WiFi连接状态函数
-参数描述：无
-返回值：WiFi状态值
+
+##### 4.2.3.11 获取网络状态函数
+	TE_HET_NET_STATUS HET_CP_GetNetStatus(void)
+函数名称：HET_CP_GetNetStatus   
+功能描述：获取网络连接状态   
+参数：无   
+返回值：TE_HET_NET_STATUS - HET_ONLINE:在线  
+                           HET_OFFLINE:离线   
+示例：InterStatus = HET_CP_GetNetStatus();  
 #### 函数原型如下：
+![](/assets/mcu/GetNetStatus.png)   
 
-![](/assets/mcu/WifiStatus.png)
+##### 4.2.3.12 获取信号强度函数
+	uint8_t HET_CP_GetSignalStrength(void)
+函数名称：HET_CP_GetSignalStrength   
+功能描述：获取Wifi信号强度   
+参数：无   
+返回值：WiFi信号强度0~10   
+示例：CPSignalStrength = HET_CP_GetSignalStrength();   
+#### 函数原型如下：
+![](/assets/mcu/GetSignalStrength.png)    
 
-##### 4.2.2.7 数据发送函数
-	enum_WResult Het_DriveWifi_WifiDataSend(enum_CMDType _type,uint8_t *_pbuf,uint8_t _len)
-功能描述：发送用户私有数据函数,
-参数描述：
-_type – 用户发送的数据所处类型，如CMD_TYPE_CTRL表示为控制命令数据,CMD_TYPE_STATUS表示为状态命令数据
-_pbuf – 用户发送数据缓存的首地址
-_len – 用户发送数据的长度
-返回值：发送的状态,WR_OK表示发送成功 
-##### 示例如下：
+##### 4.2.3.13 通讯任务函数
+	void HET_CP_Task(void)   
+函数名称：HET_CP_Task      
+功能描述：通讯任务，每10ms运行一次该函数   
+参数：无      
+返回值：无   
+示例：HET_CP_Task();     
+#### 示例如下：   
+![](/assets/mcu/CPTask.png)     
+通讯任务必须每10ms执行一次，如果10ms偏差比较大会导致通讯异常。   
 
-![](/assets/mcu/TxSend_Wifi.png)
+##### 4.2.3.14 服务器下发的控制数据处理函数
+	void HET_Ctrl_Decode_CallBack(uint8_t *CtrlData)   
+函数名称：HET_Ctrl_Decode_CallBack   
+功能描述：控制数据处理     
+参数：CtrlData:控制数据指针   
+返回值：无   
+示例：HET_Ctrl_Decode_CallBack(&CtrlData);   
+#### 示例如下：
+![](/assets/mcu/DecodeCtrl.png) 
 
-##### 4.2.2.8 WiFi通讯管理函数
-	enum_WResult Het_DriveWifi_WifiProcess(void)
-功能描述：WiFi绑定和数据交互处理,此函数放在主循环里面
-参数描述：无
-返回值：返回当前程序的状态。特别注意的是，当返回状态等于WR_WAIT_SEND_CTRL_CMD或者WR_TIMER_SEND_STATUS_CMD时，程序正处于
-阻塞状态,等待用户输入设备控制和状态数据。
-##### 此函数管控整个WiFi通讯流程流程，用户可以不必理会里面的执行逻辑，只需要根据返回值做相应的数据处理，示例如下：
+##### 4.2.3.15 服务器下发的配置数据处理函数
+	void HET_Config_Decode_CallBack(uint8_t *CtrlData)   
+函数名称：HET_Config_Decode_CallBack   
+功能描述：配置数据处理  
+参数：CfgData:配置数据指针  
+返回值：无  
+示例：HET_Config_Decode_CallBack(&CfgData);  
+#### 示例如下：
+![](/assets/mcu/DecodeCfg.png) 
 
-![](/assets/mcu/WifiHandle.png)
+##### 4.2.3.16 本地时间数据存储函数
+	void HET_SyncTime_Decode_CallBack(uint8_t *pBuf)   
+* 函数名称 : HET_SyncTime_Decode_CallBack
+* 功能描述 : 时间数据处理
+* 参    数 : pBuf:时间数据指针
+* 返回值   : 无
+* 示    例 : HET_SyncTime_Decode_CallBack(&pBuf);  
+#### 示例如下：
+![](/assets/mcu/DateBank.png) 
 
-##### 4.2.2.9 在线升级心跳函数
-	void Upgrade_SystickISR(void)
-功能描述：此函数作用是给升级处理程序提供10ms时钟,必须放在10ms定时器里
-参数描述：无
-返回值：无 
-##### 示例如下：
+##### 4.2.3.17 在线升级说明
+本工程模板包括两个项目工程，其中DempOTA工程负责管理芯片上电后检测是否有在线升级动作，如果有则把新的程序内容拷贝至原来的应用区，替换掉原来的老程序，如果没有则直接跳转到应用区启动程序。而DemoAPP则是应用程序代码区。通过修改FlashDivision.h文件里面的内容可以进行分区划分，具体的分区信息可以点击FlashDivision.h文件查看。    
 
-![](/assets/mcu/TimInterrupt-Upgrade.png)
+* [单片机OTA原理介绍](/assets/mcu/PDF/McuOtaDescription.pdf)   
 
-##### 4.2.2.10 在线升级处理函数
-	enum_UResult Upgrade_Process(void)
-功能描述：在线升级处理，应和WiFi处理程序配套使用。
-参数描述：无
-返回值：返回在线升级状态
-##### 此函数直接在主程序中调用即可，如有升级动作会自动处理，不需另外进行操作，示例如下：
+开启在线升级需要在两个头文件中修改相关配置：   
+1、WifiConfig.h文件中将“HET_UPGRADE_FW_EN”的值设置为1，示例如下图：   
+![](/assets/mcu/OTAswitch.png)  
+2、FlashDivision.h中配置相关选项，具体操作示例如下图：  
+![](/assets/mcu/FlashDivision.png)     
+两个文件修改完之后编译工程即可，注意两个工程都需要同时编译(DemoOTA和DemoAPP)。
 
-![](/assets/mcu/Handle_Upgrade.png)
-
-#### 4.2.3 程序初始化
-
-![](/assets/mcu/SystemInit.png)
-
-#### 初始化中需要注意的是WiFi模块处理初始化，需要按照API说明中的操作来做，请参照3.2.1。
-
-![](/assets/mcu/WifiInit.png)
-
-#### 4.2.4 主程序展示
-主程序中包括系统初始化、在线升级检查、WiFi通讯、用户程序处理（本地控制）。
-
-![](/assets/mcu/MainStruct.png)
-
-#### 4.2.5 关于WiFi通讯数据处理
-当服务器主动下发数据下来后，程序都会通过之前初始化函数中用户自定义的处理程序来处理接收到的数据，数据处理是需要用户自行解析的，具体示例如下：
-
-![](/assets/mcu/DataHandleFunction.png)
-
-#### 4.2.6 关于在线升级说明
-本工程模板包括两个项目工程，其中DempOTA工程负责管理芯片上电后检测是否有在线升级动作，如果有则把新的程序内容拷贝至原来的应用区，替换掉原来的老程序，如果没有则直接跳转到应用区启动程序。而DemoAPP则是应用程序代码区。通过修改FlashDivision.h文件里面的内容可以进行分区划分，具体的分区信息可以点击FlashDivision.h文件查看。  
-
-* [单片机OTA原理介绍](/assets/mcu/PDF/McuOtaDescription.pdf)
+#### 4.2.5 主程序展示
+![](/assets/mcu/MainNew.png)
 
 ## 5 设备绑定连接网络
 再进行这一步操作之前必须先在平台通过扫描二维码下载好DemoApp，扫描地址如下：
@@ -290,32 +379,7 @@ _len – 用户发送数据的长度
 </center>
 需要注意一下，示例是IOS版本的App操作，安卓和IOS界面不同，但是操作类似这里就不另做说明了。
 
-## 6 关于WiFi通讯数据交互
-
-WiFi数据处理都是在WifiPro.c文件中，通讯数据分为两种，一种是本地主动上传，另一种是应答服务器数据，下面我们一一给大家举例示范。
-#### 注：所有类型的数据交互都必须是设备实时数据
-### 6.1 本地主动上传控制数据
-本地主动上传控制数据可以通过按键等触发方式来实现，主要是控制逻辑发生变化之后把信息上传给服务器，具体样例如下：
-	Het_DriveWifi_WifiDataSend(CMD_0104_CTRL,UartTxBuf,WIFI_CONTROL_LEN);
-通过Het_DriveWifi_WifiDataSend函数发送，数据类型为CMD_0104_CTRL，发送的数据缓存在UartTxBuf中，长度为WIFI_CONTROL_LEN。
-
-
-### 6.2 应答服务器下发的控制数据
-服务器下发控制数据之后，单片机需要执行完下发的控制数据后把最新的设备控制状态上报给服务器进行应答，具体样例如下：
-	Het_DriveWifi_WifiDataSend(CMD_0204_CTRL_ACK,UartTxBuf,WIFI_CONTROL_LEN);
-通过Het_DriveWifi_WifiDataSend函数发送，数据类型为CMD_0204_CTRL_ACK，发送的数据缓存在UartTxBuf中，长度为WIFI_CONTROL_LEN。
-
-### 6.3 本地主动上传运行状态数据
-本地上报运行状态数据已5S为周期循环上报，运行状态数据服务器不会下发，属于被动接收类型，具体样例如下：
-	Het_DriveWifi_WifiDataSend(CMD_0105_STATUS,UartTxBuf,WIFI_STATUS_LEN);
-通过Het_DriveWifi_WifiDataSend函数发送，数据类型为CMD_0105_STATUS，发送的数据缓存在UartTxBuf中，长度为WIFI_STATUS_LEN。
-
-### 6.4 本地主动上传故障数据
-当设备出现故障之后主动上报该信息给服务器，每种故障发生时上报一次，解除故障后再上报一次，与运行状态数据一样，故障数据也是服务器被动接收，不会主动下发，具体样例如下：
-	Het_DriveWifi_WifiDataSend(CMD_010E_ERROR,UartTxBuf,WIFI_ERROR_LEN);
-通过Het_DriveWifi_WifiDataSend函数发送，数据类型为CMD_010E_ERROR，发送的数据缓存在UartTxBuf中，长度为WIFI_ERROR_LEN。
-
-## 7 在线调试说明
+## 6 在线调试说明
 1、进入C-Life开放平台“设备调试”页面，添加设备的MAC地址；
 2、点击“进入模拟调试”，进入调试窗口，查看C-Life开放平台与设备数据交互；
 ![](/assets/mcu/DebugOnline.png)
@@ -329,6 +393,6 @@ WiFi数据处理都是在WifiPro.c文件中，通讯数据分为两种，一种�
 ![](/assets/mcu/DebugSendControl.png)
 
 
-## 8.常见问题分析
+## 7.常见问题分析
 对于刚刚接触智能硬件的人来说，调试一帆风顺的情况是非常少见的，以下我们总结了一些在调试过程中很容易遇到的一些问题，让大家少走弯路。
 * [接入常见问题详解](./CommonProblem.html) 
