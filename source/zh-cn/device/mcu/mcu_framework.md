@@ -138,8 +138,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 函数名称：HET_Wifi_Open         
 功能描述：WiFi通讯功能打开        
 参数：无       
-返回值：TE_HET_STA:返回错误代码       
-示例：HET_Wifi_Open();       
+返回值：TE_HET_STA:返回错误代码              
 ##### 示例如下：
 ![](/assets/mcu/OpenProtocol.png)     
 初始化代码中有关于串口硬件驱动的初始化需要用户添加，如下图：    
@@ -150,8 +149,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 函数名称：HET_Wifi_Comm_Reset   
 功能描述：WiFi模块复位脚控制        
 参数：0:失效 1:有效         	
-返回值：无    
-示例：HET_Wifi_Comm_Reset(value);       
+返回值：无          
 ##### 示例如下：   
 ![](/assets/mcu/ResetNew.png)     
 
@@ -160,8 +158,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 函数名称：HET_Wifi_RecvCB   
 功能描述：Wifi串口接收回调   
 参数：pBuf:数据指针 Len:数据长度   
-返回值：无   
-示例：HET_Wifi_RecvCB(pBuf,Len);   
+返回值：无     
 ##### 示例如下：   
 ![](/assets/mcu/RecvNew.png)   
 串口接收函数必须按照函数原来来定义，否则接收数据会出错。   
@@ -171,8 +168,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 函数名称：HET_Wifi_Usart_Send   
 功能描述：Wifi串口数据发送   
 参数：pBuf:数据指针 Len:数据长度   
-返回值：TE_HET_STA:返回错误代码   
-示例：HET_Wifi_Usart_Send(pBuf,Len);    
+返回值：TE_HET_STA:返回错误代码     
 ##### 示例如下：   
 ![](/assets/mcu/SendNew.png)   
 串口发送函数必须按照函数原来来定义，否则发送数据会出错。   
@@ -184,8 +180,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 参数：Type:flash类型，0-内部flash，1-外部flash(只有在使用外部flash的情况下才有效)
            StartAddress:开始地址    
            EndAddress:结束地址    
-返回值：TE_HET_STA:返回错误代码     
-示例：HET_Wifi_UpgradeFlashErase(Type,StartAddress,EndAddress);    
+返回值：TE_HET_STA:返回错误代码       
 ##### 示例如下：   
 ![](/assets/mcu/FlashErase.png)      
 如果需要修改Flash擦除函数，请与函数原型保持一致，否则会因为擦除数据出错，导致程序跑飞。      
@@ -198,9 +193,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 		   Address:写入地址   
            pData:数据指针  
            Len:数据长度   
-返回值：TE_HET_STA:返回错误代码   
-示例：HET_Wifi_UpgradeFlashWrite(Type,Address,pData,Len);   
-  
+返回值：TE_HET_STA:返回错误代码    
 ##### 示例如下：   
 ![](/assets/mcu/FlashWrite.png)      
 如果需要修改Flash写入函数，请与函数原型保持一致，否则会因为写入数据出错，导致程序跑飞。
@@ -213,9 +206,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 		   Address:写入地址   
            pData:数据指针   
            Len:数据长度   
-返回值：空   
-示例：HET_Wifi_UpgradeFlashRead(Type,Address,pData,Len);   
-
+返回值：空    
 ##### 示例如下：   
 ![](/assets/mcu/FlashRead.png)         
 如果需要修改Flash读取函数，请与函数原型保持一致，否则会因为读取数据出错，导致程序跑飞。   
@@ -226,11 +217,8 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 功能描述：发送CP操作指令   
 参数：Cmd：HET_CP_BINDCMD-绑定，HET_CP_TESTCMD-产测   
 返回值：TE_HET_STA：返回错误代码  
-示例：HET_CP_WriteCMD(Cmd);  
-
 ##### 示例如下（本示例是通过长按按键触发绑定）：
-
-![](/assets/mcu/Banding.png)
+![](/assets/mcu/BindNew.png)
 #### 产测操作用法和绑定命令一样，都是调用同一个函数，只是输入的参数不一样，这里就不做过多说明。 
 触发产测之后，等待产测结果产生之后程序会自动进入产测处理函数中，用户可以自行添加产测处理代码，如下图所示：   
 ![](/assets/mcu/TestHandle.png)   
@@ -241,7 +229,6 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 功能描述：Wifi通讯故障处理   
 参数：FaultCode - 故障代码   
 返回值：空   
-示例：HET_Wifi_ErrHandler(Fault);
 ##### 示例如下：
 ![](/assets/mcu/ErrorHandle.png)     
    
@@ -250,11 +237,9 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 函数名称：HET_Wifi_SyncLocalTime   
 功能描述：本地数据上报类型标识控制   
 参数：无   
-返回值：TE_HET_STA:返回错误代码   
-示例：HET_Wifi_SyncLocalData();   
+返回值：TE_HET_STA:返回错误代码    
 ##### 示例如下：
 ![](/assets/mcu/GetTime.png)  
-
 
 ##### 4.2.3.11 获取网络状态函数
 	TE_HET_NET_STATUS HET_CP_GetNetStatus(void)
@@ -262,8 +247,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 功能描述：获取网络连接状态   
 参数：无   
 返回值：TE_HET_NET_STATUS - HET_ONLINE:在线  
-                           HET_OFFLINE:离线   
-示例：InterStatus = HET_CP_GetNetStatus();  
+                           HET_OFFLINE:离线    
 #### 函数原型如下：
 ![](/assets/mcu/GetNetStatus.png)   
 
@@ -272,8 +256,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 函数名称：HET_CP_GetSignalStrength   
 功能描述：获取Wifi信号强度   
 参数：无   
-返回值：WiFi信号强度0~10   
-示例：CPSignalStrength = HET_CP_GetSignalStrength();   
+返回值：WiFi信号强度0~10     
 #### 函数原型如下：
 ![](/assets/mcu/GetSignalStrength.png)    
 
@@ -282,8 +265,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 函数名称：HET_CP_Task      
 功能描述：通讯任务，每10ms运行一次该函数   
 参数：无      
-返回值：无   
-示例：HET_CP_Task();     
+返回值：无       
 #### 示例如下：   
 ![](/assets/mcu/CPTask.png)     
 通讯任务必须每10ms执行一次，如果10ms偏差比较大会导致通讯异常。   
@@ -293,8 +275,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 函数名称：HET_Ctrl_Decode_CallBack   
 功能描述：控制数据处理     
 参数：CtrlData:控制数据指针   
-返回值：无   
-示例：HET_Ctrl_Decode_CallBack(&CtrlData);   
+返回值：无    
 #### 示例如下：
 ![](/assets/mcu/DecodeCtrl.png) 
 
@@ -304,17 +285,15 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 功能描述：配置数据处理  
 参数：CfgData:配置数据指针  
 返回值：无  
-示例：HET_Config_Decode_CallBack(&CfgData);  
 #### 示例如下：
 ![](/assets/mcu/DecodeCfg.png) 
 
 ##### 4.2.3.16 本地时间数据存储函数
 	void HET_SyncTime_Decode_CallBack(uint8_t *pBuf)   
-* 函数名称 : HET_SyncTime_Decode_CallBack
-* 功能描述 : 时间数据处理
-* 参    数 : pBuf:时间数据指针
-* 返回值   : 无
-* 示    例 : HET_SyncTime_Decode_CallBack(&pBuf);  
+函数名称：HET_SyncTime_Decode_CallBack
+功能描述：时间数据处理
+参数：pBuf:时间数据指针
+返回值：无 
 #### 示例如下：
 ![](/assets/mcu/DateBank.png) 
 
