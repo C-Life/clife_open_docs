@@ -87,10 +87,10 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
  | FlashDivision.h | 单片机flash地址分区及升级信息 |     
  | het_config.h | 通讯数据内容结构体定义头文件 |    
  | HET_ClifeProtocol.c | WiFi通讯流程管控处理 |    
- | HET_ClifeProtocol.h | 为DriveWifi.c对应头文件，WiFi通讯流程管控处理相关信息声明 |    
+ | HET_ClifeProtocol.h | HET_ClifeProtocol.c对应头文件，WiFi通讯流程管控处理相关信息声明 |    
  | WifiConfig.h | WiFi模组接入平台选择、模组绑定信息、设备信息、服务功能选择等声明非常重要 |    
  | Product_Wifi.c | 用户与服务器数据交互业务处理 |    
- | Product_Wifi.h | 为WifiPro.c对应头文件 |    
+ | Product_Wifi.h | 为Product_Wifi.c对应头文件 |    
 ### 4.2 程序操作介绍
 #### 4.2.1 修改WifiConfig.h绑定信息配置文件确定绑定信息
 ![](/assets/mcu/ConfigOptionsNew.png)   
