@@ -201,8 +201,8 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 ![](/assets/mcu/FlashWrite.png)      
 如果需要修改Flash写入函数，请与函数原型保持一致，否则会因为写入数据出错，导致程序跑飞。
 
-##### 4.2.3.7 Flash写入函数
-	void HET_Wifi_UpgradeFlashWrite(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
+##### 4.2.3.7 Flash读取函数
+	void HET_Wifi_UpgradeFlashRead(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
 函数名称：HET_Wifi_UpgradeFlashRead   
 功能描述：读取升级数据   
 参数：Type:flash类型，0-内部flash，1-外部flash(只有在使用外部flash的情况下才有效)   
