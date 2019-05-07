@@ -137,11 +137,11 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 
 #### 4.2.3 WiFi通讯重要函数API说明
 ##### 4.2.3.1 初始化函数 
-	TE_HET_STA HET_Wifi_Open(void)  
+	void HET_Wifi_Open(void)  
 函数名称：HET_Wifi_Open         
 功能描述：WiFi通讯功能打开        
 参数：无       
-返回值：TE_HET_STA:返回错误代码              
+返回值：无         
 ##### 示例如下：
 ![](/assets/mcu/OpenProtocol.png)     
 初始化代码中有关于串口硬件驱动的初始化需要用户添加，如下图：    
@@ -164,46 +164,46 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 返回值：无     
 ##### 示例如下：   
 ![](/assets/mcu/RecvNew.png)   
-串口接收函数必须按照函数原来来定义，否则接收数据会出错。   
+串口接收函数必须按照函数原型来定义，否则接收数据会出错。   
 
 ##### 4.2.3.4 串口发送函数
 	void HET_Wifi_Usart_Send(uint8_t *_pbuf, uint16_t _data_len)
 函数名称：HET_Wifi_Usart_Send   
 功能描述：Wifi串口数据发送   
 参数：pBuf:数据指针 Len:数据长度   
-返回值：TE_HET_STA:返回错误代码     
+返回值：无     
 ##### 示例如下：   
 ![](/assets/mcu/SendNew.png)   
-串口发送函数必须按照函数原来来定义，否则发送数据会出错。   
+根据使用的单片机型号调整对应的串口发送函数，但是必须按照函数原型来定义，否则发送数据会出错。   
 
 ##### 4.2.3.5 Flash擦除函数
-	void HET_Wifi_UpgradeFlashErase(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
-函数名称：HET_Wifi_UpgradeFlashErase    
+	void HET_Wifi_FlashErase(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
+函数名称：HET_Wifi_FlashErase    
 功能描述：Flash擦除   
 参数：Type:flash类型，0-内部flash，1-外部flash(只有在使用外部flash的情况下才有效)
            StartAddress:开始地址    
            EndAddress:结束地址    
-返回值：TE_HET_STA:返回错误代码       
+返回值：无      
 ##### 示例如下：   
 ![](/assets/mcu/FlashErase.png)      
 如果需要修改Flash擦除函数，请与函数原型保持一致，否则会因为擦除数据出错，导致程序跑飞。      
 
 ##### 4.2.3.6 Flash写入函数
-	void HET_Wifi_UpgradeFlashWrite(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
-函数名称：HET_Wifi_UpgradeFlashWrite   
+	void HET_Wifi_FlashWrite(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
+函数名称：HET_Wifi_FlashWrite   
 功能描述：写入升级数据   
 参数：Type:0-内部flash，1-外部flash(只有在使用外部flash的情况下才有效)   
 		   Address:写入地址   
            pData:数据指针  
            Len:数据长度   
-返回值：TE_HET_STA:返回错误代码    
+返回值：无    
 ##### 示例如下：   
 ![](/assets/mcu/FlashWrite.png)      
 如果需要修改Flash写入函数，请与函数原型保持一致，否则会因为写入数据出错，导致程序跑飞。
 
 ##### 4.2.3.7 Flash读取函数
-	void HET_Wifi_UpgradeFlashRead(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
-函数名称：HET_Wifi_UpgradeFlashRead   
+	void HET_Wifi_FlashRead(uint8_t Type, uint32_t StartAddress, uint32_t EndAddress)     
+函数名称：HET_Wifi_FlashRead   
 功能描述：读取升级数据   
 参数：Type:flash类型，0-内部flash，1-外部flash(只有在使用外部flash的情况下才有效)   
 		   Address:写入地址   
@@ -215,11 +215,11 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 如果需要修改Flash读取函数，请与函数原型保持一致，否则会因为读取数据出错，导致程序跑飞。   
 
 ##### 4.2.3.8 绑定、产测操作函数
-	TE_HET_STA HET_CP_WriteCMD(TE_HET_CP_CONTROL Cmd)
+	void HET_CP_WriteCMD(TE_HET_CP_CONTROL Cmd)
 函数名称：HET_CP_WriteCMD  
 功能描述：发送CP操作指令   
 参数：Cmd：HET_CP_BINDCMD-绑定，HET_CP_TESTCMD-产测   
-返回值：TE_HET_STA：返回错误代码  
+返回值：无  
 ##### 示例如下（本示例是通过长按按键触发绑定）：
 ![](/assets/mcu/BindNew.png)
 #### 产测操作用法和绑定命令一样，都是调用同一个函数，只是输入的参数不一样，这里就不做过多说明。 
@@ -236,11 +236,11 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 ![](/assets/mcu/ErrorHandle.png)     
    
 ##### 4.2.3.10 主动获取本地时间函数
-	TE_HET_STA HET_Wifi_SyncLocalTime(void)
+	void HET_Wifi_SyncLocalTime(void)
 函数名称：HET_Wifi_SyncLocalTime   
 功能描述：本地数据上报类型标识控制   
 参数：无   
-返回值：TE_HET_STA:返回错误代码    
+返回值：无 
 ##### 示例如下：
 ![](/assets/mcu/GetTime.png)  
 
