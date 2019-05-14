@@ -238,11 +238,14 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 ##### 4.2.3.10 主动获取本地时间函数
 	void HET_Wifi_SyncLocalTime(void)
 函数名称：HET_Wifi_SyncLocalTime   
-功能描述：本地数据上报类型标识控制   
+功能描述：本地数据上报类型标识控制(获取时间会自动触发，特殊情况下可手动则调用该函数)   
 参数：无   
 返回值：无 
 ##### 示例如下：
 ![](/assets/mcu/GetTime.png)  
+除NB模块之外其他模块同步时间指令会自动发送，同步周期在初始化函数中设置，如下图：   
+![](/assets/mcu/GetTimeInit.png)  
+
 
 ##### 4.2.3.11 获取网络状态函数
 	TE_HET_NET_STATUS HET_CP_GetNetStatus(void)
