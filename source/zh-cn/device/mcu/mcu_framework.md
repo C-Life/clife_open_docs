@@ -67,7 +67,7 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 
 ## 4.MCU通讯代码移植  
 
-[通讯代码下载地址](https://open.clife.cn/open_documentDownload/#/ )    
+[通讯代码下载地址](https://open.clife.cn/open_documentDownload/#/ "通讯代码下载地址")    
 
 ![](/assets/mcu/MCU-Code.png) 
 ### 4.1 MCU工程代码目录
