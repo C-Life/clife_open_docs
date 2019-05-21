@@ -65,8 +65,11 @@ xxx_xxx_数值_累计耗电量(累计耗电量)
 * [串口数据协议](/assets/mcu/PDF/WiFi-McuProtocol.pdf)
 * [串口通讯流程](./serialPortCommunicationProcess.html)
 
-## 4.MCU通讯代码移植
-[通讯代码下载地址](https://open.clife.cn/open_documentdownload/#/)
+## 4.MCU通讯代码移植  
+
+[通讯代码下载地址](https://open.clife.cn/open_documentdownload/#/)    
+
+![](/assets/mcu/MCU-Code.png) 
 ### 4.1 MCU工程代码目录
 ![](/assets/mcu/ProjectDirectory.png)
 #### 4.1.1 文件目录说明：
