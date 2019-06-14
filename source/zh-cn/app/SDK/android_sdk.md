@@ -1,8 +1,8 @@
 
 # 开放平台 Android SDK 集成
 
-为了简化开发者在设备接入开放平台的开发工作，Clife开放平台为开发人员提供了APP端SDK通用的接口调用源代码和开发文档。开发者不需要关注具体底层实现和复杂的数据协议，实现APP的业务功能即可。集成简单，调用方便。  
-SDK 提供了以下功能模块：  
+为了简化开发者在设备接入开放平台的开发工作，Clife开放平台为开发人员提供了APP端SDK通用的接口调用源代码和开发文档。开发者不需要关注具体底层实现和复杂的数据协议，实现APP的业务功能即可。集成简单，调用方便。
+SDK 提供了以下功能模块：
 
 *  授权登录和云对接登录
 *  设备配网和绑定(wifi绑定和蓝牙绑定)
@@ -13,7 +13,7 @@ SDK 提供了以下功能模块：
 ## 1.SDK集成准备
 ### 1.1.android 开发环境
 *  Android 开发工具使用Android Studio
-*  Android SDK 要求 Android 4.0 及以上版本   
+*  Android SDK 要求 Android 4.0 及以上版本
 *  JDK 版本要求1.8 或以上版本
 
 ### 1.2.创建应用
@@ -64,7 +64,7 @@ SDK 提供了以下功能模块：
 
 查看开放平台产品模组类型，选择模组的依赖包。
 
-![](https://i.imgur.com/98xFDg4.png)
+![](/assets/iOS/APPViewModuleType.png)
 
 ### 1.5.配置AndroidManifest.xml 添加权限
 
@@ -274,7 +274,7 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 
 授权登录页面：
 
-<img src="https://i.imgur.com/0gc7Gqa.png" width = "360" height = "620" alt="图片名称" align=center />
+<img src="../../../../assets/android/账号授权页面.png" width = "360" height = "620" alt="图片名称" align=center />
 
 ### 3.2.云云对接用户授权登录
 为了适应不同的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，该流程请参考文档[C-Life开放平台验证码三方授权流程](../../cloudAPI/cloudAPI.html)。
@@ -282,7 +282,7 @@ HetNewAuthApi.getInstance().authorize() 跳转到授权登录页面。
 #### 3.2.1.云云对接接口调用
 
 授权流程图如下：
-![](https://i.imgur.com/Swtg7nm.png)
+![](/assets/android/cloud_auth.png)
 
 1.SDK请求CLife获取授权码
 
@@ -466,8 +466,8 @@ HetUserApi.getInstance().getUserMess()获取用户信息
 	}
 
 修改密码页面：
-
-<img src="https://i.imgur.com/jJyysqX.png" width = "360" height = "620" alt="图片名称" align=center />
+<!-- ../../../../assets/android/修改密码页面.png -->
+<img src="../../../../assets/android/修改密码页面.png" width = "360" height = "620" alt="图片名称" align=center />
 
 ## 4.设备绑定
 
@@ -589,7 +589,8 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 获取到设备的产品ID（productId 字段），就可以开始绑定了。
 
 第二种：扫描开放平台创建的产品二维码来获取。
-![](https://i.imgur.com/Tge2Ypk.png)
+
+![](/assets/android/产品详情.png)
 
 扫描结果示例：
 
@@ -622,7 +623,8 @@ HetDeviceListApi.getInstance().getSubTypeListProduct() 获取APP支持绑定的�
 
 
 第三种：在开放平台后台直接直接查看产品ID，详情请查《clife开发平台使用手册》。
-![](https://i.imgur.com/TDwtXPH.png)
+
+![](/assets/android/产品信息.png)
 
 
 根据项目需求选择合适的方式来获取产品ID。然后根据设备类型选择SDK的绑定接口。 具体分为WIFI绑定和蓝牙绑定2种。通过设备小类(moduleType字段)判断是WIFI设备还是蓝牙设备，进入相应的绑定设备绑定流程。 如：
@@ -711,7 +713,7 @@ WIFI设备绑定分AP模式绑定和smartLink模式绑定。
 
 WIFI设备AP绑定流程图如下：
 
-![](https://i.imgur.com/AXPq6FR.png)
+![](/assets/UML_设备绑定流程图.jpg)
 
 APP启动绑定之前，将设备设置成配置模式，设备将会成为一个Wifi热点。 手机连接设备热点，将发送要配置的路由器ssid和密码给设备，然后APP将配置信息给设备，之后设备自行于服务器绑定，APP从服务器查询绑定状态。
 使用开放平台提供的模组固件，设备产生的Wifi热点以“HET-xxx”开头，没有密码。其他厂商提供的模组，SoftAP热点名称由各自厂商指定。
@@ -723,7 +725,7 @@ AP绑定的交互流程：
 
 WIFI设备SmartLink绑定流程图如下：
 
- ![](https://i.imgur.com/J5AWpvN.png)
+![](/assets/UML_smartLink绑定流程图.jpg)
 
 APP启动绑定之前，将设备设置成配置模式。 APP发送要配置的路由器ssid和密码，开启扫描设备服务将扫描到的设备进行绑定，获取绑定结果。
 1.获取路由器ssid和密码
@@ -779,7 +781,7 @@ HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。�
 
 蓝牙网关设备绑定方式跟前面的方式有些小区别，两种方式的蓝牙设备绑定流程图如下：
 
- ![](https://i.imgur.com/b4qGgZi.png)
+ ![](/assets/UML_蓝牙设备绑定.jpg)
 
 接口调用示例：
 
@@ -819,8 +821,8 @@ HetCommonBleBindApi.getInstance().startBind() 启动蓝牙设备扫描绑定。�
 	HetCommonBleBindApi.getInstance().bindToServer(deviceProductBean);
 
 #### 4.3.3.直连设备绑定
-开放平台同时也支持NBIoT、ZigBee、GPRS和内嵌android系统等多种物联网解决方案。采用直连绑定方式连接开放平台。  
-具体步骤：  
+开放平台同时也支持NBIoT、ZigBee、GPRS和内嵌android系统等多种物联网解决方案。采用直连绑定方式连接开放平台。
+具体步骤：
 
 * 设备上电连接开放平台注册MAC或IMEI码
 * 输入设备MAC或IMEI码
@@ -1002,7 +1004,7 @@ DeviceAuthUserModel 的字段说明：
 
 第一种：面对面分享，通过deviceId（要分享的设备的标识）获取分享码，分享的流程图如下：
 
- ![](https://i.imgur.com/2k0B7F0.png)
+ ![](/assets/UML_设备分享_面对面.jpg)
 
 具体的接口调用说明：
 
@@ -1052,7 +1054,7 @@ ShareCodeModel字段说明:
 第二种：第三方分享（通过QQ、微信分享设备）
 利用第三方社交平台，可以快速的实现设备分享。有利于实现产品的快速推广。 远程的第三方分享一定要集成第三方分享服务。详细集成实例请参考下面 **第三方平台服务的集成（登录和分享）**的集成。 分享的流程图如下：
 
- ![](https://i.imgur.com/KkINUuf.png)
+ ![](/assets/UML_设备分享_第三方.jpg)
 
 具体的流程有3个步骤：
 第一步：获取分享URL地址
@@ -1206,7 +1208,7 @@ SDK封装了WIFI设备控制接口和BLE蓝牙设备控制接口，需要根据�
 
 wifi设备控制流程图示如下：
 
- ![](https://i.imgur.com/6Q1Dk6V.png)
+ ![](/assets/UML_WIFI设备控制.jpg)
 
 SDK提供统一的数据流接口。接收设备数据和监听设备状态都是通过IWifiDeviceData这个接口来完成，发送数据调用HetDeviceWifiControlApi.getInstance().setDataToDevice()。
 
@@ -1265,7 +1267,7 @@ WIFI设备控制具体可以分成3个步骤：
         return true;
     }
 
-设置控制监听  
+设置控制监听
 
 	//支持小循环
 	HetWifiDeviceControlApi.getInstance().startWithUdp(deviceBean, iWifiDeviceData);
@@ -1342,7 +1344,7 @@ WIFI设备控制具体可以分成3个步骤：
 
 蓝牙设备控制主要是通过手机和蓝牙设备先建立连接，然后根据定义的协议进行数据交互，具体的交互流程图如下：
 
- ![](https://i.imgur.com/mFZmrXE.png)
+ ![](/assets/UML_蓝牙设备控制.jpg)
 
 具体的蓝牙控制分成5个步骤：
 
@@ -1842,7 +1844,7 @@ HetFeedbackApi.getInstance().addFeedback() 提交意见反馈
 请参考 [基于React的JS-SDK框架](%E5%8F%82%E8%80%83H5%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6JSSDK)
 ## 2.Android和H5通讯流程图
 
-![](https://i.imgur.com/drm1OoC.png)
+![](/assets/android/drm1OoC.png)
 
 ## 3.H5设备控制集成流程
 
@@ -1855,19 +1857,19 @@ SDK封装了H5插件下载和原生与H5通讯接口，开发者可以轻松实�
 ### 3.2.H5控制
 根据设备类型，SDK提供了对应的H5控制接口。使用实例请参考提供的DEMO示例。
 
-#### 3.2.1.WIFI设备  
+#### 3.2.1.WIFI设备
 
 	H5ComWifiControlActivity.startH5ComWifiControlActivity(getActivity(), h5PackParamBean);
 
-#### 3.2.2.蓝牙(3A协议)设备 
+#### 3.2.2.蓝牙(3A协议)设备
 
 	H5ComBle3AControlActivity.startH5Ble3AControlActivity(mContext,h5PackParamBean);
 
-#### 3.2.3.NBIoT设备  
- 
+#### 3.2.3.NBIoT设备
+
 	H5ComNbControlActivity.startH5ComNbControlActivity(mContext,h5PackParamBean);
 
-#### 3.2.4.ZigBee设备  
+#### 3.2.4.ZigBee设备
 
 	H5ComZigbeeControlActivity.startH5ComZigbeeControlActivity(mContext,h5PackParamBean);
 
@@ -1961,7 +1963,7 @@ setLoginType("1")//登录模板选择 1-模板一   2-模板二  3-模板三
 | 3 | 授权登录页模板3 |
 
 ## 3.SDK 混淆说明
-	
+
 	#**************************DEMO混淆区域*******************************
     #---------------------------------实体类-------------------------------------
     -keep public class com.het.sdk.demo.model.** {*;}
