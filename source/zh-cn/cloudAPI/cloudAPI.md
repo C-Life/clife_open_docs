@@ -1,7 +1,7 @@
 # C-Life 开放平台云接口 #
 # 1. 接入方式
 
-![](http://i.imgur.com/hZnRP42.png)
+![](/assets/cloudapi/cloud.jpeg)
 
 如上图所示，C-Life云支持第三方云通过API同步用户信息、设备信息，下发控制设备和主动PUSH设备数据；
 	
