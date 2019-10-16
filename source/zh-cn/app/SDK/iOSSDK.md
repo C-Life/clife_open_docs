@@ -120,7 +120,7 @@ HETOpenSDK setAuthorizeTheme:theme];
 为了适应第三方用户拥有独立账号系统后台的业务需求，同时也考虑平台的安全问题SDK也提供了云云对接用户授权验证接口，在这种环境下用户可以使用本身的登录系统，然后再利用云云对接的方式实现
 一次性登录授权，下面是具体的接口调用流程：
 
-![](https://i.imgur.com/v5RMC8x.png)
+![](/assets/android/cloud_auth.png)
 
 
 第一步：通过SDK获取授权码
